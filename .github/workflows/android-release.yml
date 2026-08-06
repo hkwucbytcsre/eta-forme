@@ -67,9 +67,9 @@ jobs:
           ETA_RELEASE_STORE_PASSWORD: ${{ secrets.ETA_RELEASE_STORE_PASSWORD }}
           ETA_RELEASE_KEY_ALIAS: ${{ secrets.ETA_RELEASE_KEY_ALIAS }}
           ETA_RELEASE_KEY_PASSWORD: ${{ secrets.ETA_RELEASE_KEY_PASSWORD }}
-        run: >-
-          ./gradlew --no-daemon --no-configuration-cache
-          :app:assembleDebug :app:assembleRelease
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon --no-configuration-cache :app:assembleDebug :app:assembleRelease
 
       - name: 验证并整理 APK
         id: apk
