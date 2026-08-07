@@ -68,6 +68,9 @@ internal class AgentLocalTools(
         runBlocking { AgentMemoryRepository.isEnabled() }
     },
     private val screenshotExcludedPackages: () -> Set<String> = { emptySet() },
+    private val screenObservationProvider: (
+        (AgentScreenObservationContract.Options) -> RootShellDeviceController.Observation
+    )? = null,
     private val beforeToolExecution: (String) -> ToolExecutionDecision = {
         ToolExecutionDecision.Allow
     },
@@ -342,11 +345,13 @@ internal class AgentLocalTools(
 
     private fun observeScreen(args: JSONObject): AgentModelClient.ToolResult {
         val startedAt = SystemClock.elapsedRealtime()
-        val observation = deviceController.observe(
-            includeScreenshot = args.optBoolean("include_screenshot", true),
-            includeUiTree = args.optBoolean("include_ui_tree", true),
-            maxNodes = args.optInt("max_nodes", 60)
-        )
+        val options = AgentScreenObservationContract.resolve(args)
+        val observation = screenObservationProvider?.invoke(options)
+            ?: deviceController.observe(
+                includeScreenshot = options.includeScreenshot,
+                includeUiTree = options.includeUiTree,
+                maxNodes = options.maxNodes,
+            )
         publishedObservation.set(
             PublishedObservation(
                 elements = observation.elementObservation,
