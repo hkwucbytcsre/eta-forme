@@ -10,6 +10,7 @@ import aki.agent.core.HookInstallation
 import aki.agent.core.ModuleConfig
 import aki.agent.core.ModuleLogger
 import aki.agent.core.safeLogType
+import aki.agent.hook.aimemory.ColorOsMemoryHooks
 import aki.agent.hook.breeno.BreenoHooks
 import aki.agent.hook.colordirect.ColorDirectHooks
 import aki.agent.hook.google.GoogleAppHooks
@@ -84,6 +85,12 @@ class ModuleMain : XposedModule() {
                 }
             }
 
+            ModuleConfig.COLOROS_MEMORY_PACKAGE -> {
+                if (currentProcessName == ModuleConfig.COLOROS_MEMORY_PACKAGE) {
+                    recordInstallation(ColorOsMemoryHooks.install(this, logger, param.classLoader))
+                }
+            }
+
             ModuleConfig.XIAOAI_PACKAGE -> {
                 if (isCurrentXiaoAiProcess()) {
                     recordInstallation(
@@ -115,6 +122,7 @@ class ModuleMain : XposedModule() {
             isPackageProcess(processName, ModuleConfig.GOOGLE_PACKAGE) ||
             isPackageProcess(processName, ModuleConfig.COLOR_DIRECT_PACKAGE) ||
             isPackageProcess(processName, ModuleConfig.BREENO_PACKAGE) ||
+            processName == ModuleConfig.COLOROS_MEMORY_PACKAGE ||
             processName == ModuleConfig.XIAOAI_PACKAGE ||
             processName == ModuleConfig.XIAOAI_CORE_PROCESS
     }
