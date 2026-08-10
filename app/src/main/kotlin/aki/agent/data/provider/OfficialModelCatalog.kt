@@ -2,6 +2,9 @@ package aki.agent.data.provider
 
 import aki.agent.data.model.Model
 import aki.agent.data.model.ModelSource
+import aki.agent.data.model.CustomProviderSetting
+import aki.agent.data.model.OpenAiCompatibleProviderSetting
+import aki.agent.data.model.OpenAiEndpointMode
 import aki.agent.data.model.ProviderSetting
 import aki.agent.data.model.ProviderSourceTypes
 
@@ -293,9 +296,16 @@ internal object OfficialModelCatalog {
     private fun List<Model>.withStableSortOrder(): List<Model> =
         mapIndexed { index, model -> model.copy(sortOrder = index) }
 
-    private fun catalogIdFor(provider: ProviderSetting): String? =
-        ProviderSourceRegistry.resolve(provider)
-            .takeUnless { it == ProviderSourceTypes.CUSTOM }
+    private fun catalogIdFor(provider: ProviderSetting): String? {
+        val resolved = ProviderSourceRegistry.resolve(provider)
+        if (resolved != ProviderSourceTypes.CUSTOM) return resolved
+        val endpointMode = when (provider) {
+            is OpenAiCompatibleProviderSetting -> provider.endpointMode
+            is CustomProviderSetting -> provider.endpointMode
+            else -> null
+        }
+        return ProviderSourceTypes.OPENAI.takeIf { endpointMode == OpenAiEndpointMode.RESPONSES }
+    }
 
     private fun officialModel(
         id: String,

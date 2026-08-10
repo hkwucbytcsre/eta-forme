@@ -2,6 +2,7 @@ package aki.agent.data.provider
 
 import aki.agent.data.model.AnthropicProviderSetting
 import aki.agent.data.model.OpenAiCompatibleProviderSetting
+import aki.agent.data.model.OpenAiEndpointMode
 import aki.agent.data.model.ProviderSetting
 import aki.agent.data.model.ProviderSourceTypes
 
@@ -29,6 +30,7 @@ internal object BuiltinProviders {
             isBuiltIn = true,
             sortOrder = 0,
             systemPrompt = DEFAULT_SYSTEM_PROMPT,
+            endpointMode = OpenAiEndpointMode.RESPONSES,
         ),
         AnthropicProviderSetting(
             id = ANTHROPIC_ID,

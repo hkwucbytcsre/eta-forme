@@ -8,6 +8,7 @@ import aki.agent.data.model.AnthropicProviderSetting
 import aki.agent.data.model.CustomProviderSetting
 import aki.agent.data.model.Model
 import aki.agent.data.model.OpenAiCompatibleProviderSetting
+import aki.agent.data.model.OpenAiEndpointMode
 import aki.agent.data.model.ProviderSetting
 import aki.agent.data.model.ReasoningEffort
 import aki.agent.data.model.runtimeProviderType
@@ -85,7 +86,22 @@ internal object RuntimeConfigRepository {
             ?.takeIf { it.isNotBlank() }
             ?: BuiltinProviders.DEFAULT_SYSTEM_PROMPT
         val sourceType = ProviderSourceRegistry.resolve(provider)
-        val reasoningCapabilities = ReasoningCapabilityResolver.resolve(sourceType, model)
+        val endpointMode = when (provider) {
+            is OpenAiCompatibleProviderSetting -> provider.endpointMode
+            is CustomProviderSetting -> provider.endpointMode
+            is AnthropicProviderSetting -> ""
+        }
+        val inferOpenAiCatalog = sourceType == aki.agent.data.model.ProviderSourceTypes.CUSTOM &&
+            endpointMode == OpenAiEndpointMode.RESPONSES
+        val reasoningCapabilities = ReasoningCapabilityResolver.resolve(
+            sourceType = if (inferOpenAiCatalog) {
+                aki.agent.data.model.ProviderSourceTypes.OPENAI
+            } else {
+                sourceType
+            },
+            model = model,
+            inferExactCatalogModel = inferOpenAiCatalog,
+        )
         return AgentModelClient.ModelConfig(
             providerId = provider.id,
             providerName = provider.name,
@@ -99,11 +115,8 @@ internal object RuntimeConfigRepository {
             systemPrompt = systemPrompt,
             anthropicVersion = (provider as? AnthropicProviderSetting)?.anthropicVersion
                 ?: AnthropicProviderSetting.DEFAULT_ANTHROPIC_VERSION,
-            openAiEndpointMode = when (provider) {
-                is OpenAiCompatibleProviderSetting -> provider.endpointMode
-                is CustomProviderSetting -> provider.endpointMode
-                is AnthropicProviderSetting -> ""
-            },
+            openAiEndpointMode = endpointMode,
+            hostedWebSearchEnabled = provider.hostedWebSearchEnabled,
             thinkingEnabled = reasoningCapabilities != null,
             reasoningEffort = reasoningCapabilities?.let { ReasoningEffort.DEFAULT }
                 ?: ReasoningEffort.OFF,

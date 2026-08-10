@@ -2,6 +2,7 @@ package aki.agent.data.provider
 
 import aki.agent.data.model.AnthropicProviderSetting
 import aki.agent.data.model.OpenAiCompatibleProviderSetting
+import aki.agent.data.model.OpenAiEndpointMode
 import aki.agent.data.model.ProviderSourceTypes
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
@@ -15,6 +16,11 @@ class BuiltinProvidersTest {
         assertTrue(providers[BuiltinProviders.OPENAI_ID] is OpenAiCompatibleProviderSetting)
         assertTrue(providers[BuiltinProviders.ANTHROPIC_ID] is AnthropicProviderSetting)
         assertEquals(0, providers.getValue(BuiltinProviders.OPENAI_ID).models.size)
+        assertEquals(
+            OpenAiEndpointMode.RESPONSES,
+            (providers.getValue(BuiltinProviders.OPENAI_ID) as OpenAiCompatibleProviderSetting).endpointMode,
+        )
+        assertEquals(false, providers.getValue(BuiltinProviders.OPENAI_ID).hostedWebSearchEnabled)
         assertEquals(0, providers.getValue(BuiltinProviders.BAILIAN_ID).models.size)
         assertEquals(0, providers.getValue(BuiltinProviders.MIMO_ID).models.size)
         assertEquals(0, providers.getValue(BuiltinProviders.MINIMAX_ID).models.size)
