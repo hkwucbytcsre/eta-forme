@@ -1,6 +1,7 @@
 package aki.agent.ui.model
 
 import androidx.compose.runtime.Immutable
+import aki.agent.agent.model.AgentFileReference
 import aki.agent.agent.model.AgentModelClient
 import aki.agent.data.model.ReasoningEffort
 
@@ -14,6 +15,7 @@ internal data class AgentChatUiState(
     val reasoningEffort: ReasoningEffort = ReasoningEffort.fromLegacy(thinkingEnabled),
     val availableReasoningEfforts: List<ReasoningEffort> = emptyList(),
     val pendingImages: List<PendingImageUi> = emptyList(),
+    val pendingFileReferences: List<PendingFileReferenceUi> = emptyList(),
     val appliedRuntimeRunIds: List<String> = emptyList(),
     val messageEdit: MessageEditUiState? = null,
 )
@@ -123,9 +125,16 @@ data class PendingImageUi(
 )
 
 @Immutable
+data class PendingFileReferenceUi(
+    val id: String,
+    val reference: AgentFileReference,
+)
+
+@Immutable
 data class MessageEditUiState(
     val targetMessageId: String,
     val previousInput: String,
     val previousImages: List<PendingImageUi>,
+    val previousFileReferences: List<PendingFileReferenceUi>,
     val hasLaterTurns: Boolean,
 )
