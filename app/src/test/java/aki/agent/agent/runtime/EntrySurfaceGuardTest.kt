@@ -46,6 +46,21 @@ class EntrySurfaceGuardTest {
     }
 
     @Test
+    fun etaVoiceGuardExcludesEtaUntilTheVoiceWindowIsDismissed() {
+        val guard = EntrySurfaceGuard.from(
+            handoff = handoff(
+                source = AgentRuntimeWire.ETA_VOICE_HANDOFF_SOURCE,
+                dismiss = true,
+            ),
+            logger = NoOpLogger,
+        )
+
+        assertNotNull(guard)
+        assertEquals("aki.agent", guard?.targetPackageName)
+        assertEquals(setOf("aki.agent"), guard?.consumeScreenshotExcludedPackages())
+    }
+
+    @Test
     fun unknownEntryStillCreatesDismissGuardWithoutGuessingAPackage() {
         val guard = EntrySurfaceGuard.from(
             handoff = handoff(source = "future_entry", dismiss = true),
