@@ -1,4 +1,4 @@
-package fuck.andes.agent.model
+package aki.agent.agent.model
 
 import org.json.JSONObject
 
