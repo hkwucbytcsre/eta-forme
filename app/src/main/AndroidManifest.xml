@@ -21,10 +21,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission
-        android:name="aki.agent.permission.CONTROL_ACCESSIBILITY_PROTECTION"
+        android:name="alice.agents.permission.CONTROL_ACCESSIBILITY_PROTECTION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="aki.agent.permission.CONTROL_ACCESSIBILITY_PROTECTION" />
+    <uses-permission android:name="alice.agents.permission.CONTROL_ACCESSIBILITY_PROTECTION" />
 
     <queries>
         <package android:name="com.google.android.googlequicksearchbox" />
@@ -137,7 +137,7 @@
 
         <provider
             android:name=".agent.accessibility.AgentAccessibilityHealthProvider"
-            android:authorities="aki.agent.accessibility.health"
+            android:authorities="alice.agents.accessibility.health"
             android:exported="true"
             android:grantUriPermissions="false"
             android:permission="android.permission.MANAGE_ACCESSIBILITY" />

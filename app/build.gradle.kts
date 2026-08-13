@@ -23,11 +23,11 @@ java {
 }
 
 android {
-    namespace = "aki.agent"
+    namespace = "alice.agents"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "aki.agent"
+        applicationId = "alice.agents"
         minSdk = 34
         targetSdk = 36
         versionCode = 251
