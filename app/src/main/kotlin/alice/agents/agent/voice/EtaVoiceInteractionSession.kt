@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.service.voice.VoiceInteractionSession
 import android.view.View
+<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/voice/EtaVoiceInteractionSession.kt
 import android.view.WindowManager
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -67,204 +68,40 @@ internal class EtaVoiceInteractionSession(context: Context) :
             status = "输入请求",
         ),
     )
+=======
+>>>>>>> 6dd5715 (feat(assistant): 重构系统助理浮窗交互):app/src/main/kotlin/fuck/andes/agent/voice/EtaVoiceInteractionSession.kt
 
+/**
+ * 系统数字助理的入口桥接。
+ *
+ * 系统会为本类创建 TYPE_VOICE_INTERACTION 窗口，但 Eta 的实际界面由自己的
+ * TYPE_APPLICATION_OVERLAY 窗口承载，避免把厂商助手动画和输入层级绑定到系统会话窗口。
+ */
+internal class EtaVoiceInteractionSession(context: Context) : VoiceInteractionSession(context) {
     override fun onCreate() {
         super.onCreate()
-        configureSessionWindow()
-        savedStateRegistryController.performRestore(null)
-        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
-        setUiEnabled(true)
+        setUiEnabled(false)
     }
 
-    override fun onCreateContentView(): View = ComposeView(context).apply {
-        setViewTreeLifecycleOwner(this@EtaVoiceInteractionSession)
-        setViewTreeSavedStateRegistryOwner(this@EtaVoiceInteractionSession)
-        setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
-        setContent {
-            AgentAppTheme {
-                EtaVoicePanel(
-                    state = uiState,
-                    input = inputText,
-                    inputFocusRequestKey = inputFocusRequestKey,
-                    onInputChange = { inputText = it },
-                    onSubmit = ::submitInput,
-                    onStop = ::stopCurrentRun,
-                    onClose = ::closeSession,
-                )
-            }
-        }
-    }
+    override fun onCreateContentView(): View = View(context)
 
     override fun onShow(args: Bundle?, showFlags: Int) {
         super.onShow(args, showFlags)
-        moveLifecycleToShown()
-        hiddenForForegroundOperation = false
-        if (activeRunId == null) inputFocusRequestKey++
-    }
-
-    override fun onHide() {
-        super.onHide()
-        moveLifecycleToHidden()
-        if (hiddenForForegroundOperation) {
-            hiddenForForegroundOperation = false
-            return
-        }
-        cancelCurrentRun()
+        EtaAssistantOverlayService.show(context)
     }
 
     override fun onBackPressed() {
-        if (activeRunId != null) {
-            hiddenForForegroundOperation = true
-            hide()
-        } else {
-            closeSession()
-        }
+        EtaAssistantOverlayService.dismiss(context)
+        hide()
     }
 
     override fun onCloseSystemDialogs() {
-        closeSession()
+        EtaAssistantOverlayService.dismiss(context)
+        hide()
     }
 
     override fun onDestroy() {
-        cancelCurrentRun()
-        scope.cancel()
-        moveLifecycleToHidden()
-        lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        // 浮窗拥有独立生命周期；系统会话重建不代表用户关闭了助理。
         super.onDestroy()
-    }
-
-    private fun moveLifecycleToShown() {
-        if (lifecycleRegistry.currentState == Lifecycle.State.CREATED) {
-            lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_START)
-        }
-        if (lifecycleRegistry.currentState == Lifecycle.State.STARTED) {
-            lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_RESUME)
-        }
-    }
-
-    private fun moveLifecycleToHidden() {
-        if (lifecycleRegistry.currentState == Lifecycle.State.RESUMED) {
-            lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-        }
-        if (lifecycleRegistry.currentState == Lifecycle.State.STARTED) {
-            lifecycleRegistry.handleLifecycleEvent(Lifecycle.Event.ON_STOP)
-        }
-    }
-
-    private fun configureSessionWindow() {
-        window.window?.apply {
-            WindowCompat.setDecorFitsSystemWindows(this, false)
-            clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM)
-        }
-    }
-
-    private fun submitInput() {
-        val prompt = inputText.trim()
-        if (prompt.isEmpty() || activeRunId != null) return
-        inputText = ""
-        submitPrompt(prompt)
-    }
-
-    private fun submitPrompt(prompt: String) {
-        val normalized = prompt.trim()
-        if (normalized.isEmpty() || activeRunId != null) return
-        val runId = UUID.randomUUID().toString()
-        activeRunId = runId
-        uiState = EtaVoiceUiState(
-            phase = EtaVoicePhase.PROCESSING,
-            query = normalized,
-            status = "Eta 正在思考",
-        )
-        runJob = scope.launch {
-            val config = AgentModelClient.loadConfig()
-            val payload = AgentExternalArchivePayload(
-                userText = normalized,
-                conversationKey = conversationKey,
-                title = normalized.take(40),
-            )
-            val result = runtimeClient.run(
-                request = AgentRuntimeWire.RunRequest(
-                    runId = runId,
-                    prompt = normalized,
-                    config = config,
-                    images = emptyList(),
-                    history = conversationHistory,
-                    handoff = AgentRuntimeWire.EntryHandoff(
-                        id = "$conversationKey:$runId",
-                        source = AgentRuntimeWire.ETA_VOICE_HANDOFF_SOURCE,
-                        payload = payload.toJson(),
-                        dismissEntrySurfaceOnForegroundOperation = true,
-                    ),
-                ),
-                onEvent = { event -> handleRuntimeEvent(runId, event) },
-            )
-            val shouldAcknowledge = withContext(Dispatchers.Main.immediate) {
-                if (activeRunId != runId) return@withContext false
-                activeRunId = null
-                runJob = null
-                if (result.ok) {
-                    conversationHistory = conversationHistory +
-                        AgentModelClient.buildUserHistoryMessage(normalized, emptyList()) +
-                        result.transcript
-                    uiState = uiState.copy(
-                        phase = EtaVoicePhase.READY,
-                        response = result.content,
-                        status = "已完成",
-                    )
-                } else {
-                    uiState = uiState.copy(
-                        phase = EtaVoicePhase.ERROR,
-                        status = result.error ?: "Agent 执行失败",
-                    )
-                }
-                true
-            }
-            if (shouldAcknowledge) runtimeClient.ackResult(runId)
-        }
-    }
-
-    private fun handleRuntimeEvent(runId: String, event: AgentEvent) {
-        if (activeRunId != runId) return
-        if (AgentOverlayVisibilityPolicy.shouldDismissEntrySurfaceFor(event)) {
-            hiddenForForegroundOperation = true
-            hide()
-        }
-        uiState = when (event) {
-            is AgentEvent.AssistantBlockDelta -> if (event.kind == AgentEvent.AssistantBlockKind.TEXT) {
-                uiState.copy(response = uiState.response + event.delta)
-            } else {
-                uiState
-            }
-            is AgentEvent.ToolStarted -> uiState.copy(status = "Eta 正在执行操作")
-            is AgentEvent.ProviderRequestStarted -> uiState.copy(status = "Eta 正在思考")
-            is AgentEvent.RunFailed -> uiState.copy(
-                phase = EtaVoicePhase.ERROR,
-                status = event.reason,
-            )
-            else -> uiState
-        }
-    }
-
-    private fun cancelCurrentRun() {
-        val runId = activeRunId ?: return
-        activeRunId = null
-        runtimeClient.cancelRun(runId)
-        runJob?.cancel()
-        runJob = null
-    }
-
-    private fun stopCurrentRun() {
-        if (activeRunId == null) return
-        cancelCurrentRun()
-        uiState = uiState.copy(
-            phase = EtaVoicePhase.READY,
-            status = "已停止",
-        )
-        inputFocusRequestKey++
-    }
-
-    private fun closeSession() {
-        cancelCurrentRun()
-        finish()
     }
 }
