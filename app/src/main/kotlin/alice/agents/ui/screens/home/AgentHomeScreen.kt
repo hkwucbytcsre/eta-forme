@@ -7,6 +7,7 @@ import alice.agents.ui.components.AgentChatBody
 import alice.agents.ui.components.chatConversationCompositionKey
 import alice.agents.ui.model.AgentChatHomeUiState
 import alice.agents.ui.model.AgentHomeAction
+import alice.agents.ui.model.AgentModelPickerUiState
 
 /**
  * AgentChatHome：首屏为聊天主舞台。
@@ -17,6 +18,7 @@ import alice.agents.ui.model.AgentHomeAction
 @Composable
 internal fun AgentHomeScreen(
     state: AgentChatHomeUiState,
+    modelPickerState: AgentModelPickerUiState,
     conversationKey: String?,
     onAction: (AgentHomeAction) -> Unit,
     isDrawerOpen: Boolean = false,
@@ -25,6 +27,7 @@ internal fun AgentHomeScreen(
     key(chatConversationCompositionKey(conversationKey)) {
         AgentChatBody(
             messages = state.messages,
+            modelPickerState = modelPickerState,
             input = state.input,
             isStreaming = state.isStreaming,
             reasoningEffort = state.reasoningEffort,
@@ -33,6 +36,7 @@ internal fun AgentHomeScreen(
             pendingFileReferences = state.pendingFileReferences,
             messageEdit = state.messageEdit,
             onReasoningEffortChange = { onAction(AgentHomeAction.ReasoningEffortChanged(it)) },
+            onModelSelected = { onAction(AgentHomeAction.ModelSelected(it)) },
             onSubmit = { text -> onAction(AgentHomeAction.SubmitMessage(text)) },
             onStop = { onAction(AgentHomeAction.StopRun) },
             onAttachImage = { uri -> onAction(AgentHomeAction.ImageAttached(uri)) },
