@@ -3,6 +3,7 @@ package alice.agents.data.repository
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.data.model.CustomHeader
 import alice.agents.data.model.Model
+import alice.agents.data.model.ModelReasoningCapabilities
 import alice.agents.data.model.OpenAiCompatibleProviderSetting
 import alice.agents.data.model.ProviderTypes
 import alice.agents.data.model.ProviderSourceTypes
@@ -29,7 +30,13 @@ class RuntimeConfigRepositoryTest {
             modelId = "gpt-5.5",
             displayName = "GPT-5.5",
             contextWindow = 1_000_000,
+            contextWindowOverride = 256_000,
             reasoning = true,
+            reasoningOverride = true,
+            reasoningCapabilitiesOverride = ModelReasoningCapabilities(
+                supportedEfforts = listOf(ReasoningEffort.MINIMAL),
+                canDisable = true,
+            ),
             customHeaders = listOf(CustomHeader("x-model", "2"))
         )
 
@@ -39,12 +46,16 @@ class RuntimeConfigRepositoryTest {
 
         assertEquals(ProviderTypes.OPENAI_COMPATIBLE, root.getValue("providerType").jsonPrimitive.content)
         assertEquals("gpt-5.5", root.getValue("model").jsonPrimitive.content)
-        assertEquals(1_000_000, config.contextWindow)
+        assertEquals(256_000, config.contextWindow)
         assertEquals(listOf("x-provider", "x-model"), config.customHeaders.map { it.name })
         assertEquals(ReasoningEffort.DEFAULT, config.reasoningEffort)
         assertEquals(true, config.thinkingEnabled)
         assertEquals(
-            ReasoningEffort.entries,
+            listOf(
+                ReasoningEffort.OFF,
+                ReasoningEffort.DEFAULT,
+                ReasoningEffort.MINIMAL,
+            ),
             config.reasoningCapabilities?.selectableEfforts,
         )
         assertEquals(config, Json.decodeFromString<AgentModelClient.ModelConfig>(raw))
