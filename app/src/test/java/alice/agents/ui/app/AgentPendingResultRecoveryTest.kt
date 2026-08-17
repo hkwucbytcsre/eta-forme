@@ -5,6 +5,8 @@ import alice.agents.agent.runtime.AgentRuntimeWire
 import alice.agents.agent.runtime.AgentUiHandoffPayload
 import alice.agents.ui.model.AgentChatUiState
 import alice.agents.ui.model.AgentMessageUi
+import alice.agents.ui.model.SystemNoticeCode
+import alice.agents.ui.model.SystemNoticeMessageUi
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -102,9 +104,32 @@ class AgentPendingResultRecoveryTest {
         )
 
         assertEquals("assistant-run-2-1", recovered.state.messages.single().id)
-        val message = recovered.state.messages.single() as AgentMessageUi
-        assertEquals("失败原因", message.content)
-        assertFalse(message.renderMarkdown)
+        val message = recovered.state.messages.single() as SystemNoticeMessageUi
+        assertEquals(SystemNoticeCode.RuntimeFailed, message.code)
+        assertEquals("失败原因", message.detail)
+    }
+
+    @Test
+    fun recoveryUsesSemanticNoticeForSuccessfulRunWithoutText() {
+        val recovered = AgentPendingResultRecovery.apply(
+            state = AgentChatUiState(
+                messages = emptyList(),
+                input = "",
+                isStreaming = true,
+                thinkingEnabled = false,
+            ),
+            runId = "run-empty",
+            result = AgentRuntimeWire.RunResult(
+                runId = "run-empty",
+                ok = true,
+                content = "",
+            ),
+            supplements = emptyList(),
+        )
+
+        val message = recovered.state.messages.single() as SystemNoticeMessageUi
+        assertEquals(SystemNoticeCode.EmptyResult, message.code)
+        assertEquals(null, message.detail)
     }
 
     @Test
