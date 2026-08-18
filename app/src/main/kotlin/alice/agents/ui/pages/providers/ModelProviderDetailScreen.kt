@@ -52,7 +52,6 @@ import alice.agents.ui.components.MiuixScaffold
 import alice.agents.ui.components.StatusError
 import alice.agents.ui.components.StatusSuccess
 import alice.agents.ui.navigation.NewProviderType
->>>>>>> 38afe0a (feat(provider): 优化模型搜索与选择记忆):app/src/main/kotlin/fuck/andes/ui/pages/providers/ModelProviderDetailScreen.kt
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
