@@ -5,7 +5,6 @@ import alice.agents.data.model.CustomProviderSetting
 import alice.agents.data.model.Model
 import alice.agents.data.model.ProviderSourceTypes
 import alice.agents.data.provider.BuiltinProviders
->>>>>>> 38afe0a (feat(provider): 优化模型搜索与选择记忆):app/src/test/java/fuck/andes/ui/pages/providers/ProviderComponentsTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
