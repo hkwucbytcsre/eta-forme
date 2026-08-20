@@ -8,8 +8,10 @@ import alice.agents.config.Prefs
 import alice.agents.core.AndroidAgentLogger
 import alice.agents.core.safeLogType
 import alice.agents.data.datastore.SettingsDataStore
-import alice.agents.data.repository.ProviderRepository
 import alice.agents.data.repository.AgentMemoryRepository
+import alice.agents.data.repository.AppearanceSettingsRepository
+import alice.agents.data.repository.ProviderRepository
+import alice.agents.ui.app.PredictiveBackController
 import io.github.libxposed.service.XposedService
 import io.github.libxposed.service.XposedServiceHelper
 import java.util.concurrent.CopyOnWriteArraySet
@@ -17,6 +19,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 /**
  * 模块 UI 进程的 Application。
@@ -41,6 +44,10 @@ class FuckAndesApp : Application(), XposedServiceHelper.OnServiceListener {
             return
         }
         SettingsDataStore.init(this)
+        val predictiveBackEnabled = runBlocking(Dispatchers.IO) {
+            AppearanceSettingsRepository.settings().predictiveBackEnabled
+        }
+        PredictiveBackController.apply(applicationInfo, predictiveBackEnabled)
         AgentMemoryRepository.init(this)
         ProviderRepository.init(this)
         XposedServiceHelper.registerListener(this)

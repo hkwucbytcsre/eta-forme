@@ -84,6 +84,7 @@ import alice.agents.ui.model.ToolSummaryMessageUi
 import alice.agents.ui.model.UserMessageUi
 import alice.agents.ui.model.latestContextUsage
 import alice.agents.ui.app.AgentConversationRevisionReducer
+import alice.agents.ui.app.LocalBlurEnabled
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.currentCoroutineContext
@@ -281,7 +282,7 @@ private fun AgentChatScaffold(
     modifier: Modifier = Modifier,
 ) {
     val surfaceColor = MiuixTheme.colorScheme.surface
-    val frostEnabled = hasMessages && isRuntimeShaderSupported()
+    val frostEnabled = hasMessages && LocalBlurEnabled.current && isRuntimeShaderSupported()
     val messageBackdrop = rememberLayerBackdrop {
         // Backdrop 必须包含不透明底色，否则文字边缘模糊到透明区域时会出现黑边。
         drawRect(surfaceColor)
