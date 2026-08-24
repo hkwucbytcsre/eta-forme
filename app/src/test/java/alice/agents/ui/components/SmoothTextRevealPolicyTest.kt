@@ -1,7 +1,7 @@
 package alice.agents.ui.components
 
 import androidx.compose.ui.unit.sp
-import fuck.andes.ui.markdown.StreamingGfmParserSession
+import alice.agents.ui.markdown.StreamingGfmParserSession
 import org.intellij.markdown.MarkdownElementTypes
 import org.intellij.markdown.flavours.gfm.GFMElementTypes
 import org.junit.Assert.assertArrayEquals

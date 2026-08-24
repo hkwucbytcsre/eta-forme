@@ -68,6 +68,8 @@ import alice.agents.ui.screens.browser.AgentBrowserScreen
 import alice.agents.ui.screens.enhance.SystemEnhanceScreen
 import alice.agents.ui.screens.home.AgentHomeScreen
 import alice.agents.ui.screens.memory.AgentMemoryScreen
+import alice.agents.ui.screens.mcp.McpServerDetailScreen
+import alice.agents.ui.screens.mcp.McpServersScreen
 import alice.agents.ui.screens.permissions.PermissionHealthScreen
 import alice.agents.ui.screens.skills.AgentSkillsScreen
 import alice.agents.ui.screens.terminal.LinuxEnvironmentScreen
@@ -489,6 +491,18 @@ fun AgentAppRoot(
                 ModelProviderListScreen(
                     onNavigate = { route -> pushRoute(route) },
                     onBack = ::popRoute
+                )
+            }
+            entry<AppRoute.McpServers>(swipeDismiss = swipeDismiss) {
+                McpServersScreen(
+                    onNavigate = { route -> pushRoute(route) },
+                    onBack = ::popRoute,
+                )
+            }
+            entry<AppRoute.McpServerDetail>(swipeDismiss = swipeDismiss) { route ->
+                McpServerDetailScreen(
+                    serverId = route.serverId,
+                    onBack = ::popRoute,
                 )
             }
             entry<AppRoute.ModelProviderDetail>(swipeDismiss = swipeDismiss) { route ->

@@ -7,6 +7,9 @@ import alice.agents.agent.model.AgentModelExecutionException
 import alice.agents.agent.model.AgentHttpClient
 import alice.agents.agent.memory.AgentMemoryContext
 import alice.agents.agent.memory.AgentMemoryContextBuilder
+import alice.agents.agent.mcp.McpRunSnapshot
+import alice.agents.agent.mcp.McpToolExecutor
+import alice.agents.agent.mcp.RoutingToolExecutor
 import alice.agents.agent.overlay.AgentOverlayVisibilityPolicy
 import alice.agents.agent.skill.SkillCompatibilityChecker
 import alice.agents.agent.skill.SkillContext
@@ -20,6 +23,7 @@ import alice.agents.core.AndroidAgentLogger
 import alice.agents.core.safeLogType
 import alice.agents.data.repository.AgentMemoryRepository
 import kotlinx.coroutines.runBlocking
+import org.json.JSONArray
 
 /**
  * 单次 Runtime run 的阻塞执行器。
@@ -55,7 +59,7 @@ internal class AgentRuntimeRunExecutor(
         val runController = session.controller
         val archivedEvents = mutableListOf<AgentEvent>()
         var entrySurfaceGuard: EntrySurfaceGuard? = null
-        var toolExecutor: AgentLocalTools? = null
+        var toolExecutor: AutoCloseable? = null
         var toolsBinding: AgentRunController.ResourceBinding? = null
         var response: AgentModelClient.ModelResponse.Text? = null
         var cancelled = false
@@ -100,6 +104,15 @@ internal class AgentRuntimeRunExecutor(
                 AgentMemoryContext.DISABLED
             }
             val pendingSkillConflict = PendingSkillConflictCapabilityParser.parse(request.history)
+            val mcpSnapshot = runBlocking {
+                runCatching { McpRunSnapshot.load() }.getOrElse { throwable ->
+                    AndroidAgentLogger.warnThrottled("agent_mcp_snapshot_failed") {
+                        "MCP tool snapshot unavailable: type=${throwable.safeLogType()}"
+                    }
+                    McpRunSnapshot.EMPTY
+                }
+            }
+            val mcpTools = JSONArray().also(mcpSnapshot::appendModelTools)
             val executor = AgentLocalTools(
                 context = appContext,
                 logger = AndroidAgentLogger,
@@ -164,18 +177,23 @@ internal class AgentRuntimeRunExecutor(
                 runAvailableSkillIds = skillContext.installedSkills.mapTo(mutableSetOf()) { it.id },
                 pendingSkillConflict = pendingSkillConflict,
             )
-            toolExecutor = executor
-            toolsBinding = runController.register(executor::close)
+            val routingExecutor = RoutingToolExecutor(
+                local = executor,
+                mcp = McpToolExecutor(mcpSnapshot),
+            )
+            toolExecutor = routingExecutor
+            toolsBinding = runController.register(routingExecutor::close)
             timing.preparationFinished(skillContext.installedSkills.size)
             val completedResponse = AgentModelClient.complete(
                 config = request.config,
                 prompt = request.prompt,
-                toolExecutor = executor,
+                toolExecutor = routingExecutor,
                 images = request.images,
                 history = request.history,
                 runController = runController,
                 skillContext = skillContext,
                 memoryContext = memoryContext,
+                additionalTools = mcpTools,
             ) { event ->
                 timing.accept(event)
                 acceptEvent(

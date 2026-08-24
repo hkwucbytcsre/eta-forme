@@ -10,6 +10,7 @@ import alice.agents.core.safeLogType
 import alice.agents.data.datastore.SettingsDataStore
 import alice.agents.data.repository.AgentMemoryRepository
 import alice.agents.data.repository.AppearanceSettingsRepository
+import alice.agents.data.repository.McpServerRepository
 import alice.agents.data.repository.ProviderRepository
 import alice.agents.ui.app.PredictiveBackController
 import io.github.libxposed.service.XposedService
@@ -50,6 +51,7 @@ class FuckAndesApp : Application(), XposedServiceHelper.OnServiceListener {
         PredictiveBackController.apply(applicationInfo, predictiveBackEnabled)
         AgentMemoryRepository.init(this)
         ProviderRepository.init(this)
+        McpServerRepository.init(this)
         XposedServiceHelper.registerListener(this)
         applicationScope.launch {
             runCatching {
