@@ -7,6 +7,8 @@ import alice.agents.ui.model.AgentChatUiState
 import alice.agents.ui.model.AgentMessageUi
 import alice.agents.ui.model.SystemNoticeCode
 import alice.agents.ui.model.SystemNoticeMessageUi
+import alice.agents.ui.model.ToolActivityMessageUi
+import alice.agents.ui.model.ToolActivityStatusUi
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -130,6 +132,47 @@ class AgentPendingResultRecoveryTest {
         val message = recovered.state.messages.single() as SystemNoticeMessageUi
         assertEquals(SystemNoticeCode.EmptyResult, message.code)
         assertEquals(null, message.detail)
+    }
+
+    @Test
+    fun completedOutboxResultKeepsToolTraceAndRemovesInterruptedNotice() {
+        val tool = ToolActivityMessageUi(
+            id = "run-tool-tool-1-call-1",
+            toolName = "run_command",
+            status = ToolActivityStatusUi.Success,
+            argumentsSummary = "执行命令 · Android · root",
+            command = "uptime",
+            resultSummary = "完成",
+        )
+        val recovered = AgentPendingResultRecovery.apply(
+            state = AgentChatUiState(
+                messages = listOf(
+                    tool,
+                    SystemNoticeMessageUi(
+                        id = "interrupted-run-tool",
+                        code = SystemNoticeCode.Interrupted,
+                    ),
+                ),
+                input = "",
+                isStreaming = false,
+                thinkingEnabled = false,
+            ),
+            runId = "run-tool",
+            result = AgentRuntimeWire.RunResult(
+                runId = "run-tool",
+                ok = true,
+                content = "最终结果",
+                transcript = listOf(
+                    AgentModelClient.ConversationMessage(role = "assistant", content = "最终结果")
+                ),
+            ),
+            supplements = emptyList(),
+        )
+
+        assertFalse(recovered.alreadyApplied)
+        assertEquals(tool, recovered.state.messages.first())
+        assertTrue(recovered.state.messages.none { it.id == "interrupted-run-tool" })
+        assertEquals("最终结果", (recovered.state.messages.last() as AgentMessageUi).content)
     }
 
     @Test
