@@ -15,6 +15,7 @@ import alice.agents.agent.skill.PublicGitHubSkillSource
 import alice.agents.agent.tool.AgentLocalTools
 import alice.agents.agent.tool.PendingSkillConflictCapabilityParser
 import alice.agents.agent.tool.ToolExecutionDecision
+import alice.agents.agent.voice.EtaAssistantOverlayService
 import alice.agents.core.AndroidAgentLogger
 import alice.agents.core.safeLogType
 import alice.agents.data.repository.AgentMemoryRepository
@@ -63,7 +64,13 @@ internal class AgentRuntimeRunExecutor(
 
         val result = try {
             checkpointRecorder = AgentRunCheckpointRecorder.create(appContext, request)
-            entrySurfaceGuard = EntrySurfaceGuard.from(request.handoff, AndroidAgentLogger)
+            entrySurfaceGuard = EntrySurfaceGuard.from(
+                handoff = request.handoff,
+                logger = AndroidAgentLogger,
+                etaVoiceSurfaceDismissal = {
+                    EtaAssistantOverlayService.dismissForForegroundOperation(appContext)
+                },
+            )
             val skillIndexService = SkillRuntime.createIndexService(appContext)
             val skillLoader = SkillRuntime.createLoader(appContext)
             val skillResourceReader = SkillRuntime.createResourceReader(appContext)
@@ -143,7 +150,7 @@ internal class AgentRuntimeRunExecutor(
                             entrySurfaceGuard?.dismissOnce() == false ->
                                 ToolExecutionDecision.Reject(
                                     code = "ENTRY_SURFACE_NOT_READY",
-                                    message = "入口窗口尚未确认关闭；本次工具未执行，请稍后重试",
+                                    message = "入口窗口关闭未完成；本次工具未执行，请勿在当前任务中重复调用",
                                 )
                             else -> ToolExecutionDecision.Allow
                         }
