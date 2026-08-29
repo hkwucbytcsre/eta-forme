@@ -65,6 +65,7 @@ import alice.agents.ui.navigation.AgentNavigator
 import alice.agents.ui.navigation.AppRoute
 import alice.agents.ui.screens.chat.AgentChatScreen
 import alice.agents.ui.screens.browser.AgentBrowserScreen
+import alice.agents.ui.screens.backup.DataBackupScreen
 import alice.agents.ui.screens.enhance.SystemEnhanceScreen
 import alice.agents.ui.screens.home.AgentHomeScreen
 import alice.agents.ui.screens.memory.AgentMemoryScreen
@@ -462,6 +463,14 @@ fun AgentAppRoot(
             }
             entry<AppRoute.AppearanceSettings>(swipeDismiss = swipeDismiss) {
                 AppearanceSettingsScreen(onBack = ::popRoute)
+            }
+            entry<AppRoute.DataBackup>(swipeDismiss = swipeDismiss) {
+                DataBackupScreen(
+                    context = context,
+                    onBack = ::popRoute,
+                    onExport = agentState::exportBackup,
+                    onImport = agentState::importBackup,
+                )
             }
             entry<AppRoute.Memory>(swipeDismiss = swipeDismiss) {
                 LaunchedEffect(Unit) {

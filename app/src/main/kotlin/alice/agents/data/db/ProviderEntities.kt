@@ -19,10 +19,12 @@ import alice.agents.data.model.OpenAiEndpointMode
 import alice.agents.data.model.ProviderSetting
 import alice.agents.data.model.ProviderTypes
 import alice.agents.data.provider.ProviderSourceRegistry
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json
 
+@Serializable
 @Entity(tableName = "model_providers")
 internal data class ProviderEntity(
     @PrimaryKey val id: String,
@@ -43,6 +45,7 @@ internal data class ProviderEntity(
     @ColumnInfo(name = "anthropic_version") val anthropicVersion: String,
 )
 
+@Serializable
 @Entity(
     tableName = "provider_models",
     foreignKeys = [
