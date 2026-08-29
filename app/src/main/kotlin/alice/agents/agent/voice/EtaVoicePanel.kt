@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/voice/EtaVoicePanel.kt
 package alice.agents.agent.voice
+========
+package io.github.mangi.eta.agent.voice
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/voice/EtaVoicePanel.kt
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateContentSize
@@ -78,6 +82,7 @@ import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.composables.icons.lucide.R as LucideR
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/voice/EtaVoicePanel.kt
 import alice.agents.R
 import alice.agents.ui.components.AgentConversationMessages
 import alice.agents.ui.components.rememberDataUrlBitmap
@@ -86,6 +91,16 @@ import alice.agents.ui.model.AgentMessageUi
 import alice.agents.ui.model.ThinkingMessageUi
 import alice.agents.ui.model.ToolActivityMessageUi
 import alice.agents.ui.model.UserMessageUi
+========
+import io.github.mangi.eta.R
+import io.github.mangi.eta.ui.components.AgentConversationMessages
+import io.github.mangi.eta.ui.components.rememberDataUrlBitmap
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.ThinkingMessageUi
+import io.github.mangi.eta.ui.model.ToolActivityMessageUi
+import io.github.mangi.eta.ui.model.UserMessageUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/voice/EtaVoicePanel.kt
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.anim.folmeSpring

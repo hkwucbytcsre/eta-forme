@@ -1,7 +1,14 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/AgentProvider.kt
 package alice.agents.agent.model
 
 import alice.agents.agent.runtime.AgentRunController
 import alice.agents.agent.runtime.AgentTokenUsage
+========
+package io.github.mangi.eta.agent.model
+
+import io.github.mangi.eta.agent.runtime.AgentRunController
+import io.github.mangi.eta.agent.runtime.AgentTokenUsage
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/AgentProvider.kt
 import org.json.JSONArray
 import org.json.JSONObject
 

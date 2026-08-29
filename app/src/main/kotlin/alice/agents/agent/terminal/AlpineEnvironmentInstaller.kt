@@ -1,8 +1,16 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/terminal/AlpineEnvironmentInstaller.kt
 package alice.agents.agent.terminal
 
 import android.content.Context
 import android.os.Build
 import alice.agents.core.AndroidAgentLogger
+========
+package io.github.mangi.eta.agent.terminal
+
+import android.content.Context
+import android.os.Build
+import io.github.mangi.eta.core.AndroidAgentLogger
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/terminal/AlpineEnvironmentInstaller.kt
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.concurrent.TimeUnit

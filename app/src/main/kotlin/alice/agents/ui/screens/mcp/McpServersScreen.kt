@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/mcp/McpServersScreen.kt
 package alice.agents.ui.screens.mcp
+========
+package io.github.mangi.eta.ui.screens.mcp
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/mcp/McpServersScreen.kt
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -25,6 +29,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.composables.icons.lucide.R as LucideR
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/mcp/McpServersScreen.kt
 import alice.agents.R
 import alice.agents.agent.mcp.McpServerManager
 import alice.agents.agent.mcp.validateMcpEndpoint
@@ -36,6 +41,19 @@ import alice.agents.data.repository.McpServerRepository
 import alice.agents.ui.components.MiuixDialogActions
 import alice.agents.ui.components.MiuixScaffoldPage
 import alice.agents.ui.navigation.AppRoute
+========
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.mcp.McpServerManager
+import io.github.mangi.eta.agent.mcp.validateMcpEndpoint
+import io.github.mangi.eta.data.model.McpAuthorizationType
+import io.github.mangi.eta.data.model.McpProtocolMode
+import io.github.mangi.eta.data.model.McpServerSetting
+import io.github.mangi.eta.data.model.McpToolDefinition
+import io.github.mangi.eta.data.repository.McpServerRepository
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+import io.github.mangi.eta.ui.navigation.AppRoute
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/mcp/McpServersScreen.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

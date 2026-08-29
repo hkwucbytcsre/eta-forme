@@ -1,5 +1,10 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/AgentStatusCard.kt
 package alice.agents.ui.components
 import alice.agents.R
+========
+package io.github.mangi.eta.ui.components
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/AgentStatusCard.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.foundation.layout.Column
@@ -15,8 +20,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/AgentStatusCard.kt
 import alice.agents.ui.model.ActiveRunSummaryUi
 import alice.agents.ui.model.RunStatusUi
+========
+import io.github.mangi.eta.ui.model.ActiveRunSummaryUi
+import io.github.mangi.eta.ui.model.RunStatusUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/AgentStatusCard.kt
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.InfiniteProgressIndicator

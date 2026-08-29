@@ -1,16 +1,29 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeWire.kt
 package alice.agents.agent.runtime
+========
+package io.github.mangi.eta.agent.runtime
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeWire.kt
 
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcel
 import android.os.ParcelFileDescriptor
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeWire.kt
 import alice.agents.agent.model.AgentConversationCodec
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.data.model.CustomBody
 import alice.agents.data.model.CustomHeader
 import alice.agents.data.model.ModelReasoningCapabilities
 import alice.agents.data.model.ReasoningEffort
+========
+import io.github.mangi.eta.agent.model.AgentConversationCodec
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.model.CustomBody
+import io.github.mangi.eta.data.model.CustomHeader
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.ReasoningEffort
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeWire.kt
 import java.io.Closeable
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlinx.serialization.encodeToString
@@ -33,7 +46,11 @@ internal object AgentRuntimeWire {
     )
 
     /** bind 获取服务端 Messenger 的 Intent action。 */
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeWire.kt
     const val ACTION_BIND = "alice.agents.agent.runtime.BIND"
+========
+    const val ACTION_BIND = "io.github.mangi.eta.agent.runtime.BIND"
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeWire.kt
 
     // Messenger.what
     /** client -> service：开始一次 Agent 运行，[Message.replyTo] 携带 client Messenger。 */
@@ -72,8 +89,13 @@ internal object AgentRuntimeWire {
     /** service -> client：返回是否成功重新订阅指定 run。 */
     const val MSG_ATTACH_RUN_RESPONSE = 12
 
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeWire.kt
     private const val MODULE_PACKAGE = "alice.agents"
     private const val SERVICE_CLASS = "alice.agents.agent.runtime.AgentRuntimeService"
+========
+    private const val MODULE_PACKAGE = "io.github.mangi.eta"
+    private const val SERVICE_CLASS = "io.github.mangi.eta.agent.runtime.AgentRuntimeService"
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeWire.kt
 
     private const val KEY_TYPE = "type"
     private const val KEY_RUN_ID = "run_id"
@@ -355,7 +377,11 @@ internal object AgentRuntimeWire {
                 providerId = bundle.getString(KEY_PROVIDER_ID).orEmpty(),
                 providerName = bundle.getString(KEY_PROVIDER_NAME).orEmpty(),
                 providerType = bundle.getString(KEY_PROVIDER_TYPE).orEmpty()
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeWire.kt
                     .ifBlank { alice.agents.data.model.ProviderTypes.OPENAI_COMPATIBLE },
+========
+                    .ifBlank { io.github.mangi.eta.data.model.ProviderTypes.OPENAI_COMPATIBLE },
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeWire.kt
                 providerSourceType = bundle.getString(KEY_PROVIDER_SOURCE_TYPE).orEmpty(),
                 baseUrl = bundle.getString(KEY_BASE_URL).orEmpty(),
                 apiKey = bundle.getString(KEY_API_KEY).orEmpty(),
@@ -364,9 +390,15 @@ internal object AgentRuntimeWire {
                 contextWindow = bundle.optionalInt(KEY_CONTEXT_WINDOW),
                 systemPrompt = bundle.getString(KEY_SYSTEM_PROMPT).orEmpty(),
                 anthropicVersion = bundle.getString(KEY_ANTHROPIC_VERSION).orEmpty()
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeWire.kt
                     .ifBlank { alice.agents.data.model.AnthropicProviderSetting.DEFAULT_ANTHROPIC_VERSION },
                 openAiEndpointMode = bundle.getString(KEY_OPENAI_ENDPOINT_MODE).orEmpty()
                     .ifBlank { alice.agents.data.model.OpenAiEndpointMode.CHAT_COMPLETIONS },
+========
+                    .ifBlank { io.github.mangi.eta.data.model.AnthropicProviderSetting.DEFAULT_ANTHROPIC_VERSION },
+                openAiEndpointMode = bundle.getString(KEY_OPENAI_ENDPOINT_MODE).orEmpty()
+                    .ifBlank { io.github.mangi.eta.data.model.OpenAiEndpointMode.CHAT_COMPLETIONS },
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeWire.kt
                 hostedWebSearchEnabled = bundle.getBoolean(KEY_HOSTED_WEB_SEARCH_ENABLED, false),
                 terminalTools = bundle.getBoolean(KEY_TERMINAL_TOOLS),
                 browserTools = if (bundle.containsKey(KEY_BROWSER_TOOLS)) {

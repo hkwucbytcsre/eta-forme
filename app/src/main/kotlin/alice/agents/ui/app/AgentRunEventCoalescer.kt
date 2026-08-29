@@ -1,6 +1,12 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentRunEventCoalescer.kt
 package alice.agents.ui.app
 
 import alice.agents.agent.runtime.AgentEvent
+========
+package io.github.mangi.eta.ui.app
+
+import io.github.mangi.eta.agent.runtime.AgentEvent
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentRunEventCoalescer.kt
 
 /**
  * 合并相邻的文本增量，避免模型每个小分片都触发一次 Compose 状态更新。

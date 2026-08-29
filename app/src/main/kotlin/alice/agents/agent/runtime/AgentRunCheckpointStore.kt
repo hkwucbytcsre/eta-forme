@@ -1,9 +1,18 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRunCheckpointStore.kt
 package alice.agents.agent.runtime
 
 import android.content.Context
 import alice.agents.data.db.FuckAndesDatabase
 import alice.agents.data.db.RuntimeInFlightEventEntity
 import alice.agents.data.db.RuntimeInFlightRunEntity
+========
+package io.github.mangi.eta.agent.runtime
+
+import android.content.Context
+import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.mangi.eta.data.db.RuntimeInFlightEventEntity
+import io.github.mangi.eta.data.db.RuntimeInFlightRunEntity
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRunCheckpointStore.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 
@@ -33,7 +42,7 @@ internal object AgentRunCheckpointStore {
         if (handoff.source != AgentRuntimeWire.AGENT_UI_HANDOFF_SOURCE) return false
         val runId = request.runId.takeIf(String::isNotBlank) ?: return false
         runBlocking(Dispatchers.IO) {
-            FuckAndesDatabase.get(context.applicationContext).runtimeRunDao().replaceInFlightRun(
+            EtaDatabase.get(context.applicationContext).runtimeRunDao().replaceInFlightRun(
                 RuntimeInFlightRunEntity(
                     runId = runId,
                     ownerInstanceId = ownerInstanceId,
@@ -57,7 +66,7 @@ internal object AgentRunCheckpointStore {
         now: Long = System.currentTimeMillis(),
     ) {
         runBlocking(Dispatchers.IO) {
-            FuckAndesDatabase.get(context.applicationContext).runtimeRunDao().appendInFlightEvent(
+            EtaDatabase.get(context.applicationContext).runtimeRunDao().appendInFlightEvent(
                 event = RuntimeInFlightEventEntity(
                     runId = runId,
                     sortIndex = sortIndex,
@@ -71,7 +80,7 @@ internal object AgentRunCheckpointStore {
     /** 返回所有未确认 run；是否 active 或已完成由恢复协调器结合 Runtime 状态判断。 */
     fun list(context: Context): List<Checkpoint> =
         runBlocking(Dispatchers.IO) {
-            FuckAndesDatabase.get(context.applicationContext)
+            EtaDatabase.get(context.applicationContext)
                 .runtimeRunDao()
                 .inFlightRuns()
                 .asSequence()
@@ -99,7 +108,7 @@ internal object AgentRunCheckpointStore {
     fun remove(context: Context, runId: String) {
         if (runId.isBlank()) return
         runBlocking(Dispatchers.IO) {
-            FuckAndesDatabase.get(context.applicationContext)
+            EtaDatabase.get(context.applicationContext)
                 .runtimeRunDao()
                 .deleteInFlightRun(runId)
         }

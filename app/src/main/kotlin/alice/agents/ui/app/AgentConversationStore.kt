@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentConversationStore.kt
 package alice.agents.ui.app
 
 import android.content.Context
@@ -21,6 +22,31 @@ import alice.agents.ui.model.ToolActivityMessageUi
 import alice.agents.ui.model.ToolActivityStatusUi
 import alice.agents.ui.model.ToolSummaryMessageUi
 import alice.agents.ui.model.UserMessageUi
+========
+package io.github.mangi.eta.ui.app
+
+import android.content.Context
+import io.github.mangi.eta.agent.model.AgentConversationCodec
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.db.ConversationContextCheckpointEntity
+import io.github.mangi.eta.data.db.ConversationEntity
+import io.github.mangi.eta.data.db.ConversationMetadata
+import io.github.mangi.eta.data.db.ConversationMessageEntity
+import io.github.mangi.eta.data.db.ConversationStateEntity
+import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.ui.model.AgentChatHomeUiState
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.ThinkingMessageUi
+import io.github.mangi.eta.ui.model.SystemNoticeCode
+import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
+import io.github.mangi.eta.ui.model.TokenUsageUi
+import io.github.mangi.eta.ui.model.ToolActivityMessageUi
+import io.github.mangi.eta.ui.model.ToolActivityStatusUi
+import io.github.mangi.eta.ui.model.ToolSummaryMessageUi
+import io.github.mangi.eta.ui.model.UserMessageUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentConversationStore.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
@@ -91,7 +117,7 @@ internal object AgentConversationStore {
                         historyJson = AgentConversationCodec.encodeConversationCheckpoint(state.history),
                     )
                 }
-                FuckAndesDatabase.get(appContext)
+                EtaDatabase.get(appContext)
                     .conversationDao()
                     .replaceAll(
                         conversations = conversations,
@@ -104,7 +130,7 @@ internal object AgentConversationStore {
     }
 
     private suspend fun loadSnapshot(context: Context): Snapshot {
-        val dao = FuckAndesDatabase.get(context).conversationDao()
+        val dao = EtaDatabase.get(context).conversationDao()
         val conversations = dao.conversations()
         if (conversations.isEmpty()) {
             return Snapshot(

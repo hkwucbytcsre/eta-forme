@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/model/Provider.kt
 package alice.agents.data.model
+========
+package io.github.mangi.eta.data.model
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/model/Provider.kt
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

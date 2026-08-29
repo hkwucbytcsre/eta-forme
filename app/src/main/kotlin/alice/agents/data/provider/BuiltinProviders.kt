@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/provider/BuiltinProviders.kt
 package alice.agents.data.provider
 
 import alice.agents.data.model.AnthropicProviderSetting
@@ -5,6 +6,15 @@ import alice.agents.data.model.OpenAiCompatibleProviderSetting
 import alice.agents.data.model.OpenAiEndpointMode
 import alice.agents.data.model.ProviderSetting
 import alice.agents.data.model.ProviderSourceTypes
+========
+package io.github.mangi.eta.data.provider
+
+import io.github.mangi.eta.data.model.AnthropicProviderSetting
+import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
+import io.github.mangi.eta.data.model.OpenAiEndpointMode
+import io.github.mangi.eta.data.model.ProviderSetting
+import io.github.mangi.eta.data.model.ProviderSourceTypes
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/provider/BuiltinProviders.kt
 
 internal object BuiltinProviders {
     const val DEFAULT_SYSTEM_PROMPT =

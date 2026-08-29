@@ -1,7 +1,14 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentRunRecoveryCoordinator.kt
 package alice.agents.ui.app
 
 import alice.agents.agent.runtime.AgentRunCheckpointStore
 import alice.agents.agent.runtime.AgentRuntimeWire
+========
+package io.github.mangi.eta.ui.app
+
+import io.github.mangi.eta.agent.runtime.AgentRunCheckpointStore
+import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentRunRecoveryCoordinator.kt
 
 /** 用持久 checkpoint、终态 outbox 与 Runtime 活跃状态共同判定恢复动作。 */
 internal object AgentRunRecoveryCoordinator {

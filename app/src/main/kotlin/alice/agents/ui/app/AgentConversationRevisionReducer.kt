@@ -1,9 +1,18 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentConversationRevisionReducer.kt
 package alice.agents.ui.app
 
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.ui.model.AgentChatMessageUi
 import alice.agents.ui.model.AgentChatUiState
 import alice.agents.ui.model.UserMessageUi
+========
+package io.github.mangi.eta.ui.app
+
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentChatUiState
+import io.github.mangi.eta.ui.model.UserMessageUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentConversationRevisionReducer.kt
 
 /** 以用户轮次为边界同步裁剪展示消息与模型上下文。 */
 internal object AgentConversationRevisionReducer {

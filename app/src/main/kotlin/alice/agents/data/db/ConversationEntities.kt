@@ -1,11 +1,19 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/db/ConversationEntities.kt
 package alice.agents.data.db
+========
+package io.github.mangi.eta.data.db
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/db/ConversationEntities.kt
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/db/ConversationEntities.kt
 import alice.agents.data.model.ReasoningEffort
+========
+import io.github.mangi.eta.data.model.ReasoningEffort
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/db/ConversationEntities.kt
 import kotlinx.serialization.Serializable
 
 @Serializable

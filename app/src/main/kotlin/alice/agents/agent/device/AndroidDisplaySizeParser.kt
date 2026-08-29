@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/device/AndroidDisplaySizeParser.kt
 package alice.agents.agent.device
+========
+package io.github.mangi.eta.agent.device
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/device/AndroidDisplaySizeParser.kt
 
 /** `wm size` 的 override 才是 input、screencap 与 UIAutomator 使用的当前逻辑坐标系。 */
 internal object AndroidDisplaySizeParser {

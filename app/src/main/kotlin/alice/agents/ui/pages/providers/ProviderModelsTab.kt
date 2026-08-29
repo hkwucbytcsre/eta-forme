@@ -1,7 +1,12 @@
 @file:android.annotation.SuppressLint("LocalContextGetResourceValueCall")
 
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/pages/providers/ProviderModelsTab.kt
 package alice.agents.ui.pages.providers
 import alice.agents.R
+========
+package io.github.mangi.eta.ui.pages.providers
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/pages/providers/ProviderModelsTab.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.animation.AnimatedVisibility
@@ -53,6 +58,7 @@ import androidx.navigationevent.NavigationEventInfo
 import androidx.navigationevent.compose.NavigationBackHandler
 import androidx.navigationevent.compose.rememberNavigationEventState
 import com.composables.icons.lucide.R as LucideR
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/pages/providers/ProviderModelsTab.kt
 import alice.agents.FuckAndesApp
 import alice.agents.data.model.Model
 import alice.agents.data.model.ModelReasoningCapabilities
@@ -65,6 +71,20 @@ import alice.agents.ui.components.MiuixDialogActions
 import alice.agents.ui.components.StatusError
 import alice.agents.ui.components.StatusSuccess
 import alice.agents.ui.model.formatCompactTokenCount
+========
+import io.github.mangi.eta.EtaApp
+import io.github.mangi.eta.data.model.Model
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.ProviderSetting
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.data.repository.ModelRepository
+import io.github.mangi.eta.data.repository.RemoteModelFetcher
+import io.github.mangi.eta.data.repository.RuntimeConfigRepository
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.components.StatusError
+import io.github.mangi.eta.ui.components.StatusSuccess
+import io.github.mangi.eta.ui.model.formatCompactTokenCount
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/pages/providers/ProviderModelsTab.kt
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -220,7 +240,7 @@ internal fun ProviderModelsTab(
                                     val chatModels = models.filter(RemoteModelFetcher::isChatCapableModel)
                                     val sync = ModelRepository.syncRemoteModels(provider.id, chatModels)
                                     if (sync.applied) {
-                                        RuntimeConfigRepository.syncToRemotePreferences(FuckAndesApp.serviceInstance)
+                                        RuntimeConfigRepository.syncToRemotePreferences(EtaApp.serviceInstance)
                                     }
                                     val filteredCount = models.size - chatModels.size
                                     message = if (!sync.applied) {
@@ -368,7 +388,7 @@ internal fun ProviderModelsTab(
                             onSetCurrent = {
                                 scope.launch {
                                     RuntimeConfigRepository.setSelectedModelId(model.id)
-                                    RuntimeConfigRepository.syncToRemotePreferences(FuckAndesApp.serviceInstance)
+                                    RuntimeConfigRepository.syncToRemotePreferences(EtaApp.serviceInstance)
                                 }
                             },
                         )
@@ -431,7 +451,7 @@ internal fun ProviderModelsTab(
                     editorError = null
                     try {
                         val saved = ModelRepository.saveModel(provider.id, updated)
-                        RuntimeConfigRepository.syncToRemotePreferences(FuckAndesApp.serviceInstance)
+                        RuntimeConfigRepository.syncToRemotePreferences(EtaApp.serviceInstance)
                         editingModel = null
                         message = context.getString(R.string.provider_model_saved, saved.displayName)
                     } catch (cancelled: CancellationException) {
@@ -470,7 +490,7 @@ internal fun ProviderModelsTab(
                         isMutatingModel = true
                         try {
                             ModelRepository.deleteModel(provider.id, model.id)
-                            RuntimeConfigRepository.syncToRemotePreferences(FuckAndesApp.serviceInstance)
+                            RuntimeConfigRepository.syncToRemotePreferences(EtaApp.serviceInstance)
                             message = context.getString(R.string.provider_model_deleted, model.displayName)
                             modelPendingDelete = null
                         } catch (cancelled: CancellationException) {
@@ -513,7 +533,7 @@ internal fun ProviderModelsTab(
                         isMutatingModel = true
                         try {
                             ModelRepository.deleteModels(provider.id, selectedModelIds)
-                            RuntimeConfigRepository.syncToRemotePreferences(FuckAndesApp.serviceInstance)
+                            RuntimeConfigRepository.syncToRemotePreferences(EtaApp.serviceInstance)
                             message = context.resources.getQuantityString(
                                 R.plurals.provider_models_deleted,
                                 deletedCount,

@@ -1,6 +1,12 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/CustomHeaderFilter.kt
 package alice.agents.agent.model
 
 import alice.agents.data.model.CustomHeader
+========
+package io.github.mangi.eta.agent.model
+
+import io.github.mangi.eta.data.model.CustomHeader
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/CustomHeaderFilter.kt
 
 /**
  * 自定义 HTTP Header 安全管理。

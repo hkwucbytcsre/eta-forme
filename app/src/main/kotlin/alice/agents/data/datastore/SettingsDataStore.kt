@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/datastore/SettingsDataStore.kt
 package alice.agents.data.datastore
+========
+package io.github.mangi.eta.data.datastore
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/datastore/SettingsDataStore.kt
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -10,12 +14,21 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/datastore/SettingsDataStore.kt
 import alice.agents.data.model.AppearanceAccentColor
 import alice.agents.data.model.AppearancePaletteStyle
 import alice.agents.data.model.AppearanceSettings
 import alice.agents.data.model.AppearanceThemeMode
 import alice.agents.data.model.AppearanceTopBarBlurStyle
 import alice.agents.data.model.Settings
+========
+import io.github.mangi.eta.data.model.AppearanceAccentColor
+import io.github.mangi.eta.data.model.AppearancePaletteStyle
+import io.github.mangi.eta.data.model.AppearanceSettings
+import io.github.mangi.eta.data.model.AppearanceThemeMode
+import io.github.mangi.eta.data.model.AppearanceTopBarBlurStyle
+import io.github.mangi.eta.data.model.Settings
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/datastore/SettingsDataStore.kt
 import java.io.IOException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -23,7 +36,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 internal object SettingsDataStore {
-    private const val STORE_NAME = "fuck_andes_settings"
+    private const val STORE_NAME = "eta_settings"
 
     private val SELECTED_PROVIDER_ID = stringPreferencesKey("selected_provider_id")
     private val SELECTED_MODEL_ID = stringPreferencesKey("selected_model_id")

@@ -1,0 +1,98 @@
+<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/accessibility/AgentAccessibilityKeeperTest.kt
+package alice.agents.agent.accessibility
+========
+package io.github.mangi.eta.agent.accessibility
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/accessibility/AgentAccessibilityKeeperTest.kt
+
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
+import org.junit.Test
+
+class AgentAccessibilityKeeperTest {
+    @Test
+    fun `connected service skips protection recovery`() {
+        var recoveryCalls = 0
+
+        val result = AgentAccessibilityKeeper.ensureAvailable(
+            serviceAvailable = { true },
+            protectionEnabled = { true },
+            requestRecovery = {
+                recoveryCalls++
+                true
+            },
+            awaitServiceBinding = { false },
+        )
+
+        assertTrue(result.available)
+        assertFalse(result.recoveryRequested)
+        assertEquals(0, recoveryCalls)
+    }
+
+    @Test
+    fun `disabled protection rejects without changing settings`() {
+        var recoveryCalls = 0
+
+        val result = AgentAccessibilityKeeper.ensureAvailable(
+            serviceAvailable = { false },
+            protectionEnabled = { false },
+            requestRecovery = {
+                recoveryCalls++
+                true
+            },
+            awaitServiceBinding = { true },
+        )
+
+        assertFalse(result.available)
+        assertFalse(result.recoveryRequested)
+        assertEquals("ACCESSIBILITY_UNAVAILABLE", result.code)
+        assertEquals(0, recoveryCalls)
+    }
+
+    @Test
+    fun `unavailable system backend rejects the gui operation`() {
+        var bindingChecks = 0
+
+        val result = AgentAccessibilityKeeper.ensureAvailable(
+            serviceAvailable = { false },
+            protectionEnabled = { true },
+            requestRecovery = { false },
+            awaitServiceBinding = {
+                bindingChecks++
+                true
+            },
+        )
+
+        assertFalse(result.available)
+        assertTrue(result.recoveryRequested)
+        assertEquals("ACCESSIBILITY_PROTECTION_UNAVAILABLE", result.code)
+        assertEquals(0, bindingChecks)
+    }
+
+    @Test
+    fun `approved recovery waits for the real service binding`() {
+        val result = AgentAccessibilityKeeper.ensureAvailable(
+            serviceAvailable = { false },
+            protectionEnabled = { true },
+            requestRecovery = { true },
+            awaitServiceBinding = { true },
+        )
+
+        assertTrue(result.available)
+        assertTrue(result.recoveryRequested)
+    }
+
+    @Test
+    fun `binding timeout rejects after bounded system recovery`() {
+        val result = AgentAccessibilityKeeper.ensureAvailable(
+            serviceAvailable = { false },
+            protectionEnabled = { true },
+            requestRecovery = { true },
+            awaitServiceBinding = { false },
+        )
+
+        assertFalse(result.available)
+        assertTrue(result.recoveryRequested)
+        assertEquals("ACCESSIBILITY_REPAIR_TIMEOUT", result.code)
+    }
+}

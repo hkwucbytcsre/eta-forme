@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/AgentPersonalContextTools.kt
 package alice.agents.agent.tool
+========
+package io.github.mangi.eta.agent.tool
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/AgentPersonalContextTools.kt
 
 import android.app.AppOpsManager
 import android.app.KeyguardManager
@@ -12,10 +16,17 @@ import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.os.PowerManager
 import android.os.Process
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/AgentPersonalContextTools.kt
 import alice.agents.agent.device.AgentNotificationHistoryService
 import alice.agents.agent.device.DeviceLocationProvider
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.data.repository.NotificationHistoryRepository
+========
+import io.github.mangi.eta.agent.device.AgentNotificationHistoryService
+import io.github.mangi.eta.agent.device.DeviceLocationProvider
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.repository.NotificationHistoryRepository
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/AgentPersonalContextTools.kt
 import org.json.JSONArray
 import org.json.JSONObject
 

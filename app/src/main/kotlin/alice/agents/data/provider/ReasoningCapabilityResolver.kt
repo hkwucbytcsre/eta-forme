@@ -1,9 +1,18 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/provider/ReasoningCapabilityResolver.kt
 package alice.agents.data.provider
 
 import alice.agents.data.model.Model
 import alice.agents.data.model.ModelReasoningCapabilities
 import alice.agents.data.model.ProviderSourceTypes
 import alice.agents.data.model.ReasoningEffort
+========
+package io.github.mangi.eta.data.provider
+
+import io.github.mangi.eta.data.model.Model
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.ProviderSourceTypes
+import io.github.mangi.eta.data.model.ReasoningEffort
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/provider/ReasoningCapabilityResolver.kt
 
 internal object ReasoningCapabilityResolver {
     private val lowToMax = listOf(

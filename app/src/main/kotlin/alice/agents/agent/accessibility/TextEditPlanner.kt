@@ -1,4 +1,4 @@
-package alice.agents.agent.accessibility
+package io.github.mangi.eta.agent.accessibility
 
 /** 按 Android 文本选区（UTF-16 offset）生成一次真实“键入”后的内容与光标位置。 */
 internal object TextEditPlanner {

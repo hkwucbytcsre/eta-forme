@@ -1,5 +1,10 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/enhance/SystemEnhanceScreen.kt
 package alice.agents.ui.screens.enhance
 import alice.agents.R
+========
+package io.github.mangi.eta.ui.screens.enhance
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/enhance/SystemEnhanceScreen.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -8,11 +13,19 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/enhance/SystemEnhanceScreen.kt
 import alice.agents.ui.components.MiuixScaffoldPage
 import alice.agents.ui.model.AgentSystemEnhanceAction
 import alice.agents.ui.model.AgentSystemEnhanceUiState
 import alice.agents.ui.model.SystemEnhanceItemUi
 import alice.agents.ui.model.SystemEnhanceStatusUi
+========
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+import io.github.mangi.eta.ui.model.AgentSystemEnhanceAction
+import io.github.mangi.eta.ui.model.AgentSystemEnhanceUiState
+import io.github.mangi.eta.ui.model.SystemEnhanceItemUi
+import io.github.mangi.eta.ui.model.SystemEnhanceStatusUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/enhance/SystemEnhanceScreen.kt
 import top.yukonga.miuix.kmp.basic.BasicComponent
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.SmallTitle

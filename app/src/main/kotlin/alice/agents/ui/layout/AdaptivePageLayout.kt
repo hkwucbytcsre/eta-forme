@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/layout/AdaptivePageLayout.kt
 package alice.agents.ui.layout
+========
+package io.github.mangi.eta.ui.layout
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/layout/AdaptivePageLayout.kt
 
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.WindowInsets
@@ -15,7 +19,11 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/layout/AdaptivePageLayout.kt
 import alice.agents.ui.app.LocalPlatformDensity
+========
+import io.github.mangi.eta.ui.app.LocalPlatformDensity
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/layout/AdaptivePageLayout.kt
 
 private val WideScreenMinWidth = 600.dp
 private val MaxPageContentWidth = 800.dp

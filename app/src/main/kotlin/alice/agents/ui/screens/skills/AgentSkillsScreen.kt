@@ -1,5 +1,10 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/skills/AgentSkillsScreen.kt
 package alice.agents.ui.screens.skills
 import alice.agents.R
+========
+package io.github.mangi.eta.ui.screens.skills
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/skills/AgentSkillsScreen.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -22,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.composables.icons.lucide.R as LucideR
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/skills/AgentSkillsScreen.kt
 import alice.agents.ui.components.MiuixDialogActions
 import alice.agents.ui.components.MiuixScaffoldPage
 import alice.agents.ui.components.PrefDivider
@@ -29,6 +35,15 @@ import alice.agents.ui.model.AgentSkillsAction
 import alice.agents.ui.model.AgentSkillsUiState
 import alice.agents.ui.model.SkillItemUi
 import alice.agents.ui.model.canDeleteUserSkill
+========
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+import io.github.mangi.eta.ui.components.PrefDivider
+import io.github.mangi.eta.ui.model.AgentSkillsAction
+import io.github.mangi.eta.ui.model.AgentSkillsUiState
+import io.github.mangi.eta.ui.model.SkillItemUi
+import io.github.mangi.eta.ui.model.canDeleteUserSkill
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/skills/AgentSkillsScreen.kt
 import top.yukonga.miuix.kmp.basic.BasicComponent
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.Card

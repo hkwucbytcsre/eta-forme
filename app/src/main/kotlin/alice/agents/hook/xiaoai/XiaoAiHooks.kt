@@ -1,9 +1,14 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/xiaoai/XiaoAiHooks.kt
 package alice.agents.hook.xiaoai
+========
+package io.github.mangi.eta.hook.xiaoai
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/xiaoai/XiaoAiHooks.kt
 
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Handler
 import android.os.Looper
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/xiaoai/XiaoAiHooks.kt
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.agent.runtime.AgentAppContext
 import alice.agents.agent.runtime.AgentRuntimeClient
@@ -14,6 +19,18 @@ import alice.agents.core.HookRegistrar
 import alice.agents.core.HookSupport
 import alice.agents.core.ModuleLogger
 import alice.agents.core.safeLogType
+========
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.runtime.AgentAppContext
+import io.github.mangi.eta.agent.runtime.AgentRuntimeClient
+import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.core.HookInstallation
+import io.github.mangi.eta.core.HookRegistrar
+import io.github.mangi.eta.core.HookSupport
+import io.github.mangi.eta.core.ModuleLogger
+import io.github.mangi.eta.core.safeLogType
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/xiaoai/XiaoAiHooks.kt
 import io.github.libxposed.api.XposedInterface.HookHandle
 import io.github.libxposed.api.XposedModule
 import java.util.UUID

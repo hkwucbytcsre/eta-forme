@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/MiuixDialogActions.kt
 package alice.agents.ui.components
+========
+package io.github.mangi.eta.ui.components
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/MiuixDialogActions.kt
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -10,7 +14,11 @@ import androidx.compose.ui.unit.dp
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.TextButton
 import top.yukonga.miuix.kmp.theme.MiuixTheme
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/MiuixDialogActions.kt
 import alice.agents.R
+========
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/MiuixDialogActions.kt
 
 /**
  * 弹窗底部按钮行：取消在左、确认在右，平分整行。

@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/device/ScrollAxisContract.kt
 package alice.agents.agent.device
+========
+package io.github.mangi.eta.agent.device
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/device/ScrollAxisContract.kt
 
 /** 明确暴露另一滚动轴时禁止手势兜底，避免把滚动误变成列表项侧滑。 */
 internal object ScrollAxisContract {

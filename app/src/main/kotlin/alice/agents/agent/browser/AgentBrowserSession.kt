@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/browser/AgentBrowserSession.kt
 package alice.agents.agent.browser
+========
+package io.github.mangi.eta.agent.browser
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/browser/AgentBrowserSession.kt
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/overlay/AgentOverlayContent.kt
 package alice.agents.agent.overlay
+========
+package io.github.mangi.eta.agent.overlay
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/overlay/AgentOverlayContent.kt
 
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -87,7 +91,11 @@ import top.yukonga.miuix.kmp.theme.MiuixTheme
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.composables.icons.lucide.R as LucideR
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/overlay/AgentOverlayContent.kt
 import alice.agents.R
+========
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/overlay/AgentOverlayContent.kt
 
 // Miuix 未提供语义 success 色，沿用项目既有值；失败色走主题 error
 private val SuccessColor = Color(0xFF34C759)

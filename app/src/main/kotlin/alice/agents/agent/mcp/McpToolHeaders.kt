@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/mcp/McpToolHeaders.kt
 package alice.agents.agent.mcp
+========
+package io.github.mangi.eta.agent.mcp
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/mcp/McpToolHeaders.kt
 
 import java.math.BigDecimal
 import java.math.BigInteger

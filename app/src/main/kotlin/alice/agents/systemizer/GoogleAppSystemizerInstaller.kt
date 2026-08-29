@@ -1,10 +1,19 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/systemizer/GoogleAppSystemizerInstaller.kt
 package alice.agents.systemizer
+========
+package io.github.mangi.eta.systemizer
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/systemizer/GoogleAppSystemizerInstaller.kt
 
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/systemizer/GoogleAppSystemizerInstaller.kt
 import alice.agents.core.AndroidAgentLogger
 import alice.agents.core.safeLogType
+========
+import io.github.mangi.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.core.safeLogType
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/systemizer/GoogleAppSystemizerInstaller.kt
 import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.thread

@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/core/LogSafety.kt
 package alice.agents.core
+========
+package io.github.mangi.eta.core
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/core/LogSafety.kt
 
 private const val UNKNOWN_LOG_TOKEN = "unknown"
 

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 alice.agents.ModuleMain
+=======
+io.github.mangi.eta.ModuleMain
+>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta)

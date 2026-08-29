@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/system/AssistantManager.kt
 package alice.agents.hook.system
 
 import alice.agents.core.HookSupport
@@ -6,6 +7,16 @@ import alice.agents.core.HookRegistrar
 import alice.agents.core.ModuleConfig
 import alice.agents.core.ModuleLogger
 import alice.agents.core.safeLogType
+========
+package io.github.mangi.eta.hook.system
+
+import io.github.mangi.eta.core.HookSupport
+import io.github.mangi.eta.core.HookInstallation
+import io.github.mangi.eta.core.HookRegistrar
+import io.github.mangi.eta.core.ModuleConfig
+import io.github.mangi.eta.core.ModuleLogger
+import io.github.mangi.eta.core.safeLogType
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/system/AssistantManager.kt
 
 import android.app.KeyguardManager
 import android.app.role.RoleManager
@@ -19,8 +30,13 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.SystemClock
 import android.provider.Settings
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/system/AssistantManager.kt
 import alice.agents.config.PowerAssistantTarget
 import alice.agents.config.Prefs
+========
+import io.github.mangi.eta.config.PowerAssistantTarget
+import io.github.mangi.eta.config.Prefs
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/system/AssistantManager.kt
 import io.github.libxposed.api.XposedModule
 import java.util.concurrent.Executor
 import java.util.concurrent.atomic.AtomicBoolean

@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/voice/EtaRecognitionService.kt
 package alice.agents.agent.voice
+========
+package io.github.mangi.eta.agent.voice
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/voice/EtaRecognitionService.kt
 
 import android.content.Intent
 import android.os.Bundle

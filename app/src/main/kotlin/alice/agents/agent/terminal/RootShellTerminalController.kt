@@ -1,6 +1,12 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/terminal/RootShellTerminalController.kt
 package alice.agents.agent.terminal
 
 import alice.agents.core.AgentLogger
+========
+package io.github.mangi.eta.agent.terminal
+
+import io.github.mangi.eta.core.AgentLogger
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/terminal/RootShellTerminalController.kt
 
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -18,7 +24,7 @@ internal class RootShellTerminalController(
     private val processSupervisor: ShellProcessSupervisor = ShellProcessSupervisor(),
 ) : AutoCloseable {
     private companion object {
-        const val DEFAULT_CWD = "/data/local/tmp/fuck_andes"
+        const val DEFAULT_CWD = "/data/local/tmp/eta"
         const val LINUX_DEFAULT_CWD = "/workspace"
         const val USER_STORAGE = "/storage/emulated/0"
         const val DEFAULT_TIMEOUT_SECONDS = 30
@@ -525,7 +531,7 @@ internal class RootShellTerminalController(
                     timedOut = false
                 )
             }
-            val marker = "__ANDES_STATUS_${UUID.randomUUID().toString().replace("-", "")}"
+            val marker = "__ETA_STATUS_${UUID.randomUUID().toString().replace("-", "")}"
             val stdoutStart = session.stdout.text().length
             val stderrStart = session.stderr.text().length
             val commandBlock = buildString {

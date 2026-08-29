@@ -1,4 +1,4 @@
-package alice.agents.agent.accessibility
+package io.github.mangi.eta.agent.accessibility
 
 import android.net.Uri
 import android.os.Bundle
@@ -13,11 +13,11 @@ internal object AccessibilityProtectionProtocol {
     const val VERSION = 1
 
     const val ACTION_SET =
-        "alice.agents.action.SET_ACCESSIBILITY_PROTECTION"
+        "io.github.mangi.eta.action.SET_ACCESSIBILITY_PROTECTION"
     const val ACTION_RECOVER =
-        "alice.agents.action.RECOVER_ACCESSIBILITY_SERVICE"
+        "io.github.mangi.eta.action.RECOVER_ACCESSIBILITY_SERVICE"
     const val PERMISSION =
-        "alice.agents.permission.CONTROL_ACCESSIBILITY_PROTECTION"
+        "io.github.mangi.eta.permission.CONTROL_ACCESSIBILITY_PROTECTION"
     const val RECEIVER_PACKAGE = "android"
 
     const val EXTRA_PROTOCOL_VERSION = "protocol_version"
@@ -30,7 +30,7 @@ internal object AccessibilityProtectionProtocol {
     const val SETTING_NAME = "eta_accessibility_protection_enabled"
     const val DEFAULT_ENABLED = false
 
-    const val HEALTH_AUTHORITY = "alice.agents.accessibility.health"
+    const val HEALTH_AUTHORITY = "io.github.mangi.eta.accessibility.health"
     const val HEALTH_METHOD = "accessibility_health"
     const val HEALTH_STATUS = "status"
     const val HEALTH_STATUS_CONNECTED = "connected"

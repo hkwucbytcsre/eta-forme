@@ -1,5 +1,10 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/browser/AgentBrowserScreen.kt
 package alice.agents.ui.screens.browser
 import alice.agents.R
+========
+package io.github.mangi.eta.ui.screens.browser
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/browser/AgentBrowserScreen.kt
 import androidx.compose.ui.res.stringResource
 
 import android.content.Intent
@@ -65,10 +70,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.net.toUri
 import com.composables.icons.lucide.R as LucideR
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/browser/AgentBrowserScreen.kt
 import alice.agents.agent.browser.AgentBrowserSession
 import alice.agents.agent.browser.BrowserSessionSnapshot
 import alice.agents.ui.components.MiuixDialogActions
 import alice.agents.ui.components.StatusError
+========
+import io.github.mangi.eta.agent.browser.AgentBrowserSession
+import io.github.mangi.eta.agent.browser.BrowserSessionSnapshot
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.components.StatusError
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/browser/AgentBrowserScreen.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

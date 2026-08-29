@@ -1,8 +1,16 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/repository/AgentMemoryRepository.kt
 package alice.agents.data.repository
 
 import android.content.Context
 import android.util.AtomicFile
 import alice.agents.data.datastore.SettingsDataStore
+========
+package io.github.mangi.eta.data.repository
+
+import android.content.Context
+import android.util.AtomicFile
+import io.github.mangi.eta.data.datastore.SettingsDataStore
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/repository/AgentMemoryRepository.kt
 import java.io.File
 import java.io.IOException
 import java.security.MessageDigest

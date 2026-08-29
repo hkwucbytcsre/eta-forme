@@ -1,18 +1,18 @@
-package alice.agents
+package io.github.mangi.eta
 
 import android.app.Application
 import android.os.Handler
 import android.os.Looper
-import alice.agents.agent.skill.SkillRuntime
-import alice.agents.config.Prefs
-import alice.agents.core.AndroidAgentLogger
-import alice.agents.core.safeLogType
-import alice.agents.data.datastore.SettingsDataStore
-import alice.agents.data.repository.AgentMemoryRepository
-import alice.agents.data.repository.AppearanceSettingsRepository
-import alice.agents.data.repository.McpServerRepository
-import alice.agents.data.repository.ProviderRepository
-import alice.agents.ui.app.PredictiveBackController
+import io.github.mangi.eta.agent.skill.SkillRuntime
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.core.safeLogType
+import io.github.mangi.eta.data.datastore.SettingsDataStore
+import io.github.mangi.eta.data.repository.AgentMemoryRepository
+import io.github.mangi.eta.data.repository.AppearanceSettingsRepository
+import io.github.mangi.eta.data.repository.McpServerRepository
+import io.github.mangi.eta.data.repository.ProviderRepository
+import io.github.mangi.eta.ui.app.PredictiveBackController
 import io.github.libxposed.service.XposedService
 import io.github.libxposed.service.XposedServiceHelper
 import java.util.concurrent.CopyOnWriteArraySet
@@ -30,7 +30,7 @@ import kotlinx.coroutines.runBlocking
  *
  * UI 侧通过 [XposedService] 写入 RemotePreferences。
  */
-class FuckAndesApp : Application(), XposedServiceHelper.OnServiceListener {
+class EtaApp : Application(), XposedServiceHelper.OnServiceListener {
 
     private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
@@ -55,7 +55,7 @@ class FuckAndesApp : Application(), XposedServiceHelper.OnServiceListener {
         XposedServiceHelper.registerListener(this)
         applicationScope.launch {
             runCatching {
-                SkillRuntime.createIndexService(this@FuckAndesApp).listInstalledSkills()
+                SkillRuntime.createIndexService(this@EtaApp).listInstalledSkills()
             }.onFailure { throwable ->
                 AndroidAgentLogger.warn(
                     "Agent skill index prewarm failed: type=${throwable.safeLogType()}"

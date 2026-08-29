@@ -1,7 +1,14 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/DeviceContextTool.kt
 package alice.agents.agent.tool
 
 import android.content.Context
 import alice.agents.agent.device.DeviceLocationProvider
+========
+package io.github.mangi.eta.agent.tool
+
+import android.content.Context
+import io.github.mangi.eta.agent.device.DeviceLocationProvider
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/DeviceContextTool.kt
 import java.time.Clock
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter

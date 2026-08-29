@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/overlay/AgentHapticFeedback.kt
 package alice.agents.agent.overlay
+========
+package io.github.mangi.eta.agent.overlay
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/overlay/AgentHapticFeedback.kt
 
 import android.content.Context
 import android.os.VibrationEffect

@@ -1,4 +1,4 @@
-package alice.agents.agent.accessibility
+package io.github.mangi.eta.agent.accessibility
 
 /** 可在 JVM 中验证的节点身份指纹；viewId 不是列表项唯一标识。 */
 internal data class AccessibilityNodeIdentity(

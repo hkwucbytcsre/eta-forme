@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/AgentStructuredDeviceTools.kt
 package alice.agents.agent.tool
+========
+package io.github.mangi.eta.agent.tool
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/AgentStructuredDeviceTools.kt
 
 import android.app.ActivityManager
 import android.app.AlarmManager
@@ -16,11 +20,19 @@ import android.os.SystemClock
 import android.provider.AlarmClock
 import android.provider.Settings
 import android.view.KeyEvent
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/AgentStructuredDeviceTools.kt
 import alice.agents.agent.device.BoundedRootCommandExecutor
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.core.AgentLogger
 import alice.agents.agent.device.AgentNotificationHistoryService
 import alice.agents.data.repository.NotificationHistoryRepository
+========
+import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.core.AgentLogger
+import io.github.mangi.eta.agent.device.AgentNotificationHistoryService
+import io.github.mangi.eta.data.repository.NotificationHistoryRepository
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/AgentStructuredDeviceTools.kt
 import java.util.Calendar
 import java.util.Locale
 import org.json.JSONArray

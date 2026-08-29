@@ -1,7 +1,14 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/mcp/McpServerManager.kt
 package alice.agents.agent.mcp
 
 import alice.agents.data.model.McpServerSetting
 import alice.agents.data.repository.McpServerRepository
+========
+package io.github.mangi.eta.agent.mcp
+
+import io.github.mangi.eta.data.model.McpServerSetting
+import io.github.mangi.eta.data.repository.McpServerRepository
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/mcp/McpServerManager.kt
 
 internal object McpServerManager {
     fun discover(

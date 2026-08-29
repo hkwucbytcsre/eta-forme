@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentPendingResultRecovery.kt
 package alice.agents.ui.app
 
 import alice.agents.agent.model.AgentModelClient
@@ -9,6 +10,19 @@ import alice.agents.ui.model.AgentMessageUi
 import alice.agents.ui.model.SystemNoticeCode
 import alice.agents.ui.model.SystemNoticeMessageUi
 import alice.agents.ui.model.UserMessageUi
+========
+package io.github.mangi.eta.ui.app
+
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
+import io.github.mangi.eta.agent.runtime.AgentUiHandoffPayload
+import io.github.mangi.eta.ui.model.AgentChatHomeUiState
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.SystemNoticeCode
+import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
+import io.github.mangi.eta.ui.model.UserMessageUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentPendingResultRecovery.kt
 
 /** 将 Runtime outbox 的结果幂等折叠回 App 会话。 */
 internal object AgentPendingResultRecovery {

@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppState.kt
 package alice.agents.ui.app
+========
+package io.github.mangi.eta.ui.app
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppState.kt
 
 import android.content.ComponentName
 import android.content.ContentResolver
@@ -12,6 +16,7 @@ import android.widget.Toast
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppState.kt
 import alice.agents.FuckAndesApp
 import alice.agents.R
 import alice.agents.agent.accessibility.AgentAccessibilityService
@@ -76,6 +81,72 @@ import alice.agents.ui.model.ToolActivityMessageUi
 import alice.agents.ui.model.ToolGroupUi
 import alice.agents.ui.model.ToolItemUi
 import alice.agents.ui.model.UserMessageUi
+========
+import io.github.mangi.eta.EtaApp
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
+import io.github.mangi.eta.agent.device.AgentFileReferenceGateway
+import io.github.mangi.eta.agent.device.DeviceLocationProvider
+import io.github.mangi.eta.agent.media.AgentImageCodec
+import io.github.mangi.eta.agent.memory.AgentMemoryContextBuilder
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.model.AgentFileReference
+import io.github.mangi.eta.agent.model.AgentFileReferenceKind
+import io.github.mangi.eta.agent.model.AgentFileReferencePolicy
+import io.github.mangi.eta.agent.model.AgentFileReferencePromptCodec
+import io.github.mangi.eta.agent.runtime.AgentEvent
+import io.github.mangi.eta.agent.runtime.AgentExternalArchivePayload
+import io.github.mangi.eta.agent.runtime.AgentRunArchiveStore
+import io.github.mangi.eta.agent.runtime.AgentRunCheckpointStore
+import io.github.mangi.eta.agent.runtime.AgentRuntimeClient
+import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
+import io.github.mangi.eta.agent.runtime.AgentTokenUsage
+import io.github.mangi.eta.agent.runtime.AgentUiHandoffPayload
+import io.github.mangi.eta.agent.skill.SkillRuntime
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.core.safeLogType
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.data.repository.AgentMemoryRepository
+import io.github.mangi.eta.data.repository.EtaBackupRepository
+import io.github.mangi.eta.data.repository.EtaBackupSummary
+import io.github.mangi.eta.data.repository.ProviderRepository
+import io.github.mangi.eta.data.repository.RuntimeConfigRepository
+import io.github.mangi.eta.ui.model.AgentChatHomeUiState
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.AgentMemoryUiState
+import io.github.mangi.eta.ui.model.AgentModelPickerProjector
+import io.github.mangi.eta.ui.model.AgentModelPickerUiState
+import io.github.mangi.eta.ui.model.MessageEditUiState
+import io.github.mangi.eta.ui.model.AgentSkillsUiState
+import io.github.mangi.eta.ui.model.AgentSystemEnhanceUiState
+import io.github.mangi.eta.ui.model.AgentToolsUiState
+import io.github.mangi.eta.ui.model.ConversationModeUi
+import io.github.mangi.eta.ui.model.ConversationPaneUiState
+import io.github.mangi.eta.ui.model.ConversationSummaryUi
+import io.github.mangi.eta.ui.model.PermissionHealthItemUi
+import io.github.mangi.eta.ui.model.PermissionHealthUiState
+import io.github.mangi.eta.ui.model.PermissionStatusUi
+import io.github.mangi.eta.ui.model.PendingImageUi
+import io.github.mangi.eta.ui.model.PendingFileReferenceUi
+import io.github.mangi.eta.ui.model.SkillItemUi
+import io.github.mangi.eta.ui.model.SkillNoticeUi
+import io.github.mangi.eta.ui.model.SkillReplacementUi
+import io.github.mangi.eta.ui.model.canDeleteUserSkill
+import io.github.mangi.eta.ui.model.SystemEnhanceItemUi
+import io.github.mangi.eta.ui.model.SystemEnhanceSectionUi
+import io.github.mangi.eta.ui.model.SystemEnhanceStatusUi
+import io.github.mangi.eta.ui.model.SystemNoticeCode
+import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
+import io.github.mangi.eta.ui.model.ThinkingMessageUi
+import io.github.mangi.eta.ui.model.TokenUsageUi
+import io.github.mangi.eta.ui.model.ToolActivityMessageUi
+import io.github.mangi.eta.ui.model.ToolGroupUi
+import io.github.mangi.eta.ui.model.ToolItemUi
+import io.github.mangi.eta.ui.model.UserMessageUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppState.kt
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.UUID
@@ -739,7 +810,7 @@ internal class AgentAppState(
         scope.launch(Dispatchers.IO) {
             try {
                 RuntimeConfigRepository.setSelectedModelId(modelId)
-                RuntimeConfigRepository.syncToRemotePreferences(FuckAndesApp.serviceInstance)
+                RuntimeConfigRepository.syncToRemotePreferences(EtaApp.serviceInstance)
             } catch (cancelled: CancellationException) {
                 throw cancelled
             } catch (_: Throwable) {
@@ -2389,8 +2460,13 @@ private fun buildPermissionHealthState(context: Context): PermissionHealthUiStat
     val accessibilityEnabled = isAgentAccessibilityEnabled(context) || AgentAccessibilityService.isAvailable()
     val rootEnabled = isRootAvailable()
     val locationAccess = DeviceLocationProvider.accessState(context)
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppState.kt
     val notificationHistoryEnabled = alice.agents.agent.device.AgentNotificationHistoryService.isEnabled(context)
     val usageAccessEnabled = alice.agents.agent.tool.AgentPersonalContextTools.hasUsageAccess(context)
+========
+    val notificationHistoryEnabled = io.github.mangi.eta.agent.device.AgentNotificationHistoryService.isEnabled(context)
+    val usageAccessEnabled = io.github.mangi.eta.agent.tool.AgentPersonalContextTools.hasUsageAccess(context)
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppState.kt
 
     return PermissionHealthUiState(
         items = listOf(

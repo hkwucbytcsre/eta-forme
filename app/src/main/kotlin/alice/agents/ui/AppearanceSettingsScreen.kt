@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/AppearanceSettingsScreen.kt
 package alice.agents.ui
+========
+package io.github.mangi.eta.ui
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/AppearanceSettingsScreen.kt
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
@@ -21,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/AppearanceSettingsScreen.kt
 import alice.agents.R
 import alice.agents.data.model.AppearanceAccentColor
 import alice.agents.data.model.AppearancePaletteStyle
@@ -34,6 +39,21 @@ import alice.agents.data.repository.AppearanceSettingsRepository
 import alice.agents.ui.app.LocalAppearanceSettings
 import alice.agents.ui.components.MiuixDialogActions
 import alice.agents.ui.components.MiuixScaffoldPage
+========
+import io.github.mangi.eta.R
+import io.github.mangi.eta.data.model.AppearanceAccentColor
+import io.github.mangi.eta.data.model.AppearancePaletteStyle
+import io.github.mangi.eta.data.model.AppearanceSettings
+import io.github.mangi.eta.data.model.AppearanceThemeMode
+import io.github.mangi.eta.data.model.AppearanceTopBarBlurStyle
+import io.github.mangi.eta.data.model.MAX_INTERFACE_SCALE
+import io.github.mangi.eta.data.model.MIN_INTERFACE_SCALE
+import io.github.mangi.eta.data.model.normalizeInterfaceScale
+import io.github.mangi.eta.data.repository.AppearanceSettingsRepository
+import io.github.mangi.eta.ui.app.LocalAppearanceSettings
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/AppearanceSettingsScreen.kt
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.Slider

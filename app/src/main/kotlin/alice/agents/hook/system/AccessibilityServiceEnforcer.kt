@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/system/AccessibilityServiceEnforcer.kt
 package alice.agents.hook.system
+========
+package io.github.mangi.eta.hook.system
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/system/AccessibilityServiceEnforcer.kt
 
 import android.Manifest
 import android.content.BroadcastReceiver
@@ -15,9 +19,15 @@ import android.os.Handler
 import android.os.SystemClock
 import android.os.UserManager
 import android.provider.Settings
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/system/AccessibilityServiceEnforcer.kt
 import alice.agents.agent.accessibility.AccessibilityProtectionProtocol
 import alice.agents.core.ModuleLogger
 import alice.agents.core.safeLogType
+========
+import io.github.mangi.eta.agent.accessibility.AccessibilityProtectionProtocol
+import io.github.mangi.eta.core.ModuleLogger
+import io.github.mangi.eta.core.safeLogType
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/system/AccessibilityServiceEnforcer.kt
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -817,9 +827,15 @@ internal class AccessibilityServiceEnforcer(
     }
 
     private companion object {
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/system/AccessibilityServiceEnforcer.kt
         const val APP_PACKAGE = "alice.agents"
         const val SERVICE_CLASS =
             "alice.agents.agent.accessibility.AgentAccessibilityService"
+========
+        const val APP_PACKAGE = "io.github.mangi.eta"
+        const val SERVICE_CLASS =
+            "io.github.mangi.eta.agent.accessibility.AgentAccessibilityService"
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/system/AccessibilityServiceEnforcer.kt
         const val DISABLED = 0
         const val ENABLED = 1
         const val LOG_INTERVAL_MS = 10_000L

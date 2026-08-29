@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppShell.kt
 package alice.agents.ui.app
+========
+package io.github.mangi.eta.ui.app
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppShell.kt
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,6 +19,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.composables.icons.lucide.R as LucideR
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppShell.kt
 import alice.agents.R
 import alice.agents.ui.components.AdaptiveTopAppBar
 import alice.agents.ui.components.ConversationSidePaneScaffold
@@ -26,6 +31,19 @@ import alice.agents.ui.components.topBarContainerColor
 import alice.agents.ui.navigation.AppRoute
 import alice.agents.ui.model.ConversationPaneUiState
 import alice.agents.ui.model.ConversationSummaryUi
+========
+import io.github.mangi.eta.R
+import io.github.mangi.eta.ui.components.AdaptiveTopAppBar
+import io.github.mangi.eta.ui.components.ConversationSidePaneScaffold
+import io.github.mangi.eta.ui.components.MiuixBackButton
+import io.github.mangi.eta.ui.components.TopBarBackdrop
+import io.github.mangi.eta.ui.components.captureForTopBar
+import io.github.mangi.eta.ui.components.rememberTopBarBackdrop
+import io.github.mangi.eta.ui.components.topBarContainerColor
+import io.github.mangi.eta.ui.navigation.AppRoute
+import io.github.mangi.eta.ui.model.ConversationPaneUiState
+import io.github.mangi.eta.ui.model.ConversationSummaryUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppShell.kt
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton
 import top.yukonga.miuix.kmp.basic.MiuixScrollBehavior

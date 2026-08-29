@@ -1,13 +1,25 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/chat/AgentChatScreen.kt
 package alice.agents.ui.screens.chat
+========
+package io.github.mangi.eta.ui.screens.chat
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/chat/AgentChatScreen.kt
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/chat/AgentChatScreen.kt
 import alice.agents.ui.components.AgentChatBody
 import alice.agents.ui.components.chatConversationCompositionKey
 import alice.agents.ui.model.AgentChatAction
 import alice.agents.ui.model.AgentChatUiState
 import alice.agents.ui.model.AgentModelPickerUiState
+========
+import io.github.mangi.eta.ui.components.AgentChatBody
+import io.github.mangi.eta.ui.components.chatConversationCompositionKey
+import io.github.mangi.eta.ui.model.AgentChatAction
+import io.github.mangi.eta.ui.model.AgentChatUiState
+import io.github.mangi.eta.ui.model.AgentModelPickerUiState
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/chat/AgentChatScreen.kt
 
 /**
  * 独立对话页：与首页聊天主舞台共用同一套消息/输入组件，

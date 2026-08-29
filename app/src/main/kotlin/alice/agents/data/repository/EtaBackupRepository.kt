@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/repository/EtaBackupRepository.kt
 package alice.agents.data.repository
 
 import android.content.Context
@@ -11,6 +12,21 @@ import alice.agents.data.db.ProviderEntity
 import alice.agents.data.db.ProviderModelEntity
 import alice.agents.data.db.ProviderWithModelsSeed
 import alice.agents.data.datastore.SettingsDataStore
+========
+package io.github.mangi.eta.data.repository
+
+import android.content.Context
+import androidx.room.withTransaction
+import io.github.mangi.eta.data.db.ConversationContextCheckpointEntity
+import io.github.mangi.eta.data.db.ConversationEntity
+import io.github.mangi.eta.data.db.ConversationMessageEntity
+import io.github.mangi.eta.data.db.ConversationStateEntity
+import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.mangi.eta.data.db.ProviderEntity
+import io.github.mangi.eta.data.db.ProviderModelEntity
+import io.github.mangi.eta.data.db.ProviderWithModelsSeed
+import io.github.mangi.eta.data.datastore.SettingsDataStore
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/repository/EtaBackupRepository.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable
@@ -84,7 +100,7 @@ internal object EtaBackupRepository {
             val document = readDocument(input)
             validate(document)
             val appContext = context.applicationContext
-            val database = FuckAndesDatabase.get(appContext)
+            val database = EtaDatabase.get(appContext)
             database.withTransaction {
                 database.providerDao().replaceAll(
                     document.providers.map { provider ->
@@ -121,7 +137,7 @@ internal object EtaBackupRepository {
 
     private suspend fun snapshot(context: Context): EtaBackupDocument {
         val appContext = context.applicationContext
-        val database = FuckAndesDatabase.get(appContext)
+        val database = EtaDatabase.get(appContext)
         val providers = database.providerDao().providers().map { provider ->
             EtaBackupProvider(
                 provider = provider.provider,

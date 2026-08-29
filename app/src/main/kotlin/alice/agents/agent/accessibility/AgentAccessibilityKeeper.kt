@@ -1,8 +1,8 @@
-package alice.agents.agent.accessibility
+package io.github.mangi.eta.agent.accessibility
 
 import android.content.Context
 import android.os.SystemClock
-import alice.agents.core.AndroidAgentLogger
+import io.github.mangi.eta.core.AndroidAgentLogger
 
 /**
  * 在 GUI 工具执行前确认 Eta 无障碍服务已经真实连接。

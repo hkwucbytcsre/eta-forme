@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/xiaoai/XiaoAiHookState.kt
 package alice.agents.hook.xiaoai
+========
+package io.github.mangi.eta.hook.xiaoai
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/xiaoai/XiaoAiHookState.kt
 
 import java.util.LinkedHashMap
 import java.util.concurrent.atomic.AtomicReference

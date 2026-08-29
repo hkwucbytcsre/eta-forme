@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/AgentModelClient.kt
 package alice.agents.agent.model
 
 import alice.agents.agent.runtime.AgentEvent
@@ -15,6 +16,25 @@ import alice.agents.data.model.ProviderTypes
 import alice.agents.data.model.ReasoningEffort
 import alice.agents.data.provider.BuiltinProviders
 import alice.agents.data.provider.ProviderSourceRegistry
+========
+package io.github.mangi.eta.agent.model
+
+import io.github.mangi.eta.agent.runtime.AgentEvent
+import io.github.mangi.eta.agent.runtime.AgentRunCancelledException
+import io.github.mangi.eta.agent.runtime.AgentRunController
+import io.github.mangi.eta.agent.memory.AgentMemoryContext
+import io.github.mangi.eta.agent.skill.SkillContext
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.data.model.AnthropicProviderSetting
+import io.github.mangi.eta.data.model.CustomBody
+import io.github.mangi.eta.data.model.CustomHeader
+import io.github.mangi.eta.data.model.OpenAiEndpointMode
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.ProviderTypes
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.data.provider.BuiltinProviders
+import io.github.mangi.eta.data.provider.ProviderSourceRegistry
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/AgentModelClient.kt
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.json.JSONArray

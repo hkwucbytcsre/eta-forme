@@ -1,10 +1,19 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/db/McpEntities.kt
 package alice.agents.data.db
+========
+package io.github.mangi.eta.data.db
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/db/McpEntities.kt
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/db/McpEntities.kt
 import alice.agents.data.model.McpServerSetting
 import alice.agents.data.model.McpToolDefinition
+========
+import io.github.mangi.eta.data.model.McpServerSetting
+import io.github.mangi.eta.data.model.McpToolDefinition
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/db/McpEntities.kt
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.SetSerializer
 import kotlinx.serialization.builtins.serializer

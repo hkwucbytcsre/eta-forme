@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/media/AgentImageCodec.kt
 package alice.agents.agent.media
+========
+package io.github.mangi.eta.agent.media
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/media/AgentImageCodec.kt
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,7 +10,11 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.ParcelFileDescriptor
 import android.util.Base64
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/media/AgentImageCodec.kt
 import alice.agents.agent.model.AgentModelClient
+========
+import io.github.mangi.eta.agent.model.AgentModelClient
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/media/AgentImageCodec.kt
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -165,7 +173,11 @@ internal object AgentImageCodec {
 
     /**
      * 为跨进程请求解析图片。远程 URL 与已有 data URL 直接保留；本地 URI/路径只读取元数据，
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/media/AgentImageCodec.kt
      * 正文稍后由 [alice.agents.agent.runtime.AgentRuntimeImageTransfer] 通过文件描述符传输。
+========
+     * 正文稍后由 [io.github.mangi.eta.agent.runtime.AgentRuntimeImageTransfer] 通过文件描述符传输。
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/media/AgentImageCodec.kt
      */
     fun fromTransferReference(
         context: Context?,

@@ -1,7 +1,14 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/AgentPromptBuilder.kt
 package alice.agents.agent.model
 
 import alice.agents.agent.memory.AgentMemoryContext
 import alice.agents.agent.skill.SkillContext
+========
+package io.github.mangi.eta.agent.model
+
+import io.github.mangi.eta.agent.memory.AgentMemoryContext
+import io.github.mangi.eta.agent.skill.SkillContext
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/AgentPromptBuilder.kt
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -62,7 +69,7 @@ internal object AgentPromptBuilder {
                         "Git、压缩打包、JSON 处理或编译工具优先使用 environment=linux；如果返回 LINUX_ENVIRONMENT_NOT_READY，" +
                         "准确告知用户先到设置安装 Linux 工具环境，不要把 Android 缺少命令误报成设备不支持。" +
                         "若 python3、pip、uv、node 或 npm 命令不存在，准确告知用户在 Linux 工具环境页面安装对应的“Python 工具”或“Node.js 环境”；需要 sshd 或 ssh-keygen 时引导安装“SSH 远程访问”；不要在 Android 环境冒充或自行下载未校验的工具。" +
-                        "Linux 环境默认在 /workspace 工作，该目录与 Android 的 /data/local/tmp/fuck_andes 对应；" +
+                        "Linux 环境默认在 /workspace 工作，该目录与 Android 的 /data/local/tmp/eta 对应；" +
                         "共享存储可通过 /sdcard 使用，Linux 环境不能直接假定其他 Android 受保护路径可见。" +
                         "分析 APK 时优先在 linux 环境使用 jadx、apktool、smali 或 baksmali；若命令不存在，" +
                         "准确告知用户在 Linux 工具环境页面安装“APK 分析”，不要自行下载不受校验的工具。" +

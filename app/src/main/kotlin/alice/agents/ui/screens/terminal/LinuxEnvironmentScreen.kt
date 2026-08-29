@@ -1,5 +1,10 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/terminal/LinuxEnvironmentScreen.kt
 package alice.agents.ui.screens.terminal
 import alice.agents.R
+========
+package io.github.mangi.eta.ui.screens.terminal
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/terminal/LinuxEnvironmentScreen.kt
 import androidx.compose.ui.res.stringResource
 
 import android.content.Context
@@ -15,6 +20,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/terminal/LinuxEnvironmentScreen.kt
 import alice.agents.agent.terminal.AlpineEnvironmentInstaller
 import alice.agents.agent.terminal.AlpineEnvironmentHealth
 import alice.agents.agent.terminal.AlpineApkAnalysisInstaller
@@ -33,6 +39,26 @@ import alice.agents.agent.terminal.PackageProfileInstallProgress
 import alice.agents.agent.terminal.PackageProfileInstallResult
 import alice.agents.agent.terminal.PackageProfileInstallStage
 import alice.agents.ui.components.MiuixScaffoldPage
+========
+import io.github.mangi.eta.agent.terminal.AlpineEnvironmentInstaller
+import io.github.mangi.eta.agent.terminal.AlpineEnvironmentHealth
+import io.github.mangi.eta.agent.terminal.AlpineApkAnalysisInstaller
+import io.github.mangi.eta.agent.terminal.AlpineEnvironmentState
+import io.github.mangi.eta.agent.terminal.AlpineEnvironmentStatus
+import io.github.mangi.eta.agent.terminal.AlpineInstallProgress
+import io.github.mangi.eta.agent.terminal.AlpineInstallResult
+import io.github.mangi.eta.agent.terminal.AlpineInstallStage
+import io.github.mangi.eta.agent.terminal.AlpinePackageProfile
+import io.github.mangi.eta.agent.terminal.AlpinePackageProfileInstaller
+import io.github.mangi.eta.agent.terminal.AlpinePackageProfiles
+import io.github.mangi.eta.agent.terminal.ApkAnalysisInstallProgress
+import io.github.mangi.eta.agent.terminal.ApkAnalysisInstallResult
+import io.github.mangi.eta.agent.terminal.ApkAnalysisInstallStage
+import io.github.mangi.eta.agent.terminal.PackageProfileInstallProgress
+import io.github.mangi.eta.agent.terminal.PackageProfileInstallResult
+import io.github.mangi.eta.agent.terminal.PackageProfileInstallStage
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/terminal/LinuxEnvironmentScreen.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

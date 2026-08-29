@@ -1,8 +1,16 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/ColorOsMemoryDatabaseQuery.kt
 package alice.agents.agent.tool
 
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import alice.agents.core.ColorOsMemoryBridgeProtocol
+========
+package io.github.mangi.eta.agent.tool
+
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
+import io.github.mangi.eta.core.ColorOsMemoryBridgeProtocol
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/ColorOsMemoryDatabaseQuery.kt
 import java.nio.charset.StandardCharsets
 import org.json.JSONArray
 import org.json.JSONObject

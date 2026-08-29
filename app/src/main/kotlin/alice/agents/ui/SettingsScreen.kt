@@ -1,5 +1,10 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/SettingsScreen.kt
 package alice.agents.ui
 import alice.agents.R
+========
+package io.github.mangi.eta.ui
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/SettingsScreen.kt
 import androidx.compose.ui.res.stringResource
 
 import android.content.ComponentName
@@ -31,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/SettingsScreen.kt
 import alice.agents.FuckAndesApp
 import alice.agents.agent.accessibility.AccessibilityProtectionClient
 import alice.agents.agent.accessibility.AgentAccessibilityService
@@ -45,6 +51,22 @@ import alice.agents.ui.components.MiuixScaffoldPage
 import alice.agents.ui.navigation.AppRoute
 import alice.agents.systemizer.RootManager
 import alice.agents.systemizer.SystemizerInstallResult
+========
+import io.github.mangi.eta.EtaApp
+import io.github.mangi.eta.agent.accessibility.AccessibilityProtectionClient
+import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
+import io.github.mangi.eta.agent.voice.EtaVoiceInteractionService
+import io.github.mangi.eta.config.PowerAssistantTarget
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.data.repository.ProviderRepository
+import io.github.mangi.eta.data.repository.RuntimeConfigRepository
+import io.github.mangi.eta.systemizer.GoogleAppSystemizerInstaller
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+import io.github.mangi.eta.ui.navigation.AppRoute
+import io.github.mangi.eta.systemizer.RootManager
+import io.github.mangi.eta.systemizer.SystemizerInstallResult
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/SettingsScreen.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -143,7 +165,7 @@ internal fun SettingsScreen(
 
     // prefs 绑定到 XposedService：service 到达时切换到 RemotePreferences（跨进程提交到
     // LSPosed 数据库）；未就绪时保持 null，UI 禁止修改。
-    var prefs by remember { mutableStateOf(Prefs.remotePreferencesForUi(FuckAndesApp.serviceInstance)) }
+    var prefs by remember { mutableStateOf(Prefs.remotePreferencesForUi(EtaApp.serviceInstance)) }
     val agentPrefs = remember { Prefs.localAgentPreferences() }
     var powerAssistantTarget by remember(prefs) {
         mutableStateOf(Prefs.powerAssistantTarget(prefs))
@@ -161,7 +183,7 @@ internal fun SettingsScreen(
         onDispose { targetPrefs.unregisterOnSharedPreferenceChangeListener(listener) }
     }
     DisposableEffect(Unit) {
-        val listener = object : FuckAndesApp.ServiceStateListener {
+        val listener = object : EtaApp.ServiceStateListener {
             override fun onServiceStateChanged(service: io.github.libxposed.service.XposedService?) {
                 prefs = Prefs.remotePreferencesForUi(service)
                 Prefs.reconcileAgentPreferences(service)
@@ -170,8 +192,8 @@ internal fun SettingsScreen(
                 }
             }
         }
-        FuckAndesApp.addServiceStateListener(listener, notifyImmediately = true)
-        onDispose { FuckAndesApp.removeServiceStateListener(listener) }
+        EtaApp.addServiceStateListener(listener, notifyImmediately = true)
+        onDispose { EtaApp.removeServiceStateListener(listener) }
     }
     val powerAssistantTargets = PowerAssistantTarget.entries
     val powerAssistantItems = powerAssistantTargets.map { target ->
@@ -795,7 +817,7 @@ private fun SwitchPref(
             if (putBooleanSync(targetPrefs, key, value)) {
                 checked = value
                 if (key in Prefs.Keys.LOCAL_AGENT_KEYS) {
-                    Prefs.reconcileAgentPreferences(FuckAndesApp.serviceInstance)
+                    Prefs.reconcileAgentPreferences(EtaApp.serviceInstance)
                 }
             } else {
                 Toast.makeText(

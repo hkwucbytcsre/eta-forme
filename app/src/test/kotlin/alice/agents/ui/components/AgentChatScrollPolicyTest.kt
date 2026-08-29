@@ -1,0 +1,131 @@
+<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/components/AgentChatScrollPolicyTest.kt
+package alice.agents.ui.components
+========
+package io.github.mangi.eta.ui.components
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/components/AgentChatScrollPolicyTest.kt
+
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
+import org.junit.Test
+
+class AgentChatScrollPolicyTest {
+    @Test
+    fun completedContentExpansionDoesNotFollowBottom() {
+        assertFalse(
+            resolveBottomFollowEnabled(
+                isStreaming = false,
+                keepBottomAnchored = true,
+                isUserDragging = false,
+            )
+        )
+    }
+
+    @Test
+    fun streamingTailGrowthFollowsBottom() {
+        assertTrue(
+            resolveBottomFollowEnabled(
+                isStreaming = true,
+                keepBottomAnchored = true,
+                isUserDragging = false,
+            )
+        )
+    }
+
+    @Test
+    fun completedConversationDoesNotJumpToInitialBottom() {
+        assertFalse(
+            shouldRequestInitialBottom(
+                isStreaming = false,
+                keepBottomAnchored = true,
+                isUserDragging = false,
+            )
+        )
+    }
+
+    @Test
+    fun streamingConversationRequestsInitialBottom() {
+        assertTrue(
+            shouldRequestInitialBottom(
+                isStreaming = true,
+                keepBottomAnchored = true,
+                isUserDragging = false,
+            )
+        )
+    }
+
+    @Test
+    fun contentGrowthDoesNotDisableBottomFollowing() {
+        assertTrue(
+            resolveKeepBottomAnchored(
+                current = true,
+                isUserDragging = false,
+                isAtBottom = false,
+            )
+        )
+    }
+
+    @Test
+    fun draggingAwayFromBottomDisablesFollowing() {
+        assertFalse(
+            resolveKeepBottomAnchored(
+                current = true,
+                isUserDragging = true,
+                isAtBottom = false,
+            )
+        )
+    }
+
+    @Test
+    fun reachingBottomEnablesFollowingAgain() {
+        assertTrue(
+            resolveKeepBottomAnchored(
+                current = false,
+                isUserDragging = false,
+                isAtBottom = true,
+            )
+        )
+    }
+
+    @Test
+    fun growingTailOnlyScrollsByTheOverflowDistance() {
+        assertEquals(
+            BottomFollowDecision(scrollByPx = 24),
+            resolveBottomFollowDecision(
+                enabled = true,
+                bottomItemIndex = 8,
+                sentinelBottom = 1024,
+                viewportEnd = 1000,
+                lastVisibleIndex = 8,
+            ),
+        )
+    }
+
+    @Test
+    fun largeAppendRequestsBottomOnlyWhenSentinelLeftTheViewport() {
+        assertEquals(
+            BottomFollowDecision(requestIndex = 8),
+            resolveBottomFollowDecision(
+                enabled = true,
+                bottomItemIndex = 8,
+                sentinelBottom = null,
+                viewportEnd = 1000,
+                lastVisibleIndex = 6,
+            ),
+        )
+    }
+
+    @Test
+    fun disabledFollowingNeverMovesTheList() {
+        assertEquals(
+            BottomFollowDecision(),
+            resolveBottomFollowDecision(
+                enabled = false,
+                bottomItemIndex = 8,
+                sentinelBottom = 1100,
+                viewportEnd = 1000,
+                lastVisibleIndex = 8,
+            ),
+        )
+    }
+}

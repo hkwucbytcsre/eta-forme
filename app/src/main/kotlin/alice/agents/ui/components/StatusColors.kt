@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/StatusColors.kt
 package alice.agents.ui.components
+========
+package io.github.mangi.eta.ui.components
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/StatusColors.kt
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -14,8 +18,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/StatusColors.kt
 import alice.agents.ui.model.PermissionStatusUi
 import alice.agents.ui.model.RunStatusUi
+========
+import io.github.mangi.eta.ui.model.PermissionStatusUi
+import io.github.mangi.eta.ui.model.RunStatusUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/StatusColors.kt
 import top.yukonga.miuix.kmp.basic.BasicComponent
 import top.yukonga.miuix.kmp.basic.HorizontalDivider
 import top.yukonga.miuix.kmp.basic.Icon
@@ -25,7 +34,11 @@ import com.composables.icons.lucide.R as LucideR
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/StatusColors.kt
 import alice.agents.R
+========
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/StatusColors.kt
 
 // 语义状态色
 val StatusSuccess = Color(0xFF00BD13)

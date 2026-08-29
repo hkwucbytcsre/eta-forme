@@ -1,7 +1,14 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentRuntimeHistoryReducer.kt
 package alice.agents.ui.app
 
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.ui.model.AgentChatHomeUiState
+========
+package io.github.mangi.eta.ui.app
+
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.ui.model.AgentChatHomeUiState
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentRuntimeHistoryReducer.kt
 
 /** live result 与 outbox recovery 共用的 history 幂等提交点。 */
 internal object AgentRuntimeHistoryReducer {

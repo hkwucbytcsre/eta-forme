@@ -1,8 +1,16 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/system/CircleToSearchInvoker.kt
 package alice.agents.hook.system
 
 import alice.agents.core.HookSupport
 import alice.agents.core.ModuleConfig
 import alice.agents.core.ModuleLogger
+========
+package io.github.mangi.eta.hook.system
+
+import io.github.mangi.eta.core.HookSupport
+import io.github.mangi.eta.core.ModuleConfig
+import io.github.mangi.eta.core.ModuleLogger
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/system/CircleToSearchInvoker.kt
 
 import android.content.Context
 import android.content.Intent

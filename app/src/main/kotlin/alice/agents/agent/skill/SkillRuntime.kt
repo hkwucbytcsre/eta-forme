@@ -1,9 +1,18 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/skill/SkillRuntime.kt
 package alice.agents.agent.skill
 
 import android.content.Context
 import android.content.res.AssetManager
 import alice.agents.data.db.FuckAndesDatabase
 import alice.agents.data.db.SkillRegistryEntity
+========
+package io.github.mangi.eta.agent.skill
+
+import android.content.Context
+import android.content.res.AssetManager
+import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.mangi.eta.data.db.SkillRegistryEntity
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/skill/SkillRuntime.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
@@ -60,7 +69,7 @@ private class SkillRegistryStore(
     }
 
     fun readStrict(): LinkedHashMap<String, SkillRegistryEntry> = runBlocking(Dispatchers.IO) {
-        FuckAndesDatabase.get(appContext)
+        EtaDatabase.get(appContext)
             .skillDao()
             .registryEntries()
             .associateTo(linkedMapOf()) { entity ->
@@ -74,7 +83,7 @@ private class SkillRegistryStore(
 
     fun write(entries: Map<String, SkillRegistryEntry>) {
         runBlocking(Dispatchers.IO) {
-            FuckAndesDatabase.get(appContext)
+            EtaDatabase.get(appContext)
                 .skillDao()
                 .replaceRegistry(
                     entries.toSortedMap().map { (skillId, value) ->
@@ -91,7 +100,7 @@ private class SkillRegistryStore(
 
     fun set(skillId: String, entry: SkillRegistryEntry) {
         runBlocking(Dispatchers.IO) {
-            FuckAndesDatabase.get(appContext)
+            EtaDatabase.get(appContext)
                 .skillDao()
                 .upsertRegistryEntry(
                     SkillRegistryEntity(
@@ -106,7 +115,7 @@ private class SkillRegistryStore(
 
     fun remove(skillId: String) {
         runBlocking(Dispatchers.IO) {
-            FuckAndesDatabase.get(appContext)
+            EtaDatabase.get(appContext)
                 .skillDao()
                 .deleteRegistryEntry(skillId)
         }

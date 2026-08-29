@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/overlay/AgentOverlayText.kt
 package alice.agents.agent.overlay
+========
+package io.github.mangi.eta.agent.overlay
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/overlay/AgentOverlayText.kt
 
 import android.icu.text.ListFormatter
 import androidx.annotation.StringRes
@@ -6,7 +10,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/overlay/AgentOverlayText.kt
 import alice.agents.R
+========
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/overlay/AgentOverlayText.kt
 
 /** 浮窗只保存语义状态，文案在渲染时根据当前系统语言解析。 */
 internal sealed interface AgentOverlayStatus {

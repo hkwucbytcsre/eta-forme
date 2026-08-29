@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/skill/SkillMutationLock.kt
 package alice.agents.agent.skill
+========
+package io.github.mangi.eta.agent.skill
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/skill/SkillMutationLock.kt
 
 import java.io.File
 import java.io.IOException

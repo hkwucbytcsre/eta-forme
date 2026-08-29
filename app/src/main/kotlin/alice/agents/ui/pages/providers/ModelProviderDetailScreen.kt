@@ -1,7 +1,12 @@
 @file:android.annotation.SuppressLint("LocalContextGetResourceValueCall")
 
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/pages/providers/ModelProviderDetailScreen.kt
 package alice.agents.ui.pages.providers
 import alice.agents.R
+========
+package io.github.mangi.eta.ui.pages.providers
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/pages/providers/ModelProviderDetailScreen.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.foundation.clickable
@@ -39,6 +44,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.composables.icons.lucide.R as LucideR
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/pages/providers/ModelProviderDetailScreen.kt
 import alice.agents.FuckAndesApp
 import alice.agents.data.model.AnthropicProviderSetting
 import alice.agents.data.model.CustomProviderSetting
@@ -57,6 +63,26 @@ import alice.agents.ui.components.StatusError
 import alice.agents.ui.components.StatusSuccess
 import alice.agents.ui.layout.horizontalCutoutPadding
 import alice.agents.ui.navigation.NewProviderType
+========
+import io.github.mangi.eta.EtaApp
+import io.github.mangi.eta.data.model.AnthropicProviderSetting
+import io.github.mangi.eta.data.model.CustomProviderSetting
+import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
+import io.github.mangi.eta.data.model.OpenAiEndpointMode
+import io.github.mangi.eta.data.model.ProviderSetting
+import io.github.mangi.eta.data.model.withId
+import io.github.mangi.eta.data.repository.ProviderRepository
+import io.github.mangi.eta.data.repository.RemoteModelFetcher
+import io.github.mangi.eta.data.repository.RuntimeConfigRepository
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.components.MiuixPageBottomSpacer
+import io.github.mangi.eta.ui.components.MiuixScaffold
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+import io.github.mangi.eta.ui.components.StatusError
+import io.github.mangi.eta.ui.components.StatusSuccess
+import io.github.mangi.eta.ui.layout.horizontalCutoutPadding
+import io.github.mangi.eta.ui.navigation.NewProviderType
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/pages/providers/ModelProviderDetailScreen.kt
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -140,7 +166,7 @@ internal fun ModelProviderDetailScreen(
     }
 
     LaunchedEffect(Unit) {
-        RuntimeConfigRepository.ensureDefaults(FuckAndesApp.serviceInstance)
+        RuntimeConfigRepository.ensureDefaults(EtaApp.serviceInstance)
     }
 
     if (provider == null && draft == null) {
@@ -448,7 +474,7 @@ private fun ProviderConfigTab(
                                         RuntimeConfigRepository.setSelectedProviderId(added.id)
                                     }
                                     val ok = RuntimeConfigRepository.syncToRemotePreferences(
-                                        FuckAndesApp.serviceInstance
+                                        EtaApp.serviceInstance
                                     )
                                     status = if (ok) context.getString(R.string.page_created_set_current_and_synced_a99010)
                                     else context.getString(R.string.page_created_and_set_as_current_lsposed_service_is_not_co_baa03d)
@@ -460,7 +486,7 @@ private fun ProviderConfigTab(
                                         RuntimeConfigRepository.setSelectedProviderId(built.id)
                                     }
                                     val ok = RuntimeConfigRepository.syncToRemotePreferences(
-                                        FuckAndesApp.serviceInstance
+                                        EtaApp.serviceInstance
                                     )
                                     status = when {
                                         !built.isEnabled -> context.getString(R.string.page_saved_provider_not_enabled_7afa54)
@@ -549,7 +575,7 @@ private fun ProviderConfigTab(
                         isWorking = true
                         try {
                             ProviderRepository.deleteProvider(provider.id)
-                            RuntimeConfigRepository.syncToRemotePreferences(FuckAndesApp.serviceInstance)
+                            RuntimeConfigRepository.syncToRemotePreferences(EtaApp.serviceInstance)
                             showDeleteDialog = false
                             onDeleted()
                         } catch (cancelled: CancellationException) {
@@ -586,7 +612,7 @@ private fun ProviderConfigTab(
                         isWorking = true
                         try {
                             ProviderRepository.resetBuiltIn(provider.id)
-                            RuntimeConfigRepository.syncToRemotePreferences(FuckAndesApp.serviceInstance)
+                            RuntimeConfigRepository.syncToRemotePreferences(EtaApp.serviceInstance)
                             status = context.getString(R.string.page_reset_a0cc65)
                             showResetDialog = false
                         } catch (cancelled: CancellationException) {

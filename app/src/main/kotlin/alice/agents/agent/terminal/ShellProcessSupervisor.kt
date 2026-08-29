@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/terminal/ShellProcessSupervisor.kt
 package alice.agents.agent.terminal
+========
+package io.github.mangi.eta.agent.terminal
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/terminal/ShellProcessSupervisor.kt
 
 import java.io.File
 import java.util.UUID
@@ -250,8 +254,8 @@ internal class ShellProcessSupervisor(
             fi
             [ -d /data/local/tmp ] || exit 125
             eta_mount_required /data/local/tmp "${'$'}eta_rootfs/data/local/tmp" bind
-            "${'$'}eta_busybox" mkdir -p /data/local/tmp/fuck_andes || exit 125
-            eta_mount_required /data/local/tmp/fuck_andes "${'$'}eta_rootfs/workspace" bind
+            "${'$'}eta_busybox" mkdir -p /data/local/tmp/eta || exit 125
+            eta_mount_required /data/local/tmp/eta "${'$'}eta_rootfs/workspace" bind
             if [ "${'$'}eta_mode" = command ]; then
               exec "${'$'}eta_busybox" chroot "${'$'}eta_rootfs" /usr/bin/env -i \
                 HOME=/root USER=root LOGNAME=root SHELL=/bin/sh TERM=dumb NO_COLOR=1 \

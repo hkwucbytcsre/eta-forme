@@ -1,5 +1,10 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/memory/AgentMemoryScreen.kt
 package alice.agents.ui.screens.memory
 import alice.agents.R
+========
+package io.github.mangi.eta.ui.screens.memory
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/memory/AgentMemoryScreen.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.foundation.layout.Arrangement
@@ -24,11 +29,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/memory/AgentMemoryScreen.kt
 import alice.agents.ui.components.MiuixDialogActions
 import alice.agents.ui.components.MiuixScaffold
 import alice.agents.ui.layout.horizontalCutoutPadding
 import alice.agents.ui.model.AgentMemoryAction
 import alice.agents.ui.model.AgentMemoryUiState
+========
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.components.MiuixScaffold
+import io.github.mangi.eta.ui.layout.horizontalCutoutPadding
+import io.github.mangi.eta.ui.model.AgentMemoryAction
+import io.github.mangi.eta.ui.model.AgentMemoryUiState
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/memory/AgentMemoryScreen.kt
 import top.yukonga.miuix.kmp.basic.BasicComponent
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.Card

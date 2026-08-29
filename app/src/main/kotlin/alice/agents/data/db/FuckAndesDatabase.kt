@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/db/FuckAndesDatabase.kt
 package alice.agents.data.db
+========
+package io.github.mangi.eta.data.db
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/db/EtaDatabase.kt
 
 import android.content.Context
 import androidx.annotation.VisibleForTesting
@@ -26,7 +30,7 @@ import androidx.room.migration.Migration
     version = 18,
     exportSchema = false,
 )
-internal abstract class FuckAndesDatabase : RoomDatabase() {
+internal abstract class EtaDatabase : RoomDatabase() {
     abstract fun conversationDao(): ConversationDao
     abstract fun providerDao(): ProviderDao
     abstract fun runtimeRunDao(): RuntimeRunDao
@@ -35,14 +39,14 @@ internal abstract class FuckAndesDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var instance: FuckAndesDatabase? = null
+        private var instance: EtaDatabase? = null
 
-        fun get(context: Context): FuckAndesDatabase =
+        fun get(context: Context): EtaDatabase =
             instance ?: synchronized(this) {
                 instance ?: Room.databaseBuilder(
                     context.applicationContext,
-                    FuckAndesDatabase::class.java,
-                    "fuck_andes.db",
+                    EtaDatabase::class.java,
+                    "eta.db",
                 )
                     .addMigrations(
                         MIGRATION_6_7,

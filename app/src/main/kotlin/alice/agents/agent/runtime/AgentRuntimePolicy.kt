@@ -1,9 +1,18 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimePolicy.kt
 package alice.agents.agent.runtime
 
 import android.content.SharedPreferences
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.config.Prefs
 import alice.agents.data.model.ReasoningEffort
+========
+package io.github.mangi.eta.agent.runtime
+
+import android.content.SharedPreferences
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.data.model.ReasoningEffort
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimePolicy.kt
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject

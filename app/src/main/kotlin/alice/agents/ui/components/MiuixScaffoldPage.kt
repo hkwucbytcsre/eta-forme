@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/MiuixScaffoldPage.kt
 package alice.agents.ui.components
+========
+package io.github.mangi.eta.ui.components
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/MiuixScaffoldPage.kt
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,8 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/MiuixScaffoldPage.kt
 import alice.agents.ui.layout.WidePageContent
 import alice.agents.ui.layout.horizontalCutoutPadding
+========
+import io.github.mangi.eta.ui.layout.WidePageContent
+import io.github.mangi.eta.ui.layout.horizontalCutoutPadding
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/MiuixScaffoldPage.kt
 import top.yukonga.miuix.kmp.basic.MiuixScrollBehavior
 import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.ScrollBehavior

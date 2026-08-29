@@ -1,5 +1,10 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/AgentChatFileAttachments.kt
 package alice.agents.ui.components
 import alice.agents.R
+========
+package io.github.mangi.eta.ui.components
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/AgentChatFileAttachments.kt
 import androidx.compose.ui.res.stringResource
 
 import android.content.Intent
@@ -42,9 +47,15 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.text.KeyboardOptions
 import com.composables.icons.lucide.R as LucideR
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/AgentChatFileAttachments.kt
 import alice.agents.agent.model.AgentFileReference
 import alice.agents.agent.model.AgentFileReferenceKind
 import alice.agents.ui.model.PendingFileReferenceUi
+========
+import io.github.mangi.eta.agent.model.AgentFileReference
+import io.github.mangi.eta.agent.model.AgentFileReferenceKind
+import io.github.mangi.eta.ui.model.PendingFileReferenceUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/AgentChatFileAttachments.kt
 import top.yukonga.miuix.kmp.basic.DropdownImpl
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton

@@ -1,8 +1,16 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/PredictiveBackController.kt
 package alice.agents.ui.app
 
 import android.content.pm.ApplicationInfo
 import android.os.Build
 import alice.agents.core.AndroidAgentLogger
+========
+package io.github.mangi.eta.ui.app
+
+import android.content.pm.ApplicationInfo
+import android.os.Build
+import io.github.mangi.eta.core.AndroidAgentLogger
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/PredictiveBackController.kt
 import org.lsposed.hiddenapibypass.HiddenApiBypass
 
 internal object PredictiveBackController {

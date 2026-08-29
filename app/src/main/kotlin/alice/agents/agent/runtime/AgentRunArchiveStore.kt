@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRunArchiveStore.kt
 package alice.agents.agent.runtime
 
 import android.content.Context
@@ -9,6 +10,19 @@ import alice.agents.data.db.RuntimeArchiveRunEntity
 import alice.agents.data.db.RuntimeArchiveRunWithEvents
 import alice.agents.data.db.RuntimeArchiveRunWithEventsSeed
 import alice.agents.data.db.RuntimeRunDao
+========
+package io.github.mangi.eta.agent.runtime
+
+import android.content.Context
+import io.github.mangi.eta.agent.model.AgentConversationCodec
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.mangi.eta.data.db.RuntimeArchiveEventEntity
+import io.github.mangi.eta.data.db.RuntimeArchiveRunEntity
+import io.github.mangi.eta.data.db.RuntimeArchiveRunWithEvents
+import io.github.mangi.eta.data.db.RuntimeArchiveRunWithEventsSeed
+import io.github.mangi.eta.data.db.RuntimeRunDao
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRunArchiveStore.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
@@ -36,7 +50,7 @@ internal object AgentRunArchiveStore {
     fun add(context: Context, run: ArchivedRun) {
         val appContext = context.applicationContext
         runBlocking(Dispatchers.IO) {
-            val dao = FuckAndesDatabase.get(appContext).runtimeRunDao()
+            val dao = EtaDatabase.get(appContext).runtimeRunDao()
             val compacted = run.copy(events = compactEvents(run.events))
             val archiveRunId = compacted.archiveRunId
             dao.replaceArchivedRun(
@@ -50,7 +64,7 @@ internal object AgentRunArchiveStore {
     fun list(context: Context): List<ArchivedRun> {
         val appContext = context.applicationContext
         return runBlocking(Dispatchers.IO) {
-            prune(FuckAndesDatabase.get(appContext).runtimeRunDao())
+            prune(EtaDatabase.get(appContext).runtimeRunDao())
                 .mapNotNull { it.toDomain() }
         }
     }
@@ -59,7 +73,7 @@ internal object AgentRunArchiveStore {
         if (runId.isBlank()) return
         val appContext = context.applicationContext
         runBlocking(Dispatchers.IO) {
-            FuckAndesDatabase.get(appContext)
+            EtaDatabase.get(appContext)
                 .runtimeRunDao()
                 .deleteArchivedRun(runId)
         }

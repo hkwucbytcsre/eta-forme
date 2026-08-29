@@ -1,5 +1,10 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/AgentChatInputBar.kt
 package alice.agents.ui.components
 import alice.agents.R
+========
+package io.github.mangi.eta.ui.components
+import io.github.mangi.eta.R
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/AgentChatInputBar.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.animation.AnimatedContent
@@ -66,11 +71,19 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.composables.icons.lucide.R as LucideR
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/AgentChatInputBar.kt
 import alice.agents.data.model.ReasoningEffort
 import alice.agents.ui.model.AgentContextUsageUi
 import alice.agents.ui.model.AgentModelPickerUiState
 import alice.agents.ui.model.PendingFileReferenceUi
 import alice.agents.ui.model.PendingImageUi
+========
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.ui.model.AgentContextUsageUi
+import io.github.mangi.eta.ui.model.AgentModelPickerUiState
+import io.github.mangi.eta.ui.model.PendingFileReferenceUi
+import io.github.mangi.eta.ui.model.PendingImageUi
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/AgentChatInputBar.kt
 import top.yukonga.miuix.kmp.basic.DropdownImpl
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton

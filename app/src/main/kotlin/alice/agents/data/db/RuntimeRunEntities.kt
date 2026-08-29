@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/db/RuntimeRunEntities.kt
 package alice.agents.data.db
+========
+package io.github.mangi.eta.data.db
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/db/RuntimeRunEntities.kt
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded

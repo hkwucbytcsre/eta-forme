@@ -1,11 +1,19 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/core/ModuleConfig.kt
 package alice.agents.core
+========
+package io.github.mangi.eta.core
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/core/ModuleConfig.kt
 
 internal object ModuleConfig {
-    const val TAG = "FuckAndes"
+    const val TAG = "Eta"
     const val HOT_PATH_LOG_WINDOW_MS = 60_000L
 
     const val GOOGLE_PACKAGE = "com.google.android.googlequicksearchbox"
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/core/ModuleConfig.kt
     const val ETA_PACKAGE = "alice.agents"
+========
+    const val ETA_PACKAGE = "io.github.mangi.eta"
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/core/ModuleConfig.kt
     const val BREENO_PACKAGE = "com.heytap.speechassist"
     const val COLOROS_MEMORY_PACKAGE = "com.oplus.aimemory"
     const val XIAOAI_PACKAGE = "com.miui.voiceassist"
@@ -14,7 +22,11 @@ internal object ModuleConfig {
     const val GOOGLE_ASSISTANT_COMPONENT =
         "$GOOGLE_PACKAGE/com.google.android.voiceinteraction.GsaVoiceInteractionService"
     const val ETA_VOICE_INTERACTION_COMPONENT =
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/core/ModuleConfig.kt
         "$ETA_PACKAGE/alice.agents.agent.voice.EtaVoiceInteractionService"
+========
+        "$ETA_PACKAGE/io.github.mangi.eta.agent.voice.EtaVoiceInteractionService"
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/core/ModuleConfig.kt
     const val ASSISTANT_ROLE = "android.app.role.ASSISTANT"
     const val SECURE_ASSISTANT = "assistant"
     const val SECURE_VOICE_INTERACTION_SERVICE = "voice_interaction_service"

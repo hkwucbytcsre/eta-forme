@@ -1,4 +1,8 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/AgentTerminalToolCatalog.kt
 package alice.agents.agent.model
+========
+package io.github.mangi.eta.agent.model
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/AgentTerminalToolCatalog.kt
 
 import org.json.JSONArray
 import org.json.JSONObject
@@ -54,7 +58,7 @@ internal object AgentTerminalToolCatalog {
                                     "cwd",
                                     JSONObject()
                                         .put("type", "string")
-                                        .put("description", "Working directory. Defaults to /data/local/tmp/fuck_andes for android and /workspace for linux. Relative paths use the environment default. ~/ means /storage/emulated/0.")
+                                        .put("description", "Working directory. Defaults to /data/local/tmp/eta for android and /workspace for linux. Relative paths use the environment default. ~/ means /storage/emulated/0.")
                                 )
                                 .put(
                                     "timeout_ms",
@@ -127,7 +131,7 @@ internal object AgentTerminalToolCatalog {
                                     "cwd",
                                     JSONObject()
                                         .put("type", "string")
-                                        .put("description", "工作目录，默认 /data/local/tmp/fuck_andes。相对路径也按该目录解析；用户存储可用 ~/ 表示 /storage/emulated/0。")
+                                        .put("description", "工作目录，默认 /data/local/tmp/eta。相对路径也按该目录解析；用户存储可用 ~/ 表示 /storage/emulated/0。")
                                 )
                                 .put(
                                     "timeout_seconds",
@@ -189,7 +193,7 @@ internal object AgentTerminalToolCatalog {
             .put(
                 AgentToolSchema.function(
                     name = "list_directory",
-                    description = "列出 Android 目录内容。默认 /data/local/tmp/fuck_andes，输出类似 ls -l。",
+                    description = "列出 Android 目录内容。默认 /data/local/tmp/eta，输出类似 ls -l。",
                     parameters = JSONObject()
                         .put("type", "object")
                         .put(

@@ -1,13 +1,24 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/device/AgentFileReferenceGateway.kt
 package alice.agents.agent.device
+========
+package io.github.mangi.eta.agent.device
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/device/AgentFileReferenceGateway.kt
 
 import android.content.Context
 import android.net.Uri
 import android.provider.DocumentsContract
 import android.provider.MediaStore
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/device/AgentFileReferenceGateway.kt
 import alice.agents.agent.model.AgentFileReference
 import alice.agents.agent.model.AgentFileReferenceKind
 import alice.agents.agent.model.hasUnsupportedControlCharacter
 import alice.agents.core.AgentLogger
+========
+import io.github.mangi.eta.agent.model.AgentFileReference
+import io.github.mangi.eta.agent.model.AgentFileReferenceKind
+import io.github.mangi.eta.agent.model.hasUnsupportedControlCharacter
+import io.github.mangi.eta.core.AgentLogger
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/device/AgentFileReferenceGateway.kt
 
 internal class AgentFileReferenceGateway(
     private val resolveDocumentPath: (Uri) -> String? = { null },

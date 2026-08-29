@@ -1,15 +1,28 @@
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/aimemory/ColorOsMemoryHooks.kt
 package alice.agents.hook.aimemory
+========
+package io.github.mangi.eta.hook.aimemory
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/aimemory/ColorOsMemoryHooks.kt
 
 import android.content.ContentProvider
 import android.database.sqlite.SQLiteDatabase
 import android.os.Binder
 import android.os.Bundle
+<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/aimemory/ColorOsMemoryHooks.kt
 import alice.agents.agent.tool.ColorOsMemoryDatabaseQuery
 import alice.agents.core.ColorOsMemoryBridgeProtocol
 import alice.agents.core.HookInstallation
 import alice.agents.core.HookRegistrar
 import alice.agents.core.HookSupport
 import alice.agents.core.ModuleLogger
+========
+import io.github.mangi.eta.agent.tool.ColorOsMemoryDatabaseQuery
+import io.github.mangi.eta.core.ColorOsMemoryBridgeProtocol
+import io.github.mangi.eta.core.HookInstallation
+import io.github.mangi.eta.core.HookRegistrar
+import io.github.mangi.eta.core.HookSupport
+import io.github.mangi.eta.core.ModuleLogger
+>>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/aimemory/ColorOsMemoryHooks.kt
 import io.github.libxposed.api.XposedModule
 import org.json.JSONObject
 
