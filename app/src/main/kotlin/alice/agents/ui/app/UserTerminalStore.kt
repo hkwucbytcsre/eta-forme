@@ -6,6 +6,7 @@ import alice.agents.R
 import alice.agents.agent.terminal.AlpineEnvironmentPaths
 import alice.agents.agent.terminal.DetachedTaskStatus
 import alice.agents.agent.terminal.DetachedTaskSupervisor
+import alice.agents.agent.terminal.SharedFolderMounts
 import alice.agents.agent.terminal.TerminalEnvironment
 import alice.agents.agent.terminal.UserTerminalController
 import alice.agents.core.AndroidAgentLogger
@@ -71,11 +72,13 @@ internal class UserTerminalStore(
     private val controller = UserTerminalController(
         logger = AndroidAgentLogger,
         linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(appContext).absolutePath,
+        linuxSharedMountsProvider = { SharedFolderMounts.current() },
     )
     private val daemonSupervisor = DetachedTaskSupervisor(
         logger = AndroidAgentLogger,
         recordsFile = DetachedTaskSupervisor.defaultRecordsFile(appContext),
         linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(appContext).absolutePath,
+        linuxSharedMountsProvider = { SharedFolderMounts.current() },
     )
 
     private val _uiState = MutableStateFlow(

@@ -32,6 +32,7 @@ import alice.agents.agent.skill.PublicGitHubSkillSource
 import alice.agents.agent.terminal.AlpineEnvironmentPaths
 import alice.agents.agent.terminal.DetachedTaskSupervisor
 import alice.agents.agent.terminal.RootShellTerminalController
+import alice.agents.agent.terminal.SharedFolderMounts
 import alice.agents.config.Prefs
 import alice.agents.core.AgentLogger
 import alice.agents.core.HookSupport
@@ -101,7 +102,9 @@ internal class AgentLocalTools(
             logger = logger,
             recordsFile = DetachedTaskSupervisor.defaultRecordsFile(context),
             linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(context).absolutePath,
+            linuxSharedMountsProvider = { SharedFolderMounts.current() },
         ),
+        linuxSharedMountsProvider = { SharedFolderMounts.current() },
     )
     private val publishedObservation = AtomicReference(PublishedObservation())
     private val runAvailableSkillIds = runAvailableSkillIds
