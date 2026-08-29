@@ -75,7 +75,7 @@ import alice.agents.ui.screens.permissions.PermissionHealthScreen
 import alice.agents.ui.screens.skills.AgentSkillsScreen
 import alice.agents.ui.screens.terminal.LinuxEnvironmentScreen
 import alice.agents.ui.screens.terminal.SharedFoldersScreen
-import alice.agents.ui.screens.terminal.UserTerminalScreen
+import alice.agents.ui.screens.terminal.TerminalEntryScreen
 import alice.agents.ui.screens.tools.AgentToolsScreen
 
 /**
@@ -307,8 +307,9 @@ fun AgentAppRoot(
             }
             entry<AppRoute.Terminal>(swipeDismiss = swipeDismiss) {
                 RoutedShell(route = AppRoute.Terminal) {
-                    UserTerminalScreen(
-                        store = appViewModel.terminalStore,
+                    TerminalEntryScreen(
+                        terminalStore = appViewModel.terminalStore,
+                        consoleStore = appViewModel.consoleStore,
                         onOpenEnvironment = { pushRoute(AppRoute.LinuxEnvironment) },
                     )
                 }
