@@ -30,6 +30,7 @@ import alice.agents.agent.skill.GitHubSkillRepository
 import alice.agents.agent.skill.GitHubSkillSourceException
 import alice.agents.agent.skill.PublicGitHubSkillSource
 import alice.agents.agent.terminal.AlpineEnvironmentPaths
+import alice.agents.agent.terminal.DetachedTaskSupervisor
 import alice.agents.agent.terminal.RootShellTerminalController
 import alice.agents.config.Prefs
 import alice.agents.core.AgentLogger
@@ -96,6 +97,11 @@ internal class AgentLocalTools(
     private val terminalController = RootShellTerminalController(
         logger = logger,
         linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(context).absolutePath,
+        detachedSupervisor = DetachedTaskSupervisor(
+            logger = logger,
+            recordsFile = DetachedTaskSupervisor.defaultRecordsFile(context),
+            linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(context).absolutePath,
+        ),
     )
     private val publishedObservation = AtomicReference(PublishedObservation())
     private val runAvailableSkillIds = runAvailableSkillIds
@@ -655,6 +661,7 @@ internal class AgentLocalTools(
             maxChars = args.optInt("max_chars", 8_000),
             closeIfDone = args.optBoolean("close_if_done", false),
             environment = args.optString("environment", "android"),
+            taskId = args.optString("task_id").ifBlank { null },
         )
     }
 
