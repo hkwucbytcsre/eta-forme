@@ -6,10 +6,15 @@ import alice.agents.R
 import alice.agents.agent.terminal.AlpineEnvironmentPaths
 import alice.agents.agent.terminal.DetachedTaskStatus
 import alice.agents.agent.terminal.DetachedTaskSupervisor
+import alice.agents.agent.terminal.LinuxDistribution
+import alice.agents.agent.terminal.LinuxEnvironmentPaths
 import alice.agents.agent.terminal.SharedFolderMounts
 import alice.agents.agent.terminal.TerminalEnvironment
+import alice.agents.agent.terminal.isLinux
+import alice.agents.agent.terminal.terminalEnvironment
 import alice.agents.agent.terminal.UserTerminalController
 import alice.agents.core.AndroidAgentLogger
+import alice.agents.data.repository.LinuxEnvironmentSettingsRepository
 import alice.agents.ui.components.ansiPlainText
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -50,6 +55,7 @@ internal data class UserTerminalUiState(
     val running: Boolean = false,
     val sessionAlive: Boolean = false,
     val linuxReady: Boolean = false,
+    val linuxEnvironment: TerminalEnvironment = TerminalEnvironment.DEBIAN,
     val daemonTasks: List<DaemonTaskUi> = emptyList(),
 )
 
@@ -71,19 +77,36 @@ internal class UserTerminalStore(
     private val controller = UserTerminalController(
         logger = AndroidAgentLogger,
         linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(appContext).absolutePath,
+        linuxRootfsPathProvider = { environment ->
+            environment.linuxDistribution?.let { distribution ->
+                LinuxEnvironmentPaths.rootfsDir(appContext, distribution).absolutePath
+            }
+        },
         linuxSharedMountsProvider = { SharedFolderMounts.current() },
     )
     private val daemonSupervisor = DetachedTaskSupervisor(
         logger = AndroidAgentLogger,
         recordsFile = DetachedTaskSupervisor.defaultRecordsFile(appContext),
         linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(appContext).absolutePath,
+        linuxRootfsPathProvider = { environment ->
+            environment.linuxDistribution?.let { distribution ->
+                LinuxEnvironmentPaths.rootfsDir(appContext, distribution).absolutePath
+            }
+        },
         linuxSharedMountsProvider = { SharedFolderMounts.current() },
     )
+    private val initialLinuxEnvironment =
+        LinuxEnvironmentSettingsRepository.current(appContext).terminalEnvironment
 
     private val _uiState = MutableStateFlow(
         UserTerminalUiState(
-            environment = defaultEnvironment(),
-            linuxReady = isLinuxReady(),
+            environment = if (isReady(initialLinuxEnvironment)) {
+                initialLinuxEnvironment
+            } else {
+                TerminalEnvironment.ANDROID
+            },
+            linuxEnvironment = initialLinuxEnvironment,
+            linuxReady = isReady(initialLinuxEnvironment),
         )
     )
     val uiState: StateFlow<UserTerminalUiState> = _uiState.asStateFlow()
@@ -94,7 +117,24 @@ internal class UserTerminalStore(
     private var hadSession = false
 
     fun refreshLinuxReady() {
-        _uiState.update { it.copy(linuxReady = isLinuxReady()) }
+        val selected = LinuxEnvironmentSettingsRepository.current(appContext).terminalEnvironment
+        val ready = isReady(selected)
+        val current = _uiState.value
+        if (current.environment.isLinux && current.environment != selected) {
+            scope.launch(Dispatchers.IO) { controller.stopSession() }
+        }
+        _uiState.update {
+            it.copy(
+                linuxEnvironment = selected,
+                environment = if (it.environment.isLinux) selected else it.environment,
+                linuxReady = ready,
+                sessionAlive = if (current.environment.isLinux && current.environment != selected) {
+                    false
+                } else {
+                    it.sessionAlive
+                },
+            )
+        }
     }
 
     fun refreshDaemonTasks() {
@@ -179,9 +219,14 @@ internal class UserTerminalStore(
         scope.launch {
             withContext(Dispatchers.IO) { controller.stopSession() }
             _uiState.update {
-                it.copy(environment = environment, sessionAlive = false, cwd = "")
+                it.copy(
+                    environment = environment,
+                    linuxReady = isReady(environment),
+                    sessionAlive = false,
+                    cwd = "",
+                )
             }
-            val label = if (environment == TerminalEnvironment.LINUX) "Linux" else "Android"
+            val label = environment.displayName
             appendSystemBlock(appContext.getString(R.string.terminal_env_switched, label))
         }
     }
@@ -285,11 +330,12 @@ internal class UserTerminalStore(
         )
     }
 
-    private fun isLinuxReady(): Boolean =
-        AlpineEnvironmentPaths.rootfsReady(AlpineEnvironmentPaths.rootfsDir(appContext).absolutePath)
-
-    private fun defaultEnvironment(): TerminalEnvironment =
-        if (isLinuxReady()) TerminalEnvironment.LINUX else TerminalEnvironment.ANDROID
+    private fun isReady(environment: TerminalEnvironment): Boolean =
+        environment.linuxDistribution?.let { distribution ->
+            LinuxEnvironmentPaths.rootfsReady(
+                LinuxEnvironmentPaths.rootfsDir(appContext, distribution).absolutePath,
+            )
+        } ?: false
 
     private fun toDaemonTaskUi(status: DetachedTaskStatus) = DaemonTaskUi(
         id = status.task.id,
@@ -300,3 +346,10 @@ internal class UserTerminalStore(
         startedAt = status.task.startedAt,
     )
 }
+
+private val TerminalEnvironment.displayName: String
+    get() = when (this) {
+        TerminalEnvironment.ANDROID -> "Android"
+        TerminalEnvironment.ALPINE -> "Alpine"
+        TerminalEnvironment.DEBIAN -> "Debian"
+    }

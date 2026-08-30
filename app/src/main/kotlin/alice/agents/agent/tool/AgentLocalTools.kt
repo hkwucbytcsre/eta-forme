@@ -31,6 +31,8 @@ import alice.agents.agent.skill.GitHubSkillSourceException
 import alice.agents.agent.skill.PublicGitHubSkillSource
 import alice.agents.agent.terminal.AlpineEnvironmentPaths
 import alice.agents.agent.terminal.DetachedTaskSupervisor
+import alice.agents.agent.terminal.LinuxEnvironmentPaths
+import alice.agents.agent.terminal.terminalEnvironment
 import alice.agents.agent.terminal.RootShellTerminalController
 import alice.agents.agent.terminal.SharedFolderMounts
 import alice.agents.config.Prefs
@@ -40,6 +42,7 @@ import alice.agents.data.repository.AgentMemoryException
 import alice.agents.data.repository.AgentMemoryMutation
 import alice.agents.data.repository.AgentMemoryRepository
 import alice.agents.data.repository.AgentMemoryWriteResult
+import alice.agents.data.repository.LinuxEnvironmentSettingsRepository
 import java.util.Locale
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicBoolean
@@ -98,13 +101,26 @@ internal class AgentLocalTools(
     private val terminalController = RootShellTerminalController(
         logger = logger,
         linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(context).absolutePath,
+        linuxRootfsPathProvider = { environment ->
+            environment.linuxDistribution?.let { distribution ->
+                LinuxEnvironmentPaths.rootfsDir(context, distribution).absolutePath
+            }
+        },
         detachedSupervisor = DetachedTaskSupervisor(
             logger = logger,
             recordsFile = DetachedTaskSupervisor.defaultRecordsFile(context),
             linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(context).absolutePath,
+            linuxRootfsPathProvider = { environment ->
+                environment.linuxDistribution?.let { distribution ->
+                    LinuxEnvironmentPaths.rootfsDir(context, distribution).absolutePath
+                }
+            },
             linuxSharedMountsProvider = { SharedFolderMounts.current() },
         ),
         linuxSharedMountsProvider = { SharedFolderMounts.current() },
+        selectedLinuxEnvironmentProvider = {
+            LinuxEnvironmentSettingsRepository.current(context).terminalEnvironment
+        },
     )
     private val publishedObservation = AtomicReference(PublishedObservation())
     private val runAvailableSkillIds = runAvailableSkillIds
