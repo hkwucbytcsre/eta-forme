@@ -75,6 +75,7 @@ import alice.agents.ui.screens.mcp.McpServersScreen
 import alice.agents.ui.screens.permissions.PermissionHealthScreen
 import alice.agents.ui.screens.skills.AgentSkillsScreen
 import alice.agents.ui.screens.terminal.LinuxEnvironmentScreen
+import alice.agents.ui.screens.terminal.LinuxFilesScreen
 import alice.agents.ui.screens.terminal.SharedFoldersScreen
 import alice.agents.ui.screens.terminal.TerminalEntryScreen
 import alice.agents.ui.screens.tools.AgentToolsScreen
@@ -534,6 +535,13 @@ fun AgentAppRoot(
             entry<AppRoute.SharedFolders>(swipeDismiss = swipeDismiss) {
                 SharedFoldersScreen(
                     context = context,
+                    onBack = ::popRoute,
+                )
+            }
+            entry<AppRoute.LinuxFiles>(swipeDismiss = swipeDismiss) { route ->
+                LinuxFilesScreen(
+                    context = context,
+                    distribution = route.distribution,
                     onBack = ::popRoute,
                 )
             }
