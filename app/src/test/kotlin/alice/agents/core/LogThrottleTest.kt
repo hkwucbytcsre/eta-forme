@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/core/LogThrottleTest.kt
 package alice.agents.core
-========
-package io.github.mangi.eta.core
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/core/LogThrottleTest.kt
 
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit

@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/pages/providers/ProviderComponents.kt
 package alice.agents.ui.pages.providers
-========
-package io.github.mangi.eta.ui.pages.providers
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/pages/providers/ProviderComponents.kt
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -24,21 +20,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.composables.icons.lucide.R as LucideR
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/pages/providers/ProviderComponents.kt
 import alice.agents.data.model.CustomProviderSetting
 import alice.agents.data.model.ProviderSetting
 import alice.agents.ui.components.IconTintBlue
 import alice.agents.ui.components.IconTintGreen
 import alice.agents.ui.components.StatusWarning
 import alice.agents.ui.components.providerBrandLogoRes as sharedProviderBrandLogoRes
-========
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.ui.components.IconTintBlue
-import io.github.mangi.eta.ui.components.IconTintGreen
-import io.github.mangi.eta.ui.components.StatusWarning
-import io.github.mangi.eta.ui.components.providerBrandLogoRes as sharedProviderBrandLogoRes
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/pages/providers/ProviderComponents.kt
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.HorizontalDivider
 import top.yukonga.miuix.kmp.basic.Icon

@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/AgentLoop.kt
 package alice.agents.agent.model
 
 import alice.agents.agent.runtime.AgentEvent
 import alice.agents.agent.runtime.AgentRunController
-========
-package io.github.mangi.eta.agent.model
-
-import io.github.mangi.eta.agent.runtime.AgentEvent
-import io.github.mangi.eta.agent.runtime.AgentRunController
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/AgentLoop.kt
 import org.json.JSONArray
 import org.json.JSONObject
 

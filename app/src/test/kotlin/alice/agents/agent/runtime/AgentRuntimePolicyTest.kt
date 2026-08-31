@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/runtime/AgentRuntimePolicyTest.kt
 package alice.agents.agent.runtime
 
 import android.content.SharedPreferences
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.data.model.CustomBody
 import alice.agents.data.model.ReasoningEffort
-========
-package io.github.mangi.eta.agent.runtime
-
-import android.content.SharedPreferences
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.model.CustomBody
-import io.github.mangi.eta.data.model.ReasoningEffort
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimePolicyTest.kt
 import java.lang.reflect.Proxy
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.JsonPrimitive

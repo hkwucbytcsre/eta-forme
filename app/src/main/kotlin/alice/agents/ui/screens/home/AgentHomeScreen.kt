@@ -1,34 +1,18 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/home/AgentHomeScreen.kt
 package alice.agents.ui.screens.home
-========
-package io.github.mangi.eta.ui.screens.home
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/home/AgentHomeScreen.kt
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/home/AgentHomeScreen.kt
 import alice.agents.ui.components.AgentChatBody
 import alice.agents.ui.components.chatConversationCompositionKey
 import alice.agents.ui.model.AgentChatHomeUiState
 import alice.agents.ui.model.AgentHomeAction
 import alice.agents.ui.model.AgentModelPickerUiState
-========
-import io.github.mangi.eta.ui.components.AgentChatBody
-import io.github.mangi.eta.ui.components.chatConversationCompositionKey
-import io.github.mangi.eta.ui.model.AgentChatHomeUiState
-import io.github.mangi.eta.ui.model.AgentHomeAction
-import io.github.mangi.eta.ui.model.AgentModelPickerUiState
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/home/AgentHomeScreen.kt
 
 /**
  * AgentChatHome：首屏为聊天主舞台。
  *
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/home/AgentHomeScreen.kt
  * 顶部入口统一由 [alice.agents.ui.app.AgentAppShell] 提供，
-========
- * 顶部入口统一由 [io.github.mangi.eta.ui.app.AgentAppShell] 提供，
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/home/AgentHomeScreen.kt
  * 本 Screen 只负责消息流、Run trace、工具摘要和底部输入框。
  */
 @Composable

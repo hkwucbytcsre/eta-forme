@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/tool/AgentLocalToolsPermissionTest.kt
 package alice.agents.agent.tool
 
 import android.content.Context
@@ -6,15 +5,6 @@ import alice.agents.agent.device.RootShellDeviceController
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.agent.model.AgentScreenObservationContract
 import alice.agents.core.AgentLogger
-========
-package io.github.mangi.eta.agent.tool
-
-import android.content.Context
-import io.github.mangi.eta.agent.device.RootShellDeviceController
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.model.AgentScreenObservationContract
-import io.github.mangi.eta.core.AgentLogger
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/tool/AgentLocalToolsPermissionTest.kt
 import java.util.concurrent.atomic.AtomicBoolean
 import org.json.JSONObject
 import org.junit.Assert.assertEquals

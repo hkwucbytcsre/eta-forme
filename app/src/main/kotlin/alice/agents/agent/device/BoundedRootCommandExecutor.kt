@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/device/BoundedRootCommandExecutor.kt
 package alice.agents.agent.device
 
 import alice.agents.core.AgentLogger
-========
-package io.github.mangi.eta.agent.device
-
-import io.github.mangi.eta.core.AgentLogger
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/device/BoundedRootCommandExecutor.kt
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.nio.charset.StandardCharsets

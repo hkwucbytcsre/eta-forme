@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/ProviderBranding.kt
 package alice.agents.ui.components
 
 import androidx.annotation.DrawableRes
@@ -6,15 +5,6 @@ import alice.agents.R
 import alice.agents.data.model.ProviderSetting
 import alice.agents.data.model.ProviderSourceTypes
 import alice.agents.data.provider.ProviderSourceRegistry
-========
-package io.github.mangi.eta.ui.components
-
-import androidx.annotation.DrawableRes
-import io.github.mangi.eta.R
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.provider.ProviderSourceRegistry
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/ProviderBranding.kt
 
 @DrawableRes
 internal fun providerBrandLogoRes(provider: ProviderSetting): Int? =

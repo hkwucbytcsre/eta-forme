@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/app/LocaleResourcesTest.kt
 package alice.agents.ui.app
 
 import android.content.Context
 import android.content.res.Configuration
 import alice.agents.R
-========
-package io.github.mangi.eta.ui.app
-
-import android.content.Context
-import android.content.res.Configuration
-import io.github.mangi.eta.R
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/app/LocaleResourcesTest.kt
 import java.util.Locale
 import org.junit.Assert.assertEquals
 import org.junit.Test

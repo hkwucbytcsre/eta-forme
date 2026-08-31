@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/app/ConversationTimeLabelsTest.kt
 package alice.agents.ui.app
-========
-package io.github.mangi.eta.ui.app
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/app/ConversationTimeLabelsTest.kt
 
 import java.util.Calendar
 import java.util.Locale

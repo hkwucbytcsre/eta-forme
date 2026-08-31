@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/runtime/AgentRunCheckpointStoreTest.kt
 package alice.agents.agent.runtime
 
 import android.content.Context
 import alice.agents.agent.model.AgentModelClient
-import alice.agents.data.db.FuckAndesDatabase
-========
-package io.github.mangi.eta.agent.runtime
-
-import android.content.Context
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.db.EtaDatabase
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/runtime/AgentRunCheckpointStoreTest.kt
+import alice.agents.data.db.EtaDatabase
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

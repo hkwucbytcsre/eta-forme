@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/MainActivityTaskPolicyTest.kt
 package alice.agents.ui
-========
-package io.github.mangi.eta.ui
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/MainActivityTaskPolicyTest.kt
 
 import android.content.ComponentName
 import android.content.pm.ActivityInfo

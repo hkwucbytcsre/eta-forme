@@ -1,22 +1,11 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/repository/McpServerRepository.kt
 package alice.agents.data.repository
 
 import android.content.Context
-import alice.agents.data.db.FuckAndesDatabase
+import alice.agents.data.db.EtaDatabase
 import alice.agents.data.db.toDomain
 import alice.agents.data.db.toEntity
 import alice.agents.data.model.McpAuthorizationType
 import alice.agents.data.model.McpServerSetting
-========
-package io.github.mangi.eta.data.repository
-
-import android.content.Context
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.db.toDomain
-import io.github.mangi.eta.data.db.toEntity
-import io.github.mangi.eta.data.model.McpAuthorizationType
-import io.github.mangi.eta.data.model.McpServerSetting
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/repository/McpServerRepository.kt
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

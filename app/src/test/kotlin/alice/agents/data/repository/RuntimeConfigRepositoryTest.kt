@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/data/repository/RuntimeConfigRepositoryTest.kt
 package alice.agents.data.repository
 
 import alice.agents.agent.model.AgentModelClient
@@ -9,18 +8,6 @@ import alice.agents.data.model.OpenAiCompatibleProviderSetting
 import alice.agents.data.model.ProviderTypes
 import alice.agents.data.model.ProviderSourceTypes
 import alice.agents.data.model.ReasoningEffort
-========
-package io.github.mangi.eta.data.repository
-
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.model.CustomHeader
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.ProviderTypes
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.model.ReasoningEffort
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/data/repository/RuntimeConfigRepositoryTest.kt
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive

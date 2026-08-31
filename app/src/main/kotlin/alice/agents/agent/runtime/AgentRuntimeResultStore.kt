@@ -1,20 +1,10 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeResultStore.kt
 package alice.agents.agent.runtime
 
 import android.content.Context
 import alice.agents.agent.model.AgentConversationCodec
 import alice.agents.agent.model.AgentModelClient
-import alice.agents.data.db.FuckAndesDatabase
+import alice.agents.data.db.EtaDatabase
 import alice.agents.data.db.RuntimeResultEntity
-========
-package io.github.mangi.eta.agent.runtime
-
-import android.content.Context
-import io.github.mangi.eta.agent.model.AgentConversationCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.db.RuntimeResultEntity
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeResultStore.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 
@@ -89,11 +79,7 @@ internal object AgentRuntimeResultStore {
         }
     }
 
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeResultStore.kt
     private suspend fun prune(dao: alice.agents.data.db.RuntimeRunDao): List<RuntimeResultEntity> {
-========
-    private suspend fun prune(dao: io.github.mangi.eta.data.db.RuntimeRunDao): List<RuntimeResultEntity> {
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeResultStore.kt
         val now = System.currentTimeMillis()
         val pruned = dao.runtimeResults()
             .filter { now - it.createdAt <= MAX_AGE_MS }

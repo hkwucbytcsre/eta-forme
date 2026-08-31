@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/breeno/BreenoHooks.kt
 package alice.agents.hook.breeno
 
 import alice.agents.R
@@ -15,36 +14,13 @@ import alice.agents.core.ModuleLogger
 import alice.agents.core.safeLogType
 import alice.agents.core.toSafeLogToken
 import alice.agents.hook.EtaInjectedStrings
-========
-package io.github.mangi.eta.hook.breeno
-
-import io.github.mangi.eta.R
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.runtime.AgentEvent
-import io.github.mangi.eta.agent.runtime.AgentAppContext
-import io.github.mangi.eta.agent.runtime.AgentExternalArchivePayload
-import io.github.mangi.eta.agent.runtime.AgentRuntimeClient
-import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
-import io.github.mangi.eta.core.HookInstallation
-import io.github.mangi.eta.core.HookRegistrar
-import io.github.mangi.eta.core.HookSupport
-import io.github.mangi.eta.core.ModuleLogger
-import io.github.mangi.eta.core.safeLogType
-import io.github.mangi.eta.core.toSafeLogToken
-import io.github.mangi.eta.hook.EtaInjectedStrings
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/breeno/BreenoHooks.kt
 
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.StringRes
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/breeno/BreenoHooks.kt
 import alice.agents.config.Prefs
 import alice.agents.data.model.ReasoningEffort
-========
-import io.github.mangi.eta.config.Prefs
-import io.github.mangi.eta.data.model.ReasoningEffort
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/breeno/BreenoHooks.kt
 import io.github.libxposed.api.XposedModule
 import java.lang.reflect.Method
 import java.lang.reflect.Proxy

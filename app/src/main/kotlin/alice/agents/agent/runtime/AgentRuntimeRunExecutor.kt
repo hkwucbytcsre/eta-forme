@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeRunExecutor.kt
 package alice.agents.agent.runtime
 
 import android.content.Context
@@ -23,32 +22,6 @@ import alice.agents.agent.voice.EtaAssistantOverlayService
 import alice.agents.core.AndroidAgentLogger
 import alice.agents.core.safeLogType
 import alice.agents.data.repository.AgentMemoryRepository
-========
-package io.github.mangi.eta.agent.runtime
-
-import android.content.Context
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityKeeper
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.model.AgentModelExecutionException
-import io.github.mangi.eta.agent.model.AgentHttpClient
-import io.github.mangi.eta.agent.memory.AgentMemoryContext
-import io.github.mangi.eta.agent.memory.AgentMemoryContextBuilder
-import io.github.mangi.eta.agent.mcp.McpRunSnapshot
-import io.github.mangi.eta.agent.mcp.McpToolExecutor
-import io.github.mangi.eta.agent.mcp.RoutingToolExecutor
-import io.github.mangi.eta.agent.overlay.AgentOverlayVisibilityPolicy
-import io.github.mangi.eta.agent.skill.SkillCompatibilityChecker
-import io.github.mangi.eta.agent.skill.SkillContext
-import io.github.mangi.eta.agent.skill.SkillRuntime
-import io.github.mangi.eta.agent.skill.PublicGitHubSkillSource
-import io.github.mangi.eta.agent.tool.AgentLocalTools
-import io.github.mangi.eta.agent.tool.PendingSkillConflictCapabilityParser
-import io.github.mangi.eta.agent.tool.ToolExecutionDecision
-import io.github.mangi.eta.agent.voice.EtaAssistantOverlayService
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.core.safeLogType
-import io.github.mangi.eta.data.repository.AgentMemoryRepository
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeRunExecutor.kt
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
 

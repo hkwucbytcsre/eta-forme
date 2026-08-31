@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/tool/AgentLocalSkillInstallIntegrationTest.kt
 package alice.agents.agent.tool
 
 import android.content.Context
@@ -10,19 +9,6 @@ import alice.agents.agent.skill.SkillLoader
 import alice.agents.agent.skill.SkillPackageInstaller
 import alice.agents.agent.skill.SkillResourceReader
 import alice.agents.core.AgentLogger
-========
-package io.github.mangi.eta.agent.tool
-
-import android.content.Context
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.skill.PublicGitHubSkillSource
-import io.github.mangi.eta.agent.skill.SkillIndexService
-import io.github.mangi.eta.agent.skill.SkillDirectoryMover
-import io.github.mangi.eta.agent.skill.SkillLoader
-import io.github.mangi.eta.agent.skill.SkillPackageInstaller
-import io.github.mangi.eta.agent.skill.SkillResourceReader
-import io.github.mangi.eta.core.AgentLogger
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/tool/AgentLocalSkillInstallIntegrationTest.kt
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
@@ -46,11 +32,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/tool/AgentLocalSkillInstallIntegrationTest.kt
-import alice.agents.data.db.FuckAndesDatabase
-========
-import io.github.mangi.eta.data.db.EtaDatabase
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/tool/AgentLocalSkillInstallIntegrationTest.kt
+import alice.agents.data.db.EtaDatabase
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [36])

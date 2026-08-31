@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/repository/RuntimeConfigRepository.kt
 package alice.agents.data.repository
 
 import android.content.SharedPreferences
@@ -17,26 +16,6 @@ import alice.agents.data.model.selectedOrFirstModel
 import alice.agents.data.provider.BuiltinProviders
 import alice.agents.data.provider.ProviderSourceRegistry
 import alice.agents.data.provider.ReasoningCapabilityResolver
-========
-package io.github.mangi.eta.data.repository
-
-import android.content.SharedPreferences
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.config.Prefs
-import io.github.mangi.eta.data.datastore.SettingsDataStore
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.data.model.runtimeProviderType
-import io.github.mangi.eta.data.model.selectedOrFirstModel
-import io.github.mangi.eta.data.provider.BuiltinProviders
-import io.github.mangi.eta.data.provider.ProviderSourceRegistry
-import io.github.mangi.eta.data.provider.ReasoningCapabilityResolver
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/repository/RuntimeConfigRepository.kt
 import io.github.libxposed.service.XposedService
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -120,19 +99,11 @@ internal object RuntimeConfigRepository {
             is CustomProviderSetting -> provider.endpointMode
             is AnthropicProviderSetting -> ""
         }
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/repository/RuntimeConfigRepository.kt
         val inferOpenAiCatalog = sourceType == alice.agents.data.model.ProviderSourceTypes.CUSTOM &&
             endpointMode == OpenAiEndpointMode.RESPONSES
         val reasoningCapabilities = ReasoningCapabilityResolver.resolve(
             sourceType = if (inferOpenAiCatalog) {
                 alice.agents.data.model.ProviderSourceTypes.OPENAI
-========
-        val inferOpenAiCatalog = sourceType == io.github.mangi.eta.data.model.ProviderSourceTypes.CUSTOM &&
-            endpointMode == OpenAiEndpointMode.RESPONSES
-        val reasoningCapabilities = ReasoningCapabilityResolver.resolve(
-            sourceType = if (inferOpenAiCatalog) {
-                io.github.mangi.eta.data.model.ProviderSourceTypes.OPENAI
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/repository/RuntimeConfigRepository.kt
             } else {
                 sourceType
             },

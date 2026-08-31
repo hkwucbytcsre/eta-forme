@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/repository/RemoteModelFetcher.kt
 package alice.agents.data.repository
 
 import alice.agents.agent.model.AgentHttpClient
@@ -11,20 +10,6 @@ import alice.agents.data.model.ModelSource
 import alice.agents.data.model.ProviderSetting
 import alice.agents.data.model.ReasoningEffort
 import alice.agents.data.provider.OfficialModelCatalog
-========
-package io.github.mangi.eta.data.repository
-
-import io.github.mangi.eta.agent.model.AgentHttpClient
-import io.github.mangi.eta.agent.model.CustomHeaderFilter
-import io.github.mangi.eta.agent.model.ProviderUrls
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.data.provider.OfficialModelCatalog
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/repository/RemoteModelFetcher.kt
 import java.util.UUID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

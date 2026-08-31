@@ -1,27 +1,14 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/xiaoai/XiaoAiStreamRenderer.kt
 package alice.agents.hook.xiaoai
-========
-package io.github.mangi.eta.hook.xiaoai
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/xiaoai/XiaoAiStreamRenderer.kt
 
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/xiaoai/XiaoAiStreamRenderer.kt
 import alice.agents.agent.runtime.AgentEvent
 import alice.agents.R
 import alice.agents.core.HookSupport
 import alice.agents.core.ModuleLogger
 import alice.agents.core.safeLogType
 import alice.agents.hook.EtaInjectedStrings
-========
-import io.github.mangi.eta.agent.runtime.AgentEvent
-import io.github.mangi.eta.R
-import io.github.mangi.eta.core.HookSupport
-import io.github.mangi.eta.core.ModuleLogger
-import io.github.mangi.eta.core.safeLogType
-import io.github.mangi.eta.hook.EtaInjectedStrings
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/xiaoai/XiaoAiStreamRenderer.kt
 import java.lang.reflect.Method
 import java.lang.reflect.Modifier
 import java.util.concurrent.atomic.AtomicBoolean

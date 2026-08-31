@@ -1,4 +1,4 @@
-package io.github.mangi.eta
+package alice.agents
 
 internal object AppProcessPolicy {
     fun shouldInitializeFullRuntime(processName: String, packageName: String): Boolean =

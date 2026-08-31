@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeImageTransfer.kt
 package alice.agents.agent.runtime
-========
-package io.github.mangi.eta.agent.runtime
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeImageTransfer.kt
 
 import android.content.Context
 import android.net.Uri
@@ -10,15 +6,9 @@ import android.os.ParcelFileDescriptor
 import android.os.SystemClock
 import android.util.Base64
 import android.util.Base64InputStream
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeImageTransfer.kt
 import alice.agents.agent.media.AgentImageCodec
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.core.AndroidAgentLogger
-========
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.core.AndroidAgentLogger
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeImageTransfer.kt
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.Closeable

@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/runtime/AgentRunControllerTest.kt
 package alice.agents.agent.runtime
-========
-package io.github.mangi.eta.agent.runtime
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/runtime/AgentRunControllerTest.kt
 
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit

@@ -1,10 +1,5 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/AgentChatModelControls.kt
 package alice.agents.ui.components
 import alice.agents.R
-========
-package io.github.mangi.eta.ui.components
-import io.github.mangi.eta.R
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/AgentChatModelControls.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.animation.core.animateFloatAsState
@@ -42,19 +37,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.composables.icons.lucide.R as LucideR
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/AgentChatModelControls.kt
 import alice.agents.ui.model.AgentContextUsageUi
 import alice.agents.ui.model.AgentModelOptionUi
 import alice.agents.ui.model.AgentModelPickerUiState
 import alice.agents.ui.model.defaultExpandedModelProviderIds
 import alice.agents.ui.model.formatContextUsage
-========
-import io.github.mangi.eta.ui.model.AgentContextUsageUi
-import io.github.mangi.eta.ui.model.AgentModelOptionUi
-import io.github.mangi.eta.ui.model.AgentModelPickerUiState
-import io.github.mangi.eta.ui.model.defaultExpandedModelProviderIds
-import io.github.mangi.eta.ui.model.formatContextUsage
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/AgentChatModelControls.kt
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.CircularProgressIndicator
 import top.yukonga.miuix.kmp.basic.HorizontalDivider

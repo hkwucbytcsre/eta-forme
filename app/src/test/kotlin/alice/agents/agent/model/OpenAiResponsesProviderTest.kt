@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/model/OpenAiResponsesProviderTest.kt
 package alice.agents.agent.model
 
 import com.sun.net.httpserver.HttpServer
@@ -7,16 +6,6 @@ import alice.agents.data.model.CustomBody
 import alice.agents.data.model.ModelReasoningCapabilities
 import alice.agents.data.model.OpenAiEndpointMode
 import alice.agents.data.model.ReasoningEffort
-========
-package io.github.mangi.eta.agent.model
-
-import com.sun.net.httpserver.HttpServer
-import io.github.mangi.eta.agent.runtime.AgentRunController
-import io.github.mangi.eta.data.model.CustomBody
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
-import io.github.mangi.eta.data.model.ReasoningEffort
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/model/OpenAiResponsesProviderTest.kt
 import java.net.InetSocketAddress
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicReference

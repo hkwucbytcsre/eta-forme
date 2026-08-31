@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/terminal/AlpineEnvironmentInstallerTest.kt
 package alice.agents.agent.terminal
-========
-package io.github.mangi.eta.agent.terminal
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/terminal/AlpineEnvironmentInstallerTest.kt
 
 import java.io.File
 import org.junit.Assert.assertEquals

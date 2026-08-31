@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/pages/providers/ProviderComponentsTest.kt
 package alice.agents.ui.pages.providers
 
 import alice.agents.R
@@ -6,15 +5,6 @@ import alice.agents.data.model.CustomProviderSetting
 import alice.agents.data.model.Model
 import alice.agents.data.model.ProviderSourceTypes
 import alice.agents.data.provider.BuiltinProviders
-========
-package io.github.mangi.eta.ui.pages.providers
-
-import io.github.mangi.eta.R
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.provider.BuiltinProviders
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/pages/providers/ProviderComponentsTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test

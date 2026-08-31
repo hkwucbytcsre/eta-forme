@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/overlay/GestureIndicator.kt
 package alice.agents.agent.overlay
-========
-package io.github.mangi.eta.agent.overlay
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/overlay/GestureIndicator.kt
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -19,11 +15,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/overlay/GestureIndicator.kt
 import alice.agents.agent.accessibility.AgentAccessibilityService
-========
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/overlay/GestureIndicator.kt
 import kotlin.math.min
 
 object GestureIndicator {

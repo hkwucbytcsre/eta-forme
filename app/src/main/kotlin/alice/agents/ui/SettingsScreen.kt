@@ -1,10 +1,5 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/SettingsScreen.kt
 package alice.agents.ui
 import alice.agents.R
-========
-package io.github.mangi.eta.ui
-import io.github.mangi.eta.R
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/SettingsScreen.kt
 import androidx.compose.ui.res.stringResource
 
 import android.content.ComponentName
@@ -36,8 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/SettingsScreen.kt
-import alice.agents.FuckAndesApp
+import alice.agents.EtaApp
 import alice.agents.agent.accessibility.AccessibilityProtectionClient
 import alice.agents.agent.accessibility.AgentAccessibilityService
 import alice.agents.agent.voice.EtaVoiceInteractionService
@@ -51,22 +45,6 @@ import alice.agents.ui.components.MiuixScaffoldPage
 import alice.agents.ui.navigation.AppRoute
 import alice.agents.systemizer.RootManager
 import alice.agents.systemizer.SystemizerInstallResult
-========
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.agent.accessibility.AccessibilityProtectionClient
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
-import io.github.mangi.eta.agent.voice.EtaVoiceInteractionService
-import io.github.mangi.eta.config.PowerAssistantTarget
-import io.github.mangi.eta.config.Prefs
-import io.github.mangi.eta.data.repository.ProviderRepository
-import io.github.mangi.eta.data.repository.RuntimeConfigRepository
-import io.github.mangi.eta.systemizer.GoogleAppSystemizerInstaller
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.components.MiuixScaffoldPage
-import io.github.mangi.eta.ui.navigation.AppRoute
-import io.github.mangi.eta.systemizer.RootManager
-import io.github.mangi.eta.systemizer.SystemizerInstallResult
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/SettingsScreen.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

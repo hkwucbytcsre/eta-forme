@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/runtime/AgentRuntimeRequestConfigResolverTest.kt
 package alice.agents.agent.runtime
 
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.data.model.ReasoningEffort
-========
-package io.github.mangi.eta.agent.runtime
-
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.model.ReasoningEffort
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeRequestConfigResolverTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertSame

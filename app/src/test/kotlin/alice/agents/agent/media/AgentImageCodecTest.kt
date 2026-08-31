@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/media/AgentImageCodecTest.kt
 package alice.agents.agent.media
-========
-package io.github.mangi.eta.agent.media
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/media/AgentImageCodecTest.kt
 
 import android.content.ContentProvider
 import android.content.ContentValues
@@ -233,11 +229,7 @@ class AgentImageCodecTest {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, output)
         }
         bitmap.recycle()
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/media/AgentImageCodecTest.kt
         val authority = "alice.agents.test.picker.${System.nanoTime()}"
-========
-        val authority = "io.github.mangi.eta.test.picker.${System.nanoTime()}"
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/media/AgentImageCodecTest.kt
         val provider = TypedImageProvider(sourceFile)
         provider.attachInfo(
             context,

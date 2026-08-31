@@ -1,4 +1,4 @@
-package io.github.mangi.eta.systemizer
+package alice.agents.systemizer
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -36,7 +36,7 @@ class GoogleAppSystemizerInstallerTest {
 
     @Test
     fun buildInstallCommandUsesOfficialCommandForEachSupportedRootManager() {
-        val zipPath = "/data/user/0/io.github.mangi.eta/cache/googlequicksearchbox-systemizer.zip"
+        val zipPath = "/data/user/0/alice.agents/cache/googlequicksearchbox-systemizer.zip"
 
         assertEquals(
             "magisk --install-module '$zipPath'",

@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/skill/SkillPackageInstallerTest.kt
 package alice.agents.agent.skill
 
-import alice.agents.data.db.FuckAndesDatabase
-========
-package io.github.mangi.eta.agent.skill
-
-import io.github.mangi.eta.data.db.EtaDatabase
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/skill/SkillPackageInstallerTest.kt
+import alice.agents.data.db.EtaDatabase
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File

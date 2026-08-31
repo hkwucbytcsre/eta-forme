@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/skill/SkillRecoveryJournalTest.kt
 package alice.agents.agent.skill
 
-import alice.agents.data.db.FuckAndesDatabase
+import alice.agents.data.db.EtaDatabase
 import alice.agents.data.db.SkillRegistryEntity
-========
-package io.github.mangi.eta.agent.skill
-
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.db.SkillRegistryEntity
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/skill/SkillRecoveryJournalTest.kt
 import java.io.File
 import java.io.IOException
 import java.util.UUID

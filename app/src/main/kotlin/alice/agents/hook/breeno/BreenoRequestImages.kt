@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/breeno/BreenoRequestImages.kt
 package alice.agents.hook.breeno
 
 import alice.agents.agent.media.AgentImageCodec
 import alice.agents.agent.model.AgentModelClient
-========
-package io.github.mangi.eta.hook.breeno
-
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/breeno/BreenoRequestImages.kt
 
 import android.content.Context
 import android.os.SystemClock

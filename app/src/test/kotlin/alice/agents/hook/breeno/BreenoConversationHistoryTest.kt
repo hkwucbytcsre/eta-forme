@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/hook/breeno/BreenoConversationHistoryTest.kt
 package alice.agents.hook.breeno
-========
-package io.github.mangi.eta.hook.breeno
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/hook/breeno/BreenoConversationHistoryTest.kt
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

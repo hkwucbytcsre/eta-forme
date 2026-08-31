@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRunTiming.kt
 package alice.agents.agent.runtime
 
 import android.os.SystemClock
 import alice.agents.core.AgentLogger
-========
-package io.github.mangi.eta.agent.runtime
-
-import android.os.SystemClock
-import io.github.mangi.eta.core.AgentLogger
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRunTiming.kt
 
 /** 记录首请求关键边界，区分本地准备、网络握手和模型首 Token 延迟。 */
 internal class AgentRunTiming(

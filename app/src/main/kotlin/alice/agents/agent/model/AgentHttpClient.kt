@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/AgentHttpClient.kt
 package alice.agents.agent.model
-========
-package io.github.mangi.eta.agent.model
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/AgentHttpClient.kt
 
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit

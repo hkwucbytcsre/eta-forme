@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/hook/system/AccessibilityServiceEnforcerTest.kt
 package alice.agents.hook.system
 
 import alice.agents.agent.accessibility.AccessibilityProtectionProtocol
-========
-package io.github.mangi.eta.hook.system
-
-import io.github.mangi.eta.agent.accessibility.AccessibilityProtectionProtocol
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/hook/system/AccessibilityServiceEnforcerTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -15,11 +9,7 @@ import org.junit.Test
 
 class AccessibilityServiceEnforcerTest {
     private val component =
-<<<<<<<< HEAD:app/src/test/java/alice/agents/hook/system/AccessibilityServiceEnforcerTest.kt
         "alice.agents/alice.agents.agent.accessibility.AgentAccessibilityService"
-========
-        "io.github.mangi.eta/io.github.mangi.eta.agent.accessibility.AgentAccessibilityService"
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/hook/system/AccessibilityServiceEnforcerTest.kt
 
     @Test
     fun `adds target while preserving other accessibility services`() {
@@ -51,15 +41,9 @@ class AccessibilityServiceEnforcerTest {
             appendAccessibilityServiceIfMissing(similar, component),
         )
         assertEquals(
-<<<<<<<< HEAD:app/src/test/java/alice/agents/hook/system/AccessibilityServiceEnforcerTest.kt
             "alice.agents/.accessibility.AgentAccessibilityService:$component",
             appendAccessibilityServiceIfMissing(
                 "alice.agents/.accessibility.AgentAccessibilityService",
-========
-            "io.github.mangi.eta/.accessibility.AgentAccessibilityService:$component",
-            appendAccessibilityServiceIfMissing(
-                "io.github.mangi.eta/.accessibility.AgentAccessibilityService",
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/hook/system/AccessibilityServiceEnforcerTest.kt
                 component,
             ),
         )

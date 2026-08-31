@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/data/repository/NotificationHistoryRepositoryTest.kt
 package alice.agents.data.repository
-========
-package io.github.mangi.eta.data.repository
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/data/repository/NotificationHistoryRepositoryTest.kt
 
 import android.content.Context
 import org.json.JSONObject

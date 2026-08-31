@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/model/CustomHeaderAndBodyTest.kt
 package alice.agents.agent.model
 
 import alice.agents.data.model.CustomBody
 import alice.agents.data.model.CustomHeader
-========
-package io.github.mangi.eta.agent.model
-
-import io.github.mangi.eta.data.model.CustomBody
-import io.github.mangi.eta.data.model.CustomHeader
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/model/CustomHeaderAndBodyTest.kt
 import kotlinx.serialization.json.Json
 import org.json.JSONObject
 import org.junit.Assert.assertEquals

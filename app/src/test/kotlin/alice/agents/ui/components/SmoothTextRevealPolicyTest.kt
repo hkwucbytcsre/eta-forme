@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/components/SmoothTextRevealPolicyTest.kt
 package alice.agents.ui.components
 
 import androidx.compose.ui.unit.sp
 import alice.agents.ui.markdown.StreamingGfmParserSession
-========
-package io.github.mangi.eta.ui.components
-
-import androidx.compose.ui.unit.sp
-import io.github.mangi.eta.ui.markdown.StreamingGfmParserSession
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/components/SmoothTextRevealPolicyTest.kt
 import org.intellij.markdown.MarkdownElementTypes
 import org.intellij.markdown.flavours.gfm.GFMElementTypes
 import org.junit.Assert.assertArrayEquals

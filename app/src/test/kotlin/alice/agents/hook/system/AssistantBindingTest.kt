@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/hook/system/AssistantBindingTest.kt
 package alice.agents.hook.system
 
 import alice.agents.config.PowerAssistantTarget
 import alice.agents.core.ModuleConfig
-========
-package io.github.mangi.eta.hook.system
-
-import io.github.mangi.eta.config.PowerAssistantTarget
-import io.github.mangi.eta.core.ModuleConfig
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/hook/system/AssistantBindingTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull

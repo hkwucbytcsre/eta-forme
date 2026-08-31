@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/media/AgentModelImageEncoder.kt
 package alice.agents.agent.media
-========
-package io.github.mangi.eta.agent.media
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/media/AgentModelImageEncoder.kt
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -13,11 +9,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.net.Uri
 import android.util.Base64
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/media/AgentModelImageEncoder.kt
 import alice.agents.agent.model.AgentModelClient
-========
-import io.github.mangi.eta.agent.model.AgentModelClient
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/media/AgentModelImageEncoder.kt
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File

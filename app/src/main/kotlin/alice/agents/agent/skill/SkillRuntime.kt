@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/skill/SkillRuntime.kt
 package alice.agents.agent.skill
 
 import android.content.Context
 import android.content.res.AssetManager
-import alice.agents.data.db.FuckAndesDatabase
+import alice.agents.data.db.EtaDatabase
 import alice.agents.data.db.SkillRegistryEntity
-========
-package io.github.mangi.eta.agent.skill
-
-import android.content.Context
-import android.content.res.AssetManager
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.db.SkillRegistryEntity
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/skill/SkillRuntime.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray

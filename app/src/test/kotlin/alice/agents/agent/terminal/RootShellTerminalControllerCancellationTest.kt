@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/terminal/RootShellTerminalControllerCancellationTest.kt
 package alice.agents.agent.terminal
 
 import alice.agents.core.AgentLogger
-========
-package io.github.mangi.eta.agent.terminal
-
-import io.github.mangi.eta.core.AgentLogger
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/terminal/RootShellTerminalControllerCancellationTest.kt
 import java.io.File
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit

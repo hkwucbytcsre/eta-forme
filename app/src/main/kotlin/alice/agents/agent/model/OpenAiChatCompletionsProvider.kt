@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/OpenAiChatCompletionsProvider.kt
 package alice.agents.agent.model
 
 import alice.agents.agent.runtime.AgentRunController
@@ -6,15 +5,6 @@ import alice.agents.agent.runtime.AgentTokenUsage
 import alice.agents.data.model.OpenAiEndpointMode
 import alice.agents.data.model.ProviderSourceTypes
 import alice.agents.data.provider.ProviderSourceRegistry
-========
-package io.github.mangi.eta.agent.model
-
-import io.github.mangi.eta.agent.runtime.AgentRunController
-import io.github.mangi.eta.agent.runtime.AgentTokenUsage
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.provider.ProviderSourceRegistry
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/OpenAiChatCompletionsProvider.kt
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import okhttp3.MediaType.Companion.toMediaType

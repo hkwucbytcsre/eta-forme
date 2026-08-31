@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/data/repository/RemoteModelFetcherTest.kt
 package alice.agents.data.repository
 
 import alice.agents.data.model.Model
@@ -7,16 +6,6 @@ import alice.agents.data.model.OpenAiCompatibleProviderSetting
 import alice.agents.data.model.ProviderSourceTypes
 import alice.agents.data.model.ReasoningEffort
 import alice.agents.data.provider.OfficialModelCatalog
-========
-package io.github.mangi.eta.data.repository
-
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.data.provider.OfficialModelCatalog
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/data/repository/RemoteModelFetcherTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

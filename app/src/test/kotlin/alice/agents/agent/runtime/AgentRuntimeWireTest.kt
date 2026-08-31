@@ -1,23 +1,12 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/runtime/AgentRuntimeWireTest.kt
 package alice.agents.agent.runtime
-========
-package io.github.mangi.eta.agent.runtime
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeWireTest.kt
 
 import android.graphics.Bitmap
 import android.os.Parcel
 import android.util.Base64
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/runtime/AgentRuntimeWireTest.kt
 import alice.agents.agent.media.AgentImageCodec
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.data.model.ModelReasoningCapabilities
 import alice.agents.data.model.ReasoningEffort
-========
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.ReasoningEffort
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeWireTest.kt
 import java.io.File
 import java.io.FileOutputStream
 import kotlinx.serialization.json.Json

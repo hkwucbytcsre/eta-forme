@@ -1,19 +1,10 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/AgentPrivateDatabaseTools.kt
 package alice.agents.agent.tool
-========
-package io.github.mangi.eta.agent.tool
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/AgentPrivateDatabaseTools.kt
 
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/AgentPrivateDatabaseTools.kt
 import alice.agents.agent.device.BoundedRootCommandExecutor
 import alice.agents.agent.model.AgentModelClient
-========
-import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
-import io.github.mangi.eta.agent.model.AgentModelClient
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/AgentPrivateDatabaseTools.kt
 import java.io.File
 import org.json.JSONArray
 import org.json.JSONObject

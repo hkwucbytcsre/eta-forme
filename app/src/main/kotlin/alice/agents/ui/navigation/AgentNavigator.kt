@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/navigation/AgentNavigator.kt
 package alice.agents.ui.navigation
-========
-package io.github.mangi.eta.ui.navigation
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/navigation/AgentNavigator.kt
 
 import top.yukonga.miuix.kmp.nav.core.NavBackStack
 import top.yukonga.miuix.kmp.nav.core.NavKey

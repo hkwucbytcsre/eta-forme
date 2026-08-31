@@ -1,21 +1,11 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/AgentColorOsMemoryTools.kt
 package alice.agents.agent.tool
-========
-package io.github.mangi.eta.agent.tool
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/AgentColorOsMemoryTools.kt
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/AgentColorOsMemoryTools.kt
 import alice.agents.agent.device.BoundedRootCommandExecutor
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.core.ColorOsMemoryBridgeProtocol
-========
-import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.core.ColorOsMemoryBridgeProtocol
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/AgentColorOsMemoryTools.kt
 import java.io.File
 import org.json.JSONObject
 

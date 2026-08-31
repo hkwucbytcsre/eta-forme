@@ -1,10 +1,5 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/AgentChatBody.kt
 package alice.agents.ui.components
 import alice.agents.R
-========
-package io.github.mangi.eta.ui.components
-import io.github.mangi.eta.R
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/AgentChatBody.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.animation.AnimatedVisibility
@@ -72,7 +67,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.composables.icons.lucide.R as LucideR
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/AgentChatBody.kt
 import alice.agents.agent.browser.AgentBrowserSession
 import alice.agents.data.model.ReasoningEffort
 import alice.agents.ui.model.AgentChatMessageUi
@@ -91,26 +85,6 @@ import alice.agents.ui.model.UserMessageUi
 import alice.agents.ui.model.latestContextUsage
 import alice.agents.ui.app.AgentConversationRevisionReducer
 import alice.agents.ui.app.LocalBlurEnabled
-========
-import io.github.mangi.eta.agent.browser.AgentBrowserSession
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.ui.model.AgentChatMessageUi
-import io.github.mangi.eta.ui.model.AgentMessageUi
-import io.github.mangi.eta.ui.model.AgentContextUsageUi
-import io.github.mangi.eta.ui.model.AgentModelPickerUiState
-import io.github.mangi.eta.ui.model.MessageEditUiState
-import io.github.mangi.eta.ui.model.PendingFileReferenceUi
-import io.github.mangi.eta.ui.model.PendingImageUi
-import io.github.mangi.eta.ui.model.RunTraceMessageUi
-import io.github.mangi.eta.ui.model.SuggestionChipsMessageUi
-import io.github.mangi.eta.ui.model.ThinkingMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityMessageUi
-import io.github.mangi.eta.ui.model.ToolSummaryMessageUi
-import io.github.mangi.eta.ui.model.UserMessageUi
-import io.github.mangi.eta.ui.model.latestContextUsage
-import io.github.mangi.eta.ui.app.AgentConversationRevisionReducer
-import io.github.mangi.eta.ui.app.LocalBlurEnabled
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/AgentChatBody.kt
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.currentCoroutineContext

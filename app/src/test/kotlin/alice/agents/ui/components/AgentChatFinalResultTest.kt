@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/components/AgentChatFinalResultTest.kt
 package alice.agents.ui.components
 
 import alice.agents.ui.model.AgentChatMessageUi
@@ -6,15 +5,6 @@ import alice.agents.ui.model.AgentMessageUi
 import alice.agents.ui.model.ToolActivityMessageUi
 import alice.agents.ui.model.ToolActivityStatusUi
 import alice.agents.ui.model.UserMessageUi
-========
-package io.github.mangi.eta.ui.components
-
-import io.github.mangi.eta.ui.model.AgentChatMessageUi
-import io.github.mangi.eta.ui.model.AgentMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityStatusUi
-import io.github.mangi.eta.ui.model.UserMessageUi
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/components/AgentChatFinalResultTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/data/db/McpEntitiesTest.kt
 package alice.agents.data.db
 
 import alice.agents.data.model.McpAuthorizationType
 import alice.agents.data.model.McpProtocolMode
-========
-package io.github.mangi.eta.data.db
-
-import io.github.mangi.eta.data.model.McpAuthorizationType
-import io.github.mangi.eta.data.model.McpProtocolMode
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/data/db/McpEntitiesTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

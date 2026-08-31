@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/model/AnthropicMessagesProviderTest.kt
 package alice.agents.agent.model
 
 import com.sun.net.httpserver.HttpServer
 import alice.agents.agent.runtime.AgentRunController
 import alice.agents.data.model.AnthropicProviderSetting
 import alice.agents.data.model.ProviderTypes
-========
-package io.github.mangi.eta.agent.model
-
-import com.sun.net.httpserver.HttpServer
-import io.github.mangi.eta.agent.runtime.AgentRunController
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.ProviderTypes
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/model/AnthropicMessagesProviderTest.kt
 import java.net.InetSocketAddress
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicReference
@@ -145,11 +136,7 @@ class AnthropicMessagesProviderTest {
                         model = "claude-sonnet-5",
                         systemPrompt = "system",
                         thinkingEnabled = true,
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/model/AnthropicMessagesProviderTest.kt
                         reasoningEffort = alice.agents.data.model.ReasoningEffort.MEDIUM,
-========
-                        reasoningEffort = io.github.mangi.eta.data.model.ReasoningEffort.MEDIUM,
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/model/AnthropicMessagesProviderTest.kt
                     ),
                     messages = JSONArray().put(JSONObject().put("role", "user").put("content", "hi")),
                     tools = JSONArray(),

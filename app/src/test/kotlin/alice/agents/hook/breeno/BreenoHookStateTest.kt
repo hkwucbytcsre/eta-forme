@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/hook/breeno/BreenoHookStateTest.kt
 package alice.agents.hook.breeno
-========
-package io.github.mangi.eta.hook.breeno
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/hook/breeno/BreenoHookStateTest.kt
 
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit

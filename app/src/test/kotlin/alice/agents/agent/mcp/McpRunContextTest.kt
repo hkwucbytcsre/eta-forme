@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/mcp/McpRunContextTest.kt
 package alice.agents.agent.mcp
 
 import com.sun.net.httpserver.HttpExchange
@@ -7,16 +6,6 @@ import alice.agents.agent.model.AgentModelClient
 import alice.agents.data.model.McpProtocolMode
 import alice.agents.data.model.McpServerSetting
 import alice.agents.data.model.McpToolDefinition
-========
-package io.github.mangi.eta.agent.mcp
-
-import com.sun.net.httpserver.HttpExchange
-import com.sun.net.httpserver.HttpServer
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.model.McpProtocolMode
-import io.github.mangi.eta.data.model.McpServerSetting
-import io.github.mangi.eta.data.model.McpToolDefinition
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/mcp/McpRunContextTest.kt
 import java.net.InetSocketAddress
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference

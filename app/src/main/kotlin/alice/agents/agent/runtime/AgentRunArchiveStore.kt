@@ -1,28 +1,14 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRunArchiveStore.kt
 package alice.agents.agent.runtime
 
 import android.content.Context
 import alice.agents.agent.model.AgentConversationCodec
 import alice.agents.agent.model.AgentModelClient
-import alice.agents.data.db.FuckAndesDatabase
+import alice.agents.data.db.EtaDatabase
 import alice.agents.data.db.RuntimeArchiveEventEntity
 import alice.agents.data.db.RuntimeArchiveRunEntity
 import alice.agents.data.db.RuntimeArchiveRunWithEvents
 import alice.agents.data.db.RuntimeArchiveRunWithEventsSeed
 import alice.agents.data.db.RuntimeRunDao
-========
-package io.github.mangi.eta.agent.runtime
-
-import android.content.Context
-import io.github.mangi.eta.agent.model.AgentConversationCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.db.RuntimeArchiveEventEntity
-import io.github.mangi.eta.data.db.RuntimeArchiveRunEntity
-import io.github.mangi.eta.data.db.RuntimeArchiveRunWithEvents
-import io.github.mangi.eta.data.db.RuntimeArchiveRunWithEventsSeed
-import io.github.mangi.eta.data.db.RuntimeRunDao
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRunArchiveStore.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray

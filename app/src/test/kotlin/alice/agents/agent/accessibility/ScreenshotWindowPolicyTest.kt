@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/accessibility/ScreenshotWindowPolicyTest.kt
 package alice.agents.agent.accessibility
-========
-package io.github.mangi.eta.agent.accessibility
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/accessibility/ScreenshotWindowPolicyTest.kt
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -12,11 +8,7 @@ class ScreenshotWindowPolicyTest {
     fun `only confirmed own accessibility overlay is excluded`() {
         assertEquals(
             ScreenshotWindowPolicy.Decision.EXCLUDE,
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/accessibility/ScreenshotWindowPolicyTest.kt
             decide(overlay = true, resolvedPackage = "alice.agents"),
-========
-            decide(overlay = true, resolvedPackage = "io.github.mangi.eta"),
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/accessibility/ScreenshotWindowPolicyTest.kt
         )
         assertEquals(
             ScreenshotWindowPolicy.Decision.CAPTURE,
@@ -65,11 +57,7 @@ class ScreenshotWindowPolicyTest {
         active = active,
         focused = focused,
         resolvedPackage = resolvedPackage,
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/accessibility/ScreenshotWindowPolicyTest.kt
         ownPackage = "alice.agents",
-========
-        ownPackage = "io.github.mangi.eta",
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/accessibility/ScreenshotWindowPolicyTest.kt
         excludedPackages = excluded,
     )
 }

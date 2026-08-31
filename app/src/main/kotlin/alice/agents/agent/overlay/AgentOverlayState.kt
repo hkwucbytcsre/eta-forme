@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/overlay/AgentOverlayState.kt
 package alice.agents.agent.overlay
 
 import androidx.compose.runtime.Immutable
 import alice.agents.agent.runtime.AgentEvent
-========
-package io.github.mangi.eta.agent.overlay
-
-import androidx.compose.runtime.Immutable
-import io.github.mangi.eta.agent.runtime.AgentEvent
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/overlay/AgentOverlayState.kt
 
 /** Agent 浮窗所处的阶段。 */
 internal enum class AgentOverlayPhase { RUNNING, PAUSED, FINISHED, FAILED }

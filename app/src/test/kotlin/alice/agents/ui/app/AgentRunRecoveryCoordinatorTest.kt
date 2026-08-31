@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/app/AgentRunRecoveryCoordinatorTest.kt
 package alice.agents.ui.app
 
 import alice.agents.agent.runtime.AgentRunCheckpointStore
 import alice.agents.agent.runtime.AgentRuntimeWire
-========
-package io.github.mangi.eta.ui.app
-
-import io.github.mangi.eta.agent.runtime.AgentRunCheckpointStore
-import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/app/AgentRunRecoveryCoordinatorTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue

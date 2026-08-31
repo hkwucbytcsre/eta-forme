@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/model/SkillDeletionPolicyTest.kt
 package alice.agents.ui.model
-========
-package io.github.mangi.eta.ui.model
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/model/SkillDeletionPolicyTest.kt
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

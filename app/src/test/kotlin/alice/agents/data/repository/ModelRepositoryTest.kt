@@ -1,26 +1,13 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/data/repository/ModelRepositoryTest.kt
 package alice.agents.data.repository
 
 import android.content.Context
 import alice.agents.data.datastore.SettingsDataStore
-import alice.agents.data.db.FuckAndesDatabase
+import alice.agents.data.db.EtaDatabase
 import alice.agents.data.model.CustomProviderSetting
 import alice.agents.data.model.Model
 import alice.agents.data.model.ModelReasoningCapabilities
 import alice.agents.data.model.ModelSource
 import alice.agents.data.model.ReasoningEffort
-========
-package io.github.mangi.eta.data.repository
-
-import android.content.Context
-import io.github.mangi.eta.data.datastore.SettingsDataStore
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.ReasoningEffort
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/data/repository/ModelRepositoryTest.kt
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

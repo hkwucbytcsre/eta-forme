@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/browser/BrowserPayloadLimiterTest.kt
 package alice.agents.agent.browser
-========
-package io.github.mangi.eta.agent.browser
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/browser/BrowserPayloadLimiterTest.kt
 
 import org.json.JSONArray
 import org.json.JSONObject

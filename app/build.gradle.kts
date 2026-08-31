@@ -23,11 +23,11 @@ java {
 }
 
 android {
-    namespace = "io.github.mangi.eta"
+    namespace = "alice.agents"
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "io.github.mangi.eta"
+        applicationId = "alice.agents"
         minSdk = 34
         targetSdk = 36
         versionCode = 266

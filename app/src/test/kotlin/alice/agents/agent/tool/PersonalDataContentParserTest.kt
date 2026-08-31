@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/tool/PersonalDataContentParserTest.kt
 package alice.agents.agent.tool
-========
-package io.github.mangi.eta.agent.tool
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/tool/PersonalDataContentParserTest.kt
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/AgentPromptBuilder.kt
 package alice.agents.agent.model
 
 import alice.agents.agent.memory.AgentMemoryContext
 import alice.agents.agent.skill.SkillContext
-========
-package io.github.mangi.eta.agent.model
-
-import io.github.mangi.eta.agent.memory.AgentMemoryContext
-import io.github.mangi.eta.agent.skill.SkillContext
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/AgentPromptBuilder.kt
 import org.json.JSONArray
 import org.json.JSONObject
 

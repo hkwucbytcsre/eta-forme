@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/system/PowerHooks.kt
 package alice.agents.hook.system
 
 import alice.agents.core.HookSupport
@@ -7,29 +6,14 @@ import alice.agents.core.HookRegistrar
 import alice.agents.core.ModuleConfig
 import alice.agents.core.ModuleLogger
 import alice.agents.core.safeLogType
-========
-package io.github.mangi.eta.hook.system
-
-import io.github.mangi.eta.core.HookSupport
-import io.github.mangi.eta.core.HookInstallation
-import io.github.mangi.eta.core.HookRegistrar
-import io.github.mangi.eta.core.ModuleConfig
-import io.github.mangi.eta.core.ModuleLogger
-import io.github.mangi.eta.core.safeLogType
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/system/PowerHooks.kt
 
 import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Message
 import android.os.SystemClock
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/system/PowerHooks.kt
 import alice.agents.config.PowerAssistantTarget
 import alice.agents.config.Prefs
-========
-import io.github.mangi.eta.config.PowerAssistantTarget
-import io.github.mangi.eta.config.Prefs
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/system/PowerHooks.kt
 import io.github.libxposed.api.XposedModule
 
 internal object PowerHooks {

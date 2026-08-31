@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/terminal/AlpineApkAnalysisInstallerTest.kt
 package alice.agents.agent.terminal
 
 import alice.agents.core.AgentLogger
-========
-package io.github.mangi.eta.agent.terminal
-
-import io.github.mangi.eta.core.AgentLogger
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/terminal/AlpineApkAnalysisInstallerTest.kt
 import java.io.File
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient

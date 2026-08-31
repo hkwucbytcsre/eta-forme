@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/PendingSkillConflictCapability.kt
 package alice.agents.agent.tool
 
 import alice.agents.agent.model.AgentModelClient
-========
-package io.github.mangi.eta.agent.tool
-
-import io.github.mangi.eta.agent.model.AgentModelClient
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/PendingSkillConflictCapability.kt
 import org.json.JSONArray
 import org.json.JSONObject
 import org.json.JSONTokener

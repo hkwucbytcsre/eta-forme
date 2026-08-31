@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentExternalArchivePayload.kt
 package alice.agents.agent.runtime
 
 import alice.agents.data.model.ReasoningEffort
-========
-package io.github.mangi.eta.agent.runtime
-
-import io.github.mangi.eta.data.model.ReasoningEffort
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentExternalArchivePayload.kt
 import org.json.JSONObject
 
 /**

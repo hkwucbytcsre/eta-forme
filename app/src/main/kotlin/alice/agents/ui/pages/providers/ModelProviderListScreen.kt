@@ -1,10 +1,5 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/pages/providers/ModelProviderListScreen.kt
 package alice.agents.ui.pages.providers
 import alice.agents.R
-========
-package io.github.mangi.eta.ui.pages.providers
-import io.github.mangi.eta.R
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/pages/providers/ModelProviderListScreen.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -31,8 +26,7 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.composables.icons.lucide.R as LucideR
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/pages/providers/ModelProviderListScreen.kt
-import alice.agents.FuckAndesApp
+import alice.agents.EtaApp
 import alice.agents.data.model.ProviderSetting
 import alice.agents.data.model.ProviderSourceTypes
 import alice.agents.data.model.typeLabel
@@ -42,18 +36,6 @@ import alice.agents.ui.components.MiuixDialogActions
 import alice.agents.ui.components.MiuixScaffoldPage
 import alice.agents.ui.navigation.AppRoute
 import alice.agents.ui.navigation.NewProviderType
-========
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.model.typeLabel
-import io.github.mangi.eta.data.repository.ProviderRepository
-import io.github.mangi.eta.data.repository.RuntimeConfigRepository
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.components.MiuixScaffoldPage
-import io.github.mangi.eta.ui.navigation.AppRoute
-import io.github.mangi.eta.ui.navigation.NewProviderType
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/pages/providers/ModelProviderListScreen.kt
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton

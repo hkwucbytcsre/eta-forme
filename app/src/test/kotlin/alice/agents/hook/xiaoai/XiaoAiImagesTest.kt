@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/hook/xiaoai/XiaoAiImagesTest.kt
 package alice.agents.hook.xiaoai
-========
-package io.github.mangi.eta.hook.xiaoai
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/hook/xiaoai/XiaoAiImagesTest.kt
 
 import java.io.File
 import java.io.RandomAccessFile

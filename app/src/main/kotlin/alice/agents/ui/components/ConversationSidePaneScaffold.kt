@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/ConversationSidePaneScaffold.kt
 package alice.agents.ui.components
-========
-package io.github.mangi.eta.ui.components
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/ConversationSidePaneScaffold.kt
 
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
@@ -71,15 +67,9 @@ import androidx.navigationevent.NavigationEventInfo
 import androidx.navigationevent.compose.NavigationBackHandler
 import androidx.navigationevent.compose.rememberNavigationEventState
 import com.composables.icons.lucide.R as LucideR
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/ConversationSidePaneScaffold.kt
 import alice.agents.R
 import alice.agents.ui.model.ConversationPaneUiState
 import alice.agents.ui.model.ConversationSummaryUi
-========
-import io.github.mangi.eta.R
-import io.github.mangi.eta.ui.model.ConversationPaneUiState
-import io.github.mangi.eta.ui.model.ConversationSummaryUi
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/ConversationSidePaneScaffold.kt
 import kotlinx.coroutines.flow.collectLatest
 import kotlin.math.roundToInt
 import top.yukonga.miuix.kmp.basic.DropdownDefaults

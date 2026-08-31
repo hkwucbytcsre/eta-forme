@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/repository/ModelRepository.kt
 package alice.agents.data.repository
 
 import alice.agents.data.model.Model
 import alice.agents.data.model.ModelSource
-========
-package io.github.mangi.eta.data.repository
-
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelSource
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/repository/ModelRepository.kt
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

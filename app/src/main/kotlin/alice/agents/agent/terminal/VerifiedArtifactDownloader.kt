@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/terminal/VerifiedArtifactDownloader.kt
 package alice.agents.agent.terminal
 
 import alice.agents.core.AndroidAgentLogger
 import alice.agents.core.AgentLogger
 import alice.agents.core.safeLogType
-========
-package io.github.mangi.eta.agent.terminal
-
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.core.AgentLogger
-import io.github.mangi.eta.core.safeLogType
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/terminal/VerifiedArtifactDownloader.kt
 import java.io.File
 import java.security.MessageDigest
 import java.util.concurrent.TimeUnit

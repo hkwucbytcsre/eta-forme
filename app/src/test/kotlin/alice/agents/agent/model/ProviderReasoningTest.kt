@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/model/ProviderReasoningTest.kt
 package alice.agents.agent.model
 
 import alice.agents.data.model.ModelReasoningCapabilities
 import alice.agents.data.model.ProviderSourceTypes
 import alice.agents.data.model.ReasoningEffort
-========
-package io.github.mangi.eta.agent.model
-
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.model.ReasoningEffort
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/model/ProviderReasoningTest.kt
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

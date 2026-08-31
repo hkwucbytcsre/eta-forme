@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/components/InputPopupPositionProviderTest.kt
 package alice.agents.ui.components
-========
-package io.github.mangi.eta.ui.components
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/components/InputPopupPositionProviderTest.kt
 
 import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.unit.IntSize

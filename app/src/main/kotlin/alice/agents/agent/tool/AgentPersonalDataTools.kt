@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/AgentPersonalDataTools.kt
 package alice.agents.agent.tool
 
 import alice.agents.agent.device.BoundedRootCommandExecutor
 import alice.agents.agent.media.MAX_AGENT_IMAGE_BYTES
 import alice.agents.agent.model.AgentModelClient
-========
-package io.github.mangi.eta.agent.tool
-
-import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
-import io.github.mangi.eta.agent.media.MAX_AGENT_IMAGE_BYTES
-import io.github.mangi.eta.agent.model.AgentModelClient
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/AgentPersonalDataTools.kt
 import org.json.JSONArray
 import org.json.JSONObject
 import java.util.Locale

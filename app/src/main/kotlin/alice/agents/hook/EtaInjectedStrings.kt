@@ -1,17 +1,9 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/EtaInjectedStrings.kt
 package alice.agents.hook
-========
-package io.github.mangi.eta.hook
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/EtaInjectedStrings.kt
 
 import android.content.Context
 import android.content.res.Configuration
 import androidx.annotation.StringRes
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/EtaInjectedStrings.kt
 import alice.agents.core.ModuleConfig
-========
-import io.github.mangi.eta.core.ModuleConfig
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/EtaInjectedStrings.kt
 import java.util.Locale
 
 /**

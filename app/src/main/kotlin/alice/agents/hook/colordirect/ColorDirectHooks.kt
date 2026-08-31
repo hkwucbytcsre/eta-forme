@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/colordirect/ColorDirectHooks.kt
 package alice.agents.hook.colordirect
 
 import alice.agents.core.HookSupport
@@ -7,27 +6,13 @@ import alice.agents.core.HookRegistrar
 import alice.agents.core.ModuleConfig
 import alice.agents.core.ModuleLogger
 import alice.agents.hook.system.CircleToSearchInvoker
-========
-package io.github.mangi.eta.hook.colordirect
-
-import io.github.mangi.eta.core.HookSupport
-import io.github.mangi.eta.core.HookInstallation
-import io.github.mangi.eta.core.HookRegistrar
-import io.github.mangi.eta.core.ModuleConfig
-import io.github.mangi.eta.core.ModuleLogger
-import io.github.mangi.eta.hook.system.CircleToSearchInvoker
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/colordirect/ColorDirectHooks.kt
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
 import android.os.SystemClock
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/colordirect/ColorDirectHooks.kt
 import alice.agents.config.Prefs
-========
-import io.github.mangi.eta.config.Prefs
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/colordirect/ColorDirectHooks.kt
 import io.github.libxposed.api.XposedModule
 import org.json.JSONObject
 

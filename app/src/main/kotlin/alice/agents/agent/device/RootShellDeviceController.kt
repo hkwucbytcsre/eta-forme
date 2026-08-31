@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/device/RootShellDeviceController.kt
 package alice.agents.agent.device
 
 import alice.agents.agent.accessibility.AgentAccessibilityService
 import alice.agents.agent.media.AgentImageCodec
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.core.AgentLogger
-========
-package io.github.mangi.eta.agent.device
-
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.core.AgentLogger
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/device/RootShellDeviceController.kt
 
 import android.content.ClipData
 import android.content.ClipboardManager

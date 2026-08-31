@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeService.kt
 package alice.agents.agent.runtime
-========
-package io.github.mangi.eta.agent.runtime
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeService.kt
 
 import android.app.Service
 import android.content.Context
@@ -31,8 +27,7 @@ import androidx.savedstate.SavedStateRegistry
 import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeService.kt
-import alice.agents.FuckAndesApp
+import alice.agents.EtaApp
 import alice.agents.agent.accessibility.AgentAccessibilityService
 import alice.agents.agent.media.AgentImageCodec
 import alice.agents.agent.model.AgentModelClient
@@ -51,27 +46,6 @@ import alice.agents.core.AndroidAgentLogger
 import alice.agents.core.ModuleConfig
 import alice.agents.core.safeLogType
 import alice.agents.data.repository.RuntimeConfigRepository
-========
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.overlay.AgentHapticFeedback
-import io.github.mangi.eta.agent.overlay.AgentOverlayBubble
-import io.github.mangi.eta.agent.overlay.AgentOverlayGlow
-import io.github.mangi.eta.agent.overlay.AgentOverlayOrb
-import io.github.mangi.eta.agent.overlay.AgentResultCard
-import io.github.mangi.eta.agent.overlay.AgentOverlayPhase
-import io.github.mangi.eta.agent.overlay.AgentOverlayState
-import io.github.mangi.eta.agent.overlay.AgentOverlayStatus
-import io.github.mangi.eta.agent.overlay.AgentOverlayVisibilityPolicy
-import io.github.mangi.eta.agent.overlay.applyEvent
-import io.github.mangi.eta.config.Prefs
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.core.ModuleConfig
-import io.github.mangi.eta.core.safeLogType
-import io.github.mangi.eta.data.repository.RuntimeConfigRepository
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeService.kt
 import kotlin.concurrent.thread
 import kotlinx.coroutines.runBlocking
 import top.yukonga.miuix.kmp.squircle.LocalSquircleEnabled
@@ -1073,11 +1047,7 @@ internal class AgentRuntimeService : Service(), LifecycleOwner, SavedStateRegist
     }
 
     private companion object {
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeService.kt
         const val ACTION_KEEP_ALIVE = "alice.agents.agent.runtime.KEEP_ALIVE"
-========
-        const val ACTION_KEEP_ALIVE = "io.github.mangi.eta.agent.runtime.KEEP_ALIVE"
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeService.kt
         const val HIDE_DELAY_MS = 2_500L
         const val RESULT_REVIEW_DELAY_MS = 120_000L
         const val RESULT_CARD_HEIGHT_RATIO = 0.5f

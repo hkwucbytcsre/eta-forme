@@ -21,10 +21,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission
-        android:name="io.github.mangi.eta.permission.CONTROL_ACCESSIBILITY_PROTECTION"
+        android:name="alice.agents.permission.CONTROL_ACCESSIBILITY_PROTECTION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="io.github.mangi.eta.permission.CONTROL_ACCESSIBILITY_PROTECTION" />
+    <uses-permission android:name="alice.agents.permission.CONTROL_ACCESSIBILITY_PROTECTION" />
 
     <queries>
         <package android:name="com.google.android.googlequicksearchbox" />
@@ -143,11 +143,7 @@
 
         <provider
             android:name=".agent.accessibility.AgentAccessibilityHealthProvider"
-<<<<<<< HEAD
             android:authorities="alice.agents.accessibility.health"
-=======
-            android:authorities="io.github.mangi.eta.accessibility.health"
->>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta)
             android:exported="true"
             android:grantUriPermissions="false"
             android:permission="android.permission.MANAGE_ACCESSIBILITY" />

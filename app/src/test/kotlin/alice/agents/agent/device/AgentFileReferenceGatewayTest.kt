@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/device/AgentFileReferenceGatewayTest.kt
 package alice.agents.agent.device
 
 import android.net.Uri
 import alice.agents.agent.model.AgentFileReference
 import alice.agents.agent.model.AgentFileReferenceKind
-========
-package io.github.mangi.eta.agent.device
-
-import android.net.Uri
-import io.github.mangi.eta.agent.model.AgentFileReference
-import io.github.mangi.eta.agent.model.AgentFileReferenceKind
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/device/AgentFileReferenceGatewayTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull

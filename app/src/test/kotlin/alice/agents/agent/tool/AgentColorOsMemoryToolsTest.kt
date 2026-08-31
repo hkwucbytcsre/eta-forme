@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/tool/AgentColorOsMemoryToolsTest.kt
 package alice.agents.agent.tool
 
 import alice.agents.core.ColorOsMemoryBridgeProtocol
-========
-package io.github.mangi.eta.agent.tool
-
-import io.github.mangi.eta.core.ColorOsMemoryBridgeProtocol
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/tool/AgentColorOsMemoryToolsTest.kt
 import java.io.File
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
@@ -19,22 +13,14 @@ class AgentColorOsMemoryToolsTest {
     fun snapshotCopiesAllSqliteSidecars() {
         val command = buildColorOsMemorySnapshotCommand(
             source = "/data/user/0/com.oplus.aimemory/databases/ai_memory",
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/tool/AgentColorOsMemoryToolsTest.kt
             snapshot = File("/data/user/0/alice.agents/cache/eta-coloros-memory-test.db"),
-========
-            snapshot = File("/data/user/0/io.github.mangi.eta/cache/eta-coloros-memory-test.db"),
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/tool/AgentColorOsMemoryToolsTest.kt
         )
 
         assertTrue(command.contains("ai_memory-wal"))
         assertTrue(command.contains("ai_memory-shm"))
         assertTrue(command.contains("ai_memory-journal"))
         assertTrue(command.contains("eta-coloros-memory-test.db-shm"))
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/tool/AgentColorOsMemoryToolsTest.kt
         assertTrue(command.contains("rm -f '/data/user/0/alice.agents/cache/eta-coloros-memory-test.db-journal'"))
-========
-        assertTrue(command.contains("rm -f '/data/user/0/io.github.mangi.eta/cache/eta-coloros-memory-test.db-journal'"))
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/tool/AgentColorOsMemoryToolsTest.kt
     }
 
     @Test

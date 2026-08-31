@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/tool/DeviceContextToolTest.kt
 package alice.agents.agent.tool
 
 import alice.agents.agent.device.DeviceLocationProvider
-========
-package io.github.mangi.eta.agent.tool
-
-import io.github.mangi.eta.agent.device.DeviceLocationProvider
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/tool/DeviceContextToolTest.kt
 import java.time.Clock
 import java.time.Instant
 import java.time.ZoneId

@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppTheme.kt
 package alice.agents.ui.app
-========
-package io.github.mangi.eta.ui.app
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppTheme.kt
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -15,17 +11,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppTheme.kt
 import alice.agents.data.model.AppearanceAccentColor
 import alice.agents.data.model.AppearancePaletteStyle
 import alice.agents.data.model.AppearanceSettings
 import alice.agents.data.model.AppearanceThemeMode
-========
-import io.github.mangi.eta.data.model.AppearanceAccentColor
-import io.github.mangi.eta.data.model.AppearancePaletteStyle
-import io.github.mangi.eta.data.model.AppearanceSettings
-import io.github.mangi.eta.data.model.AppearanceThemeMode
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppTheme.kt
 import top.yukonga.miuix.kmp.theme.ColorSchemeMode
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.theme.ThemeColorSpec

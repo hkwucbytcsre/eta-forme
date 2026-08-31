@@ -1,12 +1,7 @@
 @file:android.annotation.SuppressLint("LocalContextGetResourceValueCall")
 
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/pages/providers/ProviderModelsTab.kt
 package alice.agents.ui.pages.providers
 import alice.agents.R
-========
-package io.github.mangi.eta.ui.pages.providers
-import io.github.mangi.eta.R
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/pages/providers/ProviderModelsTab.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.animation.AnimatedVisibility
@@ -58,8 +53,7 @@ import androidx.navigationevent.NavigationEventInfo
 import androidx.navigationevent.compose.NavigationBackHandler
 import androidx.navigationevent.compose.rememberNavigationEventState
 import com.composables.icons.lucide.R as LucideR
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/pages/providers/ProviderModelsTab.kt
-import alice.agents.FuckAndesApp
+import alice.agents.EtaApp
 import alice.agents.data.model.Model
 import alice.agents.data.model.ModelReasoningCapabilities
 import alice.agents.data.model.ProviderSetting
@@ -71,20 +65,6 @@ import alice.agents.ui.components.MiuixDialogActions
 import alice.agents.ui.components.StatusError
 import alice.agents.ui.components.StatusSuccess
 import alice.agents.ui.model.formatCompactTokenCount
-========
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.data.repository.ModelRepository
-import io.github.mangi.eta.data.repository.RemoteModelFetcher
-import io.github.mangi.eta.data.repository.RuntimeConfigRepository
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.components.StatusError
-import io.github.mangi.eta.ui.components.StatusSuccess
-import io.github.mangi.eta.ui.model.formatCompactTokenCount
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/pages/providers/ProviderModelsTab.kt
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

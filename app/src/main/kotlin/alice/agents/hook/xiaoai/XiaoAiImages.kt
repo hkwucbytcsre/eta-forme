@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/xiaoai/XiaoAiImages.kt
 package alice.agents.hook.xiaoai
 
 import alice.agents.agent.model.AgentModelClient
-========
-package io.github.mangi.eta.hook.xiaoai
-
-import io.github.mangi.eta.agent.model.AgentModelClient
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/xiaoai/XiaoAiImages.kt
 import java.io.File
 import java.io.FileInputStream
 

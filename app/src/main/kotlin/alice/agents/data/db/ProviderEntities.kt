@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/db/ProviderEntities.kt
 package alice.agents.data.db
-========
-package io.github.mangi.eta.data.db
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/db/ProviderEntities.kt
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
@@ -11,7 +7,6 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import androidx.room.Relation
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/db/ProviderEntities.kt
 import alice.agents.data.model.AnthropicProviderSetting
 import alice.agents.data.model.CustomBody
 import alice.agents.data.model.CustomHeader
@@ -24,20 +19,6 @@ import alice.agents.data.model.OpenAiEndpointMode
 import alice.agents.data.model.ProviderSetting
 import alice.agents.data.model.ProviderTypes
 import alice.agents.data.provider.ProviderSourceRegistry
-========
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.CustomBody
-import io.github.mangi.eta.data.model.CustomHeader
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ProviderTypes
-import io.github.mangi.eta.data.provider.ProviderSourceRegistry
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/db/ProviderEntities.kt
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer

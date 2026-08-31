@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/config/Prefs.kt
 package alice.agents.config
-========
-package io.github.mangi.eta.config
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/config/Prefs.kt
 
 import android.content.Context
 import android.content.SharedPreferences

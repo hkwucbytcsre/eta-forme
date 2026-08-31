@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/provider/OfficialModelCatalog.kt
 package alice.agents.data.provider
 
 import alice.agents.data.model.Model
@@ -8,17 +7,6 @@ import alice.agents.data.model.OpenAiCompatibleProviderSetting
 import alice.agents.data.model.OpenAiEndpointMode
 import alice.agents.data.model.ProviderSetting
 import alice.agents.data.model.ProviderSourceTypes
-========
-package io.github.mangi.eta.data.provider
-
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ProviderSourceTypes
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/provider/OfficialModelCatalog.kt
 
 internal object OfficialModelCatalog {
     private val modelsByCatalogId: Map<String, List<Model>> = mapOf(

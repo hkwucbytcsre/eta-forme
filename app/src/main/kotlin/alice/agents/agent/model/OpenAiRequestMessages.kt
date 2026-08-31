@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/OpenAiRequestMessages.kt
 package alice.agents.agent.model
-========
-package io.github.mangi.eta.agent.model
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/OpenAiRequestMessages.kt
 
 import org.json.JSONArray
 import org.json.JSONObject

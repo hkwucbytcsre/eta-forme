@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.accessibility
+package alice.agents.agent.accessibility
 
 import android.app.BroadcastOptions
 import android.content.BroadcastReceiver

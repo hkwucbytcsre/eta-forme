@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/mcp/McpHttpClient.kt
 package alice.agents.agent.mcp
 
 import alice.agents.agent.model.AgentHttpClient
 import alice.agents.data.model.McpProtocolMode
 import alice.agents.data.model.McpServerSetting
 import alice.agents.data.model.McpToolDefinition
-========
-package io.github.mangi.eta.agent.mcp
-
-import io.github.mangi.eta.agent.model.AgentHttpClient
-import io.github.mangi.eta.data.model.McpProtocolMode
-import io.github.mangi.eta.data.model.McpServerSetting
-import io.github.mangi.eta.data.model.McpToolDefinition
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/mcp/McpHttpClient.kt
 import java.io.IOException
 import java.util.concurrent.atomic.AtomicLong
 import okhttp3.Call

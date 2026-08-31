@@ -1,9 +1,8 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/data/repository/ProviderRepositoryTest.kt
 package alice.agents.data.repository
 
 import android.content.Context
 import alice.agents.data.datastore.SettingsDataStore
-import alice.agents.data.db.FuckAndesDatabase
+import alice.agents.data.db.EtaDatabase
 import alice.agents.data.model.AnthropicProviderSetting
 import alice.agents.data.model.CustomHeader
 import alice.agents.data.model.OpenAiCompatibleProviderSetting
@@ -11,20 +10,6 @@ import alice.agents.data.model.ModelSource
 import alice.agents.data.model.ProviderSetting
 import alice.agents.data.model.ReasoningEffort
 import alice.agents.data.provider.BuiltinProviders
-========
-package io.github.mangi.eta.data.repository
-
-import android.content.Context
-import io.github.mangi.eta.data.datastore.SettingsDataStore
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.CustomHeader
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.data.provider.BuiltinProviders
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/data/repository/ProviderRepositoryTest.kt
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue

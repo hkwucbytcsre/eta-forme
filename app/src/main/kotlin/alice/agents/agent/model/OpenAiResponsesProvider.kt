@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/model/OpenAiResponsesProvider.kt
 package alice.agents.agent.model
 
 import alice.agents.agent.runtime.AgentRunController
 import alice.agents.agent.runtime.AgentTokenUsage
 import alice.agents.data.model.OpenAiEndpointMode
-========
-package io.github.mangi.eta.agent.model
-
-import io.github.mangi.eta.agent.runtime.AgentRunController
-import io.github.mangi.eta.agent.runtime.AgentTokenUsage
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/model/OpenAiResponsesProvider.kt
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import okhttp3.MediaType.Companion.toMediaType

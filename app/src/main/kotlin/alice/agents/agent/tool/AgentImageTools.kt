@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/tool/AgentImageTools.kt
 package alice.agents.agent.tool
 
 import android.content.Context
@@ -6,15 +5,6 @@ import alice.agents.agent.device.BoundedRootCommandExecutor
 import alice.agents.agent.media.AgentImageCodec
 import alice.agents.agent.media.MAX_AGENT_IMAGE_BYTES
 import alice.agents.agent.model.AgentModelClient
-========
-package io.github.mangi.eta.agent.tool
-
-import android.content.Context
-import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.media.MAX_AGENT_IMAGE_BYTES
-import io.github.mangi.eta.agent.model.AgentModelClient
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/tool/AgentImageTools.kt
 import java.io.File
 import org.json.JSONObject
 

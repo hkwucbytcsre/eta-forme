@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.accessibility
+package alice.agents.agent.accessibility
 
 import android.content.ContentProvider
 import android.content.ContentValues

@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/app/AgentConversationRevisionReducerTest.kt
 package alice.agents.ui.app
 
 import alice.agents.agent.model.AgentModelClient
@@ -8,17 +7,6 @@ import alice.agents.ui.model.ThinkingMessageUi
 import alice.agents.ui.model.ToolActivityMessageUi
 import alice.agents.ui.model.ToolActivityStatusUi
 import alice.agents.ui.model.UserMessageUi
-========
-package io.github.mangi.eta.ui.app
-
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.ui.model.AgentChatUiState
-import io.github.mangi.eta.ui.model.AgentMessageUi
-import io.github.mangi.eta.ui.model.ThinkingMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityStatusUi
-import io.github.mangi.eta.ui.model.UserMessageUi
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/app/AgentConversationRevisionReducerTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull

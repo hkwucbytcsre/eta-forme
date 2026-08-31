@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/EntrySurfaceGuard.kt
 package alice.agents.agent.runtime
 
 import android.os.SystemClock
 import alice.agents.agent.accessibility.AgentAccessibilityService
 import alice.agents.agent.accessibility.PackageWindowVisibility
 import alice.agents.core.AgentLogger
-========
-package io.github.mangi.eta.agent.runtime
-
-import android.os.SystemClock
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
-import io.github.mangi.eta.agent.accessibility.PackageWindowVisibility
-import io.github.mangi.eta.core.AgentLogger
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/EntrySurfaceGuard.kt
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -147,11 +138,7 @@ internal class EntrySurfaceGuard private constructor(
         private const val BREENO_PACKAGE_NAME = "com.heytap.speechassist"
         private const val XIAOAI_HANDOFF_SOURCE = "xiaoai"
         private const val XIAOAI_PACKAGE_NAME = "com.miui.voiceassist"
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/EntrySurfaceGuard.kt
         private const val ETA_PACKAGE_NAME = "alice.agents"
-========
-        private const val ETA_PACKAGE_NAME = "io.github.mangi.eta"
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/EntrySurfaceGuard.kt
         private const val NANOS_PER_MILLISECOND = 1_000_000L
     }
 }

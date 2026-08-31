@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/model/AgentModelPickerProjectorTest.kt
 package alice.agents.ui.model
 
 import alice.agents.data.model.CustomProviderSetting
 import alice.agents.data.model.Model
 import alice.agents.data.model.ProviderSourceTypes
-========
-package io.github.mangi.eta.ui.model
-
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ProviderSourceTypes
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/model/AgentModelPickerProjectorTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test

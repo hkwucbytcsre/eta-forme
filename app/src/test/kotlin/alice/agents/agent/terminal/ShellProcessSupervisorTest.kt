@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/terminal/ShellProcessSupervisorTest.kt
 package alice.agents.agent.terminal
-========
-package io.github.mangi.eta.agent.terminal
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/terminal/ShellProcessSupervisorTest.kt
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -44,11 +40,7 @@ class ShellProcessSupervisorTest {
         val supervisor = ShellProcessSupervisor()
 
         val payload = supervisor.buildLinuxPayload(
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/terminal/ShellProcessSupervisorTest.kt
             rootfsPath = "/data/user/0/alice.agents/files/terminal/alpine/rootfs",
-========
-            rootfsPath = "/data/user/0/io.github.mangi.eta/files/terminal/alpine/rootfs",
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/terminal/ShellProcessSupervisorTest.kt
             command = "printf '%s' \"hello\"",
         )
 

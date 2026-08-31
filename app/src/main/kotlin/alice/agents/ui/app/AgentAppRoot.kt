@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppRoot.kt
 package alice.agents.ui.app
-========
-package io.github.mangi.eta.ui.app
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppRoot.kt
 
 import android.Manifest
 import android.app.Activity
@@ -36,8 +32,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppRoot.kt
-import alice.agents.FuckAndesApp
+import alice.agents.EtaApp
 import alice.agents.R
 import alice.agents.agent.device.BoundedRootCommandExecutor
 import alice.agents.agent.device.DeviceLocationProvider
@@ -48,19 +43,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.ui.unit.dp
 import alice.agents.ui.components.MiuixDialogActions
 import alice.agents.ui.model.ConversationSummaryUi
-========
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
-import io.github.mangi.eta.agent.device.DeviceLocationProvider
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.data.repository.RuntimeConfigRepository
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.model.ConversationSummaryUi
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppRoot.kt
 import top.yukonga.miuix.kmp.basic.TextField
 import top.yukonga.miuix.kmp.nav.core.NavDisplay
 import top.yukonga.miuix.kmp.nav.core.NavDisplayEffects
@@ -68,7 +50,6 @@ import top.yukonga.miuix.kmp.nav.core.rememberNavBackStack
 import top.yukonga.miuix.kmp.nav.core.rememberNavSystemCornerRadius
 import top.yukonga.miuix.kmp.nav.transition.NavSwipeDirection
 import top.yukonga.miuix.kmp.window.WindowDialog
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppRoot.kt
 import alice.agents.ui.SettingsScreen
 import alice.agents.ui.AppearanceSettingsScreen
 import alice.agents.ui.pages.providers.ModelProviderDetailScreen
@@ -94,33 +75,6 @@ import alice.agents.ui.screens.permissions.PermissionHealthScreen
 import alice.agents.ui.screens.skills.AgentSkillsScreen
 import alice.agents.ui.screens.terminal.LinuxEnvironmentScreen
 import alice.agents.ui.screens.tools.AgentToolsScreen
-========
-import io.github.mangi.eta.ui.SettingsScreen
-import io.github.mangi.eta.ui.AppearanceSettingsScreen
-import io.github.mangi.eta.ui.pages.providers.ModelProviderDetailScreen
-import io.github.mangi.eta.ui.pages.providers.ModelProviderListScreen
-import io.github.mangi.eta.ui.model.AgentChatAction
-import io.github.mangi.eta.ui.model.AgentHomeAction
-import io.github.mangi.eta.ui.model.AgentSkillsAction
-import io.github.mangi.eta.ui.model.AgentMemoryAction
-import io.github.mangi.eta.ui.model.AgentSystemEnhanceAction
-import io.github.mangi.eta.ui.model.AgentToolsAction
-import io.github.mangi.eta.ui.model.PermissionHealthAction
-import io.github.mangi.eta.ui.navigation.AgentNavigator
-import io.github.mangi.eta.ui.navigation.AppRoute
-import io.github.mangi.eta.ui.screens.chat.AgentChatScreen
-import io.github.mangi.eta.ui.screens.browser.AgentBrowserScreen
-import io.github.mangi.eta.ui.screens.backup.DataBackupScreen
-import io.github.mangi.eta.ui.screens.enhance.SystemEnhanceScreen
-import io.github.mangi.eta.ui.screens.home.AgentHomeScreen
-import io.github.mangi.eta.ui.screens.memory.AgentMemoryScreen
-import io.github.mangi.eta.ui.screens.mcp.McpServerDetailScreen
-import io.github.mangi.eta.ui.screens.mcp.McpServersScreen
-import io.github.mangi.eta.ui.screens.permissions.PermissionHealthScreen
-import io.github.mangi.eta.ui.screens.skills.AgentSkillsScreen
-import io.github.mangi.eta.ui.screens.terminal.LinuxEnvironmentScreen
-import io.github.mangi.eta.ui.screens.tools.AgentToolsScreen
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppRoot.kt
 
 /**
  * Agent App 根组件：持有本地导航栈，并把 Screen actions 交给 [AgentAppState]。
@@ -410,11 +364,7 @@ fun AgentAppRoot(
                                                     it.execute(
                                                         "am start --user current -n " +
                                                             "com.oplus.battery/com.oplus.powermanager.fuelgaue.PowerControlActivity " +
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/AgentAppRoot.kt
                                                             "--es title Eta --es pkgName alice.agents --es drainType APP",
-========
-                                                            "--es title Eta --es pkgName io.github.mangi.eta --es drainType APP",
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/AgentAppRoot.kt
                                                     )
                                                 }
                                             }

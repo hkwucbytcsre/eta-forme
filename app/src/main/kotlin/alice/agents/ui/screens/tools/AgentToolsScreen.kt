@@ -1,10 +1,5 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/tools/AgentToolsScreen.kt
 package alice.agents.ui.screens.tools
 import alice.agents.R
-========
-package io.github.mangi.eta.ui.screens.tools
-import io.github.mangi.eta.R
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/tools/AgentToolsScreen.kt
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.foundation.background
@@ -34,17 +29,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.composables.icons.lucide.R as LucideR
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/screens/tools/AgentToolsScreen.kt
 import alice.agents.ui.components.MiuixScaffoldPage
 import alice.agents.ui.model.AgentToolsAction
 import alice.agents.ui.model.AgentToolsUiState
 import alice.agents.ui.model.ToolItemUi
-========
-import io.github.mangi.eta.ui.components.MiuixScaffoldPage
-import io.github.mangi.eta.ui.model.AgentToolsAction
-import io.github.mangi.eta.ui.model.AgentToolsUiState
-import io.github.mangi.eta.ui.model.ToolItemUi
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/tools/AgentToolsScreen.kt
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.Icon

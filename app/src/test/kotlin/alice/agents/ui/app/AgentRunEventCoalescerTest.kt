@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/app/AgentRunEventCoalescerTest.kt
 package alice.agents.ui.app
 
 import alice.agents.agent.runtime.AgentEvent
-========
-package io.github.mangi.eta.ui.app
-
-import io.github.mangi.eta.agent.runtime.AgentEvent
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/app/AgentRunEventCoalescerTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test

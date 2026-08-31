@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/data/provider/ProviderSourceRegistry.kt
 package alice.agents.data.provider
 
 import alice.agents.data.model.ProviderSetting
 import alice.agents.data.model.ProviderSourceTypes
 import alice.agents.data.model.ProviderTypes
 import alice.agents.data.model.runtimeProviderType
-========
-package io.github.mangi.eta.data.provider
-
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.model.ProviderTypes
-import io.github.mangi.eta.data.model.runtimeProviderType
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/data/provider/ProviderSourceRegistry.kt
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
 internal object ProviderSourceRegistry {

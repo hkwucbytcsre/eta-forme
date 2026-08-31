@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/model/AgentModelPickerUiState.kt
 package alice.agents.ui.model
 
 import androidx.compose.runtime.Immutable
 import alice.agents.data.model.Model
 import alice.agents.data.model.ProviderSetting
 import alice.agents.data.provider.ProviderSourceRegistry
-========
-package io.github.mangi.eta.ui.model
-
-import androidx.compose.runtime.Immutable
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.provider.ProviderSourceRegistry
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/model/AgentModelPickerUiState.kt
 import java.text.NumberFormat
 import java.util.Locale
 

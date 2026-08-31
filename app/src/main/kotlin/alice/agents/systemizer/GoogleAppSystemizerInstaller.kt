@@ -1,19 +1,10 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/systemizer/GoogleAppSystemizerInstaller.kt
 package alice.agents.systemizer
-========
-package io.github.mangi.eta.systemizer
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/systemizer/GoogleAppSystemizerInstaller.kt
 
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/systemizer/GoogleAppSystemizerInstaller.kt
 import alice.agents.core.AndroidAgentLogger
 import alice.agents.core.safeLogType
-========
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.core.safeLogType
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/systemizer/GoogleAppSystemizerInstaller.kt
 import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.thread
@@ -35,6 +26,12 @@ internal enum class RootManager {
     UNSUPPORTED,
 }
 
+internal enum class InstallPreflight {
+    READY,
+    KERNEL_SU_METAMODULE_MISSING,
+    UNSUPPORTED_ROOT_MANAGER,
+}
+
 internal sealed interface SystemizerInstallResult {
     data object AlreadySystemized : SystemizerInstallResult
     data object GoogleAppMissing : SystemizerInstallResult
@@ -50,8 +47,27 @@ internal class GoogleAppSystemizerInstaller(
 ) {
 
     fun install(): SystemizerInstallResult {
-        // 安装功能已移除，直接返回失败
-        return SystemizerInstallResult.Failed("安装功能已移除，不再支持")
+        if (findGoogleAppInfo() == null) {
+            return SystemizerInstallResult.GoogleAppMissing
+        }
+        if (isGoogleAppSystemPrivApp()) {
+            return SystemizerInstallResult.AlreadySystemized
+        }
+
+        val rootManager = detectRootManager()
+        if (rootManager == RootManager.UNSUPPORTED) {
+            return SystemizerInstallResult.UnsupportedRootManager
+        }
+        if (!canRunRootCommands()) {
+            return SystemizerInstallResult.RootPermissionUnavailable(rootManager)
+        }
+
+        val kernelSuMetamoduleReady = rootManager != RootManager.KERNEL_SU || hasKernelSuMetamoduleSupportOnDevice()
+        return when (preflight(rootManager, kernelSuMetamoduleReady)) {
+            InstallPreflight.UNSUPPORTED_ROOT_MANAGER -> SystemizerInstallResult.UnsupportedRootManager
+            InstallPreflight.KERNEL_SU_METAMODULE_MISSING -> SystemizerInstallResult.KernelSuMetamoduleMissing
+            InstallPreflight.READY -> installModule(rootManager)
+        }
     }
 
     fun isGoogleAppSystemPrivApp(): Boolean {
@@ -59,6 +75,36 @@ internal class GoogleAppSystemizerInstaller(
         val systemApp = appInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0 ||
             appInfo.flags and ApplicationInfo.FLAG_UPDATED_SYSTEM_APP != 0
         return systemApp && appInfo.hasPrivilegedPrivateFlag()
+    }
+
+    private fun installModule(rootManager: RootManager): SystemizerInstallResult {
+        val moduleZip = runCatching { copyModuleAssetToCache() }
+            .getOrElse {
+                AndroidAgentLogger.error(
+                    "Google App systemizer action=prepare outcome=failed " +
+                        "errorType=${it.safeLogType()}"
+                )
+                return SystemizerInstallResult.Failed("模块资源准备失败")
+            }
+
+        val command = buildInstallCommand(rootManager, moduleZip.absolutePath)
+        val result = runSu(command, timeoutSeconds = 120)
+        return if (result.exitCode == 0) {
+            AndroidAgentLogger.info(
+                "Google App systemizer action=install outcome=succeeded " +
+                    "rootManager=$rootManager exitCode=${result.exitCode} outputChars=${result.output.length}"
+            )
+            SystemizerInstallResult.InstalledRebootRequired(rootManager)
+        } else {
+            AndroidAgentLogger.error(
+                "Google App systemizer action=install outcome=failed " +
+                    "rootManager=$rootManager exitCode=${result.exitCode} outputChars=${result.output.length}"
+            )
+            SystemizerInstallResult.Failed(
+                message = "模块安装失败",
+                commandOutput = result.output.takeLast(1200),
+            )
+        }
     }
 
     private fun detectRootManager(): RootManager =
@@ -69,6 +115,23 @@ internal class GoogleAppSystemizerInstaller(
     private fun canRunRootCommands(): Boolean {
         val result = runSu("id -u", timeoutSeconds = 8)
         return result.exitCode == 0 && result.output.lineSequence().any { it.trim() == "0" }
+    }
+
+    private fun hasKernelSuMetamoduleSupportOnDevice(): Boolean {
+        val condition = "[ -e '${KERNEL_SU_METAMODULE_PATH.escapeForSingleQuotedShell()}' ]"
+        val result = runSu("if $condition; then echo yes; fi", timeoutSeconds = 8)
+        return result.exitCode == 0 && result.output.lineSequence().any { it.trim() == "yes" }
+    }
+
+    private fun copyModuleAssetToCache(): File {
+        val target = File(context.cacheDir, MODULE_ASSET_NAME)
+        context.assets.open(MODULE_ASSET_NAME).use { input ->
+            target.outputStream().use { output ->
+                input.copyTo(output)
+            }
+        }
+        target.setReadable(true, false)
+        return target
     }
 
     private fun findGoogleAppInfo(): ApplicationInfo? =
@@ -114,6 +177,8 @@ internal class GoogleAppSystemizerInstaller(
 
     companion object {
         private const val GOOGLE_PACKAGE = "com.google.android.googlequicksearchbox"
+        private const val MODULE_ASSET_NAME = "googlequicksearchbox-systemizer.zip"
+        private const val KERNEL_SU_METAMODULE_PATH = "/data/adb/metamodule"
 
         fun detectRootManager(
             suVersionProbe: RootProbeResult = RootProbeResult(exitCode = -1, output = ""),
@@ -122,6 +187,33 @@ internal class GoogleAppSystemizerInstaller(
             suVersionProbe.isMagisk -> RootManager.MAGISK
             else -> RootManager.UNSUPPORTED
         }
+
+        fun buildInstallCommand(rootManager: RootManager, zipPath: String): String =
+            when (rootManager) {
+                RootManager.MAGISK -> "magisk --install-module '${zipPath.escapeForSingleQuotedShell()}'"
+                RootManager.KERNEL_SU -> buildKernelSuInstallCommand(zipPath)
+                RootManager.UNSUPPORTED -> ""
+            }
+
+        private fun buildKernelSuInstallCommand(zipPath: String): String =
+            "ksud module install '${zipPath.escapeForSingleQuotedShell()}'"
+
+        fun hasKernelSuMetamoduleSupport(existingPaths: Set<String>): Boolean =
+            KERNEL_SU_METAMODULE_PATH in existingPaths
+
+        fun preflight(
+            rootManager: RootManager,
+            hasKernelSuMetamoduleSupport: Boolean,
+        ): InstallPreflight =
+            when {
+                rootManager == RootManager.UNSUPPORTED -> InstallPreflight.UNSUPPORTED_ROOT_MANAGER
+                rootManager == RootManager.KERNEL_SU && !hasKernelSuMetamoduleSupport ->
+                    InstallPreflight.KERNEL_SU_METAMODULE_MISSING
+                else -> InstallPreflight.READY
+            }
+
+        internal val kernelSuMetamodulePath: String
+            get() = KERNEL_SU_METAMODULE_PATH
     }
 }
 
@@ -154,3 +246,6 @@ private fun ApplicationInfo.hasPrivilegedPrivateFlag(): Boolean {
     return sourceDir?.contains("/priv-app/") == true ||
         publicSourceDir?.contains("/priv-app/") == true
 }
+
+private fun String.escapeForSingleQuotedShell(): String =
+    replace("'", "'\\''")

@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRunCheckpointStore.kt
 package alice.agents.agent.runtime
 
 import android.content.Context
-import alice.agents.data.db.FuckAndesDatabase
+import alice.agents.data.db.EtaDatabase
 import alice.agents.data.db.RuntimeInFlightEventEntity
 import alice.agents.data.db.RuntimeInFlightRunEntity
-========
-package io.github.mangi.eta.agent.runtime
-
-import android.content.Context
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.db.RuntimeInFlightEventEntity
-import io.github.mangi.eta.data.db.RuntimeInFlightRunEntity
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRunCheckpointStore.kt
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 

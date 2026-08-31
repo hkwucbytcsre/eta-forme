@@ -1,20 +1,10 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/data/repository/AppearanceSettingsRepositoryTest.kt
 package alice.agents.data.repository
 
-import alice.agents.FuckAndesApp
+import alice.agents.EtaApp
 import alice.agents.data.datastore.SettingsDataStore
 import alice.agents.data.model.AppearanceAccentColor
 import alice.agents.data.model.AppearanceSettings
 import alice.agents.data.model.AppearanceThemeMode
-========
-package io.github.mangi.eta.data.repository
-
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.data.datastore.SettingsDataStore
-import io.github.mangi.eta.data.model.AppearanceAccentColor
-import io.github.mangi.eta.data.model.AppearanceSettings
-import io.github.mangi.eta.data.model.AppearanceThemeMode
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/data/repository/AppearanceSettingsRepositoryTest.kt
 import java.util.UUID
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking

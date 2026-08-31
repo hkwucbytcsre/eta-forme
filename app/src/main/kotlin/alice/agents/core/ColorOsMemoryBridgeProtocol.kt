@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/core/ColorOsMemoryBridgeProtocol.kt
 package alice.agents.core
-========
-package io.github.mangi.eta.core
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/core/ColorOsMemoryBridgeProtocol.kt
 
 import java.nio.charset.StandardCharsets
 import java.util.Base64
@@ -13,11 +9,7 @@ internal object ColorOsMemoryBridgeProtocol {
     const val PACKAGE_NAME = "com.oplus.aimemory"
     const val PROVIDER_CLASS = "com.oplus.aimemory.provider.DataShareProvider"
     const val PROVIDER_URI = "content://com.oplus.aimemory.provider.DataShareProvider"
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/core/ColorOsMemoryBridgeProtocol.kt
     const val METHOD = "alice.agents.coloros_memory.query.v1"
-========
-    const val METHOD = "io.github.mangi.eta.coloros_memory.query.v1"
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/core/ColorOsMemoryBridgeProtocol.kt
     const val RESULT_KEY = "eta_memory_bridge"
     const val DATABASE_NAME = "ai_memory"
 

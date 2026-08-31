@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/ChatMessageItem.kt
 package alice.agents.ui.components
-========
-package io.github.mangi.eta.ui.components
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/ChatMessageItem.kt
 
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -126,7 +122,6 @@ import com.mikepenz.markdown.model.MarkdownState
 import com.mikepenz.markdown.model.rememberMarkdownState
 import com.mikepenz.markdown.model.State
 import com.mikepenz.markdown.utils.getUnescapedTextInNode
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/components/ChatMessageItem.kt
 import alice.agents.agent.browser.AgentBrowserSession
 import alice.agents.agent.browser.BrowserSessionSnapshot
 import alice.agents.agent.model.AgentFileReferencePromptCodec
@@ -145,26 +140,6 @@ import alice.agents.ui.model.ToolSummaryMessageUi
 import alice.agents.ui.model.UserMessageUi
 import alice.agents.ui.markdown.StreamingGfmParserSession
 import alice.agents.ui.markdown.StreamingGfmSnapshot
-========
-import io.github.mangi.eta.agent.browser.AgentBrowserSession
-import io.github.mangi.eta.agent.browser.BrowserSessionSnapshot
-import io.github.mangi.eta.agent.model.AgentFileReferencePromptCodec
-import io.github.mangi.eta.agent.overlay.toolDisplayName
-import io.github.mangi.eta.R
-import io.github.mangi.eta.ui.model.AgentChatMessageUi
-import io.github.mangi.eta.ui.model.AgentMessageUi
-import io.github.mangi.eta.ui.model.RunTraceMessageUi
-import io.github.mangi.eta.ui.model.SuggestionChipsMessageUi
-import io.github.mangi.eta.ui.model.SystemNoticeCode
-import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
-import io.github.mangi.eta.ui.model.ThinkingMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityStatusUi
-import io.github.mangi.eta.ui.model.ToolSummaryMessageUi
-import io.github.mangi.eta.ui.model.UserMessageUi
-import io.github.mangi.eta.ui.markdown.StreamingGfmParserSession
-import io.github.mangi.eta.ui.markdown.StreamingGfmSnapshot
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/components/ChatMessageItem.kt
 import org.intellij.markdown.IElementType
 import org.intellij.markdown.MarkdownTokenTypes
 import org.intellij.markdown.MarkdownElementTypes

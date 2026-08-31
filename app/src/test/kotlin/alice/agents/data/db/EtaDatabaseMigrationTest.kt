@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/data/db/FuckAndesDatabaseMigrationTest.kt
 package alice.agents.data.db
-========
-package io.github.mangi.eta.data.db
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/data/db/EtaDatabaseMigrationTest.kt
 
 import android.content.Context
 import androidx.room.Room
@@ -10,11 +6,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteOpenHelper
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
-<<<<<<<< HEAD:app/src/test/java/alice/agents/data/db/FuckAndesDatabaseMigrationTest.kt
 import alice.agents.data.model.ModelSource
-========
-import io.github.mangi.eta.data.model.ModelSource
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/data/db/EtaDatabaseMigrationTest.kt
 import java.util.UUID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.accessibility
+package alice.agents.agent.accessibility
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.GestureDescription
@@ -26,14 +26,14 @@ import android.view.WindowManager
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.accessibility.AccessibilityWindowInfo
-import io.github.mangi.eta.agent.device.ScrollAxis
-import io.github.mangi.eta.agent.device.ScrollAxisContract
-import io.github.mangi.eta.agent.device.ScrollDirection
-import io.github.mangi.eta.agent.device.ScrollEvidence
-import io.github.mangi.eta.agent.device.ScrollEvidenceContract
-import io.github.mangi.eta.agent.device.ScrollMovementSource
-import io.github.mangi.eta.agent.device.RootScrollMotionContract
-import io.github.mangi.eta.core.AndroidAgentLogger
+import alice.agents.agent.device.ScrollAxis
+import alice.agents.agent.device.ScrollAxisContract
+import alice.agents.agent.device.ScrollDirection
+import alice.agents.agent.device.ScrollEvidence
+import alice.agents.agent.device.ScrollEvidenceContract
+import alice.agents.agent.device.ScrollMovementSource
+import alice.agents.agent.device.RootScrollMotionContract
+import alice.agents.core.AndroidAgentLogger
 import java.util.ArrayDeque
 import java.util.concurrent.ArrayBlockingQueue
 import java.util.concurrent.CountDownLatch

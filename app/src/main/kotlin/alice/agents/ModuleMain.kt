@@ -1,23 +1,23 @@
-package io.github.mangi.eta
+package alice.agents
 
 import io.github.libxposed.api.XposedModule
 import io.github.libxposed.api.XposedInterface.HookHandle
 import io.github.libxposed.api.XposedModuleInterface.ModuleLoadedParam
 import io.github.libxposed.api.XposedModuleInterface.PackageReadyParam
 import io.github.libxposed.api.XposedModuleInterface.SystemServerStartingParam
-import io.github.mangi.eta.config.Prefs
-import io.github.mangi.eta.core.HookInstallation
-import io.github.mangi.eta.core.ModuleConfig
-import io.github.mangi.eta.core.ModuleLogger
-import io.github.mangi.eta.core.safeLogType
-import io.github.mangi.eta.hook.aimemory.ColorOsMemoryHooks
-import io.github.mangi.eta.hook.breeno.BreenoHooks
-import io.github.mangi.eta.hook.colordirect.ColorDirectHooks
-import io.github.mangi.eta.hook.google.GoogleAppHooks
-import io.github.mangi.eta.hook.google.GoogleEligibilityHooks
-import io.github.mangi.eta.hook.system.SystemServerHooks
-import io.github.mangi.eta.hook.system.SystemUiHooks
-import io.github.mangi.eta.hook.xiaoai.XiaoAiHooks
+import alice.agents.config.Prefs
+import alice.agents.core.HookInstallation
+import alice.agents.core.ModuleConfig
+import alice.agents.core.ModuleLogger
+import alice.agents.core.safeLogType
+import alice.agents.hook.aimemory.ColorOsMemoryHooks
+import alice.agents.hook.breeno.BreenoHooks
+import alice.agents.hook.colordirect.ColorDirectHooks
+import alice.agents.hook.google.GoogleAppHooks
+import alice.agents.hook.google.GoogleEligibilityHooks
+import alice.agents.hook.system.SystemServerHooks
+import alice.agents.hook.system.SystemUiHooks
+import alice.agents.hook.xiaoai.XiaoAiHooks
 
 class ModuleMain : XposedModule() {
 

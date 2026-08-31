@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/model/OpenAiChatCompletionsProviderTest.kt
 package alice.agents.agent.model
 
 import com.sun.net.httpserver.HttpServer
 import alice.agents.agent.runtime.AgentRunController
-========
-package io.github.mangi.eta.agent.model
-
-import com.sun.net.httpserver.HttpServer
-import io.github.mangi.eta.agent.runtime.AgentRunController
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/model/OpenAiChatCompletionsProviderTest.kt
 import java.net.InetSocketAddress
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicReference
@@ -355,11 +348,7 @@ class OpenAiChatCompletionsProviderTest {
                         providerSourceType = "deepseek",
                         model = "deepseek-v4-pro",
                         thinkingEnabled = true,
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/model/OpenAiChatCompletionsProviderTest.kt
                         reasoningEffort = alice.agents.data.model.ReasoningEffort.HIGH,
-========
-                        reasoningEffort = io.github.mangi.eta.data.model.ReasoningEffort.HIGH,
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/model/OpenAiChatCompletionsProviderTest.kt
                     )
                 },
                 runController = AgentRunController(),

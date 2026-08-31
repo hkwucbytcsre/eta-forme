@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/markdown/StreamingGfmParser.kt
 package alice.agents.ui.markdown
-========
-package io.github.mangi.eta.ui.markdown
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/markdown/StreamingGfmParser.kt
 
 import com.mikepenz.markdown.model.ReferenceLinkHandlerImpl
 import com.mikepenz.markdown.model.State

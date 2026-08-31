@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/MainActivity.kt
 package alice.agents.ui
-========
-package io.github.mangi.eta.ui
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/MainActivity.kt
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,19 +13,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/MainActivity.kt
 import alice.agents.agent.voice.EtaAssistantOverlayService
 import alice.agents.data.repository.AppearanceSettingsRepository
 import alice.agents.ui.app.AgentAppRoot
 import alice.agents.ui.app.AgentAppTheme
 import alice.agents.ui.app.PredictiveBackController
-========
-import io.github.mangi.eta.agent.voice.EtaAssistantOverlayService
-import io.github.mangi.eta.data.repository.AppearanceSettingsRepository
-import io.github.mangi.eta.ui.app.AgentAppRoot
-import io.github.mangi.eta.ui.app.AgentAppTheme
-import io.github.mangi.eta.ui.app.PredictiveBackController
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/MainActivity.kt
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {

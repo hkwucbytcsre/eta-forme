@@ -1,14 +1,7 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/ui/components/ProviderBrandingTest.kt
 package alice.agents.ui.components
 
 import alice.agents.R
 import alice.agents.data.model.ProviderSourceTypes
-========
-package io.github.mangi.eta.ui.components
-
-import io.github.mangi.eta.R
-import io.github.mangi.eta.data.model.ProviderSourceTypes
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/ui/components/ProviderBrandingTest.kt
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test

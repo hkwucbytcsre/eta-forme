@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/hook/breeno/BreenoConversationHistory.kt
 package alice.agents.hook.breeno
 
 import alice.agents.agent.model.AgentModelClient
-========
-package io.github.mangi.eta.hook.breeno
-
-import io.github.mangi.eta.agent.model.AgentModelClient
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/hook/breeno/BreenoConversationHistory.kt
 
 internal object BreenoConversationHistory {
     private const val MAX_MESSAGES = 24

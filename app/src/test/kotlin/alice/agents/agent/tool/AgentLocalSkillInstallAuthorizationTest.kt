@@ -1,16 +1,8 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/agent/tool/AgentLocalSkillInstallAuthorizationTest.kt
 package alice.agents.agent.tool
 
 import android.content.Context
 import alice.agents.agent.model.AgentModelClient
 import alice.agents.core.AgentLogger
-========
-package io.github.mangi.eta.agent.tool
-
-import android.content.Context
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.core.AgentLogger
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/agent/tool/AgentLocalSkillInstallAuthorizationTest.kt
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Test

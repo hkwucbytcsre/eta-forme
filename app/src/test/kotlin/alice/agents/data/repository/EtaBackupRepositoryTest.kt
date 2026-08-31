@@ -1,4 +1,3 @@
-<<<<<<<< HEAD:app/src/test/java/alice/agents/data/repository/EtaBackupRepositoryTest.kt
 package alice.agents.data.repository
 
 import alice.agents.data.datastore.SettingsDataStore
@@ -6,21 +5,9 @@ import alice.agents.data.db.ConversationContextCheckpointEntity
 import alice.agents.data.db.ConversationEntity
 import alice.agents.data.db.ConversationMessageEntity
 import alice.agents.data.db.ConversationStateEntity
-import alice.agents.data.db.FuckAndesDatabase
+import alice.agents.data.db.EtaDatabase
 import alice.agents.data.model.ModelSource
 import alice.agents.data.model.withApiKey
-========
-package io.github.mangi.eta.data.repository
-
-import io.github.mangi.eta.data.datastore.SettingsDataStore
-import io.github.mangi.eta.data.db.ConversationContextCheckpointEntity
-import io.github.mangi.eta.data.db.ConversationEntity
-import io.github.mangi.eta.data.db.ConversationMessageEntity
-import io.github.mangi.eta.data.db.ConversationStateEntity
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.withApiKey
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/test/kotlin/io/github/mangi/eta/data/repository/EtaBackupRepositoryTest.kt
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import kotlinx.coroutines.runBlocking

@@ -1,8 +1,4 @@
-<<<<<<< HEAD:app/src/main/kotlin/fuck/andes/ui/screens/backup/DataBackupScreen.kt
 package alice.agents.ui.screens.backup
-=======
-package io.github.mangi.eta.ui.screens.backup
->>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/backup/DataBackupScreen.kt
 
 import android.content.Context
 import android.net.Uri
@@ -26,19 +22,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.composables.icons.lucide.R as LucideR
-<<<<<<< HEAD:app/src/main/kotlin/fuck/andes/ui/screens/backup/DataBackupScreen.kt
 import alice.agents.R
 import alice.agents.data.repository.EtaBackupSummary
 import alice.agents.ui.components.MiuixDialogActions
 import alice.agents.ui.components.MiuixPageBottomSpacer
 import alice.agents.ui.components.MiuixScaffoldPage
-=======
-import io.github.mangi.eta.R
-import io.github.mangi.eta.data.repository.EtaBackupSummary
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.components.MiuixPageBottomSpacer
-import io.github.mangi.eta.ui.components.MiuixScaffoldPage
->>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/screens/backup/DataBackupScreen.kt
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import java.io.InputStream

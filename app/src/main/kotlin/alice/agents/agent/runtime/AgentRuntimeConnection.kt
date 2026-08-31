@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeConnection.kt
 package alice.agents.agent.runtime
-========
-package io.github.mangi.eta.agent.runtime
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeConnection.kt
 
 import android.content.ComponentName
 import android.content.Context
@@ -12,13 +8,8 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.Messenger
 import android.os.SystemClock
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/runtime/AgentRuntimeConnection.kt
 import alice.agents.core.AgentLogger
 import alice.agents.core.safeLogType
-========
-import io.github.mangi.eta.core.AgentLogger
-import io.github.mangi.eta.core.safeLogType
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/runtime/AgentRuntimeConnection.kt
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 

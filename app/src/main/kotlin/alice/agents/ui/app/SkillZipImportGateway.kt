@@ -1,18 +1,9 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/ui/app/SkillZipImportGateway.kt
 package alice.agents.ui.app
 
 import android.content.Context
 import alice.agents.agent.skill.SkillInstallErrorCode
 import alice.agents.agent.skill.SkillInstallResult
 import alice.agents.agent.skill.SkillRuntime
-========
-package io.github.mangi.eta.ui.app
-
-import android.content.Context
-import io.github.mangi.eta.agent.skill.SkillInstallErrorCode
-import io.github.mangi.eta.agent.skill.SkillInstallResult
-import io.github.mangi.eta.agent.skill.SkillRuntime
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/ui/app/SkillZipImportGateway.kt
 import java.io.InputStream
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.isActive

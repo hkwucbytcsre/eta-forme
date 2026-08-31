@@ -1,12 +1,6 @@
-<<<<<<<< HEAD:app/src/main/kotlin/alice/agents/agent/memory/AgentMemoryContext.kt
 package alice.agents.agent.memory
 
 import alice.agents.data.repository.AgentMemorySnapshot
-========
-package io.github.mangi.eta.agent.memory
-
-import io.github.mangi.eta.data.repository.AgentMemorySnapshot
->>>>>>>> feb618c (refactor(package): 将历史包名更名为 Eta):app/src/main/kotlin/io/github/mangi/eta/agent/memory/AgentMemoryContext.kt
 
 internal data class AgentMemoryContext(
     val enabled: Boolean,
