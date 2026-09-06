@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <voice-interaction-service xmlns:android="http://schemas.android.com/apk/res/android"
-    android:recognitionService="alice.agents.agent.voice.EtaRecognitionService"
-    android:sessionService="alice.agents.agent.voice.EtaVoiceInteractionSessionService"
-    android:settingsActivity="alice.agents.ui.MainActivity"
+    android:recognitionService="io.github.alice.eta.agent.voice.EtaRecognitionService"
+    android:sessionService="io.github.alice.eta.agent.voice.EtaVoiceInteractionSessionService"
+    android:settingsActivity="io.github.alice.eta.ui.MainActivity"
     android:supportsAssist="true"
     android:supportsLaunchVoiceAssistFromKeyguard="true"
     android:supportsLocalInteraction="false" />
