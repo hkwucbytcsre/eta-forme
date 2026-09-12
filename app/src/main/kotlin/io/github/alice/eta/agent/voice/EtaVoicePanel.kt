@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.voice
+package io.github.mangi.eta.agent.voice
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateContentSize
@@ -82,14 +82,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Velocity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.github.alice.eta.R
-import io.github.alice.eta.ui.components.AgentConversationMessages
-import io.github.alice.eta.ui.components.rememberDataUrlBitmap
-import io.github.alice.eta.ui.model.AgentChatMessageUi
-import io.github.alice.eta.ui.model.AgentMessageUi
-import io.github.alice.eta.ui.model.ThinkingMessageUi
-import io.github.alice.eta.ui.model.ToolActivityMessageUi
-import io.github.alice.eta.ui.model.UserMessageUi
+import io.github.mangi.eta.R
+import io.github.mangi.eta.ui.components.AgentConversationMessages
+import io.github.mangi.eta.ui.components.rememberDataUrlBitmap
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.ThinkingMessageUi
+import io.github.mangi.eta.ui.model.ToolActivityMessageUi
+import io.github.mangi.eta.ui.model.UserMessageUi
 import kotlin.math.ceil
 import kotlin.math.max
 import kotlinx.coroutines.delay

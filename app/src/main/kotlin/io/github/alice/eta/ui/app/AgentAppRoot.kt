@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import android.Manifest
 import android.app.Activity
@@ -34,46 +34,48 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.github.alice.eta.EtaApp
-import io.github.alice.eta.R
-import io.github.alice.eta.agent.device.BoundedRootCommandExecutor
-import io.github.alice.eta.agent.device.DeviceLocationProvider
-import io.github.alice.eta.agent.device.RootAccess
-import io.github.alice.eta.core.AndroidAgentLogger
-import io.github.alice.eta.data.repository.RuntimeConfigRepository
-import io.github.alice.eta.ui.AppearanceSettingsScreen
-import io.github.alice.eta.ui.SettingsScreen
-import io.github.alice.eta.ui.components.MiuixDialogActions
-import io.github.alice.eta.ui.model.AgentChatAction
-import io.github.alice.eta.ui.model.AgentHomeAction
-import io.github.alice.eta.ui.model.AgentMemoryAction
-import io.github.alice.eta.ui.model.AgentSkillsAction
-import io.github.alice.eta.ui.model.AgentSystemEnhanceAction
-import io.github.alice.eta.ui.model.AgentToolsAction
-import io.github.alice.eta.ui.model.ConversationSummaryUi
-import io.github.alice.eta.ui.model.PermissionHealthAction
-import io.github.alice.eta.ui.navigation.AgentNavigator
-import io.github.alice.eta.ui.navigation.AppRoute
-import io.github.alice.eta.ui.pages.providers.ModelProviderDetailScreen
-import io.github.alice.eta.ui.pages.providers.ModelProviderListScreen
-import io.github.alice.eta.ui.screens.backup.DataBackupScreen
-import io.github.alice.eta.ui.screens.browser.AgentBrowserScreen
-import io.github.alice.eta.ui.screens.chat.AgentChatScreen
-import io.github.alice.eta.ui.screens.enhance.SystemEnhanceScreen
-import io.github.alice.eta.ui.screens.home.AgentHomeScreen
-import io.github.alice.eta.ui.screens.mcp.McpServerDetailScreen
-import io.github.alice.eta.ui.screens.mcp.McpServersScreen
-import io.github.alice.eta.ui.screens.memory.AgentMemoryScreen
-import io.github.alice.eta.ui.screens.permissions.PermissionHealthScreen
-import io.github.alice.eta.ui.screens.skills.AgentSkillsScreen
-import io.github.alice.eta.ui.screens.terminal.LinuxEnvironmentScreen
-import io.github.alice.eta.ui.screens.terminal.LinuxFilesScreen
-import io.github.alice.eta.ui.screens.terminal.SharedFoldersScreen
-import io.github.alice.eta.ui.screens.terminal.TerminalEntryScreen
-import io.github.alice.eta.ui.screens.terminal.WorkspaceScreen
-import io.github.alice.eta.ui.screens.tools.AgentToolsScreen
+import io.github.mangi.eta.EtaApp
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
+import io.github.mangi.eta.agent.device.DeviceLocationProvider
+import io.github.mangi.eta.agent.device.RootAccess
+import io.github.mangi.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.data.repository.RuntimeConfigRepository
+import io.github.mangi.eta.ui.AppearanceSettingsScreen
+import io.github.mangi.eta.ui.SettingsScreen
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.model.AgentChatAction
+import io.github.mangi.eta.ui.model.AgentHomeAction
+import io.github.mangi.eta.ui.model.AgentMemoryAction
+import io.github.mangi.eta.ui.model.AgentSkillsAction
+import io.github.mangi.eta.ui.model.AgentSystemEnhanceAction
+import io.github.mangi.eta.ui.model.AgentToolsAction
+import io.github.mangi.eta.ui.model.ConversationSummaryUi
+import io.github.mangi.eta.ui.model.PermissionHealthAction
+import io.github.mangi.eta.ui.navigation.AgentNavigator
+import io.github.mangi.eta.ui.navigation.AppRoute
+import io.github.mangi.eta.ui.pages.providers.ModelProviderDetailScreen
+import io.github.mangi.eta.ui.pages.providers.ModelProviderListScreen
+import io.github.mangi.eta.ui.screens.backup.DataBackupScreen
+import io.github.mangi.eta.ui.screens.browser.AgentBrowserScreen
+import io.github.mangi.eta.ui.screens.chat.AgentChatScreen
+import io.github.mangi.eta.ui.screens.enhance.SystemEnhanceScreen
+import io.github.mangi.eta.ui.screens.home.AgentHomeScreen
+import io.github.mangi.eta.ui.screens.mcp.McpServerDetailScreen
+import io.github.mangi.eta.ui.screens.mcp.McpServersScreen
+import io.github.mangi.eta.ui.screens.memory.AgentMemoryScreen
+import io.github.mangi.eta.ui.screens.permissions.PermissionHealthScreen
+import io.github.mangi.eta.ui.screens.skills.AgentSkillsScreen
+import io.github.mangi.eta.ui.screens.terminal.LinuxEnvironmentScreen
+import io.github.mangi.eta.ui.screens.terminal.LinuxFilesScreen
+import io.github.mangi.eta.ui.screens.terminal.SharedFoldersScreen
+import io.github.mangi.eta.ui.screens.terminal.TerminalEntryScreen
+import io.github.mangi.eta.ui.screens.terminal.WorkspaceScreen
+import io.github.mangi.eta.ui.screens.tools.AgentToolsScreen
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import top.yukonga.miuix.kmp.basic.TextField
 import top.yukonga.miuix.kmp.nav.core.NavDisplay
 import top.yukonga.miuix.kmp.nav.core.NavDisplayEffects
@@ -119,8 +121,40 @@ fun AgentAppRoot(
     var conversationPaneOpen by remember { mutableStateOf(false) }
     var conversationRenameTarget by remember { mutableStateOf<ConversationSummaryUi?>(null) }
     var conversationDeleteTarget by remember { mutableStateOf<ConversationSummaryUi?>(null) }
+    var conversationExportTarget by remember { mutableStateOf<ConversationSummaryUi?>(null) }
     var messageDeleteTarget by remember { mutableStateOf<MessageMutationTarget?>(null) }
     var messageRegenerateTarget by remember { mutableStateOf<MessageMutationTarget?>(null) }
+    val conversationExportLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("text/markdown"),
+    ) { uri ->
+        val target = conversationExportTarget
+        conversationExportTarget = null
+        if (uri == null || target == null) return@rememberLauncherForActivityResult
+        uiScope.launch {
+            try {
+                val markdown = agentState.exportConversationMarkdown(target.id)
+                    ?: error(context.getString(R.string.conversation_export_failed))
+                val output = context.contentResolver.openOutputStream(uri)
+                    ?: error(context.getString(R.string.conversation_export_failed))
+                withContext(Dispatchers.IO) {
+                    output.use { it.write(markdown.toByteArray(Charsets.UTF_8)) }
+                }
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.conversation_exported),
+                    Toast.LENGTH_SHORT,
+                ).show()
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (_: Throwable) {
+                Toast.makeText(
+                    context,
+                    context.getString(R.string.conversation_export_failed),
+                    Toast.LENGTH_LONG,
+                ).show()
+            }
+        }
+    }
     val focusManager = LocalFocusManager.current
 
     LaunchedEffect(Unit) {
@@ -203,6 +237,15 @@ fun AgentAppRoot(
             onConversationRename = { conversation ->
                 conversationRenameTarget = conversation
             },
+            onConversationExport = { conversation ->
+                conversationExportTarget = conversation
+                conversationExportLauncher.launch(
+                    ConversationMarkdownExporter.defaultFileName(
+                        title = conversation.title.ifBlank { conversation.preview },
+                        fallback = context.getString(R.string.conversation_export_default_name),
+                    ),
+                )
+            },
             onConversationDelete = { conversation ->
                 conversationDeleteTarget = conversation
             },
@@ -247,6 +290,7 @@ fun AgentAppRoot(
                             when (action) {
                                 is AgentHomeAction.ReasoningEffortChanged ->
                                     agentState.updateReasoningEffort(action.effort)
+                                AgentHomeAction.CompactContext -> agentState.compactCurrentContext()
                                 is AgentHomeAction.ModelSelected -> agentState.selectModel(action.modelId)
                                 is AgentHomeAction.SubmitMessage -> { requestExecutionNotifications(); agentState.sendCurrentMessage(action.text) }
                                 AgentHomeAction.StopRun -> agentState.stopCurrentRun()
@@ -296,6 +340,7 @@ fun AgentAppRoot(
                                 AgentChatAction.NavigateBack -> popRoute()
                                 is AgentChatAction.ReasoningEffortChanged ->
                                     agentState.updateReasoningEffort(action.effort)
+                                AgentChatAction.CompactContext -> agentState.compactCurrentContext()
                                 is AgentChatAction.ModelSelected -> agentState.selectModel(action.modelId)
                                 is AgentChatAction.SubmitMessage -> { requestExecutionNotifications(); agentState.sendCurrentMessage(action.text) }
                                 AgentChatAction.StopRun -> agentState.stopCurrentRun()
@@ -408,7 +453,7 @@ fun AgentAppRoot(
                                                     it.execute(
                                                         "am start --user current -n " +
                                                             "com.oplus.battery/com.oplus.powermanager.fuelgaue.PowerControlActivity " +
-                                                            "--es title Eta --es pkgName io.github.alice.eta --es drainType APP",
+                                                            "--es title Eta --es pkgName io.github.mangi.eta --es drainType APP",
                                                     )
                                                 }
                                             }

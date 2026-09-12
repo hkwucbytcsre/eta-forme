@@ -1,11 +1,11 @@
-package io.github.alice.eta.core
+package io.github.mangi.eta.core
 
 internal object ModuleConfig {
     const val TAG = "Eta"
     const val HOT_PATH_LOG_WINDOW_MS = 60_000L
 
     const val GOOGLE_PACKAGE = "com.google.android.googlequicksearchbox"
-    const val ETA_PACKAGE = "io.github.alice.eta"
+    const val ETA_PACKAGE = "io.github.mangi.eta"
     const val BREENO_PACKAGE = "com.heytap.speechassist"
     const val COLOROS_MEMORY_PACKAGE = "com.oplus.aimemory"
     const val XIAOAI_PACKAGE = "com.miui.voiceassist"
@@ -17,7 +17,7 @@ internal object ModuleConfig {
     const val GOOGLE_ASSISTANT_COMPONENT =
         "$GOOGLE_PACKAGE/com.google.android.voiceinteraction.GsaVoiceInteractionService"
     const val ETA_VOICE_INTERACTION_COMPONENT =
-        "$ETA_PACKAGE/io.github.alice.eta.agent.voice.EtaVoiceInteractionService"
+        "$ETA_PACKAGE/io.github.mangi.eta.agent.voice.EtaVoiceInteractionService"
     const val ASSISTANT_ROLE = "android.app.role.ASSISTANT"
     const val SECURE_ASSISTANT = "assistant"
     const val SECURE_VOICE_INTERACTION_SERVICE = "voice_interaction_service"

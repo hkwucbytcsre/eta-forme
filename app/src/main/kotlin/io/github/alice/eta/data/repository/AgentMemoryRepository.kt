@@ -1,8 +1,8 @@
-package io.github.alice.eta.data.repository
+package io.github.mangi.eta.data.repository
 
 import android.content.Context
 import android.util.AtomicFile
-import io.github.alice.eta.data.datastore.SettingsDataStore
+import io.github.mangi.eta.data.datastore.SettingsDataStore
 import java.io.File
 import java.io.IOException
 import java.security.MessageDigest

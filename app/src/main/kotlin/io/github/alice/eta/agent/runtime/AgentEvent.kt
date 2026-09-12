@@ -1,6 +1,6 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
-import io.github.alice.eta.core.toSafeLogToken
+import io.github.mangi.eta.core.toSafeLogToken
 
 internal sealed interface AgentEvent {
     fun toLogLine(): String
@@ -9,6 +9,30 @@ internal sealed interface AgentEvent {
         TEXT,
         THINKING,
         TOOL_CALL,
+    }
+
+    data class ContextCompaction(
+        val operationId: String,
+        val phase: String,
+        val tokensBefore: Int,
+        val tokensAfter: Int? = null,
+        val reasonCode: String = "",
+    ) : AgentEvent {
+        val displayMessage: String get() = when (phase) {
+            PHASE_STARTED -> RUNNING_DETAIL
+            PHASE_COMPLETED -> "上下文已压缩：约 ${compactionTokenCount(tokensBefore)} → " +
+                "${compactionTokenCount(tokensAfter ?: 0)} tokens"
+            else -> "上下文压缩失败，原始上下文已保留。"
+        }
+        override fun toLogLine(): String =
+            "context_compaction phase=${phase.toSafeLogToken()}, before=$tokensBefore, after=$tokensAfter, code=${reasonCode.toSafeLogToken()}"
+
+        companion object {
+            const val PHASE_STARTED = "started"
+            const val PHASE_COMPLETED = "completed"
+            /** 进行中的展示文案同时是 UI 判定运行态的依据，改动必须与 UI 侧同步。 */
+            const val RUNNING_DETAIL = "正在压缩上下文…"
+        }
     }
 
     data class RunStarted(
@@ -198,6 +222,9 @@ internal sealed interface AgentEvent {
 
 private const val MAX_LOGGED_TOOL_NAMES = 8
 private const val RESULT_CODE_MARKER = "code="
+
+private fun compactionTokenCount(value: Int): String =
+    java.text.NumberFormat.getIntegerInstance().format(value)
 
 /** 摘要字段分隔符：旧格式用逗号，人文化摘要用间隔号。 */
 private val RESULT_FIELD_SEPARATORS = listOf(", ", " · ")

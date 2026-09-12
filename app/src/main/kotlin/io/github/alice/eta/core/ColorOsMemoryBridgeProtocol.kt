@@ -1,4 +1,4 @@
-package io.github.alice.eta.core
+package io.github.mangi.eta.core
 
 import java.nio.charset.StandardCharsets
 import java.util.Base64
@@ -9,7 +9,7 @@ internal object ColorOsMemoryBridgeProtocol {
     const val PACKAGE_NAME = "com.oplus.aimemory"
     const val PROVIDER_CLASS = "com.oplus.aimemory.provider.DataShareProvider"
     const val PROVIDER_URI = "content://com.oplus.aimemory.provider.DataShareProvider"
-    const val METHOD = "io.github.alice.eta.coloros_memory.query.v1"
+    const val METHOD = "io.github.mangi.eta.coloros_memory.query.v1"
     const val RESULT_KEY = "eta_memory_bridge"
     const val DATABASE_NAME = "ai_memory"
 

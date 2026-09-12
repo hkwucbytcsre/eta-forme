@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.components
+package io.github.mangi.eta.ui.components
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -69,12 +69,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.github.alice.eta.R
-import io.github.alice.eta.data.model.ReasoningEffort
-import io.github.alice.eta.ui.model.AgentContextUsageUi
-import io.github.alice.eta.ui.model.AgentModelPickerUiState
-import io.github.alice.eta.ui.model.PendingFileReferenceUi
-import io.github.alice.eta.ui.model.PendingImageUi
+import io.github.mangi.eta.R
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.ui.model.AgentContextUsageUi
+import io.github.mangi.eta.ui.model.AgentModelPickerUiState
+import io.github.mangi.eta.ui.model.PendingFileReferenceUi
+import io.github.mangi.eta.ui.model.PendingImageUi
 import kotlin.math.roundToInt
 import top.yukonga.miuix.kmp.basic.DropdownImpl
 import top.yukonga.miuix.kmp.basic.Icon
@@ -102,6 +102,7 @@ private val InputContainerShape = RoundedCornerShape(20.dp)
 internal fun AgentChatInputBar(
     input: String,
     modelPickerState: AgentModelPickerUiState,
+    isCompacting: Boolean,
     contextUsage: AgentContextUsageUi,
     showContextUsage: Boolean,
     isStreaming: Boolean,
@@ -112,6 +113,8 @@ internal fun AgentChatInputBar(
     isEditingMessage: Boolean,
     editHasLaterTurns: Boolean,
     onReasoningEffortChange: (ReasoningEffort) -> Unit,
+    onCompactContext: () -> Unit,
+    canCompactContext: Boolean,
     onModelSelected: (String) -> Unit,
     onSubmit: (String) -> Unit,
     onStop: () -> Unit,
@@ -152,8 +155,8 @@ internal fun AgentChatInputBar(
         wasEditingMessage = isEditingMessage
     }
 
-    LaunchedEffect(isStreaming) {
-        if (isStreaming) {
+    LaunchedEffect(isStreaming, isCompacting) {
+        if (isStreaming && !isCompacting) {
             // 发送按钮、建议词和外部恢复都可能启动流式任务，统一清掉本地草稿。
             textFieldState.clearText()
         }
@@ -310,7 +313,7 @@ internal fun AgentChatInputBar(
                         Spacer(modifier = Modifier.weight(1f))
 
                         if (showContextUsage) {
-                            AgentContextUsageButton(usage = contextUsage)
+                            AgentContextUsageButton(usage = contextUsage, onCompact = onCompactContext, canCompact = canCompactContext && !isStreaming)
 
                             Spacer(modifier = Modifier.width(2.dp))
                         }

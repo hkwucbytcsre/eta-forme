@@ -1,8 +1,8 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import android.content.pm.ApplicationInfo
 import android.os.Build
-import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.core.AndroidAgentLogger
 import org.lsposed.hiddenapibypass.HiddenApiBypass
 
 internal object PredictiveBackController {

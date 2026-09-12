@@ -1,14 +1,14 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.agent.runtime.AgentRuntimeWire
-import io.github.alice.eta.agent.runtime.AgentUiHandoffPayload
-import io.github.alice.eta.ui.model.AgentChatHomeUiState
-import io.github.alice.eta.ui.model.AgentChatMessageUi
-import io.github.alice.eta.ui.model.AgentMessageUi
-import io.github.alice.eta.ui.model.SystemNoticeCode
-import io.github.alice.eta.ui.model.SystemNoticeMessageUi
-import io.github.alice.eta.ui.model.UserMessageUi
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
+import io.github.mangi.eta.agent.runtime.AgentUiHandoffPayload
+import io.github.mangi.eta.ui.model.AgentChatHomeUiState
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.SystemNoticeCode
+import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
+import io.github.mangi.eta.ui.model.UserMessageUi
 
 /** 将 Runtime outbox 的结果幂等折叠回 App 会话。 */
 internal object AgentPendingResultRecovery {
@@ -24,10 +24,19 @@ internal object AgentPendingResultRecovery {
         promptSupplement: AgentUiHandoffPayload.Supplement? = null,
         supplements: List<AgentUiHandoffPayload.Supplement>,
     ): Outcome {
+        val stateWithSupplements = state.copy(messages = mergeSupplements(
+            runId, listOfNotNull(promptSupplement) + supplements, state.messages,
+        ))
         val content = result.content.takeIf { result.ok && it.isNotBlank() }
         val history = AgentRuntimeHistoryReducer.apply(
-            state = state,
+            state = stateWithSupplements,
             runId = runId,
+            snapshot = result.contextSnapshot?.let { snapshot ->
+                snapshot.copy(consumedTranscriptMessages = snapshot.consumedTranscriptMessages?.let {
+                    it + if (promptSupplement != null) 1 else 0
+                })
+            },
+            retainPendingSupplements = !result.ok || result.contextSnapshot != null,
             additions = listOfNotNull(
                 promptSupplement?.let { supplement ->
                     AgentModelClient.buildUserHistoryMessage(
@@ -38,8 +47,17 @@ internal object AgentPendingResultRecovery {
             ) + result.transcript,
         )
         if (history.alreadyApplied) return Outcome(state, alreadyApplied = true)
+        if (result.operation == AgentRuntimeWire.OP_COMPACT) {
+            return Outcome(history.state.copy(isStreaming = false, isCompacting = false,
+                messages = AgentRunMessageProjector.mergeCompactionResultNotice(
+                    runId = runId,
+                    messages = state.messages,
+                    ok = result.ok,
+                    detail = if (result.ok) "上下文压缩完成" else result.error ?: "上下文压缩失败",
+                )), false)
+        }
 
-        val messagesWithResult = state.messages
+        val messagesWithResult = stateWithSupplements.messages
             .filterNot { it is SystemNoticeMessageUi && it.id == interruptedNoticeId(runId) }
             .toMutableList()
             .also { messages ->

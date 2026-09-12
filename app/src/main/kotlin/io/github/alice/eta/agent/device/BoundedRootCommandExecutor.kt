@@ -1,6 +1,6 @@
-package io.github.alice.eta.agent.device
+package io.github.mangi.eta.agent.device
 
-import io.github.alice.eta.core.AgentLogger
+import io.github.mangi.eta.core.AgentLogger
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 import java.nio.charset.StandardCharsets

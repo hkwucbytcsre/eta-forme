@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.screens.terminal
+package io.github.mangi.eta.ui.screens.terminal
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -54,13 +54,13 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import io.github.alice.eta.R
-import io.github.alice.eta.agent.terminal.TerminalEnvironment
-import io.github.alice.eta.agent.terminal.TerminalScreenBuffer
-import io.github.alice.eta.ui.app.ConsoleStore
-import io.github.alice.eta.ui.app.ConsoleUiState
-import io.github.alice.eta.ui.app.UserTerminalStore
-import io.github.alice.eta.ui.components.toSpanStyle
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.terminal.TerminalEnvironment
+import io.github.mangi.eta.agent.terminal.TerminalScreenBuffer
+import io.github.mangi.eta.ui.app.ConsoleStore
+import io.github.mangi.eta.ui.app.ConsoleUiState
+import io.github.mangi.eta.ui.app.UserTerminalStore
+import io.github.mangi.eta.ui.components.toSpanStyle
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton
 import top.yukonga.miuix.kmp.basic.Text

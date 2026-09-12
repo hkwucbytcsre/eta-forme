@@ -1,12 +1,12 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
 import android.graphics.Bitmap
 import android.os.Parcel
 import android.util.Base64
-import io.github.alice.eta.agent.media.AgentImageCodec
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.data.model.ModelReasoningCapabilities
-import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.agent.media.AgentImageCodec
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.ReasoningEffort
 import java.io.File
 import java.io.FileOutputStream
 import kotlinx.serialization.json.Json
@@ -24,6 +24,55 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [36])
 class AgentRuntimeWireTest {
+    @Test
+    fun contextSnapshotRoundTripsDirectlyAndDrainOnlyCarriesReference() {
+        val snapshot = io.github.mangi.eta.agent.model.AgentContextSnapshot(
+            operationId = "compact-1", consumedUserTurns = 4, coveredUserTurns = 3,
+            messages = listOf(AgentModelClient.ConversationMessage("assistant", "摘要内容", contextSummary = true, compactedUserTurns = 3)),
+        )
+        val result = AgentRuntimeWire.RunResult("compact-1", true, "", contextSnapshot = snapshot,
+            operation = AgentRuntimeWire.OP_COMPACT)
+        assertEquals(result, AgentRuntimeWire.runResultFromBundle(AgentRuntimeWire.toBundle(result)))
+        val completed = AgentRuntimeWire.CompletedRun(
+            AgentRuntimeWire.EntryHandoff("compact-1", AgentRuntimeWire.AGENT_UI_HANDOFF_SOURCE, "conversation"), result, 1,
+        )
+        val drained = AgentRuntimeWire.completedRunsFromBundle(AgentRuntimeWire.completedRunsToBundle(listOf(completed))).single()
+        assertNull(drained.result.contextSnapshot)
+        assertEquals("compact-1", drained.result.contextSnapshotRef)
+        val event = AgentEvent.ContextCompaction("operation", "completed", 9000, 2000)
+        assertEquals(event, AgentEventJsonCodec.decode(AgentEventJsonCodec.encode(event)))
+        val legacy = AgentRuntimeWire.toBundle(result).apply {
+            remove("complete_result_json")
+            remove("context_snapshot")
+            remove("operation")
+        }
+        assertNull(AgentRuntimeWire.runResultFromBundle(legacy).contextSnapshot)
+        assertEquals(AgentRuntimeWire.OP_CHAT, AgentRuntimeWire.runResultFromBundle(legacy).operation)
+    }
+
+    @Test
+    fun modelSessionSurvivesIpcAndLegacyRequestsUseConversationIdentity() {
+        val request = AgentRuntimeWire.RunRequest(
+            runId = "run-session", prompt = "测试",
+            config = AgentModelClient.ModelConfig(
+                baseUrl = "https://example.invalid/v1", apiKey = "test-key",
+                model = "test-model", systemPrompt = "", reasoningEffort = ReasoningEffort.OFF,
+            ),
+            images = emptyList(),
+            modelSessionId = "stable-session",
+            handoff = AgentRuntimeWire.EntryHandoff(
+                id = "handoff", source = AgentRuntimeWire.AGENT_UI_HANDOFF_SOURCE,
+                payload = AgentUiHandoffPayload("conversation-1").toJson(),
+            ),
+        )
+        val bundle = AgentRuntimeWire.toLegacyBundle(request)
+        assertEquals(request, AgentRuntimeWire.runRequestFromBundle(bundle))
+        bundle.remove("model_session_id")
+        assertEquals("conversation-1", AgentRuntimeWire.runRequestFromBundle(bundle).effectiveModelSessionId)
+        bundle.remove("handoff")
+        assertEquals("run-session", AgentRuntimeWire.runRequestFromBundle(bundle).effectiveModelSessionId)
+    }
+
     @Test
     fun retryEventSurvivesIpcAndArchiveJson() {
         val event = AgentEvent.ModelRetryScheduled(7, 2, 3, 4_000, "MODEL_TIMEOUT")

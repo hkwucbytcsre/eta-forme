@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.components
+package io.github.mangi.eta.ui.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import io.github.alice.eta.ui.layout.WidePageContent
-import io.github.alice.eta.ui.layout.horizontalCutoutPadding
+import io.github.mangi.eta.ui.layout.WidePageContent
+import io.github.mangi.eta.ui.layout.horizontalCutoutPadding
 import top.yukonga.miuix.kmp.basic.MiuixScrollBehavior
 import top.yukonga.miuix.kmp.basic.Scaffold
 import top.yukonga.miuix.kmp.basic.ScrollBehavior

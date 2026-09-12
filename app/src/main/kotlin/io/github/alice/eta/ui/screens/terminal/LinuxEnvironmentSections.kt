@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.screens.terminal
+package io.github.mangi.eta.ui.screens.terminal
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,9 +11,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.github.alice.eta.R
-import io.github.alice.eta.agent.terminal.LinuxDistribution
-import io.github.alice.eta.agent.terminal.LinuxExecutionBackend
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.terminal.LinuxDistribution
+import io.github.mangi.eta.agent.terminal.LinuxExecutionBackend
 import top.yukonga.miuix.kmp.basic.BasicComponent
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.Card

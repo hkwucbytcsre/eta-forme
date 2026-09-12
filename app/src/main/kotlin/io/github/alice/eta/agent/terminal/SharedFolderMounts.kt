@@ -1,7 +1,7 @@
-package io.github.alice.eta.agent.terminal
+package io.github.mangi.eta.agent.terminal
 
 import android.content.SharedPreferences
-import io.github.alice.eta.config.Prefs
+import io.github.mangi.eta.config.Prefs
 import org.json.JSONArray
 import org.json.JSONObject
 

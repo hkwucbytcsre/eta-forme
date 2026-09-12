@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.device
+package io.github.mangi.eta.agent.device
 
 /** 只有确认手势从未提交给系统时，才允许改用 Root 重放。 */
 internal object GestureFallbackPolicy {

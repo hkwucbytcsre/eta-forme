@@ -1,23 +1,23 @@
-package io.github.alice.eta.ui.preview
+package io.github.mangi.eta.ui.preview
 
-import io.github.alice.eta.ui.model.AgentChatHomeUiState
-import io.github.alice.eta.ui.model.AgentChatMessageUi
-import io.github.alice.eta.ui.model.AgentChatUiState
-import io.github.alice.eta.ui.model.AgentToolsUiState
-import io.github.alice.eta.ui.model.ConversationModeUi
-import io.github.alice.eta.ui.model.ConversationPaneUiState
-import io.github.alice.eta.ui.model.ConversationSummaryUi
-import io.github.alice.eta.ui.model.PermissionHealthItemUi
-import io.github.alice.eta.ui.model.PermissionHealthUiState
-import io.github.alice.eta.ui.model.PermissionStatusUi
-import io.github.alice.eta.ui.model.ThinkingMessageUi
-import io.github.alice.eta.ui.model.TokenUsageUi
-import io.github.alice.eta.ui.model.ToolActivityMessageUi
-import io.github.alice.eta.ui.model.ToolActivityStatusUi
-import io.github.alice.eta.ui.model.ToolGroupUi
-import io.github.alice.eta.ui.model.ToolItemUi
-import io.github.alice.eta.ui.model.UserMessageUi
-import io.github.alice.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.AgentChatHomeUiState
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentChatUiState
+import io.github.mangi.eta.ui.model.AgentToolsUiState
+import io.github.mangi.eta.ui.model.ConversationModeUi
+import io.github.mangi.eta.ui.model.ConversationPaneUiState
+import io.github.mangi.eta.ui.model.ConversationSummaryUi
+import io.github.mangi.eta.ui.model.PermissionHealthItemUi
+import io.github.mangi.eta.ui.model.PermissionHealthUiState
+import io.github.mangi.eta.ui.model.PermissionStatusUi
+import io.github.mangi.eta.ui.model.ThinkingMessageUi
+import io.github.mangi.eta.ui.model.TokenUsageUi
+import io.github.mangi.eta.ui.model.ToolActivityMessageUi
+import io.github.mangi.eta.ui.model.ToolActivityStatusUi
+import io.github.mangi.eta.ui.model.ToolGroupUi
+import io.github.mangi.eta.ui.model.ToolItemUi
+import io.github.mangi.eta.ui.model.UserMessageUi
+import io.github.mangi.eta.ui.model.AgentMessageUi
 
 internal object FakeAgentUiStates {
 

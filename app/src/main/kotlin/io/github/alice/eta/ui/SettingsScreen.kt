@@ -1,23 +1,20 @@
-package io.github.alice.eta.ui
+package io.github.mangi.eta.ui
 
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.provider.Settings
-import android.service.voice.VoiceInteractionService
 import android.widget.Toast
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.MenuBook
 import androidx.compose.material.icons.rounded.AccessibilityNew
 import androidx.compose.material.icons.rounded.AccountTree
-import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.Code
 import androidx.compose.material.icons.rounded.Dashboard
 import androidx.compose.material.icons.rounded.Description
 import androidx.compose.material.icons.rounded.Extension
-import androidx.compose.material.icons.rounded.Folder
 import androidx.compose.material.icons.rounded.GppMaybe
 import androidx.compose.material.icons.rounded.Hearing
 import androidx.compose.material.icons.rounded.Inventory
@@ -33,6 +30,7 @@ import androidx.compose.material.icons.rounded.Psychology
 import androidx.compose.material.icons.rounded.Security
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Smartphone
+import androidx.compose.material.icons.rounded.SupportAgent
 import androidx.compose.material.icons.rounded.SwipeUp
 import androidx.compose.material.icons.rounded.Terminal
 import androidx.compose.material.icons.rounded.TouchApp
@@ -53,24 +51,24 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import io.github.alice.eta.EtaApp
-import io.github.alice.eta.R
-import io.github.alice.eta.agent.accessibility.AccessibilityProtectionClient
-import io.github.alice.eta.agent.accessibility.AgentAccessibilityService
-import io.github.alice.eta.agent.voice.EtaVoiceInteractionService
-import io.github.alice.eta.config.PowerAssistantTarget
-import io.github.alice.eta.config.Prefs
-import io.github.alice.eta.data.repository.ProviderRepository
-import io.github.alice.eta.data.repository.RuntimeConfigRepository
-import io.github.alice.eta.systemizer.GoogleAppSystemizerInstaller
-import io.github.alice.eta.systemizer.RootManager
-import io.github.alice.eta.systemizer.SystemizerInstallResult
-import io.github.alice.eta.ui.app.EnhancementSettingsHistory
-import io.github.alice.eta.ui.app.rememberDeviceCapabilities
-import io.github.alice.eta.ui.components.MiuixDialogActions
-import io.github.alice.eta.ui.components.MiuixScaffoldPage
-import io.github.alice.eta.ui.components.PreferenceIcon
-import io.github.alice.eta.ui.navigation.AppRoute
+import io.github.mangi.eta.EtaApp
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.accessibility.AccessibilityProtectionClient
+import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
+import io.github.mangi.eta.config.PowerAssistantTarget
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.data.repository.ProviderRepository
+import io.github.mangi.eta.data.repository.RuntimeConfigRepository
+import io.github.mangi.eta.systemizer.GoogleAppSystemizerInstaller
+import io.github.mangi.eta.systemizer.RootManager
+import io.github.mangi.eta.systemizer.SystemizerInstallResult
+import io.github.mangi.eta.ui.app.EnhancementSettingsHistory
+import io.github.mangi.eta.ui.app.rememberDeviceCapabilities
+import io.github.mangi.eta.ui.components.LanguagePreference
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+import io.github.mangi.eta.ui.components.PreferenceIcon
+import io.github.mangi.eta.ui.navigation.AppRoute
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -115,7 +113,6 @@ internal fun SettingsScreen(
         mutableStateOf(AccessibilityProtectionClient.isEnabled(context))
     }
     var accessibilityProtectionPending by remember { mutableStateOf(false) }
-    var etaAssistantActive by remember { mutableStateOf(isEtaAssistantActive(context)) }
     val openAssistantSettings: () -> Unit = {
         val failed = runCatching {
             context.startActivity(Intent(Settings.ACTION_VOICE_INPUT_SETTINGS))
@@ -132,7 +129,6 @@ internal fun SettingsScreen(
                 accessibilityGranted = isAgentAccessibilityEnabled(context)
                 accessibilityProtectionEnabled =
                     AccessibilityProtectionClient.isEnabled(context)
-                etaAssistantActive = isEtaAssistantActive(context)
             }
         }
         lifecycleOwner.lifecycle.addObserver(observer)
@@ -320,13 +316,6 @@ internal fun SettingsScreen(
                         },
                         onClick = { onNavigate(AppRoute.LinuxEnvironment) },
                     )
-
-                    ArrowPreference(
-                        title = stringResource(R.string.capability_workspace),
-                        summary = stringResource(R.string.capability_workspace_summary),
-                        startAction = { PreferenceIcon(Icons.Rounded.Folder) },
-                        onClick = { onNavigate(AppRoute.Workspace) },
-                    )
                 }
             }
 
@@ -334,7 +323,6 @@ internal fun SettingsScreen(
                 Card(modifier = Modifier.padding(horizontal = 12.dp).padding(bottom = 12.dp)) {
                     ArrowPreference(
                         title = stringResource(R.string.capability_enhancements),
-                        summary = stringResource(R.string.capability_enhancements_summary),
                         startAction = { PreferenceIcon(Icons.Rounded.Security) },
                         onClick = { onNavigate(AppRoute.SystemEnhance) },
                     )
@@ -347,16 +335,9 @@ internal fun SettingsScreen(
                 Card(modifier = Modifier.padding(horizontal = 12.dp).padding(bottom = 12.dp)) {
                     ArrowPreference(
                         title = stringResource(R.string.ui_eta_system_assistant_003e9b),
-                        summary = stringResource(
-                            if (etaAssistantActive) {
-                                R.string.settings_default_assistant_active
-                            } else {
-                                R.string.settings_select_default_assistant
-                            },
-                        ),
                         startAction = {
                             PreferenceIcon(
-                                icon = Icons.Rounded.AutoAwesome,
+                                icon = Icons.Rounded.SupportAgent,
                             )
                         },
                         onClick = openAssistantSettings,
@@ -399,7 +380,6 @@ internal fun SettingsScreen(
                             context = context,
                             prefs = prefs,
                             title = stringResource(R.string.ui_automatically_set_default_assistant_f86963),
-                            summary = stringResource(R.string.ui_valid_only_for_gemini_and_eta_d5b63d),
                             key = Prefs.Keys.ASSISTANT_AUTO_CONFIG,
                             icon = Icons.Rounded.Settings,
                         )
@@ -523,6 +503,8 @@ internal fun SettingsScreen(
                         },
                         onClick = { onNavigate(AppRoute.AppearanceSettings) },
                     )
+
+                    LanguagePreference()
 
                     ArrowPreference(
                         title = stringResource(R.string.data_backup_title),
@@ -839,12 +821,6 @@ private fun isAgentAccessibilityEnabled(context: Context): Boolean {
     ).orEmpty()
     return enabledServices.split(':').any { it.equals(expected, ignoreCase = true) }
 }
-
-private fun isEtaAssistantActive(context: Context): Boolean =
-    VoiceInteractionService.isActiveService(
-        context,
-        ComponentName(context, EtaVoiceInteractionService::class.java),
-    )
 
 private fun SystemizerInstallResult.toToastMessage(context: Context): String =
     when (this) {

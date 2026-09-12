@@ -1,8 +1,8 @@
-package io.github.alice.eta.agent.terminal
+package io.github.mangi.eta.agent.terminal
 
 import android.content.Context
 import android.os.Build
-import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.core.AndroidAgentLogger
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -101,7 +101,7 @@ internal class AlpineEnvironmentInstaller(
         if (AlpineEnvironmentPaths.rootfsReady(rootfs.absolutePath)) {
             return@withContext AlpineInstallResult.AlreadyReady
         }
-        io.github.alice.eta.data.repository.LinuxEnvironmentSettingsRepository.selectBackend(
+        io.github.mangi.eta.data.repository.LinuxEnvironmentSettingsRepository.selectBackend(
             LinuxDistribution.ALPINE, LinuxEnvironmentPaths.backendOf(rootfs.absolutePath),
         )
         val artifact = artifactForAbis(Build.SUPPORTED_ABIS.toList())

@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.browser
+package io.github.mangi.eta.agent.browser
 
 import android.annotation.SuppressLint
 import android.content.Context

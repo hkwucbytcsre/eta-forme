@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.device
+package io.github.mangi.eta.agent.device
 
 import android.graphics.Rect
 import org.junit.Assert.assertEquals

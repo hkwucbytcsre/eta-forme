@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -11,10 +11,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
-import io.github.alice.eta.data.model.AppearanceAccentColor
-import io.github.alice.eta.data.model.AppearancePaletteStyle
-import io.github.alice.eta.data.model.AppearanceSettings
-import io.github.alice.eta.data.model.AppearanceThemeMode
+import io.github.mangi.eta.data.model.AppearanceAccentColor
+import io.github.mangi.eta.data.model.AppearancePaletteStyle
+import io.github.mangi.eta.data.model.AppearanceSettings
+import io.github.mangi.eta.data.model.AppearanceThemeMode
 import top.yukonga.miuix.kmp.theme.ColorSchemeMode
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 import top.yukonga.miuix.kmp.theme.ThemeColorSpec

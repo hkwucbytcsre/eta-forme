@@ -1,16 +1,19 @@
-package io.github.alice.eta.ui.model
+package io.github.mangi.eta.ui.model
 
 import androidx.compose.runtime.Immutable
-import io.github.alice.eta.agent.model.AgentFileReference
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.agent.model.AgentFileReference
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.model.ReasoningEffort
 
 @Immutable
 internal data class AgentChatUiState(
     val messages: List<AgentChatMessageUi>,
     val history: List<AgentModelClient.ConversationMessage> = emptyList(),
+    // 完整脱敏历史独立于模型投影；摘要替换 history 时不覆盖 journal。
+    val journal: List<AgentModelClient.ConversationMessage> = emptyList(),
     val input: String,
     val isStreaming: Boolean,
+    val isCompacting: Boolean = false,
     val thinkingEnabled: Boolean,
     val reasoningEffort: ReasoningEffort = ReasoningEffort.fromLegacy(thinkingEnabled),
     val availableReasoningEfforts: List<ReasoningEffort> = emptyList(),
@@ -18,7 +21,11 @@ internal data class AgentChatUiState(
     val pendingFileReferences: List<PendingFileReferenceUi> = emptyList(),
     val appliedRuntimeRunIds: List<String> = emptyList(),
     val messageEdit: MessageEditUiState? = null,
-)
+) {
+    val canCompactContext: Boolean get() = !isStreaming && messageEdit == null && history.any {
+        !it.contextSummary && (it.role == "assistant" || it.role == "tool")
+    }
+}
 
 @Immutable
 sealed interface AgentChatMessageUi {
@@ -47,6 +54,7 @@ enum class SystemNoticeCode(val wireValue: String) {
     EmptyResult("empty_result"),
     RuntimeFailed("runtime_failed"),
     ModelRetry("model_retry"),
+    ContextCompaction("context_compaction"),
     Interrupted("interrupted");
 
     companion object {
@@ -62,6 +70,9 @@ data class SystemNoticeMessageUi(
     override val id: String,
     val code: SystemNoticeCode,
     val detail: String? = null,
+    val contextTokens: Int? = null,
+    /** 仅运行期存在的进行中标记，不随消息持久化；恢复的历史通知始终视为已结束。 */
+    val running: Boolean = false,
 ) : AgentChatMessageUi
 
 @Immutable

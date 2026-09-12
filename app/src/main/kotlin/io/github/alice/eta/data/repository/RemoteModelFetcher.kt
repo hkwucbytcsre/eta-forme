@@ -1,15 +1,15 @@
-package io.github.alice.eta.data.repository
+package io.github.mangi.eta.data.repository
 
-import io.github.alice.eta.agent.model.AgentHttpClient
-import io.github.alice.eta.agent.model.CustomHeaderFilter
-import io.github.alice.eta.agent.model.ProviderUrls
-import io.github.alice.eta.data.model.AnthropicProviderSetting
-import io.github.alice.eta.data.model.Model
-import io.github.alice.eta.data.model.ModelReasoningCapabilities
-import io.github.alice.eta.data.model.ModelSource
-import io.github.alice.eta.data.model.ProviderSetting
-import io.github.alice.eta.data.model.ReasoningEffort
-import io.github.alice.eta.data.provider.OfficialModelCatalog
+import io.github.mangi.eta.agent.model.AgentHttpClient
+import io.github.mangi.eta.agent.model.ProviderRequestHeaders
+import io.github.mangi.eta.agent.model.ProviderUrls
+import io.github.mangi.eta.data.model.AnthropicProviderSetting
+import io.github.mangi.eta.data.model.Model
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.ModelSource
+import io.github.mangi.eta.data.model.ProviderSetting
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.data.provider.OfficialModelCatalog
 import java.util.UUID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -71,7 +71,7 @@ internal object RemoteModelFetcher {
                         if (provider.apiKey.isNotBlank()) {
                             add("Authorization", "Bearer ${provider.apiKey}")
                         }
-                        CustomHeaderFilter.mergeInto(this, provider.customHeaders)
+                        ProviderRequestHeaders.mergeInto(this, provider.baseUrl, provider.customHeaders)
                     }
                     .build()
             )
@@ -91,7 +91,7 @@ internal object RemoteModelFetcher {
                         if (provider.apiKey.isNotBlank()) {
                             add("x-api-key", provider.apiKey)
                         }
-                        CustomHeaderFilter.mergeInto(this, provider.customHeaders)
+                        ProviderRequestHeaders.mergeInto(this, provider.baseUrl, provider.customHeaders)
                     }
                     .build()
             )

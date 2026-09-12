@@ -1,7 +1,7 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
-import io.github.alice.eta.agent.accessibility.PackageWindowVisibility
-import io.github.alice.eta.core.AgentLogger
+import io.github.mangi.eta.agent.accessibility.PackageWindowVisibility
+import io.github.mangi.eta.core.AgentLogger
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertFalse
@@ -62,11 +62,11 @@ class EntrySurfaceGuardTest {
         )
 
         assertNotNull(guard)
-        assertEquals("io.github.alice.eta", guard?.targetPackageName)
+        assertEquals("io.github.mangi.eta", guard?.targetPackageName)
         assertTrue(guard?.dismissOnce() == true)
         assertTrue(guard?.dismissOnce() == true)
         assertEquals(1, dismissCalls.get())
-        assertEquals(setOf("io.github.alice.eta"), guard?.consumeScreenshotExcludedPackages())
+        assertEquals(setOf("io.github.mangi.eta"), guard?.consumeScreenshotExcludedPackages())
     }
 
     @Test

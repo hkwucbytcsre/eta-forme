@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
 import android.content.Context
 import android.net.Uri
@@ -6,9 +6,9 @@ import android.os.ParcelFileDescriptor
 import android.os.SystemClock
 import android.util.Base64
 import android.util.Base64InputStream
-import io.github.alice.eta.agent.media.AgentImageCodec
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.agent.media.AgentImageCodec
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.core.AndroidAgentLogger
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.Closeable
@@ -195,7 +195,7 @@ internal object AgentRuntimeImageTransfer {
                 source = image.source,
             ) ?: throw ImageTransferException("无法读取旧协议中的图片")
         }
-        request.request.copy(images = images)
+        request.materializeText().copy(images = images)
     }
 
     private fun AgentModelClient.ModelImage.toWireImage(

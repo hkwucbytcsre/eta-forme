@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.browser
+package io.github.mangi.eta.agent.browser
 
 import org.json.JSONArray
 import org.json.JSONObject

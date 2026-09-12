@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import android.content.Context
 import androidx.compose.runtime.Composable
@@ -13,12 +13,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import io.github.libxposed.service.XposedService
-import io.github.alice.eta.EtaApp
-import io.github.alice.eta.R
-import io.github.alice.eta.agent.device.RootAccess
-import io.github.alice.eta.agent.device.RootAccessState
-import io.github.alice.eta.agent.device.RootAccessStatus
-import io.github.alice.eta.agent.tool.AgentToolCapabilities
+import io.github.mangi.eta.EtaApp
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.device.RootAccess
+import io.github.mangi.eta.agent.device.RootAccessState
+import io.github.mangi.eta.agent.device.RootAccessStatus
+import io.github.mangi.eta.agent.tool.AgentToolCapabilities
 
 internal data class DeviceCapabilitiesUi(
     val root: RootAccessState,

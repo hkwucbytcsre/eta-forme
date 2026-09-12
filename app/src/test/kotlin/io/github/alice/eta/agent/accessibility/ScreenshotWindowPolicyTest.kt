@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.accessibility
+package io.github.mangi.eta.agent.accessibility
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -8,7 +8,7 @@ class ScreenshotWindowPolicyTest {
     fun `only confirmed own accessibility overlay is excluded`() {
         assertEquals(
             ScreenshotWindowPolicy.Decision.EXCLUDE,
-            decide(overlay = true, resolvedPackage = "io.github.alice.eta"),
+            decide(overlay = true, resolvedPackage = "io.github.mangi.eta"),
         )
         assertEquals(
             ScreenshotWindowPolicy.Decision.CAPTURE,
@@ -57,7 +57,7 @@ class ScreenshotWindowPolicyTest {
         active = active,
         focused = focused,
         resolvedPackage = resolvedPackage,
-        ownPackage = "io.github.alice.eta",
+        ownPackage = "io.github.mangi.eta",
         excludedPackages = excluded,
     )
 }

@@ -1,9 +1,9 @@
-package io.github.alice.eta.data.provider
+package io.github.mangi.eta.data.provider
 
-import io.github.alice.eta.data.model.ProviderSetting
-import io.github.alice.eta.data.model.ProviderSourceTypes
-import io.github.alice.eta.data.model.ProviderTypes
-import io.github.alice.eta.data.model.runtimeProviderType
+import io.github.mangi.eta.data.model.ProviderSetting
+import io.github.mangi.eta.data.model.ProviderSourceTypes
+import io.github.mangi.eta.data.model.ProviderTypes
+import io.github.mangi.eta.data.model.runtimeProviderType
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
 internal object ProviderSourceRegistry {

@@ -1,7 +1,7 @@
-package io.github.alice.eta.agent.model
+package io.github.mangi.eta.agent.model
 
-import io.github.alice.eta.agent.runtime.AgentEvent
-import io.github.alice.eta.agent.runtime.AgentRunController
+import io.github.mangi.eta.agent.runtime.AgentEvent
+import io.github.mangi.eta.agent.runtime.AgentRunController
 
 /** 重试只包围模型请求；完整响应返回前不提交历史或执行本地工具。 */
 internal class AgentModelRetry(
@@ -42,7 +42,10 @@ internal class AgentModelRetry(
                 controller.throwIfCancelled()
                 if (callbackFailed || Thread.currentThread().isInterrupted) throw failure
                 val classified = AgentModelFailure.transport(failure) ?: throw failure
-                if (!classified.retryable || hostedToolStarted) throw classified
+                if (hostedToolStarted) throw AgentModelFailure(
+                    classified.code, false, classified.message.orEmpty(), classified, recoveryAllowed = false,
+                )
+                if (!classified.retryable) throw classified
                 if (retries == MAX_RETRIES) {
                     throw AgentModelFailure(
                         classified.code, false,
@@ -55,7 +58,7 @@ internal class AgentModelRetry(
                 onEvent(AgentEvent.ModelRetryScheduled(round, retries, MAX_RETRIES, delayMs.toInt(), classified.code))
                 waitBeforeRetry(controller, delayMs)
                 controller.throwIfCancelled()
-                // 展示保留失败尝试，模型上下文与最终推理摘要只接纳成功尝试。
+                // 展示保留失败尝试，模型上下文与最终思考摘要只接纳成功尝试。
                 discardAttemptReasoning()
                 round += 1
             }

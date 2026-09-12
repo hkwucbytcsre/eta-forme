@@ -1,9 +1,9 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import android.content.Context
 import android.net.Uri
-import io.github.alice.eta.agent.device.AgentFileReferenceGateway
-import io.github.alice.eta.agent.terminal.TerminalPrivateStorage
+import io.github.mangi.eta.agent.device.AgentFileReferenceGateway
+import io.github.mangi.eta.agent.terminal.TerminalPrivateStorage
 import java.io.File
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive

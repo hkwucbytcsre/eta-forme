@@ -1,4 +1,4 @@
-package io.github.alice.eta.data.db
+package io.github.mangi.eta.data.db
 
 import android.content.Context
 import androidx.room.Room
@@ -6,7 +6,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteOpenHelper
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
-import io.github.alice.eta.data.model.ModelSource
+import io.github.mangi.eta.data.model.ModelSource
 import java.util.UUID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
@@ -21,7 +21,7 @@ import org.robolectric.annotation.Config
 @Config(sdk = [36])
 class EtaDatabaseMigrationTest {
     @Test
-    fun migration6To18PreservesDataAndMovesBoundedConversationContext() {
+    fun migration6To20PreservesDataAndMovesCompleteConversationContext() {
         val context = RuntimeEnvironment.getApplication() as Context
         val databaseName = "migration-${UUID.randomUUID()}.db"
         createVersion6Database(context, databaseName)
@@ -51,12 +51,16 @@ class EtaDatabaseMigrationTest {
                 EtaDatabase.MIGRATION_15_16,
                 migration16To17WithMcpData,
                 EtaDatabase.MIGRATION_17_18,
+                EtaDatabase.MIGRATION_18_19,
+                EtaDatabase.MIGRATION_19_20,
             )
             .build()
         try {
             val result = runBlocking(Dispatchers.IO) {
                 database.runtimeRunDao().runtimeResults().single()
             }
+            assertEquals("", result.contextSnapshotJson)
+            assertEquals("chat", result.operation)
             val archive = runBlocking(Dispatchers.IO) {
                 database.runtimeRunDao().archivedRuns().single().run
             }
@@ -101,7 +105,8 @@ class EtaDatabaseMigrationTest {
                 "[{\"role\":\"user\",\"content\":\"保留上下文\"}]",
                 retainedCheckpoint?.historyJson,
             )
-            assertEquals("[]", oversizedCheckpoint?.historyJson)
+            assertEquals("[\"${"x".repeat(140_000)}\"]", oversizedCheckpoint?.historyJson)
+            assertEquals(oversizedCheckpoint?.historyJson, oversizedCheckpoint?.journalJson)
             assertEquals("[]", clearedLegacyHistory)
             assertEquals("[]", conversations.first { it.id == "conv-1" }.appliedRuntimeRunIdsJson)
             assertEquals("off", conversations.first { it.id == "conv-1" }.reasoningEffort)

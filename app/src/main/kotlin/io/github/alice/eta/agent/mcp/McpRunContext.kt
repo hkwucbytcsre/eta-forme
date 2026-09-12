@@ -1,11 +1,11 @@
-package io.github.alice.eta.agent.mcp
+package io.github.mangi.eta.agent.mcp
 
 import android.util.Base64
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.data.model.McpProtocolMode
-import io.github.alice.eta.data.model.McpServerSetting
-import io.github.alice.eta.data.model.McpToolDefinition
-import io.github.alice.eta.data.repository.McpServerRepository
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.model.McpProtocolMode
+import io.github.mangi.eta.data.model.McpServerSetting
+import io.github.mangi.eta.data.model.McpToolDefinition
+import io.github.mangi.eta.data.repository.McpServerRepository
 import java.security.MessageDigest
 import org.json.JSONArray
 import org.json.JSONObject

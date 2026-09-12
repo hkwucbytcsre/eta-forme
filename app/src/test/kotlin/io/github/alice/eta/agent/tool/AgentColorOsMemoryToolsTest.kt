@@ -1,6 +1,6 @@
-package io.github.alice.eta.agent.tool
+package io.github.mangi.eta.agent.tool
 
-import io.github.alice.eta.core.ColorOsMemoryBridgeProtocol
+import io.github.mangi.eta.core.ColorOsMemoryBridgeProtocol
 import java.io.File
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
@@ -13,14 +13,14 @@ class AgentColorOsMemoryToolsTest {
     fun snapshotCopiesAllSqliteSidecars() {
         val command = buildColorOsMemorySnapshotCommand(
             source = "/data/user/0/com.oplus.aimemory/databases/ai_memory",
-            snapshot = File("/data/user/0/io.github.alice.eta/cache/eta-coloros-memory-test.db"),
+            snapshot = File("/data/user/0/io.github.mangi.eta/cache/eta-coloros-memory-test.db"),
         )
 
         assertTrue(command.contains("ai_memory-wal"))
         assertTrue(command.contains("ai_memory-shm"))
         assertTrue(command.contains("ai_memory-journal"))
         assertTrue(command.contains("eta-coloros-memory-test.db-shm"))
-        assertTrue(command.contains("rm -f '/data/user/0/io.github.alice.eta/cache/eta-coloros-memory-test.db-journal'"))
+        assertTrue(command.contains("rm -f '/data/user/0/io.github.mangi.eta/cache/eta-coloros-memory-test.db-journal'"))
     }
 
     @Test

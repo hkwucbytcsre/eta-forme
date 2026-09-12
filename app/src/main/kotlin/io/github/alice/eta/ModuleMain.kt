@@ -1,25 +1,25 @@
-package io.github.alice.eta
+package io.github.mangi.eta
 
 import io.github.libxposed.api.XposedModule
 import io.github.libxposed.api.XposedInterface.HookHandle
 import io.github.libxposed.api.XposedModuleInterface.ModuleLoadedParam
 import io.github.libxposed.api.XposedModuleInterface.PackageReadyParam
 import io.github.libxposed.api.XposedModuleInterface.SystemServerStartingParam
-import io.github.alice.eta.config.Prefs
-import io.github.alice.eta.core.HookInstallation
-import io.github.alice.eta.core.ModuleConfig
-import io.github.alice.eta.core.ModuleLogger
-import io.github.alice.eta.core.safeLogType
-import io.github.alice.eta.hook.aimemory.ColorOsMemoryHooks
-import io.github.alice.eta.hook.breeno.BreenoHooks
-import io.github.alice.eta.hook.colordirect.ColorDirectHooks
-import io.github.alice.eta.hook.google.GoogleAppHooks
-import io.github.alice.eta.hook.google.GoogleEligibilityHooks
-import io.github.alice.eta.hook.hyperos.HyperOsLauncherHooks
-import io.github.alice.eta.hook.hyperos.HyperOsScreenSearchHooks
-import io.github.alice.eta.hook.system.SystemServerHooks
-import io.github.alice.eta.hook.system.SystemUiHooks
-import io.github.alice.eta.hook.xiaoai.XiaoAiHooks
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.core.HookInstallation
+import io.github.mangi.eta.core.ModuleConfig
+import io.github.mangi.eta.core.ModuleLogger
+import io.github.mangi.eta.core.safeLogType
+import io.github.mangi.eta.hook.aimemory.ColorOsMemoryHooks
+import io.github.mangi.eta.hook.breeno.BreenoHooks
+import io.github.mangi.eta.hook.colordirect.ColorDirectHooks
+import io.github.mangi.eta.hook.google.GoogleAppHooks
+import io.github.mangi.eta.hook.google.GoogleEligibilityHooks
+import io.github.mangi.eta.hook.hyperos.HyperOsLauncherHooks
+import io.github.mangi.eta.hook.hyperos.HyperOsScreenSearchHooks
+import io.github.mangi.eta.hook.system.SystemServerHooks
+import io.github.mangi.eta.hook.system.SystemUiHooks
+import io.github.mangi.eta.hook.xiaoai.XiaoAiHooks
 
 class ModuleMain : XposedModule() {
 

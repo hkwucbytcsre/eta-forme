@@ -1,8 +1,8 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
 import android.content.Context
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.data.db.EtaDatabase
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.db.EtaDatabase
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

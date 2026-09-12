@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.components
+package io.github.mangi.eta.ui.components
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size

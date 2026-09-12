@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.tool
+package io.github.mangi.eta.agent.tool
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

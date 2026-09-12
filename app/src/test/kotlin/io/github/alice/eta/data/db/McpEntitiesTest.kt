@@ -1,7 +1,7 @@
-package io.github.alice.eta.data.db
+package io.github.mangi.eta.data.db
 
-import io.github.alice.eta.data.model.McpAuthorizationType
-import io.github.alice.eta.data.model.McpProtocolMode
+import io.github.mangi.eta.data.model.McpAuthorizationType
+import io.github.mangi.eta.data.model.McpProtocolMode
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -1,8 +1,9 @@
-package io.github.alice.eta.ui.model
+package io.github.mangi.eta.ui.model
 
-import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.data.model.ReasoningEffort
 
 sealed interface AgentHomeAction {
+    data object CompactContext : AgentHomeAction
     data class ReasoningEffortChanged(val effort: ReasoningEffort) : AgentHomeAction
     data class ModelSelected(val modelId: String) : AgentHomeAction
     data class SubmitMessage(val text: String) : AgentHomeAction
@@ -32,6 +33,7 @@ sealed interface PermissionHealthAction {
 }
 
 sealed interface AgentChatAction {
+    data object CompactContext : AgentChatAction
     data object NavigateBack : AgentChatAction
     data class ReasoningEffortChanged(val effort: ReasoningEffort) : AgentChatAction
     data class ModelSelected(val modelId: String) : AgentChatAction

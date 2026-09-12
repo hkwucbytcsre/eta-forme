@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.terminal
+package io.github.mangi.eta.agent.terminal
 
 /**
  * 终端单元格样式的中性表示：颜色为 0xAARRGGBB 的 Long，不依赖 Compose。

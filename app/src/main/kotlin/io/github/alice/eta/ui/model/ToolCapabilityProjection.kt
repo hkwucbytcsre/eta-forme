@@ -1,9 +1,9 @@
-package io.github.alice.eta.ui.model
+package io.github.mangi.eta.ui.model
 
-import io.github.alice.eta.agent.tool.AgentToolCapabilities
-import io.github.alice.eta.agent.tool.AgentToolRequirements
-import io.github.alice.eta.agent.tool.LocalToolRequirement
-import io.github.alice.eta.agent.tool.RootRequirement
+import io.github.mangi.eta.agent.tool.AgentToolCapabilities
+import io.github.mangi.eta.agent.tool.AgentToolRequirements
+import io.github.mangi.eta.agent.tool.LocalToolRequirement
+import io.github.mangi.eta.agent.tool.RootRequirement
 
 /** 浏览器的几个说明卡展示同一工具的不同操作，要求仍来自实际执行工具。 */
 internal fun toolCardRequirement(id: String): LocalToolRequirement {

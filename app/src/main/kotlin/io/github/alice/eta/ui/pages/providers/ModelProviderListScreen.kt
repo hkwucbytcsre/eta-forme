@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.pages.providers
+package io.github.mangi.eta.ui.pages.providers
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
@@ -25,17 +25,17 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import io.github.alice.eta.EtaApp
-import io.github.alice.eta.R
-import io.github.alice.eta.data.model.ProviderSetting
-import io.github.alice.eta.data.model.ProviderSourceTypes
-import io.github.alice.eta.data.model.typeLabel
-import io.github.alice.eta.data.repository.ProviderRepository
-import io.github.alice.eta.data.repository.RuntimeConfigRepository
-import io.github.alice.eta.ui.components.MiuixDialogActions
-import io.github.alice.eta.ui.components.MiuixScaffoldPage
-import io.github.alice.eta.ui.navigation.AppRoute
-import io.github.alice.eta.ui.navigation.NewProviderType
+import io.github.mangi.eta.EtaApp
+import io.github.mangi.eta.R
+import io.github.mangi.eta.data.model.ProviderSetting
+import io.github.mangi.eta.data.model.ProviderSourceTypes
+import io.github.mangi.eta.data.model.typeLabel
+import io.github.mangi.eta.data.repository.ProviderRepository
+import io.github.mangi.eta.data.repository.RuntimeConfigRepository
+import io.github.mangi.eta.ui.components.MiuixDialogActions
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+import io.github.mangi.eta.ui.navigation.AppRoute
+import io.github.mangi.eta.ui.navigation.NewProviderType
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton

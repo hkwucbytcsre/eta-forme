@@ -1,7 +1,7 @@
-package io.github.alice.eta.hook.system
+package io.github.mangi.eta.hook.system
 
-import io.github.alice.eta.config.PowerAssistantTarget
-import io.github.alice.eta.core.ModuleConfig
+import io.github.mangi.eta.config.PowerAssistantTarget
+import io.github.mangi.eta.core.ModuleConfig
 
 internal data class AssistantBinding(
     val target: PowerAssistantTarget,

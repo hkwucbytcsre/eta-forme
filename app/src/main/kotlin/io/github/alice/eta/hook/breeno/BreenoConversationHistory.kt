@@ -1,6 +1,6 @@
-package io.github.alice.eta.hook.breeno
+package io.github.mangi.eta.hook.breeno
 
-import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.model.AgentModelClient
 
 internal object BreenoConversationHistory {
     private const val MAX_MESSAGES = 24

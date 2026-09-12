@@ -1,4 +1,4 @@
-package io.github.alice.eta.core
+package io.github.mangi.eta.core
 
 import android.content.ComponentName
 import android.content.Context

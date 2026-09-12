@@ -1,6 +1,6 @@
-package io.github.alice.eta.agent.terminal
+package io.github.mangi.eta.agent.terminal
 
-import io.github.alice.eta.core.AgentLogger
+import io.github.mangi.eta.core.AgentLogger
 
 import android.content.Context
 import java.io.File

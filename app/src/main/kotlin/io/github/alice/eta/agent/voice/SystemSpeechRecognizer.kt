@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.voice
+package io.github.mangi.eta.agent.voice
 
 import android.content.ComponentName
 import android.content.Context

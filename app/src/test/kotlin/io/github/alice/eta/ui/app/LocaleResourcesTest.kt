@@ -1,8 +1,8 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import android.content.Context
 import android.content.res.Configuration
-import io.github.alice.eta.R
+import io.github.mangi.eta.R
 import java.util.Locale
 import org.junit.Assert.assertEquals
 import org.junit.Test

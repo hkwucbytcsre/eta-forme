@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.media
+package io.github.mangi.eta.agent.media
 
 import android.content.ContentProvider
 import android.content.ContentValues
@@ -229,7 +229,7 @@ class AgentImageCodecTest {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 90, output)
         }
         bitmap.recycle()
-        val authority = "io.github.alice.eta.test.picker.${System.nanoTime()}"
+        val authority = "io.github.mangi.eta.test.picker.${System.nanoTime()}"
         val provider = TypedImageProvider(sourceFile)
         provider.attachInfo(
             context,

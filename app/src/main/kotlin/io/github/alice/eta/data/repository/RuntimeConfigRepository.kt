@@ -1,21 +1,21 @@
-package io.github.alice.eta.data.repository
+package io.github.mangi.eta.data.repository
 
 import android.content.SharedPreferences
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.config.Prefs
-import io.github.alice.eta.data.datastore.SettingsDataStore
-import io.github.alice.eta.data.model.AnthropicProviderSetting
-import io.github.alice.eta.data.model.CustomProviderSetting
-import io.github.alice.eta.data.model.Model
-import io.github.alice.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.alice.eta.data.model.OpenAiEndpointMode
-import io.github.alice.eta.data.model.ProviderSetting
-import io.github.alice.eta.data.model.ReasoningEffort
-import io.github.alice.eta.data.model.runtimeProviderType
-import io.github.alice.eta.data.model.selectedOrFirstModel
-import io.github.alice.eta.data.provider.BuiltinProviders
-import io.github.alice.eta.data.provider.ProviderSourceRegistry
-import io.github.alice.eta.data.provider.ReasoningCapabilityResolver
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.data.datastore.SettingsDataStore
+import io.github.mangi.eta.data.model.AnthropicProviderSetting
+import io.github.mangi.eta.data.model.CustomProviderSetting
+import io.github.mangi.eta.data.model.Model
+import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
+import io.github.mangi.eta.data.model.OpenAiEndpointMode
+import io.github.mangi.eta.data.model.ProviderSetting
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.data.model.runtimeProviderType
+import io.github.mangi.eta.data.model.selectedOrFirstModel
+import io.github.mangi.eta.data.provider.BuiltinProviders
+import io.github.mangi.eta.data.provider.ProviderSourceRegistry
+import io.github.mangi.eta.data.provider.ReasoningCapabilityResolver
 import io.github.libxposed.service.XposedService
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -99,11 +99,11 @@ internal object RuntimeConfigRepository {
             is CustomProviderSetting -> provider.endpointMode
             is AnthropicProviderSetting -> ""
         }
-        val inferOpenAiCatalog = sourceType == io.github.alice.eta.data.model.ProviderSourceTypes.CUSTOM &&
+        val inferOpenAiCatalog = sourceType == io.github.mangi.eta.data.model.ProviderSourceTypes.CUSTOM &&
             endpointMode == OpenAiEndpointMode.RESPONSES
         val reasoningCapabilities = ReasoningCapabilityResolver.resolve(
             sourceType = if (inferOpenAiCatalog) {
-                io.github.alice.eta.data.model.ProviderSourceTypes.OPENAI
+                io.github.mangi.eta.data.model.ProviderSourceTypes.OPENAI
             } else {
                 sourceType
             },

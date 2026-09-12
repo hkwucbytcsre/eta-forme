@@ -1,13 +1,13 @@
-package io.github.alice.eta.data.repository
+package io.github.mangi.eta.data.repository
 
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.data.model.CustomHeader
-import io.github.alice.eta.data.model.Model
-import io.github.alice.eta.data.model.ModelReasoningCapabilities
-import io.github.alice.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.alice.eta.data.model.ProviderTypes
-import io.github.alice.eta.data.model.ProviderSourceTypes
-import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.model.CustomHeader
+import io.github.mangi.eta.data.model.Model
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
+import io.github.mangi.eta.data.model.ProviderTypes
+import io.github.mangi.eta.data.model.ProviderSourceTypes
+import io.github.mangi.eta.data.model.ReasoningEffort
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive

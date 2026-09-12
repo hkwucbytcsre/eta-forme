@@ -1,8 +1,8 @@
-package io.github.alice.eta.agent.model
+package io.github.mangi.eta.agent.model
 
-import io.github.alice.eta.agent.runtime.AgentEvent
-import io.github.alice.eta.agent.runtime.AgentRunController
-import io.github.alice.eta.agent.tool.AgentToolCapabilities
+import io.github.mangi.eta.agent.runtime.AgentEvent
+import io.github.mangi.eta.agent.runtime.AgentRunController
+import io.github.mangi.eta.agent.tool.AgentToolCapabilities
 import java.util.concurrent.atomic.AtomicInteger
 import org.json.JSONArray
 import org.json.JSONObject
@@ -566,6 +566,7 @@ class AgentModelClientLoopTest {
     @Test
     fun retryPreservesToolResultsAndImagesWithoutReplayingToolsOrFailedReasoning() {
         val requests = mutableListOf<String>()
+        val sessions = mutableListOf<String>()
         val events = mutableListOf<AgentEvent>()
         var executions = 0
         val provider = object : AgentProviderClient by ScriptedProvider(emptyList()) {
@@ -575,6 +576,7 @@ class AgentModelClientLoopTest {
                 onEvent: (ProviderEvent) -> Unit,
             ): ProviderResponse {
                 requests += request.messages.toString()
+                sessions += request.sessionId
                 onEvent(ProviderEvent.RequestStarted)
                 return when (requests.size) {
                     1 -> ProviderResponse(assistant(
@@ -606,10 +608,12 @@ class AgentModelClientLoopTest {
             },
             runController = AgentRunController(), traceFormatter = AgentTraceFormatter(),
             onEvent = events::add, modelRetry = AgentModelRetry { _, _ -> },
+            sessionId = "conversation-retry",
         )
         val result = loop.run()
         assertEquals(1, executions)
         assertEquals(3, requests.size)
+        assertEquals(List(3) { "conversation-retry" }, sessions)
         assertEquals(requests[1], requests[2])
         assertTrue(requests[2].contains("data:image/png"))
         assertFalse(messages.toString().contains("data:image/png"))

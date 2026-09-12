@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
 internal data class AgentTokenUsage(
     val contextTokens: Int? = null,

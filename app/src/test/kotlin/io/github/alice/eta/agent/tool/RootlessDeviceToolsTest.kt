@@ -1,13 +1,13 @@
-package io.github.alice.eta.agent.tool
+package io.github.mangi.eta.agent.tool
 
 import android.app.Notification
 import android.app.NotificationManager
 import android.content.ComponentName
 import android.provider.Settings
-import io.github.alice.eta.agent.device.AgentNotificationHistoryService
-import io.github.alice.eta.agent.device.BoundedRootCommandExecutor
-import io.github.alice.eta.agent.device.RootShellDeviceController
-import io.github.alice.eta.core.AgentLogger
+import io.github.mangi.eta.agent.device.AgentNotificationHistoryService
+import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
+import io.github.mangi.eta.agent.device.RootShellDeviceController
+import io.github.mangi.eta.core.AgentLogger
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

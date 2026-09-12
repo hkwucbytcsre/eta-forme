@@ -1,18 +1,18 @@
-package io.github.alice.eta.hook.colordirect
+package io.github.mangi.eta.hook.colordirect
 
-import io.github.alice.eta.core.HookSupport
-import io.github.alice.eta.core.HookInstallation
-import io.github.alice.eta.core.HookRegistrar
-import io.github.alice.eta.core.ModuleConfig
-import io.github.alice.eta.core.ModuleLogger
-import io.github.alice.eta.hook.system.CircleToSearchInvoker
+import io.github.mangi.eta.core.HookSupport
+import io.github.mangi.eta.core.HookInstallation
+import io.github.mangi.eta.core.HookRegistrar
+import io.github.mangi.eta.core.ModuleConfig
+import io.github.mangi.eta.core.ModuleLogger
+import io.github.mangi.eta.hook.system.CircleToSearchInvoker
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Parcelable
 import android.os.SystemClock
-import io.github.alice.eta.config.Prefs
+import io.github.mangi.eta.config.Prefs
 import io.github.libxposed.api.XposedModule
 import org.json.JSONObject
 

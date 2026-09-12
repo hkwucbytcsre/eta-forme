@@ -1,19 +1,19 @@
-package io.github.alice.eta.hook.system
+package io.github.mangi.eta.hook.system
 
-import io.github.alice.eta.core.HookSupport
-import io.github.alice.eta.core.HookInstallation
-import io.github.alice.eta.core.HookRegistrar
-import io.github.alice.eta.core.ModuleConfig
-import io.github.alice.eta.core.ModuleLogger
-import io.github.alice.eta.core.safeLogType
+import io.github.mangi.eta.core.HookSupport
+import io.github.mangi.eta.core.HookInstallation
+import io.github.mangi.eta.core.HookRegistrar
+import io.github.mangi.eta.core.ModuleConfig
+import io.github.mangi.eta.core.ModuleLogger
+import io.github.mangi.eta.core.safeLogType
 
 import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Message
 import android.os.SystemClock
-import io.github.alice.eta.config.PowerAssistantTarget
-import io.github.alice.eta.config.Prefs
+import io.github.mangi.eta.config.PowerAssistantTarget
+import io.github.mangi.eta.config.Prefs
 import io.github.libxposed.api.XposedModule
 
 internal object PowerHooks {

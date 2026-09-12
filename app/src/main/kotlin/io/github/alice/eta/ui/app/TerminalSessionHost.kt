@@ -1,7 +1,7 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import android.content.Context
-import io.github.alice.eta.agent.runtime.AgentExecutionService
+import io.github.mangi.eta.agent.runtime.AgentExecutionService
 import java.util.UUID
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference

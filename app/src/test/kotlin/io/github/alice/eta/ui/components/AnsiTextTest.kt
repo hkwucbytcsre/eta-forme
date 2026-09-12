@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.components
+package io.github.mangi.eta.ui.components
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight

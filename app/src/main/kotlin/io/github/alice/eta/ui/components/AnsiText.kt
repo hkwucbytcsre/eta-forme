@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.components
+package io.github.mangi.eta.ui.components
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
@@ -7,8 +7,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
-import io.github.alice.eta.agent.terminal.AnsiSgr
-import io.github.alice.eta.agent.terminal.SgrStyle
+import io.github.mangi.eta.agent.terminal.AnsiSgr
+import io.github.mangi.eta.agent.terminal.SgrStyle
 
 /** 中性样式到 Compose 的映射；dim 以透明度衰减表达。 */
 internal fun SgrStyle.toSpanStyle(): SpanStyle {

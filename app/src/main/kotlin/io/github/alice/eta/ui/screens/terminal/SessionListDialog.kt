@@ -1,5 +1,5 @@
-package io.github.alice.eta.ui.screens.terminal
-import io.github.alice.eta.R
+package io.github.mangi.eta.ui.screens.terminal
+import io.github.mangi.eta.R
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.foundation.clickable
@@ -19,8 +19,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import io.github.alice.eta.agent.terminal.TerminalEnvironment
-import io.github.alice.eta.ui.app.displayName
+import io.github.mangi.eta.agent.terminal.TerminalEnvironment
+import io.github.mangi.eta.ui.app.displayName
 import top.yukonga.miuix.kmp.basic.Text
 import top.yukonga.miuix.kmp.basic.TextButton
 import top.yukonga.miuix.kmp.theme.MiuixTheme

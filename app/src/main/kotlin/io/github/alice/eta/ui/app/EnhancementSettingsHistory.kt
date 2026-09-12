@@ -1,9 +1,9 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import android.content.Context
 import android.content.SharedPreferences
-import io.github.alice.eta.config.PowerAssistantTarget
-import io.github.alice.eta.config.Prefs
+import io.github.mangi.eta.config.PowerAssistantTarget
+import io.github.mangi.eta.config.Prefs
 
 /** 只用于断连后的界面展示；从不作为 Hook 配置来源，也不接收离线配置修改。 */
 internal class EnhancementSettingsHistory(context: Context) {

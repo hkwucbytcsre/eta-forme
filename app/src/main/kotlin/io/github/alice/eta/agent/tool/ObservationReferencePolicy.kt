@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.tool
+package io.github.mangi.eta.agent.tool
 
 internal object ObservationReferencePolicy {
     enum class Status {

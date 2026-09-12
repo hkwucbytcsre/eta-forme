@@ -1,12 +1,12 @@
-package io.github.alice.eta.data.repository
+package io.github.mangi.eta.data.repository
 
 import android.content.Context
-import io.github.alice.eta.EtaApp
-import io.github.alice.eta.agent.terminal.LinuxDistribution
-import io.github.alice.eta.agent.terminal.LinuxEnvironmentPaths
-import io.github.alice.eta.agent.terminal.LinuxExecutionBackend
+import io.github.mangi.eta.EtaApp
+import io.github.mangi.eta.agent.terminal.LinuxDistribution
+import io.github.mangi.eta.agent.terminal.LinuxEnvironmentPaths
+import io.github.mangi.eta.agent.terminal.LinuxExecutionBackend
 import java.io.File
-import io.github.alice.eta.data.datastore.SettingsDataStore
+import io.github.mangi.eta.data.datastore.SettingsDataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals

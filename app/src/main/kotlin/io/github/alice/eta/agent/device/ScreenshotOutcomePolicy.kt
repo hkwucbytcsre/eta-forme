@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.device
+package io.github.mangi.eta.agent.device
 
 internal enum class ScreenshotQuality(val wireName: String) {
     NOT_REQUESTED("not_requested"),

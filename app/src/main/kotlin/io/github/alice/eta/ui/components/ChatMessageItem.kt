@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.components
+package io.github.mangi.eta.ui.components
 
 import android.graphics.BitmapFactory
 import android.util.Base64
@@ -51,11 +51,13 @@ import androidx.compose.material.icons.rounded.AutoAwesome
 import androidx.compose.material.icons.rounded.Build
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.ChevronRight
+import androidx.compose.material.icons.rounded.Compress
 import androidx.compose.material.icons.rounded.ContentCopy
 import androidx.compose.material.icons.rounded.Delete
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.ExpandMore
 import androidx.compose.material.icons.rounded.Language
+import androidx.compose.material.icons.rounded.Lightbulb
 import androidx.compose.material.icons.rounded.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -86,7 +88,6 @@ import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.isTraversalGroup
@@ -133,26 +134,23 @@ import com.mikepenz.markdown.model.markdownDimens
 import com.mikepenz.markdown.model.markdownPadding
 import com.mikepenz.markdown.model.rememberMarkdownState
 import com.mikepenz.markdown.utils.getUnescapedTextInNode
-import io.github.alice.eta.R
-import io.github.alice.eta.agent.browser.AgentBrowserSession
-import io.github.alice.eta.agent.browser.BrowserSessionSnapshot
-import io.github.alice.eta.agent.model.AgentFileReferencePromptCodec
-import io.github.alice.eta.agent.overlay.toolDisplayName
-import io.github.alice.eta.ui.markdown.StreamingGfmParserSession
-import io.github.alice.eta.ui.markdown.StreamingGfmSnapshot
-import io.github.alice.eta.ui.model.AgentChatMessageUi
-import io.github.alice.eta.ui.model.AgentMessageUi
-import io.github.alice.eta.ui.model.RunTraceMessageUi
-import io.github.alice.eta.ui.model.SuggestionChipsMessageUi
-import io.github.alice.eta.ui.model.SystemNoticeCode
-import io.github.alice.eta.ui.model.SystemNoticeMessageUi
-import io.github.alice.eta.ui.model.ThinkingMessageUi
-import io.github.alice.eta.ui.model.ToolActivityMessageUi
-import io.github.alice.eta.ui.model.ToolActivityStatusUi
-import io.github.alice.eta.ui.model.ToolSummaryMessageUi
-import io.github.alice.eta.ui.model.UserMessageUi
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.browser.AgentBrowserSession
+import io.github.mangi.eta.agent.browser.BrowserSessionSnapshot
+import io.github.mangi.eta.agent.model.AgentFileReferencePromptCodec
+import io.github.mangi.eta.agent.overlay.toolDisplayName
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.RunTraceMessageUi
+import io.github.mangi.eta.ui.model.SuggestionChipsMessageUi
+import io.github.mangi.eta.ui.model.SystemNoticeCode
+import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
+import io.github.mangi.eta.ui.model.ThinkingMessageUi
+import io.github.mangi.eta.ui.model.ToolActivityMessageUi
+import io.github.mangi.eta.ui.model.ToolActivityStatusUi
+import io.github.mangi.eta.ui.model.ToolSummaryMessageUi
+import io.github.mangi.eta.ui.model.UserMessageUi
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
@@ -287,36 +285,41 @@ internal fun ChatMessageItem(
             onRegenerate = { onRegenerateMessage(message.id) },
             modifier = modifier,
         )
-        is SystemNoticeMessageUi -> AgentMessageBlock(
-            message = AgentMessageUi(
-                id = message.id,
-                content = buildString {
-                    append(
-                        stringResource(
-                            when (message.code) {
-                                SystemNoticeCode.Stopped -> R.string.system_notice_stopped
-                                SystemNoticeCode.EmptyResult -> R.string.system_notice_empty_result
-                                SystemNoticeCode.ModelRetry -> R.string.system_notice_model_retry
-                                SystemNoticeCode.RuntimeFailed -> R.string.system_notice_runtime_failed
-                                SystemNoticeCode.Interrupted -> R.string.system_notice_interrupted
-                            },
-                        ),
-                    )
-                    message.detail?.takeIf(String::isNotBlank)?.let { detail ->
-                        append("\n\n")
-                        append(detail)
-                    }
-                },
-                renderMarkdown = false,
-            ),
-            retainedStreamingState = null,
-            showCopyAction = showCopyAction,
-            showMessageActions = showMessageActions,
-            messageActionsEnabled = messageActionsEnabled,
-            onDelete = { onDeleteMessage(message.id) },
-            onRegenerate = { onRegenerateMessage(message.id) },
-            modifier = modifier,
-        )
+        is SystemNoticeMessageUi -> if (message.code == SystemNoticeCode.ContextCompaction) {
+            ContextCompactionMarker(message = message, modifier = modifier)
+        } else {
+            AgentMessageBlock(
+                message = AgentMessageUi(
+                    id = message.id,
+                    content = buildString {
+                        append(
+                            stringResource(
+                                when (message.code) {
+                                    SystemNoticeCode.Stopped -> R.string.system_notice_stopped
+                                    SystemNoticeCode.EmptyResult -> R.string.system_notice_empty_result
+                                    SystemNoticeCode.ContextCompaction -> R.string.context_compaction
+                                    SystemNoticeCode.ModelRetry -> R.string.system_notice_model_retry
+                                    SystemNoticeCode.RuntimeFailed -> R.string.system_notice_runtime_failed
+                                    SystemNoticeCode.Interrupted -> R.string.system_notice_interrupted
+                                },
+                            ),
+                        )
+                        message.detail?.takeIf(String::isNotBlank)?.let { detail ->
+                            append("\n\n")
+                            append(detail)
+                        }
+                    },
+                    renderMarkdown = false,
+                ),
+                retainedStreamingState = null,
+                showCopyAction = showCopyAction,
+                showMessageActions = showMessageActions,
+                messageActionsEnabled = messageActionsEnabled,
+                onDelete = { onDeleteMessage(message.id) },
+                onRegenerate = { onRegenerateMessage(message.id) },
+                modifier = modifier,
+            )
+        }
         is ThinkingMessageUi -> ThinkingRow(
             message = message,
             retainedStreamingState = retainedStreamingState,
@@ -396,7 +399,7 @@ internal fun AgentWorkProcess(
             Icon(
                 imageVector = when {
                     runningTool != null -> iconForTool(runningTool.toolName)
-                    running -> ImageVector.vectorResource(R.drawable.ic_atom)
+                    running -> Icons.Rounded.Lightbulb
                     else -> Icons.Rounded.Build
                 },
                 contentDescription = null,
@@ -653,6 +656,61 @@ private fun MessageTooltipAction(
     }
 }
 
+// ── 上下文压缩：时间线中的轻量胶囊标记 ─────────────────────────────────
+
+/**
+ * 压缩不是一轮对话结果，而是上下文维护事件；用居中胶囊标记与助手正文区分，
+ * 进行中通过图标脉冲反馈，结束后保留压缩前后的 token 信息。
+ */
+@Composable
+private fun ContextCompactionMarker(
+    message: SystemNoticeMessageUi,
+    modifier: Modifier = Modifier,
+) {
+    val pulseAlpha = rememberActivePulse(active = message.running, label = "compaction_pulse")
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 20.dp, vertical = 6.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Row(
+            modifier = Modifier
+                .clip(RoundedCornerShape(percent = 50))
+                .background(MiuixTheme.colorScheme.surface)
+                .border(
+                    0.5.dp,
+                    MiuixTheme.colorScheme.outline.copy(alpha = 0.5f),
+                    RoundedCornerShape(percent = 50),
+                )
+                .padding(horizontal = 12.dp, vertical = 6.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.Compress,
+                contentDescription = null,
+                modifier = Modifier
+                    .size(12.dp)
+                    .graphicsLayer(alpha = if (message.running) pulseAlpha else 1f),
+                tint = if (message.running) {
+                    MiuixTheme.colorScheme.primary
+                } else {
+                    MiuixTheme.colorScheme.onSurfaceVariantSummary
+                },
+            )
+            Spacer(modifier = Modifier.width(6.dp))
+            Text(
+                text = message.detail?.takeIf(String::isNotBlank)
+                    ?: stringResource(R.string.context_compaction),
+                style = MiuixTheme.textStyles.footnote1,
+                color = MiuixTheme.colorScheme.onSurfaceVariantSummary,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        }
+    }
+}
+
 // ── Agent 结果 ───────────────────────────────────────────────────────
 
 @Composable
@@ -680,8 +738,12 @@ private fun AgentMessageBlock(
     } else {
         null
     }
-    LaunchedEffect(retainedStreamingState, streamingRevealComplete, message.content) {
-        retainedStreamingState?.revealedContent = message.content.takeIf { streamingRevealComplete }
+    val completedMarkdownState = (streamingState ?: retainedStreamingState)
+        ?.snapshot?.completedStateFor(message.content)
+    val revealComplete = streamingRevealComplete && !message.isStreaming &&
+        (streamingState == null || completedMarkdownState != null)
+    LaunchedEffect(retainedStreamingState, revealComplete, message.content) {
+        retainedStreamingState?.revealedContent = message.content.takeIf { revealComplete }
     }
     LaunchedEffect(copied) {
         if (copied) {
@@ -701,7 +763,7 @@ private fun AgentMessageBlock(
                     modifier = Modifier.padding(top = 4.dp)
                 )
             }
-            streamingState != null && !streamingRevealComplete -> {
+            streamingState != null && !revealComplete -> {
                 StreamingMarkdown(
                     state = streamingState,
                     content = message.content,
@@ -714,6 +776,7 @@ private fun AgentMessageBlock(
                 SelectionContainer {
                     StableMarkdown(
                         content = message.content,
+                        parsedState = completedMarkdownState,
                         modifier = Modifier.fillMaxWidth(),
                     )
                 }
@@ -733,7 +796,7 @@ private fun AgentMessageBlock(
             showCopyAction &&
             !message.isStreaming &&
             message.content.isNotBlank() &&
-            (!keepStreamingMarkdown || streamingRevealComplete)
+            revealComplete
         ) {
             Row(
                 modifier = Modifier
@@ -806,14 +869,17 @@ private fun StableMarkdown(
     content: String,
     modifier: Modifier = Modifier,
     tone: ChatMarkdownTone = ChatMarkdownTone.Answer,
-    markdownState: MarkdownState = rememberMarkdownState(
+    markdownState: MarkdownState? = null,
+    parsedState: State.Success? = null,
+) {
+    // 流式终态已有完整 AST，直接复用，避免新解析器的 Loading 原文先撑高页面再缩回。
+    val state = parsedState ?: (markdownState ?: rememberMarkdownState(
         content = content,
         retainState = true,
-    ),
-) {
+    )).state.collectAsState().value
     val components = remember { chatMarkdownComponents() }
     Markdown(
-        markdownState = markdownState,
+        state = state,
         colors = chatMarkdownColors(tone),
         typography = chatMarkdownTypography(tone),
         padding = chatMarkdownPadding(),
@@ -848,23 +914,6 @@ private fun StableMarkdown(
     )
 }
 
-/**
- * 流式渲染会话，按 message.id 提升到 LazyColumn 外层持有。
- *
- * 流式 item 滚出视口后组合会被销毁，裸 remember 会让解析基线、打字机进度和最新
- * 快照全部丢失；滑回时整段已生成内容会重新全量解析，并从头重放显现动画。会话
- * 与组合解耦后，item 重建只是重新挂接效果，渲染进度原样保留。
- */
-internal class StreamingMarkdownState {
-    var revealedContent by mutableStateOf<String?>(null)
-    val parserSession = StreamingGfmParserSession()
-    val revealCoordinator = SmoothTextRevealCoordinator().apply { pauseAnimationsAndCatchUp() }
-    val restoreState = StreamingMarkdownRestoreState()
-    val parseTargets = Channel<StreamingMarkdownTarget>(Channel.CONFLATED)
-    val acceptedContent = arrayOf("")
-    var snapshot by mutableStateOf<StreamingGfmSnapshot?>(null)
-}
-
 @Composable
 private fun StreamingMarkdown(
     state: StreamingMarkdownState,
@@ -874,16 +923,16 @@ private fun StreamingMarkdown(
     modifier: Modifier = Modifier,
     tone: ChatMarkdownTone = ChatMarkdownTone.Answer,
 ) {
-    val parserSession = state.parserSession
     val revealCoordinator = state.revealCoordinator
-    val components = remember(revealCoordinator, isStreaming) {
+    // 思考紧跟已收到的增量，避免高速思考先排版占位、再受正文逐字速度限制而积压。
+    val animateReveal = tone == ChatMarkdownTone.Answer
+    val components = remember(revealCoordinator, isStreaming, animateReveal) {
         chatMarkdownComponents(
-            revealCoordinator = revealCoordinator,
-            suppressEmptyListMarkers = isStreaming,
+            revealCoordinator = revealCoordinator.takeIf { animateReveal },
+            suppressEmptyListMarkers = isStreaming && animateReveal,
         )
     }
     val parseTargets = state.parseTargets
-    val acceptedContent = state.acceptedContent
     val currentRevealCompleteCallback by rememberUpdatedState(onRevealCompleteChange)
     val snapshot = state.snapshot
     val currentContent by rememberUpdatedState(content)
@@ -899,17 +948,11 @@ private fun StreamingMarkdown(
         }
     }
 
-    LaunchedEffect(revealCoordinator) {
-        revealCoordinator.runFrameClock()
+    LaunchedEffect(revealCoordinator, animateReveal) {
+        if (animateReveal) revealCoordinator.runFrameClock()
     }
 
     LaunchedEffect(content, isStreaming) {
-        val previousContent = acceptedContent[0]
-        if (!content.startsWith(previousContent)) {
-            // 会话恢复或上游纠正内容时，让解析会话重新建立文档基线。
-            acceptedContent[0] = ""
-        }
-        acceptedContent[0] = content
         parseTargets.trySend(
             StreamingMarkdownTarget(
                 content = content,
@@ -919,30 +962,8 @@ private fun StreamingMarkdown(
         if (isStreaming) currentRevealCompleteCallback(false)
     }
 
-    LaunchedEffect(parserSession, parseTargets) {
-        var target = parseTargets.receive()
-        while (true) {
-            while (true) {
-                val newerTarget = parseTargets.tryReceive().getOrNull() ?: break
-                target = newerTarget
-            }
-
-            val parsed = withContext(Dispatchers.Default) {
-                parserSession.parse(
-                    source = target.content,
-                    isComplete = !target.isStreaming,
-                )
-            }
-
-            val newerTarget = parseTargets.tryReceive().getOrNull()
-            if (newerTarget != null) {
-                target = newerTarget
-                continue
-            }
-
-            state.snapshot = parsed
-            target = parseTargets.receive()
-        }
+    LaunchedEffect(state) {
+        state.parseUpdates()
     }
 
     LaunchedEffect(content, isStreaming, snapshot?.originalSource, snapshot?.isComplete, revealCoordinator) {
@@ -1117,11 +1138,6 @@ private fun IElementType.isMarkdownStructuredBlock(): Boolean = when (this) {
 
     else -> false
 }
-
-internal data class StreamingMarkdownTarget(
-    val content: String,
-    val isStreaming: Boolean,
-)
 
 internal fun streamingMarkdownBatchSize(backlogChars: Int): Int = when {
     backlogChars >= 384 -> 96
@@ -2057,13 +2073,14 @@ private fun ThinkingRow(
 ) {
     var expanded by rememberSaveable(message.id) { mutableStateOf(!message.collapsed) }
     var manuallyExpanded by rememberSaveable(message.id) { mutableStateOf(false) }
-    // 思考结束后立即切换为与完成态回答相同的稳定 Markdown。工具执行期间 App 可能
-    // 处于后台，不能让旧思考保留显现债务，回来后在新回答旁边补播整段内容。
-    val streamingState = if (message.isStreaming) {
+    val keepStreamingMarkdown = remember(message.id) { message.isStreaming }
+    val streamingState = if (keepStreamingMarkdown) {
         retainedStreamingState ?: remember(message.id) { StreamingMarkdownState() }
     } else {
         null
     }
+    val completedMarkdownState = (streamingState ?: retainedStreamingState)
+        ?.snapshot?.completedStateFor(message.content)
     LaunchedEffect(message.isStreaming) {
         if (message.isStreaming && !manuallyExpanded) expanded = true
     }
@@ -2072,7 +2089,7 @@ private fun ThinkingRow(
     // 后台解析，而不是等到首次点击展开。否则首帧只能测量 loading fallback 的纯文本高度，
     // 解析完成后正文高度会再次变化；状态挂在行级还能在收起/展开循环中存活，
     // 避免每次展开都重新走一遍异步解析。
-    val stableMarkdownState = if (!message.isStreaming) {
+    val stableMarkdownState = if (streamingState == null && completedMarkdownState == null) {
         rememberMarkdownState(
             content = message.content,
             retainState = true,
@@ -2119,7 +2136,7 @@ private fun ThinkingRow(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                imageVector = ImageVector.vectorResource(R.drawable.ic_atom),
+                imageVector = Icons.Rounded.Lightbulb,
                 contentDescription = null,
                 modifier = Modifier
                     .size(15.dp)
@@ -2181,7 +2198,7 @@ private fun ThinkingRow(
                         top = if (compact) 2.dp else 8.dp,
                         bottom = if (compact) 8.dp else 12.dp,
                     )
-                if (streamingState != null) {
+                if (streamingState != null && (message.isStreaming || completedMarkdownState == null)) {
                     StreamingMarkdown(
                         state = streamingState,
                         content = message.content,
@@ -2194,7 +2211,8 @@ private fun ThinkingRow(
                     StableMarkdown(
                         content = message.content,
                         tone = ChatMarkdownTone.Thinking,
-                        markdownState = checkNotNull(stableMarkdownState),
+                        markdownState = stableMarkdownState,
+                        parsedState = completedMarkdownState,
                         modifier = contentModifier,
                     )
                 }

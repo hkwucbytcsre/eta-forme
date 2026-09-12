@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.screens.tools
+package io.github.mangi.eta.ui.screens.tools
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -21,14 +21,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.github.alice.eta.R
-import io.github.alice.eta.agent.tool.AgentToolCapabilities
-import io.github.alice.eta.ui.app.rememberDeviceCapabilities
-import io.github.alice.eta.ui.components.MiuixScaffoldPage
-import io.github.alice.eta.ui.model.AgentToolsAction
-import io.github.alice.eta.ui.model.AgentToolsUiState
-import io.github.alice.eta.ui.model.ToolItemUi
-import io.github.alice.eta.ui.model.projectToolGroups
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.tool.AgentToolCapabilities
+import io.github.mangi.eta.ui.app.rememberDeviceCapabilities
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+import io.github.mangi.eta.ui.model.AgentToolsAction
+import io.github.mangi.eta.ui.model.AgentToolsUiState
+import io.github.mangi.eta.ui.model.ToolItemUi
+import io.github.mangi.eta.ui.model.projectToolGroups
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.TabRow

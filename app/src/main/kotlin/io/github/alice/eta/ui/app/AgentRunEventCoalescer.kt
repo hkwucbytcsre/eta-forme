@@ -1,6 +1,6 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
-import io.github.alice.eta.agent.runtime.AgentEvent
+import io.github.mangi.eta.agent.runtime.AgentEvent
 
 /**
  * 合并相邻的文本增量，避免模型每个小分片都触发一次 Compose 状态更新。

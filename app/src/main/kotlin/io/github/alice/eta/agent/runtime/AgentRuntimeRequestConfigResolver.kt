@@ -1,6 +1,6 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
-import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.model.AgentModelClient
 
 internal object AgentRuntimeRequestConfigResolver {
     fun requiresRuntimeConfig(request: AgentRuntimeWire.RunRequest): Boolean =

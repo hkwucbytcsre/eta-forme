@@ -1,21 +1,20 @@
-package io.github.alice.eta.agent.model
+package io.github.mangi.eta.agent.model
 
-import io.github.alice.eta.agent.runtime.AgentEvent
-import io.github.alice.eta.agent.runtime.AgentRunCancelledException
-import io.github.alice.eta.agent.runtime.AgentRunController
-import io.github.alice.eta.agent.memory.AgentMemoryContext
-import io.github.alice.eta.agent.skill.SkillContext
-import io.github.alice.eta.config.Prefs
-import io.github.alice.eta.agent.tool.AgentToolCapabilities
-import io.github.alice.eta.data.model.AnthropicProviderSetting
-import io.github.alice.eta.data.model.CustomBody
-import io.github.alice.eta.data.model.CustomHeader
-import io.github.alice.eta.data.model.OpenAiEndpointMode
-import io.github.alice.eta.data.model.ModelReasoningCapabilities
-import io.github.alice.eta.data.model.ProviderTypes
-import io.github.alice.eta.data.model.ReasoningEffort
-import io.github.alice.eta.data.provider.BuiltinProviders
-import io.github.alice.eta.data.provider.ProviderSourceRegistry
+import io.github.mangi.eta.agent.runtime.AgentEvent
+import io.github.mangi.eta.agent.runtime.AgentRunController
+import io.github.mangi.eta.agent.memory.AgentMemoryContext
+import io.github.mangi.eta.agent.skill.SkillContext
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.agent.tool.AgentToolCapabilities
+import io.github.mangi.eta.data.model.AnthropicProviderSetting
+import io.github.mangi.eta.data.model.CustomBody
+import io.github.mangi.eta.data.model.CustomHeader
+import io.github.mangi.eta.data.model.OpenAiEndpointMode
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.ProviderTypes
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.data.provider.BuiltinProviders
+import io.github.mangi.eta.data.provider.ProviderSourceRegistry
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import org.json.JSONArray
@@ -93,6 +92,10 @@ internal object AgentModelClient {
         memoryContext: AgentMemoryContext = AgentMemoryContext.DISABLED,
         additionalTools: JSONArray = JSONArray(),
         capabilitiesProvider: () -> AgentToolCapabilities = { AgentToolCapabilities(rootAvailable = false) },
+        sessionId: String = java.util.UUID.randomUUID().toString(),
+        compactOnly: Boolean = false,
+        onContextSnapshot: (AgentContextSnapshot) -> Unit = {},
+        onTranscript: (List<ConversationMessage>) -> Unit = {},
         onEvent: (AgentEvent) -> Unit = {}
     ): ModelResponse.Text {
         config.validate()
@@ -106,7 +109,12 @@ internal object AgentModelClient {
             memoryContext,
             rootAvailable = initialCapabilities.rootAvailable,
         )
-        val transcriptStartIndex = messages.length()
+        if (compactOnly) messages.remove(messages.length() - 1)
+        val transcript = JSONArray()
+        // 旧 history 中的无效消息可能在组装时被跳过，系统边界不能由 history 条数倒推。
+        val systemCount = AgentPromptBuilder.buildSystemMessages(
+            config, skillContext, memoryContext, initialCapabilities.rootAvailable,
+        ).length()
         fun toolsFor(capabilities: AgentToolCapabilities): JSONArray {
             val tools = AgentToolCatalog.build(
                 terminalTools = config.terminalTools,
@@ -135,6 +143,12 @@ internal object AgentModelClient {
         )
         var promptRootAvailable = initialCapabilities.rootAvailable
         val loop = AgentLoop(
+            transcript = transcript,
+            systemCount = systemCount,
+            operationId = sessionId,
+            onContextSnapshot = onContextSnapshot,
+            onTranscript = onTranscript,
+            sessionId = sessionId,
             config = config,
             messages = messages,
             tools = tools,
@@ -158,26 +172,26 @@ internal object AgentModelClient {
             },
         )
         val result = try {
-            loop.run()
-        } catch (cancelled: AgentRunCancelledException) {
-            throw cancelled
+            if (compactOnly) loop.compactOnly() else loop.run()
         } catch (throwable: Throwable) {
             throw AgentModelExecutionException(
                 cause = throwable,
+                contextSnapshot = loop.contextSnapshot(),
                 reasoningContent = loop.reasoningSnapshot(),
-                transcript = AgentConversationCodec.transcript(
-                    messages,
-                    transcriptStartIndex,
+                transcript = AgentToolBatchRecovery.completeInterrupted(AgentConversationCodec.transcript(
+                    transcript,
+                    0,
                     loop.sensitiveToolCallIdsSnapshot(),
-                ),
+                )),
             )
         }
         return ModelResponse.Text(
             content = result.content,
+            contextSnapshot = loop.contextSnapshot(),
             reasoningContent = result.reasoningContent,
             transcript = AgentConversationCodec.transcript(
-                messages,
-                transcriptStartIndex,
+                transcript,
+                0,
                 result.sensitiveToolCallIds,
             ),
         )
@@ -190,7 +204,7 @@ internal object AgentModelClient {
         require(
             reasoningCapabilities?.mandatory != true ||
                 effectiveReasoningEffort != ReasoningEffort.OFF
-        ) { "当前模型强制启用推理，不能选择 Off 或禁用思考权限" }
+        ) { "当前模型强制启用思考，不能选择 Off 或禁用思考权限" }
         if (extraBodyJson.isNotBlank()) {
             runCatching { JSONObject(extraBodyJson) }
                 .getOrElse { throwable ->
@@ -252,7 +266,10 @@ internal object AgentModelClient {
         val contentJson: String = "",
         val toolCallId: String = "",
         val reasoningContent: String = "",
-        val toolCallsJson: String = ""
+        val toolCallsJson: String = "",
+        val contextSummary: Boolean = false,
+        val compactedUserTurns: Int = 0,
+        val summaryThroughUserTurn: Int = 0,
     )
 
     fun interface ToolExecutor {
@@ -290,6 +307,7 @@ internal object AgentModelClient {
             val content: String,
             val reasoningContent: String = "",
             val transcript: List<ConversationMessage> = emptyList(),
+            val contextSnapshot: AgentContextSnapshot? = null,
         ) : ModelResponse
     }
 
@@ -299,4 +317,5 @@ internal class AgentModelExecutionException(
     cause: Throwable,
     val reasoningContent: String,
     val transcript: List<AgentModelClient.ConversationMessage>,
+    val contextSnapshot: AgentContextSnapshot? = null,
 ) : RuntimeException(cause.message ?: cause.javaClass.simpleName, cause)

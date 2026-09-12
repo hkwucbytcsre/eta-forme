@@ -1,16 +1,16 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Build
 import androidx.compose.material.icons.rounded.Extension
 import androidx.compose.material.icons.rounded.Language
 import androidx.compose.material.icons.rounded.TravelExplore
-import io.github.alice.eta.agent.model.AgentToolCatalog
-import io.github.alice.eta.agent.tool.AgentToolCapabilities
-import io.github.alice.eta.agent.tool.RootRequirement
-import io.github.alice.eta.ui.components.iconForTool
-import io.github.alice.eta.ui.model.projectToolGroups
-import io.github.alice.eta.ui.model.toolCardRequirement
+import io.github.mangi.eta.agent.model.AgentToolCatalog
+import io.github.mangi.eta.agent.tool.AgentToolCapabilities
+import io.github.mangi.eta.agent.tool.RootRequirement
+import io.github.mangi.eta.ui.components.iconForTool
+import io.github.mangi.eta.ui.model.projectToolGroups
+import io.github.mangi.eta.ui.model.toolCardRequirement
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue

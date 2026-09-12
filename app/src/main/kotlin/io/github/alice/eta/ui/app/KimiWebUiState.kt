@@ -1,7 +1,7 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import android.content.Context
-import io.github.alice.eta.R
+import io.github.mangi.eta.R
 
 internal enum class KimiWebPhase { CHECKING, NOT_INSTALLED, READY, STARTING, RUNNING, FAILED }
 

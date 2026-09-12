@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.device
+package io.github.mangi.eta.agent.device
 
 /** Root 进程超时不能证明已经发给系统的输入动作没有执行。 */
 internal object ShellActionOutcomePolicy {

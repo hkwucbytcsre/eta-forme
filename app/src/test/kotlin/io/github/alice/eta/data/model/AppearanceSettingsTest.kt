@@ -1,4 +1,4 @@
-package io.github.alice.eta.data.model
+package io.github.mangi.eta.data.model
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

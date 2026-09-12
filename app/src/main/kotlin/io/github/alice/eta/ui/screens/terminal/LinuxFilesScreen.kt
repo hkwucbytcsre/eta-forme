@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.screens.terminal
+package io.github.mangi.eta.ui.screens.terminal
 
 import android.content.Context
 import android.text.format.Formatter
@@ -23,12 +23,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigationevent.NavigationEventInfo
 import androidx.navigationevent.compose.NavigationBackHandler
 import androidx.navigationevent.compose.rememberNavigationEventState
-import io.github.alice.eta.R
-import io.github.alice.eta.agent.terminal.LinuxDistribution
-import io.github.alice.eta.agent.terminal.LinuxEnvironmentPaths
-import io.github.alice.eta.agent.terminal.LinuxFileExplorer
-import io.github.alice.eta.agent.terminal.ShellProcessSupervisor
-import io.github.alice.eta.ui.components.MiuixScaffoldPage
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.terminal.LinuxDistribution
+import io.github.mangi.eta.agent.terminal.LinuxEnvironmentPaths
+import io.github.mangi.eta.agent.terminal.LinuxFileExplorer
+import io.github.mangi.eta.agent.terminal.ShellProcessSupervisor
+import io.github.mangi.eta.ui.components.MiuixScaffoldPage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import top.yukonga.miuix.kmp.basic.BasicComponent

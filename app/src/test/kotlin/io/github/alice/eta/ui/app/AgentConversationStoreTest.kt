@@ -1,22 +1,22 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import android.content.Context
-import io.github.alice.eta.agent.model.AgentConversationCodec
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.data.db.ConversationEntity
-import io.github.alice.eta.data.db.ConversationMessageEntity
-import io.github.alice.eta.data.db.ConversationStateEntity
-import io.github.alice.eta.data.db.EtaDatabase
-import io.github.alice.eta.data.model.ReasoningEffort
-import io.github.alice.eta.ui.model.AgentChatHomeUiState
-import io.github.alice.eta.ui.model.AgentMessageUi
-import io.github.alice.eta.ui.model.SystemNoticeCode
-import io.github.alice.eta.ui.model.SystemNoticeMessageUi
-import io.github.alice.eta.ui.model.ThinkingMessageUi
-import io.github.alice.eta.ui.model.TokenUsageUi
-import io.github.alice.eta.ui.model.ToolActivityMessageUi
-import io.github.alice.eta.ui.model.ToolActivityStatusUi
-import io.github.alice.eta.ui.model.UserMessageUi
+import io.github.mangi.eta.agent.model.AgentConversationCodec
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.db.ConversationEntity
+import io.github.mangi.eta.data.db.ConversationMessageEntity
+import io.github.mangi.eta.data.db.ConversationStateEntity
+import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.ui.model.AgentChatHomeUiState
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.SystemNoticeCode
+import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
+import io.github.mangi.eta.ui.model.ThinkingMessageUi
+import io.github.mangi.eta.ui.model.TokenUsageUi
+import io.github.mangi.eta.ui.model.ToolActivityMessageUi
+import io.github.mangi.eta.ui.model.ToolActivityStatusUi
+import io.github.mangi.eta.ui.model.UserMessageUi
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -84,22 +84,22 @@ class AgentConversationStoreTest {
                 ),
             ),
             history = listOf(
-                io.github.alice.eta.agent.model.AgentModelClient.ConversationMessage(
+                io.github.mangi.eta.agent.model.AgentModelClient.ConversationMessage(
                     role = "user",
                     content = "看一下当前屏幕",
                 ),
-                io.github.alice.eta.agent.model.AgentModelClient.ConversationMessage(
+                io.github.mangi.eta.agent.model.AgentModelClient.ConversationMessage(
                     role = "assistant",
                     content = "",
                     reasoningContent = "需要先观察屏幕",
                     toolCallsJson = """[{"id":"toolu_1","type":"function","function":{"name":"observe_screen","arguments":"{}"}}]""",
                 ),
-                io.github.alice.eta.agent.model.AgentModelClient.ConversationMessage(
+                io.github.mangi.eta.agent.model.AgentModelClient.ConversationMessage(
                     role = "tool",
                     content = "{\"ok\":true}",
                     toolCallId = "toolu_1",
                 ),
-                io.github.alice.eta.agent.model.AgentModelClient.ConversationMessage(
+                io.github.mangi.eta.agent.model.AgentModelClient.ConversationMessage(
                     role = "assistant",
                     content = "| 项目 | 内容 |\n| --- | --- |\n| 电量 | 88% |",
                 ),
@@ -254,7 +254,7 @@ class AgentConversationStoreTest {
     }
 
     @Test
-    fun saveBoundsConversationCheckpointWithoutClippingDisplayedMessages() {
+    fun savePreservesCompleteContextAndDisplayedMessages() {
         val displayedContent = "展示消息-${"d".repeat(120_000)}"
         val history = buildList {
             repeat(20) { index ->
@@ -297,12 +297,10 @@ class AgentConversationStoreTest {
             .conversationsById
             .getValue("conv-large")
 
-        assertTrue(
-            checkpoint.historyJson.length <=
-                AgentConversationCodec.MAX_CONVERSATION_CHECKPOINT_CHARS
-        )
+        assertTrue(checkpoint.historyJson.length > 96_000)
+        assertEquals(history, restored.history)
+        assertEquals(history, restored.journal)
         assertEquals(displayedContent, (restored.messages.single() as UserMessageUi).content)
-        assertTrue(restored.history.first().content.contains("容量上限已压缩"))
         assertEquals("最新上下文", restored.history.last().content)
     }
 

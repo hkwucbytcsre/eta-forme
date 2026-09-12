@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.components
+package io.github.mangi.eta.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,9 +19,9 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import io.github.alice.eta.R
-import io.github.alice.eta.ui.model.PermissionHealthUiState
-import io.github.alice.eta.ui.model.PermissionStatusUi
+import io.github.mangi.eta.R
+import io.github.mangi.eta.ui.model.PermissionHealthUiState
+import io.github.mangi.eta.ui.model.PermissionStatusUi
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.Text

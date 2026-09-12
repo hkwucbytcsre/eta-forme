@@ -1,30 +1,34 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
 import android.content.Context
-import io.github.alice.eta.agent.accessibility.AgentAccessibilityKeeper
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.agent.model.AgentModelExecutionException
-import io.github.alice.eta.agent.model.AgentModelFailure
-import io.github.alice.eta.agent.model.AgentHttpClient
-import io.github.alice.eta.agent.memory.AgentMemoryContext
-import io.github.alice.eta.agent.memory.AgentMemoryContextBuilder
-import io.github.alice.eta.agent.mcp.McpRunSnapshot
-import io.github.alice.eta.agent.mcp.McpToolExecutor
-import io.github.alice.eta.agent.mcp.RoutingToolExecutor
-import io.github.alice.eta.agent.overlay.AgentOverlayVisibilityPolicy
-import io.github.alice.eta.agent.skill.SkillCompatibilityChecker
-import io.github.alice.eta.agent.skill.SkillContext
-import io.github.alice.eta.agent.skill.SkillRuntime
-import io.github.alice.eta.agent.skill.PublicGitHubSkillSource
-import io.github.alice.eta.agent.tool.AgentLocalTools
-import io.github.alice.eta.agent.tool.AgentToolRequirements
-import io.github.alice.eta.agent.tool.AgentToolCapabilities
-import io.github.alice.eta.agent.tool.PendingSkillConflictCapabilityParser
-import io.github.alice.eta.agent.tool.ToolExecutionDecision
-import io.github.alice.eta.agent.voice.EtaAssistantOverlayService
-import io.github.alice.eta.core.AndroidAgentLogger
-import io.github.alice.eta.core.safeLogType
-import io.github.alice.eta.data.repository.AgentMemoryRepository
+import io.github.mangi.eta.agent.accessibility.AgentAccessibilityKeeper
+import io.github.mangi.eta.agent.model.AgentConversationCodec
+import io.github.mangi.eta.agent.model.AgentConversationToolCatalog
+import io.github.mangi.eta.agent.tool.ConversationHistoryTool
+import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.model.AgentModelExecutionException
+import io.github.mangi.eta.agent.model.AgentModelFailure
+import io.github.mangi.eta.agent.model.AgentHttpClient
+import io.github.mangi.eta.agent.memory.AgentMemoryContext
+import io.github.mangi.eta.agent.memory.AgentMemoryContextBuilder
+import io.github.mangi.eta.agent.mcp.McpRunSnapshot
+import io.github.mangi.eta.agent.mcp.McpToolExecutor
+import io.github.mangi.eta.agent.mcp.RoutingToolExecutor
+import io.github.mangi.eta.agent.overlay.AgentOverlayVisibilityPolicy
+import io.github.mangi.eta.agent.skill.SkillCompatibilityChecker
+import io.github.mangi.eta.agent.skill.SkillContext
+import io.github.mangi.eta.agent.skill.SkillRuntime
+import io.github.mangi.eta.agent.skill.PublicGitHubSkillSource
+import io.github.mangi.eta.agent.tool.AgentLocalTools
+import io.github.mangi.eta.agent.tool.AgentToolRequirements
+import io.github.mangi.eta.agent.tool.AgentToolCapabilities
+import io.github.mangi.eta.agent.tool.PendingSkillConflictCapabilityParser
+import io.github.mangi.eta.agent.tool.ToolExecutionDecision
+import io.github.mangi.eta.agent.voice.EtaAssistantOverlayService
+import io.github.mangi.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.core.safeLogType
+import io.github.mangi.eta.data.repository.AgentMemoryRepository
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
 
@@ -187,17 +191,48 @@ internal class AgentRuntimeRunExecutor(
             toolExecutor = routingExecutor
             toolsBinding = runController.register(routingExecutor::close)
             timing.preparationFinished(skillContext.installedSkills.size)
+            val conversationId = request.handoff
+                ?.takeIf { it.source == AgentRuntimeWire.AGENT_UI_HANDOFF_SOURCE }
+                ?.let { AgentUiHandoffPayload.from(it.payload).conversationId }
+                ?.takeIf { it.isNotBlank() }
+            val historyTool = conversationId?.let { id ->
+                ConversationHistoryTool {
+                    val checkpoint = runBlocking { EtaDatabase.get(appContext).conversationDao().contextCheckpoint(id) }
+                    val journal = AgentConversationCodec.decodeTranscript(checkpoint?.journalJson)
+                        .ifEmpty { AgentConversationCodec.decodeTranscript(checkpoint?.historyJson) }
+                    journal + session.transcript
+                }
+            }
+            val runTools = JSONArray(mcpTools.toString()).also { tools ->
+                if (historyTool != null) tools.put(AgentConversationToolCatalog.schema())
+            }
+            val runToolExecutor = AgentModelClient.ToolExecutor { call ->
+                if (call.name == AgentConversationToolCatalog.READ_HISTORY && historyTool != null) {
+                    historyTool.execute(call)
+                } else routingExecutor.execute(call)
+            }
             val completedResponse = AgentModelClient.complete(
                 config = request.config,
+                sessionId = request.effectiveModelSessionId,
+                compactOnly = request.operation == AgentRuntimeWire.OP_COMPACT,
+                onContextSnapshot = { snapshot ->
+                    val committed = snapshot.copy(operationId = request.runId)
+                    AgentRunCheckpointStore.saveContext(appContext, request.runId, committed)
+                    session.updateContext(committed)
+                },
+                onTranscript = { transcript ->
+                    AgentRunCheckpointStore.saveTranscript(appContext, request.runId, transcript)
+                    session.updateTranscript(transcript)
+                },
                 capabilitiesProvider = { AgentToolCapabilities.capture(appContext) },
                 prompt = request.prompt,
-                toolExecutor = routingExecutor,
+                toolExecutor = runToolExecutor,
                 images = request.images,
                 history = request.history,
                 runController = runController,
                 skillContext = skillContext,
                 memoryContext = memoryContext,
-                additionalTools = mcpTools,
+                additionalTools = runTools,
             ) { event ->
                 timing.accept(event)
                 acceptEvent(
@@ -215,6 +250,8 @@ internal class AgentRuntimeRunExecutor(
                 content = completedResponse.content,
                 reasoningContent = completedResponse.reasoningContent,
                 transcript = completedResponse.transcript,
+                contextSnapshot = completedResponse.contextSnapshot?.copy(operationId = request.runId),
+                operation = request.operation,
             )
         } catch (throwable: Throwable) {
             cancelled = runController.isCancelled || throwable is AgentRunCancelledException
@@ -257,20 +294,23 @@ internal class AgentRuntimeRunExecutor(
                 error = message,
                 reasoningContent = modelFailure?.reasoningContent.orEmpty(),
                 transcript = modelFailure?.transcript.orEmpty(),
+                contextSnapshot = modelFailure?.contextSnapshot?.copy(operationId = request.runId) ?: session.contextSnapshot,
+                operation = request.operation,
             )
         } finally {
             runCatching { toolsBinding?.close() }
             runCatching { toolExecutor?.close() }
         }
 
-        if (cancelled) {
-            runCatching { checkpointRecorder?.discard() }.onFailure { throwable ->
+        if (cancelled && session.isTerminal) {
+            runCatching {
+                persistArtifacts(snapshotRequest(request), result, archivedEvents)
+            }.onFailure { throwable ->
                 AndroidAgentLogger.error(
-                    "Agent runtime cancelled checkpoint cleanup failed: " +
+                    "Agent runtime cancelled result persistence failed: " +
                         "type=${throwable.safeLogType()}"
                 )
             }
-            session.cancel("已停止")
             return Outcome(
                 result = result,
                 entrySurfaceGuard = entrySurfaceGuard,

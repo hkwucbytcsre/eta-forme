@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.terminal
+package io.github.mangi.eta.agent.terminal
 
 /**
  * 控制台屏幕缓冲区：把 PTY 字节流解析成固定行列的字符网格 + 滚动历史。

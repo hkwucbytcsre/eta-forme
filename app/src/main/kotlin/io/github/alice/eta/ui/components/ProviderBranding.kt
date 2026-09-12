@@ -1,10 +1,10 @@
-package io.github.alice.eta.ui.components
+package io.github.mangi.eta.ui.components
 
 import androidx.annotation.DrawableRes
-import io.github.alice.eta.R
-import io.github.alice.eta.data.model.ProviderSetting
-import io.github.alice.eta.data.model.ProviderSourceTypes
-import io.github.alice.eta.data.provider.ProviderSourceRegistry
+import io.github.mangi.eta.R
+import io.github.mangi.eta.data.model.ProviderSetting
+import io.github.mangi.eta.data.model.ProviderSourceTypes
+import io.github.mangi.eta.data.provider.ProviderSourceRegistry
 
 @DrawableRes
 internal fun providerBrandLogoRes(provider: ProviderSetting): Int? =

@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.screens.tools
+package io.github.mangi.eta.ui.screens.tools
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -21,16 +21,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import io.github.alice.eta.R
-import io.github.alice.eta.agent.tool.AgentToolCapabilities
-import io.github.alice.eta.agent.tool.RootRequirement
-import io.github.alice.eta.ui.components.ItemDescriptionDialog
-import io.github.alice.eta.ui.components.iconForTool
-import io.github.alice.eta.ui.model.AgentToolsAction
-import io.github.alice.eta.ui.model.ToolItemUi
-import io.github.alice.eta.ui.model.actualToolName
-import io.github.alice.eta.ui.model.toolCardAction
-import io.github.alice.eta.ui.model.toolCardRequirement
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.tool.AgentToolCapabilities
+import io.github.mangi.eta.agent.tool.RootRequirement
+import io.github.mangi.eta.ui.components.ItemDescriptionDialog
+import io.github.mangi.eta.ui.components.iconForTool
+import io.github.mangi.eta.ui.model.AgentToolsAction
+import io.github.mangi.eta.ui.model.ToolItemUi
+import io.github.mangi.eta.ui.model.actualToolName
+import io.github.mangi.eta.ui.model.toolCardAction
+import io.github.mangi.eta.ui.model.toolCardRequirement
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.CardDefaults
 import top.yukonga.miuix.kmp.basic.Icon

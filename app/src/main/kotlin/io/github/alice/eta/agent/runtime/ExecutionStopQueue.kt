@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

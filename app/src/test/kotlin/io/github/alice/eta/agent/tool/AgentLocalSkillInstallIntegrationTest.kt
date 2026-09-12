@@ -1,14 +1,14 @@
-package io.github.alice.eta.agent.tool
+package io.github.mangi.eta.agent.tool
 
 import android.content.Context
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.agent.skill.PublicGitHubSkillSource
-import io.github.alice.eta.agent.skill.SkillIndexService
-import io.github.alice.eta.agent.skill.SkillDirectoryMover
-import io.github.alice.eta.agent.skill.SkillLoader
-import io.github.alice.eta.agent.skill.SkillPackageInstaller
-import io.github.alice.eta.agent.skill.SkillResourceReader
-import io.github.alice.eta.core.AgentLogger
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.skill.PublicGitHubSkillSource
+import io.github.mangi.eta.agent.skill.SkillIndexService
+import io.github.mangi.eta.agent.skill.SkillDirectoryMover
+import io.github.mangi.eta.agent.skill.SkillLoader
+import io.github.mangi.eta.agent.skill.SkillPackageInstaller
+import io.github.mangi.eta.agent.skill.SkillResourceReader
+import io.github.mangi.eta.core.AgentLogger
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
@@ -32,7 +32,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import org.robolectric.annotation.Config
-import io.github.alice.eta.data.db.EtaDatabase
+import io.github.mangi.eta.data.db.EtaDatabase
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [36])

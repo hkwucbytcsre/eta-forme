@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.model
+package io.github.mangi.eta.agent.model
 
 /** 标记原始参数或结果不得进入持久会话的工具。 */
 internal object AgentSensitiveToolPolicy {

@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.layout
+package io.github.mangi.eta.ui.layout
 
 import androidx.compose.ui.unit.Density
 import org.junit.Assert.assertFalse

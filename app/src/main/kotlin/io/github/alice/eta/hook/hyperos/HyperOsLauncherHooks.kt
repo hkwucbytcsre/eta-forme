@@ -1,12 +1,12 @@
-package io.github.alice.eta.hook.hyperos
+package io.github.mangi.eta.hook.hyperos
 
 import android.content.Context
 import android.view.MotionEvent
 import io.github.libxposed.api.XposedModule
-import io.github.alice.eta.core.HookInstallation
-import io.github.alice.eta.core.HookRegistrar
-import io.github.alice.eta.core.HookSupport
-import io.github.alice.eta.core.ModuleLogger
+import io.github.mangi.eta.core.HookInstallation
+import io.github.mangi.eta.core.HookRegistrar
+import io.github.mangi.eta.core.HookSupport
+import io.github.mangi.eta.core.ModuleLogger
 import java.lang.reflect.Modifier
 
 internal object HyperOsLauncherHooks {

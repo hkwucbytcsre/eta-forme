@@ -1,4 +1,4 @@
-package io.github.alice.eta.hook.xiaoai
+package io.github.mangi.eta.hook.xiaoai
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

@@ -1,12 +1,12 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.ui.model.AgentChatUiState
-import io.github.alice.eta.ui.model.AgentMessageUi
-import io.github.alice.eta.ui.model.ThinkingMessageUi
-import io.github.alice.eta.ui.model.ToolActivityMessageUi
-import io.github.alice.eta.ui.model.ToolActivityStatusUi
-import io.github.alice.eta.ui.model.UserMessageUi
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.ui.model.AgentChatUiState
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.ThinkingMessageUi
+import io.github.mangi.eta.ui.model.ToolActivityMessageUi
+import io.github.mangi.eta.ui.model.ToolActivityStatusUi
+import io.github.mangi.eta.ui.model.UserMessageUi
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -14,6 +14,23 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class AgentConversationRevisionReducerTest {
+    @Test
+    fun editingUserTurnCoveredBySummaryDropsStaleSummary() {
+        val summary = AgentModelClient.ConversationMessage("assistant", "旧操作结果", contextSummary = true,
+            compactedUserTurns = 1, summaryThroughUserTurn = 2)
+        val state = AgentChatUiState(
+            messages = listOf(UserMessageUi("old", "旧请求"), UserMessageUi("latest", "最新请求")),
+            history = listOf(summary, AgentModelClient.ConversationMessage("user", "最新请求")),
+            input = "", isStreaming = false, thinkingEnabled = false,
+        )
+        val boundary = AgentConversationRevisionReducer.boundary(state, "latest")!!
+        assertTrue(boundary.contextWasCompacted)
+        assertTrue(boundary.historyPrefix.isEmpty())
+        val next = state.copy(messages = state.messages + UserMessageUi("next", "后续请求"),
+            history = state.history + AgentModelClient.ConversationMessage("user", "后续请求"))
+        assertTrue(AgentConversationRevisionReducer.boundary(next, "next")!!.historyPrefix.contains(summary))
+    }
+
     @Test
     fun boundaryMapsAssistantToItsUserTurnAndKeepsToolTranscriptPrefix() {
         val state = conversationState()

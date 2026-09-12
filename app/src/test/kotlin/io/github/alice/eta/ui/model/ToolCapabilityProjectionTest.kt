@@ -1,8 +1,8 @@
-package io.github.alice.eta.ui.model
+package io.github.mangi.eta.ui.model
 
-import io.github.alice.eta.agent.tool.AgentToolCapabilities
-import io.github.alice.eta.agent.tool.AgentToolRequirements
-import io.github.alice.eta.agent.tool.RootRequirement
+import io.github.mangi.eta.agent.tool.AgentToolCapabilities
+import io.github.mangi.eta.agent.tool.AgentToolRequirements
+import io.github.mangi.eta.agent.tool.RootRequirement
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

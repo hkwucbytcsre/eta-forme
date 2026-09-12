@@ -1,9 +1,9 @@
-package io.github.alice.eta.hook
+package io.github.mangi.eta.hook
 
 import android.content.Context
 import android.content.res.Configuration
 import androidx.annotation.StringRes
-import io.github.alice.eta.core.ModuleConfig
+import io.github.mangi.eta.core.ModuleConfig
 import java.util.Locale
 
 /**

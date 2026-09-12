@@ -1,4 +1,4 @@
-package io.github.alice.eta.data.repository
+package io.github.mangi.eta.data.repository
 
 import android.content.Context
 import android.security.keystore.KeyGenParameterSpec

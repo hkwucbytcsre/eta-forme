@@ -1,7 +1,7 @@
-package io.github.alice.eta.data.repository
+package io.github.mangi.eta.data.repository
 
-import io.github.alice.eta.data.model.Model
-import io.github.alice.eta.data.model.ModelSource
+import io.github.mangi.eta.data.model.Model
+import io.github.mangi.eta.data.model.ModelSource
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

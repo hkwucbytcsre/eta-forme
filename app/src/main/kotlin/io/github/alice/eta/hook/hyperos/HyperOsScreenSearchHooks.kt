@@ -1,13 +1,13 @@
-package io.github.alice.eta.hook.hyperos
+package io.github.mangi.eta.hook.hyperos
 
 import android.app.Service
 import android.content.Intent
 import io.github.libxposed.api.XposedModule
-import io.github.alice.eta.core.HookInstallation
-import io.github.alice.eta.core.HookRegistrar
-import io.github.alice.eta.core.HookSupport
-import io.github.alice.eta.core.ModuleLogger
-import io.github.alice.eta.core.safeLogType
+import io.github.mangi.eta.core.HookInstallation
+import io.github.mangi.eta.core.HookRegistrar
+import io.github.mangi.eta.core.HookSupport
+import io.github.mangi.eta.core.ModuleLogger
+import io.github.mangi.eta.core.safeLogType
 
 internal object HyperOsScreenSearchHooks {
     private const val SERVICE_CLASS = "com.xiaomi.voiceassistant.VoiceService"

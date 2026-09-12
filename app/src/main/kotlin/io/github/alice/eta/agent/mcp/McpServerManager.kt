@@ -1,7 +1,7 @@
-package io.github.alice.eta.agent.mcp
+package io.github.mangi.eta.agent.mcp
 
-import io.github.alice.eta.data.model.McpServerSetting
-import io.github.alice.eta.data.repository.McpServerRepository
+import io.github.mangi.eta.data.model.McpServerSetting
+import io.github.mangi.eta.data.repository.McpServerRepository
 
 internal object McpServerManager {
     fun discover(

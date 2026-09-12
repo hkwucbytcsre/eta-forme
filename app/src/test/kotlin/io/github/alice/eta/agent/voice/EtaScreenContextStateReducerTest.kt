@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.voice
+package io.github.mangi.eta.agent.voice
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

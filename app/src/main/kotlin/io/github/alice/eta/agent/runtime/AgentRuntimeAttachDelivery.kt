@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
 /** 由客户端 Main Handler 按接收顺序调用，隔离历史恢复与实时事件的交付。 */
 internal class AgentRuntimeAttachDelivery(
@@ -37,12 +37,16 @@ internal class AgentRuntimeAttachDelivery(
     }
 
     fun result(result: AgentRuntimeWire.RunResult) {
-        if (state == State.CLOSED) return
+        if (beginResult()) onResult(result)
+    }
+
+    /** 先按主线程事件顺序封口，完整结果交给等待线程物化。 */
+    fun beginResult(): Boolean {
+        if (state == State.CLOSED) return false
         val needsReplay = state == State.REPLAYING
         state = State.CLOSED
-        // 旧服务的成功响应在释放 Session 锁后发送，终态可能先到；先恢复历史再交付终态。
         if (needsReplay) deliverReplay()
-        onResult(result)
+        return true
     }
 
     private fun deliverReplay() {

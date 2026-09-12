@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.voice
+package io.github.mangi.eta.agent.voice
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -58,7 +58,7 @@ internal class EtaVoiceInteractionSession(context: Context) : VoiceInteractionSe
 
     internal companion object {
         private const val ACTION_HIDE_FOR_FOREGROUND_OPERATION =
-            "io.github.alice.eta.agent.voice.HIDE_FOR_FOREGROUND_OPERATION"
+            "io.github.mangi.eta.agent.voice.HIDE_FOR_FOREGROUND_OPERATION"
 
         fun requestHideForForegroundOperation(context: Context) {
             context.sendBroadcast(

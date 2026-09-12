@@ -1,9 +1,9 @@
-package io.github.alice.eta.data.provider
+package io.github.mangi.eta.data.provider
 
-import io.github.alice.eta.data.model.Model
-import io.github.alice.eta.data.model.ModelReasoningCapabilities
-import io.github.alice.eta.data.model.ProviderSourceTypes
-import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.data.model.Model
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.ProviderSourceTypes
+import io.github.mangi.eta.data.model.ReasoningEffort
 
 internal object ReasoningCapabilityResolver {
     private val lowToMax = listOf(

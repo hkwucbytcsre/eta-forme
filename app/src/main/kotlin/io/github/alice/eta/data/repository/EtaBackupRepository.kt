@@ -1,16 +1,16 @@
-package io.github.alice.eta.data.repository
+package io.github.mangi.eta.data.repository
 
 import android.content.Context
 import androidx.room.withTransaction
-import io.github.alice.eta.data.db.ConversationContextCheckpointEntity
-import io.github.alice.eta.data.db.ConversationEntity
-import io.github.alice.eta.data.db.ConversationMessageEntity
-import io.github.alice.eta.data.db.ConversationStateEntity
-import io.github.alice.eta.data.db.EtaDatabase
-import io.github.alice.eta.data.db.ProviderEntity
-import io.github.alice.eta.data.db.ProviderModelEntity
-import io.github.alice.eta.data.db.ProviderWithModelsSeed
-import io.github.alice.eta.data.datastore.SettingsDataStore
+import io.github.mangi.eta.data.db.ConversationContextCheckpointEntity
+import io.github.mangi.eta.data.db.ConversationEntity
+import io.github.mangi.eta.data.db.ConversationMessageEntity
+import io.github.mangi.eta.data.db.ConversationStateEntity
+import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.mangi.eta.data.db.ProviderEntity
+import io.github.mangi.eta.data.db.ProviderModelEntity
+import io.github.mangi.eta.data.db.ProviderWithModelsSeed
+import io.github.mangi.eta.data.datastore.SettingsDataStore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.Serializable

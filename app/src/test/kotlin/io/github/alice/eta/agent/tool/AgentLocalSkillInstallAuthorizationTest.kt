@@ -1,8 +1,8 @@
-package io.github.alice.eta.agent.tool
+package io.github.mangi.eta.agent.tool
 
 import android.content.Context
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.core.AgentLogger
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.core.AgentLogger
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Test

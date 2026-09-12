@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.components
+package io.github.mangi.eta.ui.components
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals

@@ -1,4 +1,4 @@
-package io.github.alice.eta.hook.hyperos
+package io.github.mangi.eta.hook.hyperos
 
 import android.app.Activity
 import android.app.Application

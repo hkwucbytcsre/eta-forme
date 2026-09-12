@@ -1,8 +1,8 @@
-package io.github.alice.eta.agent.device
+package io.github.mangi.eta.agent.device
 
 import android.content.Context
 import android.content.SharedPreferences
-import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.core.AndroidAgentLogger
 import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

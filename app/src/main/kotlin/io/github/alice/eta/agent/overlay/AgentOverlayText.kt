@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.overlay
+package io.github.mangi.eta.agent.overlay
 
 import android.icu.text.ListFormatter
 import androidx.annotation.StringRes
@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import io.github.alice.eta.R
+import io.github.mangi.eta.R
 
 /** 浮窗只保存语义状态，文案在渲染时根据当前系统语言解析。 */
 internal sealed interface AgentOverlayStatus {

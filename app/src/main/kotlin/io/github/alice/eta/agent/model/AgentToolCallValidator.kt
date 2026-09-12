@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.model
+package io.github.mangi.eta.agent.model
 
 import java.math.BigDecimal
 import org.json.JSONArray

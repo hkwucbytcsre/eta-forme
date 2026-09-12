@@ -1,7 +1,7 @@
-package io.github.alice.eta.hook.xiaoai
+package io.github.mangi.eta.hook.xiaoai
 
-import io.github.alice.eta.agent.runtime.AgentExternalArchivePayload
-import io.github.alice.eta.agent.runtime.AgentRuntimeWire
+import io.github.mangi.eta.agent.runtime.AgentExternalArchivePayload
+import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

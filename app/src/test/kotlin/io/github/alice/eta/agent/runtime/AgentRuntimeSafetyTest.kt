@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertThrows

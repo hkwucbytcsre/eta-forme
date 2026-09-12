@@ -1,7 +1,7 @@
-package io.github.alice.eta.hook.breeno
+package io.github.mangi.eta.hook.breeno
 
-import io.github.alice.eta.agent.media.AgentImageCodec
-import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.media.AgentImageCodec
+import io.github.mangi.eta.agent.model.AgentModelClient
 
 import android.content.Context
 import android.os.SystemClock

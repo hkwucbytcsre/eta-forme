@@ -1,13 +1,13 @@
-package io.github.alice.eta.agent.tool
+package io.github.mangi.eta.agent.tool
 
 import android.content.Context
 import android.net.Uri
-import io.github.alice.eta.agent.device.BoundedRootCommandExecutor
-import io.github.alice.eta.agent.device.BoundedFileCopy
-import io.github.alice.eta.agent.device.RootAccess
-import io.github.alice.eta.agent.media.AgentImageCodec
-import io.github.alice.eta.agent.media.MAX_AGENT_IMAGE_BYTES
-import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
+import io.github.mangi.eta.agent.device.BoundedFileCopy
+import io.github.mangi.eta.agent.device.RootAccess
+import io.github.mangi.eta.agent.media.AgentImageCodec
+import io.github.mangi.eta.agent.media.MAX_AGENT_IMAGE_BYTES
+import io.github.mangi.eta.agent.model.AgentModelClient
 import java.io.File
 import java.io.IOException
 import java.io.InterruptedIOException

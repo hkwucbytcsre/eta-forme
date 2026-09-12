@@ -1,6 +1,6 @@
-package io.github.alice.eta.agent.model
+package io.github.mangi.eta.agent.model
 
-import io.github.alice.eta.data.model.CustomBody
+import io.github.mangi.eta.data.model.CustomBody
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonNull

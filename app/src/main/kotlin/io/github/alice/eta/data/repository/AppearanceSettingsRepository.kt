@@ -1,7 +1,7 @@
-package io.github.alice.eta.data.repository
+package io.github.mangi.eta.data.repository
 
-import io.github.alice.eta.data.datastore.SettingsDataStore
-import io.github.alice.eta.data.model.AppearanceSettings
+import io.github.mangi.eta.data.datastore.SettingsDataStore
+import io.github.mangi.eta.data.model.AppearanceSettings
 import kotlinx.coroutines.flow.Flow
 
 object AppearanceSettingsRepository {

@@ -1,26 +1,26 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
 
 import android.content.Context
-import io.github.alice.eta.agent.model.AgentConversationCodec
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.data.db.ConversationContextCheckpointEntity
-import io.github.alice.eta.data.db.ConversationEntity
-import io.github.alice.eta.data.db.ConversationMetadata
-import io.github.alice.eta.data.db.ConversationMessageEntity
-import io.github.alice.eta.data.db.ConversationStateEntity
-import io.github.alice.eta.data.db.EtaDatabase
-import io.github.alice.eta.data.model.ReasoningEffort
-import io.github.alice.eta.ui.model.AgentChatHomeUiState
-import io.github.alice.eta.ui.model.AgentChatMessageUi
-import io.github.alice.eta.ui.model.AgentMessageUi
-import io.github.alice.eta.ui.model.ThinkingMessageUi
-import io.github.alice.eta.ui.model.SystemNoticeCode
-import io.github.alice.eta.ui.model.SystemNoticeMessageUi
-import io.github.alice.eta.ui.model.TokenUsageUi
-import io.github.alice.eta.ui.model.ToolActivityMessageUi
-import io.github.alice.eta.ui.model.ToolActivityStatusUi
-import io.github.alice.eta.ui.model.ToolSummaryMessageUi
-import io.github.alice.eta.ui.model.UserMessageUi
+import io.github.mangi.eta.agent.model.AgentConversationCodec
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.data.db.ConversationContextCheckpointEntity
+import io.github.mangi.eta.data.db.ConversationEntity
+import io.github.mangi.eta.data.db.ConversationMetadata
+import io.github.mangi.eta.data.db.ConversationMessageEntity
+import io.github.mangi.eta.data.db.ConversationStateEntity
+import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.ui.model.AgentChatHomeUiState
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.ThinkingMessageUi
+import io.github.mangi.eta.ui.model.SystemNoticeCode
+import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
+import io.github.mangi.eta.ui.model.TokenUsageUi
+import io.github.mangi.eta.ui.model.ToolActivityMessageUi
+import io.github.mangi.eta.ui.model.ToolActivityStatusUi
+import io.github.mangi.eta.ui.model.ToolSummaryMessageUi
+import io.github.mangi.eta.ui.model.UserMessageUi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
@@ -89,6 +89,7 @@ internal object AgentConversationStore {
                     ConversationContextCheckpointEntity(
                         conversationId = conversationId,
                         historyJson = AgentConversationCodec.encodeConversationCheckpoint(state.history),
+                        journalJson = AgentConversationCodec.encodeTranscriptForStorage(state.journal.ifEmpty { state.history }),
                     )
                 }
                 EtaDatabase.get(appContext)
@@ -135,13 +136,15 @@ internal object AgentConversationStore {
         val updatedAt = mutableMapOf<String, Long>()
 
         conversations.forEach { conversation ->
+            val checkpoint = dao.contextCheckpoint(conversation.id)
             states[conversation.id] = AgentChatHomeUiState(
+                journal = AgentConversationCodec.decodeTranscript(checkpoint?.journalJson),
                 messages = messagesByConversation[conversation.id]
                     .orEmpty()
                     .sortedBy { it.sortIndex }
                     .mapNotNull { it.toMessageOrNull() },
                 history = AgentConversationCodec.decodeTranscript(
-                    dao.contextCheckpoint(conversation.id)?.historyJson
+                    checkpoint?.historyJson
                 )
                     .ifEmpty {
                         messagesByConversation[conversation.id]
@@ -216,6 +219,7 @@ internal object AgentConversationStore {
                 type = TYPE_SYSTEM_NOTICE,
                 content = code.wireValue,
                 resultSummary = detail,
+                contextTokens = contextTokens,
                 renderMarkdown = false,
             )
 
@@ -281,6 +285,7 @@ internal object AgentConversationStore {
                     id = id,
                     code = code,
                     detail = resultSummary,
+                    contextTokens = contextTokens,
                 )
             }
 

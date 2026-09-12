@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.tool
+package io.github.mangi.eta.agent.tool
 
 import android.app.ActivityManager
 import android.app.AlarmManager
@@ -17,12 +17,12 @@ import android.os.SystemClock
 import android.provider.AlarmClock
 import android.provider.Settings
 import android.view.KeyEvent
-import io.github.alice.eta.agent.device.BoundedRootCommandExecutor
-import io.github.alice.eta.agent.device.RootAccess
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.core.AgentLogger
-import io.github.alice.eta.agent.device.AgentNotificationHistoryService
-import io.github.alice.eta.data.repository.NotificationHistoryRepository
+import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
+import io.github.mangi.eta.agent.device.RootAccess
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.core.AgentLogger
+import io.github.mangi.eta.agent.device.AgentNotificationHistoryService
+import io.github.mangi.eta.data.repository.NotificationHistoryRepository
 import java.util.Calendar
 import java.util.Locale
 import org.json.JSONArray

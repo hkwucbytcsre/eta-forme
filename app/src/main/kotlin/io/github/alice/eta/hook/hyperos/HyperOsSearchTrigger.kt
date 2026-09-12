@@ -1,10 +1,10 @@
-package io.github.alice.eta.hook.hyperos
+package io.github.mangi.eta.hook.hyperos
 
 import android.content.Context
-import io.github.alice.eta.config.Prefs
-import io.github.alice.eta.core.safeLogType
-import io.github.alice.eta.core.ModuleLogger
-import io.github.alice.eta.hook.system.CircleToSearchInvoker
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.core.safeLogType
+import io.github.mangi.eta.core.ModuleLogger
+import io.github.mangi.eta.hook.system.CircleToSearchInvoker
 
 internal object HyperOsSearchTrigger {
     fun isEnabled(): Boolean = Prefs.isEnabled(Prefs.Keys.GESTURE_BAR_CIRCLE_TO_SEARCH)

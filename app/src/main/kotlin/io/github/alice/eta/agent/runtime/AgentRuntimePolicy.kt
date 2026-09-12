@@ -1,9 +1,9 @@
-package io.github.alice.eta.agent.runtime
+package io.github.mangi.eta.agent.runtime
 
 import android.content.SharedPreferences
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.config.Prefs
-import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.data.model.ReasoningEffort
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonObject

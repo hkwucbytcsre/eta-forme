@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.media
+package io.github.mangi.eta.agent.media
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,7 +6,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.ParcelFileDescriptor
 import android.util.Base64
-import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.model.AgentModelClient
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -165,7 +165,7 @@ internal object AgentImageCodec {
 
     /**
      * 为跨进程请求解析图片。远程 URL 与已有 data URL 直接保留；本地 URI/路径只读取元数据，
-     * 正文稍后由 [io.github.alice.eta.agent.runtime.AgentRuntimeImageTransfer] 通过文件描述符传输。
+     * 正文稍后由 [io.github.mangi.eta.agent.runtime.AgentRuntimeImageTransfer] 通过文件描述符传输。
      */
     fun fromTransferReference(
         context: Context?,

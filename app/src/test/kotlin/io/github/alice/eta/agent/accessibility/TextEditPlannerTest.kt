@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.accessibility
+package io.github.mangi.eta.agent.accessibility
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

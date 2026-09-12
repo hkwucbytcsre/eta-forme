@@ -1,4 +1,4 @@
-package io.github.alice.eta.agent.model
+package io.github.mangi.eta.agent.model
 
 import java.net.URI
 import java.util.Locale
@@ -40,6 +40,7 @@ internal class AgentTraceFormatter {
             "wait_for_package" -> "等待应用就绪"
             "open_system_panel" -> "打开系统面板"
             "read_image" -> "查看图片"
+            AgentConversationToolCatalog.READ_HISTORY -> "读取当前会话历史"
             "memory_get" -> summarizeMemoryGetArguments(toolCall.argumentsJson)
             "memory_write" -> summarizeMemoryWriteArguments(toolCall.argumentsJson)
             "skills_list" -> "查看技能列表"
@@ -238,6 +239,7 @@ internal class AgentTraceFormatter {
         if (!isSuccessResult(result)) return summarizeFailure(json)
         return when (toolName) {
             BROWSER_TOOL_NAME -> json?.let(::summarizeBrowserResult) ?: "浏览器操作完成"
+            AgentConversationToolCatalog.READ_HISTORY -> "已读取历史分页"
             "memory_get", "memory_write" ->
                 json?.let { summarizeMemoryResult(toolName, it) } ?: "完成"
             "search_apps" -> json?.let(::summarizeSearchAppsResult) ?: "完成"
@@ -499,7 +501,8 @@ internal class AgentTraceFormatter {
     }
 
     private fun String.terminalEnvironmentLabel(): String = when (this) {
-        "linux", "alpine" -> "Alpine"
+        "linux" -> "Linux"
+        "alpine" -> "Alpine"
         "debian" -> "Debian"
         else -> "Android"
     }

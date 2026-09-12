@@ -1,10 +1,10 @@
-package io.github.alice.eta.data.db
+package io.github.mangi.eta.data.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import io.github.alice.eta.data.model.McpServerSetting
-import io.github.alice.eta.data.model.McpToolDefinition
+import io.github.mangi.eta.data.model.McpServerSetting
+import io.github.mangi.eta.data.model.McpToolDefinition
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.SetSerializer
 import kotlinx.serialization.builtins.serializer

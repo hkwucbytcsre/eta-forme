@@ -1,8 +1,8 @@
-package io.github.alice.eta.ui.model
+package io.github.mangi.eta.ui.model
 
-import io.github.alice.eta.data.model.CustomProviderSetting
-import io.github.alice.eta.data.model.Model
-import io.github.alice.eta.data.model.ProviderSourceTypes
+import io.github.mangi.eta.data.model.CustomProviderSetting
+import io.github.mangi.eta.data.model.Model
+import io.github.mangi.eta.data.model.ProviderSourceTypes
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
@@ -120,11 +120,11 @@ class AgentModelPickerProjectorTest {
         assertEquals(1f, contextUsageProgress(120_000, 100_000) ?: -1f, 0f)
         assertEquals("1.05M", formatCompactTokenCount(1_050_000))
         assertEquals(
-            "No usage data from the previous response",
+            "No usage data yet",
             formatContextUsage(AgentContextUsageUi(contextTokens = null, contextWindow = 100_000)),
         )
         assertEquals(
-            "12K tokens\nThe current model does not provide a context limit",
+            "12K tokens\nThis model has no context limit",
             formatContextUsage(AgentContextUsageUi(contextTokens = 12_000, contextWindow = null)),
         )
     }

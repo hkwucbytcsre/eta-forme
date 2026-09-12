@@ -1,10 +1,10 @@
-package io.github.alice.eta.systemizer
+package io.github.mangi.eta.systemizer
 
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import io.github.alice.eta.core.AndroidAgentLogger
-import io.github.alice.eta.core.safeLogType
+import io.github.mangi.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.core.safeLogType
 import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.thread

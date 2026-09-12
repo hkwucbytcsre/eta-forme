@@ -1,4 +1,6 @@
-package io.github.alice.eta.ui.app
+package io.github.mangi.eta.ui.app
+
+import io.github.mangi.eta.agent.model.AgentContextSnapshot
 
 import android.content.ComponentName
 import android.content.ContentResolver
@@ -13,68 +15,69 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshots.Snapshot
-import io.github.alice.eta.EtaApp
-import io.github.alice.eta.R
-import io.github.alice.eta.agent.accessibility.AgentAccessibilityService
-import io.github.alice.eta.agent.device.AgentFileReferenceGateway
-import io.github.alice.eta.agent.device.DeviceLocationProvider
-import io.github.alice.eta.agent.device.RootAccess
-import io.github.alice.eta.agent.media.AgentImageCodec
-import io.github.alice.eta.agent.memory.AgentMemoryContextBuilder
-import io.github.alice.eta.agent.model.AgentFileReference
-import io.github.alice.eta.agent.model.AgentFileReferenceKind
-import io.github.alice.eta.agent.model.AgentFileReferencePolicy
-import io.github.alice.eta.agent.model.AgentFileReferencePromptCodec
-import io.github.alice.eta.agent.model.AgentModelClient
-import io.github.alice.eta.agent.runtime.AgentEvent
-import io.github.alice.eta.agent.runtime.AgentExecutionService
-import io.github.alice.eta.agent.runtime.AgentExternalArchivePayload
-import io.github.alice.eta.agent.runtime.AgentRunArchiveStore
-import io.github.alice.eta.agent.runtime.AgentRunCheckpointStore
-import io.github.alice.eta.agent.runtime.AgentRuntimeClient
-import io.github.alice.eta.agent.runtime.AgentRuntimeWire
-import io.github.alice.eta.agent.runtime.AgentTokenUsage
-import io.github.alice.eta.agent.runtime.AgentUiHandoffPayload
-import io.github.alice.eta.agent.skill.SkillRuntime
-import io.github.alice.eta.config.Prefs
-import io.github.alice.eta.core.AndroidAgentLogger
-import io.github.alice.eta.core.safeLogType
-import io.github.alice.eta.data.model.ModelReasoningCapabilities
-import io.github.alice.eta.data.model.ReasoningEffort
-import io.github.alice.eta.data.repository.AgentMemoryRepository
-import io.github.alice.eta.data.repository.EtaBackupRepository
-import io.github.alice.eta.data.repository.EtaBackupSummary
-import io.github.alice.eta.data.repository.ProviderRepository
-import io.github.alice.eta.data.repository.RuntimeConfigRepository
-import io.github.alice.eta.ui.model.AgentChatHomeUiState
-import io.github.alice.eta.ui.model.AgentChatMessageUi
-import io.github.alice.eta.ui.model.AgentMemoryUiState
-import io.github.alice.eta.ui.model.AgentMessageUi
-import io.github.alice.eta.ui.model.AgentModelPickerProjector
-import io.github.alice.eta.ui.model.AgentModelPickerUiState
-import io.github.alice.eta.ui.model.AgentSkillsUiState
-import io.github.alice.eta.ui.model.AgentToolsUiState
-import io.github.alice.eta.ui.model.ConversationModeUi
-import io.github.alice.eta.ui.model.ConversationPaneUiState
-import io.github.alice.eta.ui.model.ConversationSummaryUi
-import io.github.alice.eta.ui.model.MessageEditUiState
-import io.github.alice.eta.ui.model.PendingFileReferenceUi
-import io.github.alice.eta.ui.model.PendingImageUi
-import io.github.alice.eta.ui.model.PermissionHealthItemUi
-import io.github.alice.eta.ui.model.PermissionHealthUiState
-import io.github.alice.eta.ui.model.PermissionStatusUi
-import io.github.alice.eta.ui.model.SkillItemUi
-import io.github.alice.eta.ui.model.SkillNoticeUi
-import io.github.alice.eta.ui.model.SkillReplacementUi
-import io.github.alice.eta.ui.model.SystemNoticeCode
-import io.github.alice.eta.ui.model.SystemNoticeMessageUi
-import io.github.alice.eta.ui.model.ThinkingMessageUi
-import io.github.alice.eta.ui.model.TokenUsageUi
-import io.github.alice.eta.ui.model.ToolActivityMessageUi
-import io.github.alice.eta.ui.model.ToolGroupUi
-import io.github.alice.eta.ui.model.ToolItemUi
-import io.github.alice.eta.ui.model.UserMessageUi
-import io.github.alice.eta.ui.model.canDeleteUserSkill
+import io.github.mangi.eta.EtaApp
+import io.github.mangi.eta.R
+import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
+import io.github.mangi.eta.agent.device.AgentFileReferenceGateway
+import io.github.mangi.eta.agent.device.DeviceLocationProvider
+import io.github.mangi.eta.agent.device.RootAccess
+import io.github.mangi.eta.agent.media.AgentImageCodec
+import io.github.mangi.eta.agent.memory.AgentMemoryContextBuilder
+import io.github.mangi.eta.agent.model.AgentFileReference
+import io.github.mangi.eta.agent.model.AgentFileReferenceKind
+import io.github.mangi.eta.agent.model.AgentFileReferencePolicy
+import io.github.mangi.eta.agent.model.AgentFileReferencePromptCodec
+import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.mangi.eta.agent.runtime.AgentEvent
+import io.github.mangi.eta.agent.runtime.AgentExecutionService
+import io.github.mangi.eta.agent.runtime.AgentExternalArchivePayload
+import io.github.mangi.eta.agent.runtime.AgentRunArchiveStore
+import io.github.mangi.eta.agent.runtime.AgentRunCheckpointStore
+import io.github.mangi.eta.agent.runtime.AgentRuntimeClient
+import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
+import io.github.mangi.eta.agent.runtime.AgentTokenUsage
+import io.github.mangi.eta.agent.runtime.AgentUiHandoffPayload
+import io.github.mangi.eta.agent.skill.SkillRuntime
+import io.github.mangi.eta.config.Prefs
+import io.github.mangi.eta.core.AndroidAgentLogger
+import io.github.mangi.eta.core.safeLogType
+import io.github.mangi.eta.data.model.ModelReasoningCapabilities
+import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.mangi.eta.data.repository.AgentMemoryRepository
+import io.github.mangi.eta.data.repository.EtaBackupRepository
+import io.github.mangi.eta.data.repository.EtaBackupSummary
+import io.github.mangi.eta.data.repository.ProviderRepository
+import io.github.mangi.eta.data.repository.RuntimeConfigRepository
+import io.github.mangi.eta.ui.model.AgentChatHomeUiState
+import io.github.mangi.eta.ui.model.AgentChatMessageUi
+import io.github.mangi.eta.ui.model.AgentMemoryUiState
+import io.github.mangi.eta.ui.model.AgentMessageUi
+import io.github.mangi.eta.ui.model.AgentModelPickerProjector
+import io.github.mangi.eta.ui.model.AgentModelPickerUiState
+import io.github.mangi.eta.ui.model.AgentSkillsUiState
+import io.github.mangi.eta.ui.model.AgentToolsUiState
+import io.github.mangi.eta.ui.model.ConversationModeUi
+import io.github.mangi.eta.ui.model.ConversationPaneUiState
+import io.github.mangi.eta.ui.model.ConversationSummaryUi
+import io.github.mangi.eta.ui.model.MessageEditUiState
+import io.github.mangi.eta.ui.model.PendingFileReferenceUi
+import io.github.mangi.eta.ui.model.PendingImageUi
+import io.github.mangi.eta.ui.model.PermissionHealthItemUi
+import io.github.mangi.eta.ui.model.PermissionHealthUiState
+import io.github.mangi.eta.ui.model.PermissionStatusUi
+import io.github.mangi.eta.ui.model.SkillItemUi
+import io.github.mangi.eta.ui.model.SkillNoticeUi
+import io.github.mangi.eta.ui.model.SkillReplacementUi
+import io.github.mangi.eta.ui.model.SystemNoticeCode
+import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
+import io.github.mangi.eta.ui.model.ThinkingMessageUi
+import io.github.mangi.eta.ui.model.TokenUsageUi
+import io.github.mangi.eta.ui.model.ToolActivityMessageUi
+import io.github.mangi.eta.ui.model.ToolGroupUi
+import io.github.mangi.eta.ui.model.ToolItemUi
+import io.github.mangi.eta.ui.model.UserMessageUi
+import io.github.mangi.eta.ui.model.canDeleteUserSkill
+import io.github.mangi.eta.ui.model.contentMatches
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.UUID
@@ -546,7 +549,7 @@ internal class AgentAppState(
         if (AgentRuntimeHistoryReducer.wasApplied(existing, runId)) return false
 
         runConversationIds[runId] = conversationId
-        updateConversation(conversationId, existing.copy(isStreaming = true))
+        updateConversation(conversationId, existing.copy(isStreaming = true, isCompacting = checkpoint.operation == AgentRuntimeWire.OP_COMPACT))
         restoreRunEvents(runId, checkpoint.events)
         flushPendingRunDelta(runId)
         updateRunTrace(runId) { messages ->
@@ -555,7 +558,7 @@ internal class AgentAppState(
             if (interrupted) {
                 val interruptedTools = runMessageProjector.interruptRunningTools(
                     reason = appContext.getString(R.string.system_notice_interrupted),
-                    messages = finalizedText,
+                    messages = runMessageProjector.finishContextCompaction(runId, finalizedText, "上下文压缩已中断"),
                 )
                 val noticeId = "interrupted-$runId"
                 if (interruptedTools.any { it.id == noticeId }) {
@@ -569,6 +572,9 @@ internal class AgentAppState(
             } else {
                 runMessageProjector.finalizeRun(runId, finalizedText)
             }
+        }
+        if (interrupted && (checkpoint.contextSnapshot != null || checkpoint.transcript.isNotEmpty())) {
+            applyConversationHistoryResult(runId, checkpoint.transcript, checkpoint.contextSnapshot, true)
         }
         setConversationStreaming(runId, false)
         runMessageProjector.clearRun(runId)
@@ -588,7 +594,7 @@ internal class AgentAppState(
 
         runConversationIds[runId] = conversationId
         currentRunId = runId
-        updateConversation(conversationId, existing.copy(isStreaming = true))
+        updateConversation(conversationId, existing.copy(isStreaming = true, isCompacting = checkpoint.operation == AgentRuntimeWire.OP_COMPACT))
         refreshConversationSummaries()
         currentRunJob = scope.launch(Dispatchers.IO) {
             val client = AgentRuntimeClient(appContext, AndroidAgentLogger)
@@ -762,6 +768,7 @@ internal class AgentAppState(
 
     fun updateSearchQuery(query: String) {
         conversationPaneState = conversationPaneState.copy(searchQuery = query)
+        refreshConversationSummaries()
     }
 
     fun selectConversation(conversationId: String) {
@@ -825,7 +832,49 @@ internal class AgentAppState(
         persistConversations()
     }
 
+    fun exportConversationMarkdown(conversationId: String): String? {
+        val state = conversationsById[conversationId] ?: return null
+        val title = conversationTitles[conversationId]?.takeIf { it.isNotBlank() }
+            ?: appContext.getString(R.string.conversation_unnamed)
+        return ConversationMarkdownExporter.export(
+            title = title,
+            messages = state.messages,
+            labels = ConversationMarkdownExporter.Labels(
+                user = appContext.getString(R.string.conversation_export_user),
+                assistant = appContext.getString(R.string.conversation_export_assistant),
+                thinking = appContext.getString(R.string.conversation_export_thinking),
+                toolLineFormat = appContext.getString(R.string.conversation_export_tool_line),
+                toolsLineFormat = appContext.getString(R.string.conversation_export_tools_line),
+                argumentsFormat = appContext.getString(R.string.conversation_export_tool_arguments),
+                resultFormat = appContext.getString(R.string.conversation_export_tool_result),
+                imagesFormat = appContext.getString(R.string.conversation_export_images),
+                toolStatusRunning = appContext.getString(R.string.tool_status_running),
+                toolStatusSuccess = appContext.getString(R.string.tool_status_success),
+                toolStatusFailed = appContext.getString(R.string.tool_status_failed),
+                toolStatusUnknown = appContext.getString(R.string.tool_status_unknown),
+                noticeStopped = noticeText(SystemNoticeCode.Stopped),
+                noticeEmptyResult = noticeText(SystemNoticeCode.EmptyResult),
+                noticeModelRetry = noticeText(SystemNoticeCode.ModelRetry),
+                noticeContextCompaction = noticeText(SystemNoticeCode.ContextCompaction),
+                noticeRuntimeFailed = noticeText(SystemNoticeCode.RuntimeFailed),
+                noticeInterrupted = noticeText(SystemNoticeCode.Interrupted),
+            ),
+        )
+    }
+
+    private fun noticeText(code: SystemNoticeCode): String = appContext.getString(
+        when (code) {
+            SystemNoticeCode.Stopped -> R.string.system_notice_stopped
+            SystemNoticeCode.EmptyResult -> R.string.system_notice_empty_result
+            SystemNoticeCode.ContextCompaction -> R.string.context_compaction
+            SystemNoticeCode.ModelRetry -> R.string.system_notice_model_retry
+            SystemNoticeCode.RuntimeFailed -> R.string.system_notice_runtime_failed
+            SystemNoticeCode.Interrupted -> R.string.system_notice_interrupted
+        },
+    )
+
     fun sendCurrentMessage(submittedText: String? = null) {
+        if (homeState.isCompacting) return
         val prompt = (submittedText ?: homeState.input).trim()
         val pendingImages = homeState.pendingImages
         val pendingFileReferences = homeState.pendingFileReferences
@@ -912,6 +961,7 @@ internal class AgentAppState(
             userHistoryMessage = userHistoryMessage,
             messages = messages,
             state = homeState.copy(
+                journal = editBoundary?.journalPrefix ?: homeState.journal,
                 input = "",
                 pendingImages = emptyList(),
                 pendingFileReferences = emptyList(),
@@ -1020,8 +1070,20 @@ internal class AgentAppState(
             history = boundary.historyPrefix,
             userHistoryMessage = userHistoryMessage,
             messages = homeState.messages.take(boundary.userMessageIndex + 1),
-            state = homeState,
+            state = homeState.copy(journal = boundary.journalPrefix),
             reasoningEffort = homeState.reasoningEffort,
+        )
+    }
+
+    fun compactCurrentContext() {
+        val conversationId = selectedConversationId ?: return
+        if (currentRunId != null || !homeState.canCompactContext || modelPickerState.isChanging) return
+        launchConversationRun(
+            conversationId = conversationId,
+            runId = java.util.UUID.randomUUID().toString(),
+            prompt = "", images = emptyList(), history = homeState.history,
+            userHistoryMessage = null, messages = homeState.messages, state = homeState,
+            reasoningEffort = homeState.reasoningEffort, operation = AgentRuntimeWire.OP_COMPACT,
         )
     }
 
@@ -1031,10 +1093,11 @@ internal class AgentAppState(
         prompt: String,
         images: List<PendingImageUi>,
         history: List<AgentModelClient.ConversationMessage>,
-        userHistoryMessage: AgentModelClient.ConversationMessage,
+        userHistoryMessage: AgentModelClient.ConversationMessage?,
         messages: List<AgentChatMessageUi>,
         state: AgentChatHomeUiState,
         reasoningEffort: ReasoningEffort,
+        operation: String = AgentRuntimeWire.OP_CHAT,
     ) {
         runConversationIds[runId] = conversationId
         currentRunId = runId
@@ -1043,7 +1106,9 @@ internal class AgentAppState(
             conversationId,
             state.copy(
                 isStreaming = true,
-                history = history + userHistoryMessage,
+                history = history + listOfNotNull(userHistoryMessage),
+                journal = state.journal.ifEmpty { history } + listOfNotNull(userHistoryMessage),
+                isCompacting = operation == AgentRuntimeWire.OP_COMPACT,
                 messages = messages,
                 messageEdit = null,
             )
@@ -1107,9 +1172,16 @@ internal class AgentAppState(
                     source = "user_attach",
                 )
             }
+            if (withContext(Dispatchers.Main) { runId in stopRequestedRunIds }) {
+                withContext(Dispatchers.Main) {
+                    applyRunResult(runId, AgentRuntimeWire.RunResult(runId, false, "", "已停止", operation = operation))
+                }
+                return@launch
+            }
             val result = runInterruptible {
                 AgentRuntimeClient(appContext, AndroidAgentLogger).run(
                     request = AgentRuntimeWire.RunRequest(
+                        operation = operation,
                         runId = runId,
                         prompt = prompt,
                         config = config,
@@ -1345,26 +1417,14 @@ internal class AgentAppState(
             AgentFileReferenceGateway.Error.ValidationTimedOut -> appContext.getString(R.string.state_ui_path_verification_timed_out_please_try_again_703687)
         }
 
+    private val stopRequestedRunIds = mutableSetOf<String>()
+
     fun stopCurrentRun() {
         val runId = currentRunId ?: return
-        currentRunJob?.cancel()
-        currentRunJob = null
-        currentRunId = null
-        flushPendingRunDelta(runId)
+        if (!stopRequestedRunIds.add(runId)) return
         scope.launch(Dispatchers.IO) {
             AgentRuntimeClient(appContext, AndroidAgentLogger).cancelRun(runId)
         }
-        updateRunTrace(runId) { messages ->
-            val finalizedThinking = runMessageProjector.finalizeThinking(runId, messages)
-            val finalizedText = runMessageProjector.finalizeText(runId, finalizedThinking)
-            runMessageProjector.failRunningTools(SYNTHETIC_STATUS_STOPPED, finalizedText)
-        }
-        replaceLatestAssistantWithNotice(runId, SystemNoticeCode.Stopped)
-        setConversationStreaming(runId, false)
-        runMessageProjector.clearRun(runId)
-        runConversationIds.remove(runId)
-        refreshConversationSummaries()
-        persistConversations()
     }
 
     private var permissionRefreshJob: Job? = null
@@ -1877,6 +1937,17 @@ internal class AgentAppState(
                 }
             }
 
+            is AgentEvent.ContextCompaction -> {
+                updateMessages(runId) { messages ->
+                    val id = "assistant-$runId-compaction-${event.operationId}"
+                    messages.filterNot { it.id == id } + SystemNoticeMessageUi(
+                        id = id, code = SystemNoticeCode.ContextCompaction, detail = event.displayMessage,
+                        contextTokens = event.tokensAfter,
+                        running = event.phase == AgentEvent.ContextCompaction.PHASE_STARTED,
+                    )
+                }
+            }
+
             is AgentEvent.ModelRetryScheduled -> {
                 updateRunTrace(runId) { messages ->
                     runMessageProjector.scheduleModelRetry(runId, event, messages)
@@ -1911,7 +1982,11 @@ internal class AgentAppState(
                 }
             }
 
-            is AgentEvent.RunStarted,
+            is AgentEvent.RunStarted -> {
+                if (runId in stopRequestedRunIds) scope.launch(Dispatchers.IO) {
+                    AgentRuntimeClient(appContext, AndroidAgentLogger).cancelRun(runId)
+                }
+            }
             is AgentEvent.ProviderRequestStarted,
             is AgentEvent.ProviderResponseStarted,
             is AgentEvent.ToolImagesAttached,
@@ -1926,13 +2001,29 @@ internal class AgentAppState(
         acknowledgeRuntimeResult: Boolean = false,
     ) {
         flushPendingRunDelta(runId)
+        stopRequestedRunIds.remove(runId)
         if (runId == currentRunId) {
             currentRunId = null
             currentRunJob = null
         }
-        updateRunTrace(runId) { messages -> runMessageProjector.finalizeRun(runId, messages) }
-        applyConversationHistoryResult(runId, result.transcript)
+        updateRunTrace(runId) { messages ->
+            runMessageProjector.finishContextCompaction(runId,
+                runMessageProjector.finalizeRun(runId, messages),
+                if (result.ok) "上下文压缩完成" else result.error ?: "上下文压缩已停止")
+        }
+        if (result.contextSnapshotRef.isBlank()) {
+            applyConversationHistoryResult(runId, result.transcript, result.contextSnapshot, !result.ok || result.contextSnapshot != null)
+        }
         when {
+            result.operation == AgentRuntimeWire.OP_COMPACT ||
+                conversationsById[conversationIdForRun(runId)]?.isCompacting == true -> updateMessages(runId) { messages ->
+                    AgentRunMessageProjector.mergeCompactionResultNotice(
+                        runId = runId,
+                        messages = messages,
+                        ok = result.ok,
+                        detail = if (result.ok) "上下文压缩完成" else result.error ?: "上下文压缩失败",
+                    )
+                }
             result.ok && result.content.isNotBlank() -> completeLatestAssistantMessage(
                 runId,
                 fallbackContent = result.content,
@@ -1951,7 +2042,7 @@ internal class AgentAppState(
         runConversationIds.remove(runId)
         refreshConversationSummaries()
         persistConversations(
-            onSaved = if (acknowledgeRuntimeResult) {
+            onSaved = if (acknowledgeRuntimeResult && result.contextSnapshotRef.isBlank()) {
                 {
                     AgentRuntimeClient(appContext, AndroidAgentLogger).ackResult(runId)
                 }
@@ -2105,10 +2196,12 @@ internal class AgentAppState(
     private fun applyConversationHistoryResult(
         runId: String,
         additions: List<AgentModelClient.ConversationMessage>,
+        snapshot: AgentContextSnapshot? = null,
+        retainPendingSupplements: Boolean = snapshot != null,
     ) {
         val conversationId = conversationIdForRun(runId) ?: return
         val state = conversationsById[conversationId] ?: return
-        val outcome = AgentRuntimeHistoryReducer.apply(state, runId, additions)
+        val outcome = AgentRuntimeHistoryReducer.apply(state, runId, additions, snapshot, retainPendingSupplements)
         if (!outcome.alreadyApplied) updateConversation(conversationId, outcome.state)
     }
 
@@ -2152,7 +2245,7 @@ internal class AgentAppState(
     private fun setConversationStreaming(runId: String, isStreaming: Boolean) {
         val conversationId = conversationIdForRun(runId) ?: return
         val state = conversationsById[conversationId] ?: return
-        updateConversation(conversationId, state.copy(isStreaming = isStreaming))
+        updateConversation(conversationId, state.copy(isStreaming = isStreaming, isCompacting = state.isCompacting && isStreaming))
     }
 
     private fun conversationIdForRun(runId: String): String? = runConversationIds[runId]
@@ -2186,15 +2279,7 @@ internal class AgentAppState(
                         is AgentMessageUi -> lastMessage.content.ifBlank {
                             appContext.getString(R.string.conversation_preview_reasoning)
                         }
-                        is SystemNoticeMessageUi -> appContext.getString(
-                            when (lastMessage.code) {
-                                SystemNoticeCode.Stopped -> R.string.system_notice_stopped
-                                SystemNoticeCode.EmptyResult -> R.string.system_notice_empty_result
-                                SystemNoticeCode.ModelRetry -> R.string.system_notice_model_retry
-                                SystemNoticeCode.RuntimeFailed -> R.string.system_notice_runtime_failed
-                                SystemNoticeCode.Interrupted -> R.string.system_notice_interrupted
-                            },
-                        )
+                        is SystemNoticeMessageUi -> noticeText(lastMessage.code)
                         is ThinkingMessageUi -> appContext.getString(R.string.conversation_preview_reasoning)
                         is ToolActivityMessageUi -> appContext.getString(
                             R.string.conversation_preview_tool_call,
@@ -2226,12 +2311,28 @@ internal class AgentAppState(
             conversations = if (query.isBlank()) {
                 summaries
             } else {
-                summaries.filter {
-                    it.title.contains(query, ignoreCase = true) ||
-                        it.preview.contains(query, ignoreCase = true)
+                contentMatchCache.keys.retainAll(conversationsById.keys)
+                summaries.filter { summary ->
+                    summary.title.contains(query, ignoreCase = true) ||
+                        summary.preview.contains(query, ignoreCase = true) ||
+                        conversationContentMatches(summary.id, query)
                 }
             },
         )
+    }
+
+    // 内容匹配按（查询词, 会话状态引用）缓存：刷新摘要时未变化的会话不重复全文扫描。
+    private val contentMatchCache = mutableMapOf<String, ContentMatchCacheEntry>()
+
+    private fun conversationContentMatches(conversationId: String, query: String): Boolean {
+        val state = conversationsById[conversationId] ?: return false
+        val cached = contentMatchCache[conversationId]
+        if (cached != null && cached.query == query && cached.state === state) {
+            return cached.matches
+        }
+        val matches = state.contentMatches(query) { code -> noticeText(code) }
+        contentMatchCache[conversationId] = ContentMatchCacheEntry(query, state, matches)
+        return matches
     }
 
     private fun persistConversations(onSaved: (() -> Unit)? = null): Deferred<Boolean> {
@@ -2278,6 +2379,7 @@ internal class AgentAppState(
             AgentChatHomeUiState(
                 messages = emptyList(),
                 history = emptyList(),
+                journal = emptyList(),
                 input = "",
                 isStreaming = false,
                 thinkingEnabled = thinkingEnabled,
@@ -2289,6 +2391,12 @@ internal class AgentAppState(
 
 internal data class MessageRevisionImpact(
     val laterTurnCount: Int,
+)
+
+private data class ContentMatchCacheEntry(
+    val query: String,
+    val state: AgentChatHomeUiState,
+    val matches: Boolean,
 )
 
 private const val EXTERNAL_ARCHIVE_CONVERSATION_PREFIX = "archive-"
@@ -2458,8 +2566,8 @@ private fun buildPermissionHealthState(context: Context): PermissionHealthUiStat
     val rootEnabled = RootAccess.isGranted
     val notificationsEnabled = context.getSystemService(android.app.NotificationManager::class.java).areNotificationsEnabled()
     val locationAccess = DeviceLocationProvider.accessState(context)
-    val notificationHistoryEnabled = io.github.alice.eta.agent.device.AgentNotificationHistoryService.isEnabled(context)
-    val usageAccessEnabled = io.github.alice.eta.agent.tool.AgentPersonalContextTools.hasUsageAccess(context)
+    val notificationHistoryEnabled = io.github.mangi.eta.agent.device.AgentNotificationHistoryService.isEnabled(context)
+    val usageAccessEnabled = io.github.mangi.eta.agent.tool.AgentPersonalContextTools.hasUsageAccess(context)
 
     return PermissionHealthUiState(
         items = listOf(

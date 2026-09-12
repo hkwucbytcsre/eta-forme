@@ -1,8 +1,8 @@
-package io.github.alice.eta.hook.system
+package io.github.mangi.eta.hook.system
 
-import io.github.alice.eta.hook.hyperos.HyperOsPowerHooks
-import io.github.alice.eta.core.HookInstallation
-import io.github.alice.eta.core.ModuleLogger
+import io.github.mangi.eta.hook.hyperos.HyperOsPowerHooks
+import io.github.mangi.eta.core.HookInstallation
+import io.github.mangi.eta.core.ModuleLogger
 
 import io.github.libxposed.api.XposedModule
 

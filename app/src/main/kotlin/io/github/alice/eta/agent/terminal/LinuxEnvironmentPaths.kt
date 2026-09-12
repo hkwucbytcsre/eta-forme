@@ -1,7 +1,7 @@
-package io.github.alice.eta.agent.terminal
+package io.github.mangi.eta.agent.terminal
 
 import android.content.Context
-import io.github.alice.eta.data.repository.LinuxEnvironmentSettingsRepository
+import io.github.mangi.eta.data.repository.LinuxEnvironmentSettingsRepository
 import java.io.File
 
 /** 两个 Linux rootfs 共用的磁盘布局和就绪判定。 */
