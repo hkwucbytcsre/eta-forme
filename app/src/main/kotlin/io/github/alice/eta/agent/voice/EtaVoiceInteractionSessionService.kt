@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.voice
+package io.github.alice.eta.agent.voice
 
 import android.os.Bundle
 import android.service.voice.VoiceInteractionSession

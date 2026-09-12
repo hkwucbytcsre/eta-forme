@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import android.content.Context
 import android.os.Bundle
@@ -9,13 +9,13 @@ import android.os.Messenger
 import android.os.Parcel
 import android.os.ParcelFileDescriptor
 import java.io.File
-import io.github.mangi.eta.agent.model.AgentContextSnapshot
-import io.github.mangi.eta.agent.model.AgentConversationCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.ui.app.AgentConversationStore
-import io.github.mangi.eta.ui.model.AgentChatUiState
-import io.github.mangi.eta.ui.model.UserMessageUi
+import io.github.alice.eta.agent.model.AgentContextSnapshot
+import io.github.alice.eta.agent.model.AgentConversationCodec
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.data.db.EtaDatabase
+import io.github.alice.eta.ui.app.AgentConversationStore
+import io.github.alice.eta.ui.model.AgentChatUiState
+import io.github.alice.eta.ui.model.UserMessageUi
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.*
@@ -33,7 +33,7 @@ class AgentHistoryRetentionTest {
     private lateinit var context: Context
     private val config = AgentModelClient.ModelConfig(
         baseUrl = "https://example.invalid", apiKey = "fixture", model = "fixture", systemPrompt = "规则",
-        reasoningEffort = io.github.mangi.eta.data.model.ReasoningEffort.OFF,
+        reasoningEffort = io.github.alice.eta.data.model.ReasoningEffort.OFF,
     )
 
     @Before fun setup() {

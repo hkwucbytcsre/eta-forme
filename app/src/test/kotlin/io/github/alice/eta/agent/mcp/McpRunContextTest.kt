@@ -1,11 +1,11 @@
-package io.github.mangi.eta.agent.mcp
+package io.github.alice.eta.agent.mcp
 
 import com.sun.net.httpserver.HttpExchange
 import com.sun.net.httpserver.HttpServer
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.model.McpProtocolMode
-import io.github.mangi.eta.data.model.McpServerSetting
-import io.github.mangi.eta.data.model.McpToolDefinition
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.data.model.McpProtocolMode
+import io.github.alice.eta.data.model.McpServerSetting
+import io.github.alice.eta.data.model.McpToolDefinition
 import java.net.InetSocketAddress
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference

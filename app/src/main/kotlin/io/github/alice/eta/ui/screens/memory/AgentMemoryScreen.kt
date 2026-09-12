@@ -1,5 +1,5 @@
-package io.github.mangi.eta.ui.screens.memory
-import io.github.mangi.eta.R
+package io.github.alice.eta.ui.screens.memory
+import io.github.alice.eta.R
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.foundation.layout.Arrangement
@@ -24,11 +24,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.components.MiuixScaffold
-import io.github.mangi.eta.ui.layout.horizontalCutoutPadding
-import io.github.mangi.eta.ui.model.AgentMemoryAction
-import io.github.mangi.eta.ui.model.AgentMemoryUiState
+import io.github.alice.eta.ui.components.MiuixDialogActions
+import io.github.alice.eta.ui.components.MiuixScaffold
+import io.github.alice.eta.ui.layout.horizontalCutoutPadding
+import io.github.alice.eta.ui.model.AgentMemoryAction
+import io.github.alice.eta.ui.model.AgentMemoryUiState
 import top.yukonga.miuix.kmp.basic.BasicComponent
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.Card

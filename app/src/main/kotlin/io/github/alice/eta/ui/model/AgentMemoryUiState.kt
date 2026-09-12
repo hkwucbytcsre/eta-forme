@@ -1,7 +1,7 @@
-package io.github.mangi.eta.ui.model
+package io.github.alice.eta.ui.model
 
 import androidx.compose.runtime.Immutable
-import io.github.mangi.eta.data.repository.AgentMemoryStore
+import io.github.alice.eta.data.repository.AgentMemoryStore
 
 @Immutable
 data class AgentMemoryUiState(

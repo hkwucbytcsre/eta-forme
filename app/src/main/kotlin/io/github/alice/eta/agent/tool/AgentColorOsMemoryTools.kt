@@ -1,11 +1,11 @@
-package io.github.mangi.eta.agent.tool
+package io.github.alice.eta.agent.tool
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
-import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.core.ColorOsMemoryBridgeProtocol
+import io.github.alice.eta.agent.device.BoundedRootCommandExecutor
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.core.ColorOsMemoryBridgeProtocol
 import java.io.File
 import org.json.JSONObject
 

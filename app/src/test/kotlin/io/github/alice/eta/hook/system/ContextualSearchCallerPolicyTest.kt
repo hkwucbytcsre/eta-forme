@@ -1,9 +1,9 @@
-package io.github.mangi.eta.hook.system
+package io.github.alice.eta.hook.system
 
 import android.app.Application
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
-import io.github.mangi.eta.core.ModuleConfig
+import io.github.alice.eta.core.ModuleConfig
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test

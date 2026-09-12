@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.screens.browser
+package io.github.alice.eta.ui.screens.browser
 
 import android.content.Intent
 import android.view.ViewGroup
@@ -74,11 +74,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.net.toUri
-import io.github.mangi.eta.R
-import io.github.mangi.eta.agent.browser.AgentBrowserSession
-import io.github.mangi.eta.agent.browser.BrowserSessionSnapshot
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.components.StatusError
+import io.github.alice.eta.R
+import io.github.alice.eta.agent.browser.AgentBrowserSession
+import io.github.alice.eta.agent.browser.BrowserSessionSnapshot
+import io.github.alice.eta.ui.components.MiuixDialogActions
+import io.github.alice.eta.ui.components.StatusError
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

@@ -1,12 +1,12 @@
-package io.github.mangi.eta.data.provider
+package io.github.alice.eta.data.provider
 
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ProviderSourceTypes
+import io.github.alice.eta.data.model.Model
+import io.github.alice.eta.data.model.ModelSource
+import io.github.alice.eta.data.model.CustomProviderSetting
+import io.github.alice.eta.data.model.OpenAiCompatibleProviderSetting
+import io.github.alice.eta.data.model.OpenAiEndpointMode
+import io.github.alice.eta.data.model.ProviderSetting
+import io.github.alice.eta.data.model.ProviderSourceTypes
 
 internal object OfficialModelCatalog {
     private val modelsByCatalogId: Map<String, List<Model>> = mapOf(

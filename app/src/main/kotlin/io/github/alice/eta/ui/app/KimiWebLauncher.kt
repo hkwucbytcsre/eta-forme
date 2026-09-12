@@ -1,13 +1,13 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.content.Context
 import android.content.Intent
 import androidx.core.net.toUri
-import io.github.mangi.eta.agent.runtime.AgentExecutionService
-import io.github.mangi.eta.agent.terminal.DetachedTaskSupervisor
-import io.github.mangi.eta.agent.terminal.LinuxEnvironmentPaths
-import io.github.mangi.eta.agent.terminal.TerminalEnvironment
-import io.github.mangi.eta.agent.terminal.TerminalRuntime
+import io.github.alice.eta.agent.runtime.AgentExecutionService
+import io.github.alice.eta.agent.terminal.DetachedTaskSupervisor
+import io.github.alice.eta.agent.terminal.LinuxEnvironmentPaths
+import io.github.alice.eta.agent.terminal.TerminalEnvironment
+import io.github.alice.eta.agent.terminal.TerminalRuntime
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive

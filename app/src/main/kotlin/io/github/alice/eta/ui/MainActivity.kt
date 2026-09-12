@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui
+package io.github.alice.eta.ui
 
 import android.app.UiModeManager
 import android.content.Intent
@@ -14,13 +14,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
-import io.github.mangi.eta.agent.voice.EtaAssistantOverlayService
-import io.github.mangi.eta.data.model.AppearanceThemeMode
-import io.github.mangi.eta.data.repository.AppearanceSettingsRepository
-import io.github.mangi.eta.ui.app.AgentAppRoot
-import io.github.mangi.eta.ui.app.AgentAppTheme
-import io.github.mangi.eta.ui.app.PredictiveBackController
-import io.github.mangi.eta.ui.app.installStartupSplash
+import io.github.alice.eta.agent.voice.EtaAssistantOverlayService
+import io.github.alice.eta.data.model.AppearanceThemeMode
+import io.github.alice.eta.data.repository.AppearanceSettingsRepository
+import io.github.alice.eta.ui.app.AgentAppRoot
+import io.github.alice.eta.ui.app.AgentAppTheme
+import io.github.alice.eta.ui.app.PredictiveBackController
+import io.github.alice.eta.ui.app.installStartupSplash
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {

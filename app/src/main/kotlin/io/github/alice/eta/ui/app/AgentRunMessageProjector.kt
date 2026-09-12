@@ -1,15 +1,15 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.os.SystemClock
-import io.github.mangi.eta.agent.runtime.AgentEvent
-import io.github.mangi.eta.ui.model.AgentChatMessageUi
-import io.github.mangi.eta.ui.model.AgentMessageUi
-import io.github.mangi.eta.ui.model.SystemNoticeCode
-import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
-import io.github.mangi.eta.ui.model.ThinkingMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityStatusUi
-import io.github.mangi.eta.ui.model.UserMessageUi
+import io.github.alice.eta.agent.runtime.AgentEvent
+import io.github.alice.eta.ui.model.AgentChatMessageUi
+import io.github.alice.eta.ui.model.AgentMessageUi
+import io.github.alice.eta.ui.model.SystemNoticeCode
+import io.github.alice.eta.ui.model.SystemNoticeMessageUi
+import io.github.alice.eta.ui.model.ThinkingMessageUi
+import io.github.alice.eta.ui.model.ToolActivityMessageUi
+import io.github.alice.eta.ui.model.ToolActivityStatusUi
+import io.github.alice.eta.ui.model.UserMessageUi
 
 internal class AgentRunMessageProjector(
     private val nowElapsedRealtime: () -> Long = { SystemClock.elapsedRealtime() },

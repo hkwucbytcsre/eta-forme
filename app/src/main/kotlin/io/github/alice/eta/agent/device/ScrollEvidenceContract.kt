@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.device
+package io.github.alice.eta.agent.device
 
 internal enum class ScrollEvidence {
     MOVED_BY_EVENT,

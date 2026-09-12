@@ -1,6 +1,6 @@
-package io.github.mangi.eta.ui.model
+package io.github.alice.eta.ui.model
 
-import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.model.AgentModelClient
 import org.junit.Assert.*
 import org.junit.Test
 

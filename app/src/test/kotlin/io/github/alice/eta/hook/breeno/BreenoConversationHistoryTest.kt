@@ -1,4 +1,4 @@
-package io.github.mangi.eta.hook.breeno
+package io.github.alice.eta.hook.breeno
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

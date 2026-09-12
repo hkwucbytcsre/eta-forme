@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
-import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.model.AgentModelClient
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test

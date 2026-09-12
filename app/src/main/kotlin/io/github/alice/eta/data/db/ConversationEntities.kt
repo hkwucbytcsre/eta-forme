@@ -1,11 +1,11 @@
-package io.github.mangi.eta.data.db
+package io.github.alice.eta.data.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.alice.eta.data.model.ReasoningEffort
 import kotlinx.serialization.Serializable
 
 @Serializable

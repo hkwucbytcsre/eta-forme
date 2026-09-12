@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.screens.skills
+package io.github.alice.eta.ui.screens.skills
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
@@ -21,10 +21,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.ui.components.ItemDescriptionDialog
-import io.github.mangi.eta.ui.components.PreferenceIcon
-import io.github.mangi.eta.ui.model.SkillItemUi
+import io.github.alice.eta.R
+import io.github.alice.eta.ui.components.ItemDescriptionDialog
+import io.github.alice.eta.ui.components.PreferenceIcon
+import io.github.alice.eta.ui.model.SkillItemUi
 import top.yukonga.miuix.kmp.basic.BasicComponent
 import top.yukonga.miuix.kmp.basic.DropdownEntry
 import top.yukonga.miuix.kmp.basic.DropdownItem

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import org.json.JSONArray
 import org.json.JSONObject

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.voice
+package io.github.alice.eta.agent.voice
 
 import android.app.Service
 import android.app.ActivityOptions
@@ -34,28 +34,28 @@ import androidx.savedstate.SavedStateRegistry
 import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.overlay.AgentOverlayVisibilityPolicy
-import io.github.mangi.eta.agent.runtime.AgentEvent
-import io.github.mangi.eta.agent.runtime.AgentExternalArchivePayload
-import io.github.mangi.eta.agent.runtime.AgentRuntimeClient
-import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.ui.MainActivity
-import io.github.mangi.eta.ui.app.AgentAppTheme
-import io.github.mangi.eta.data.model.AppearanceSettings
-import io.github.mangi.eta.data.repository.AppearanceSettingsRepository
-import io.github.mangi.eta.ui.app.AgentRunMessageProjector
-import io.github.mangi.eta.ui.model.AgentChatMessageUi
-import io.github.mangi.eta.ui.model.AgentMessageUi
-import io.github.mangi.eta.ui.model.ThinkingMessageUi
-import io.github.mangi.eta.ui.model.SystemNoticeCode
-import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityMessageUi
-import io.github.mangi.eta.ui.model.TokenUsageUi
-import io.github.mangi.eta.ui.model.UserMessageUi
+import io.github.alice.eta.agent.accessibility.AgentAccessibilityService
+import io.github.alice.eta.agent.media.AgentImageCodec
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.overlay.AgentOverlayVisibilityPolicy
+import io.github.alice.eta.agent.runtime.AgentEvent
+import io.github.alice.eta.agent.runtime.AgentExternalArchivePayload
+import io.github.alice.eta.agent.runtime.AgentRuntimeClient
+import io.github.alice.eta.agent.runtime.AgentRuntimeWire
+import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.alice.eta.ui.MainActivity
+import io.github.alice.eta.ui.app.AgentAppTheme
+import io.github.alice.eta.data.model.AppearanceSettings
+import io.github.alice.eta.data.repository.AppearanceSettingsRepository
+import io.github.alice.eta.ui.app.AgentRunMessageProjector
+import io.github.alice.eta.ui.model.AgentChatMessageUi
+import io.github.alice.eta.ui.model.AgentMessageUi
+import io.github.alice.eta.ui.model.ThinkingMessageUi
+import io.github.alice.eta.ui.model.SystemNoticeCode
+import io.github.alice.eta.ui.model.SystemNoticeMessageUi
+import io.github.alice.eta.ui.model.ToolActivityMessageUi
+import io.github.alice.eta.ui.model.TokenUsageUi
+import io.github.alice.eta.ui.model.UserMessageUi
 import java.util.UUID
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executors
@@ -938,10 +938,10 @@ internal class EtaAssistantOverlayService : Service(), LifecycleOwner, SavedStat
     }
 
     internal companion object {
-        const val ACTION_SHOW = "io.github.mangi.eta.agent.voice.SHOW"
-        const val ACTION_OPEN_CONVERSATION = "io.github.mangi.eta.agent.voice.OPEN_CONVERSATION"
-        const val EXTRA_CONVERSATION_KEY = "io.github.mangi.eta.agent.voice.extra.CONVERSATION_KEY"
-        private const val ACTION_HANDOFF_READY = "io.github.mangi.eta.agent.voice.HANDOFF_READY"
+        const val ACTION_SHOW = "io.github.alice.eta.agent.voice.SHOW"
+        const val ACTION_OPEN_CONVERSATION = "io.github.alice.eta.agent.voice.OPEN_CONVERSATION"
+        const val EXTRA_CONVERSATION_KEY = "io.github.alice.eta.agent.voice.extra.CONVERSATION_KEY"
+        private const val ACTION_HANDOFF_READY = "io.github.alice.eta.agent.voice.HANDOFF_READY"
         private const val HANDOFF_TIMEOUT_MS = 5_000L
         private const val HANDOFF_EXIT_DURATION_MS = 220L
         private const val HANDOFF_REQUEST_CODE = 0x455441

@@ -1,7 +1,7 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
-import io.github.mangi.eta.ui.markdown.StreamingGfmParserSession
-import io.github.mangi.eta.ui.markdown.StreamingGfmSnapshot
+import io.github.alice.eta.ui.markdown.StreamingGfmParserSession
+import io.github.alice.eta.ui.markdown.StreamingGfmSnapshot
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.awaitCancellation

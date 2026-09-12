@@ -1,6 +1,6 @@
 @file:android.annotation.SuppressLint("LocalContextGetResourceValueCall")
 
-package io.github.mangi.eta.ui.pages.providers
+package io.github.alice.eta.ui.pages.providers
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -37,24 +37,24 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.withId
-import io.github.mangi.eta.data.repository.ProviderRepository
-import io.github.mangi.eta.data.repository.RemoteModelFetcher
-import io.github.mangi.eta.data.repository.RuntimeConfigRepository
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.components.MiuixPageBottomSpacer
-import io.github.mangi.eta.ui.components.MiuixScaffold
-import io.github.mangi.eta.ui.components.MiuixScaffoldPage
-import io.github.mangi.eta.ui.components.StatusError
-import io.github.mangi.eta.ui.components.StatusSuccess
-import io.github.mangi.eta.ui.layout.horizontalCutoutPadding
-import io.github.mangi.eta.ui.navigation.NewProviderType
+import io.github.alice.eta.EtaApp
+import io.github.alice.eta.R
+import io.github.alice.eta.data.model.AnthropicProviderSetting
+import io.github.alice.eta.data.model.CustomProviderSetting
+import io.github.alice.eta.data.model.OpenAiEndpointMode
+import io.github.alice.eta.data.model.ProviderSetting
+import io.github.alice.eta.data.model.withId
+import io.github.alice.eta.data.repository.ProviderRepository
+import io.github.alice.eta.data.repository.RemoteModelFetcher
+import io.github.alice.eta.data.repository.RuntimeConfigRepository
+import io.github.alice.eta.ui.components.MiuixDialogActions
+import io.github.alice.eta.ui.components.MiuixPageBottomSpacer
+import io.github.alice.eta.ui.components.MiuixScaffold
+import io.github.alice.eta.ui.components.MiuixScaffoldPage
+import io.github.alice.eta.ui.components.StatusError
+import io.github.alice.eta.ui.components.StatusSuccess
+import io.github.alice.eta.ui.layout.horizontalCutoutPadding
+import io.github.alice.eta.ui.navigation.NewProviderType
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

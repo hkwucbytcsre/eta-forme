@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit

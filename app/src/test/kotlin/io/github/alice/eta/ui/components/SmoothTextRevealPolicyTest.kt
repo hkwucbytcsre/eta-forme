@@ -1,7 +1,7 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import androidx.compose.ui.unit.sp
-import io.github.mangi.eta.ui.markdown.StreamingGfmParserSession
+import io.github.alice.eta.ui.markdown.StreamingGfmParserSession
 import org.intellij.markdown.MarkdownElementTypes
 import org.intellij.markdown.flavours.gfm.GFMElementTypes
 import org.junit.Assert.assertArrayEquals

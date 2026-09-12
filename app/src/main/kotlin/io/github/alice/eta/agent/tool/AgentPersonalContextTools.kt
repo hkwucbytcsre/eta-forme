@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.tool
+package io.github.alice.eta.agent.tool
 
 import android.app.AppOpsManager
 import android.app.KeyguardManager
@@ -12,10 +12,10 @@ import android.media.AudioDeviceInfo
 import android.media.AudioManager
 import android.os.PowerManager
 import android.os.Process
-import io.github.mangi.eta.agent.device.AgentNotificationHistoryService
-import io.github.mangi.eta.agent.device.DeviceLocationProvider
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.repository.NotificationHistoryRepository
+import io.github.alice.eta.agent.device.AgentNotificationHistoryService
+import io.github.alice.eta.agent.device.DeviceLocationProvider
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.data.repository.NotificationHistoryRepository
 import org.json.JSONArray
 import org.json.JSONObject
 

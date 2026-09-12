@@ -1,14 +1,14 @@
-package io.github.mangi.eta.hook.xiaoai
+package io.github.alice.eta.hook.xiaoai
 
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import io.github.mangi.eta.agent.runtime.AgentEvent
-import io.github.mangi.eta.R
-import io.github.mangi.eta.core.HookSupport
-import io.github.mangi.eta.core.ModuleLogger
-import io.github.mangi.eta.core.safeLogType
-import io.github.mangi.eta.hook.EtaInjectedStrings
+import io.github.alice.eta.agent.runtime.AgentEvent
+import io.github.alice.eta.R
+import io.github.alice.eta.core.HookSupport
+import io.github.alice.eta.core.ModuleLogger
+import io.github.alice.eta.core.safeLogType
+import io.github.alice.eta.hook.EtaInjectedStrings
 import java.lang.reflect.Method
 import java.lang.reflect.Modifier
 import java.util.concurrent.atomic.AtomicBoolean

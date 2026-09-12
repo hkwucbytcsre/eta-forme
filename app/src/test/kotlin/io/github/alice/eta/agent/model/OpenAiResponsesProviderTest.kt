@@ -1,11 +1,11 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
 import com.sun.net.httpserver.HttpServer
-import io.github.mangi.eta.agent.runtime.AgentRunController
-import io.github.mangi.eta.data.model.CustomBody
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
-import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.alice.eta.agent.runtime.AgentRunController
+import io.github.alice.eta.data.model.CustomBody
+import io.github.alice.eta.data.model.ModelReasoningCapabilities
+import io.github.alice.eta.data.model.OpenAiEndpointMode
+import io.github.alice.eta.data.model.ReasoningEffort
 import java.io.OutputStream
 import java.net.InetSocketAddress
 import java.util.concurrent.CountDownLatch

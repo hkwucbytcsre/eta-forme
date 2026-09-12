@@ -1,11 +1,11 @@
-package io.github.mangi.eta.hook.hyperos
+package io.github.alice.eta.hook.hyperos
 
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.View
-import io.github.mangi.eta.core.HookRegistrar
-import io.github.mangi.eta.core.HookSupport
-import io.github.mangi.eta.core.safeLogType
+import io.github.alice.eta.core.HookRegistrar
+import io.github.alice.eta.core.HookSupport
+import io.github.alice.eta.core.safeLogType
 import java.util.WeakHashMap
 
 internal object HyperOsLegacyGesture {

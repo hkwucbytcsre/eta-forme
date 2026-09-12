@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.navigation
+package io.github.alice.eta.ui.navigation
 
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString

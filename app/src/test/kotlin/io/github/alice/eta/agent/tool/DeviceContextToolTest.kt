@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.tool
+package io.github.alice.eta.agent.tool
 
-import io.github.mangi.eta.agent.device.DeviceLocationProvider
+import io.github.alice.eta.agent.device.DeviceLocationProvider
 import java.time.Clock
 import java.time.Instant
 import java.time.ZoneId

@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
-import io.github.mangi.eta.data.model.CustomHeader
+import io.github.alice.eta.data.model.CustomHeader
 import okhttp3.Headers
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals

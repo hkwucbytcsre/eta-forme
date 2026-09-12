@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
-import io.github.mangi.eta.agent.runtime.AgentEvent
-import io.github.mangi.eta.agent.runtime.AgentRunController
-import io.github.mangi.eta.agent.tool.AgentToolCapabilities
+import io.github.alice.eta.agent.runtime.AgentEvent
+import io.github.alice.eta.agent.runtime.AgentRunController
+import io.github.alice.eta.agent.tool.AgentToolCapabilities
 import java.util.concurrent.atomic.AtomicInteger
 import org.json.JSONArray
 import org.json.JSONObject

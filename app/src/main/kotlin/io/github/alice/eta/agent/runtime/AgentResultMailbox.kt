@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import android.os.Bundle
 import java.io.Closeable

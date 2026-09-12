@@ -1,14 +1,14 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.runtime.AgentRuntimeWire
-import io.github.mangi.eta.agent.runtime.AgentUiHandoffPayload
-import io.github.mangi.eta.ui.model.AgentChatHomeUiState
-import io.github.mangi.eta.ui.model.AgentChatMessageUi
-import io.github.mangi.eta.ui.model.AgentMessageUi
-import io.github.mangi.eta.ui.model.SystemNoticeCode
-import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
-import io.github.mangi.eta.ui.model.UserMessageUi
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.runtime.AgentRuntimeWire
+import io.github.alice.eta.agent.runtime.AgentUiHandoffPayload
+import io.github.alice.eta.ui.model.AgentChatHomeUiState
+import io.github.alice.eta.ui.model.AgentChatMessageUi
+import io.github.alice.eta.ui.model.AgentMessageUi
+import io.github.alice.eta.ui.model.SystemNoticeCode
+import io.github.alice.eta.ui.model.SystemNoticeMessageUi
+import io.github.alice.eta.ui.model.UserMessageUi
 
 /** 将 Runtime outbox 的结果幂等折叠回 App 会话。 */
 internal object AgentPendingResultRecovery {

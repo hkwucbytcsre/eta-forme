@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.terminal
+package io.github.alice.eta.agent.terminal
 
 import java.io.File
 import org.junit.Assert.assertEquals
@@ -41,7 +41,7 @@ class ShellProcessSupervisorTest {
         val supervisor = ShellProcessSupervisor()
 
         val payload = supervisor.buildLinuxPayload(
-            rootfsPath = "/data/user/0/io.github.mangi.eta/files/terminal/alpine/rootfs",
+            rootfsPath = "/data/user/0/io.github.alice.eta/files/terminal/alpine/rootfs",
             command = "printf '%s' \"hello\"",
         )
 
@@ -58,7 +58,7 @@ class ShellProcessSupervisorTest {
         assertTrue(payload.contains("[ -h \"\$eta_rootfs/bin/sh\" ]"))
 
         val debianPayload = supervisor.buildLinuxPayload(
-            rootfsPath = "/data/user/0/io.github.mangi.eta/files/terminal/debian/rootfs",
+            rootfsPath = "/data/user/0/io.github.alice.eta/files/terminal/debian/rootfs",
             command = "python3 --version",
         )
         assertTrue(debianPayload.contains("/usr/bin/env -i"))

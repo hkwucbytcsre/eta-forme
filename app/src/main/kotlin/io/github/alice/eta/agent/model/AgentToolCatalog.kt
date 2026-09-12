@@ -1,7 +1,7 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
 import org.json.JSONArray
-import io.github.mangi.eta.agent.tool.AgentToolCapabilities
+import io.github.alice.eta.agent.tool.AgentToolCapabilities
 
 /** 声明模型可见的工具及其 JSON Schema；不包含任何执行逻辑。 */
 internal object AgentToolCatalog {

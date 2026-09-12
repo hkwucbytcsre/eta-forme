@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.app.Application
 import androidx.compose.runtime.getValue
@@ -6,14 +6,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.mangi.eta.agent.terminal.DetachedTaskSupervisor
-import io.github.mangi.eta.agent.terminal.LinuxEnvironmentPaths
-import io.github.mangi.eta.agent.terminal.LinuxPackageProfiles
-import io.github.mangi.eta.agent.terminal.SharedFolderMounts
-import io.github.mangi.eta.agent.terminal.linuxPackageProfileReady
-import io.github.mangi.eta.agent.terminal.terminalEnvironment
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.data.repository.LinuxEnvironmentSettingsRepository
+import io.github.alice.eta.agent.terminal.DetachedTaskSupervisor
+import io.github.alice.eta.agent.terminal.LinuxEnvironmentPaths
+import io.github.alice.eta.agent.terminal.LinuxPackageProfiles
+import io.github.alice.eta.agent.terminal.SharedFolderMounts
+import io.github.alice.eta.agent.terminal.linuxPackageProfileReady
+import io.github.alice.eta.agent.terminal.terminalEnvironment
+import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.alice.eta.data.repository.LinuxEnvironmentSettingsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

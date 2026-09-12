@@ -1,7 +1,7 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
 import com.sun.net.httpserver.HttpServer
-import io.github.mangi.eta.agent.runtime.AgentRunController
+import io.github.alice.eta.agent.runtime.AgentRunController
 import java.io.OutputStream
 import java.net.InetSocketAddress
 import java.util.concurrent.CountDownLatch
@@ -435,7 +435,7 @@ class OpenAiChatCompletionsProviderTest {
                         providerSourceType = "deepseek",
                         model = "deepseek-v4-pro",
                         thinkingEnabled = true,
-                        reasoningEffort = io.github.mangi.eta.data.model.ReasoningEffort.HIGH,
+                        reasoningEffort = io.github.alice.eta.data.model.ReasoningEffort.HIGH,
                     )
                 },
                 runController = AgentRunController(),

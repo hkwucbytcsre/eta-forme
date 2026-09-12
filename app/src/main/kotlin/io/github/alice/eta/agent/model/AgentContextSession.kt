@@ -1,7 +1,7 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
-import io.github.mangi.eta.agent.runtime.AgentEvent
-import io.github.mangi.eta.agent.runtime.AgentRunController
+import io.github.alice.eta.agent.runtime.AgentEvent
+import io.github.alice.eta.agent.runtime.AgentRunController
 import org.json.JSONArray
 
 /** 管理可替换的模型上下文；持久快照先提交，运行 transcript 始终追加。 */

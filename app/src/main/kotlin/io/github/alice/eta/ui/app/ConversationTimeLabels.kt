@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import java.util.Calendar
 import java.util.Date

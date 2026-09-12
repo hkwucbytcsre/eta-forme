@@ -1,4 +1,4 @@
-package io.github.mangi.eta.config
+package io.github.alice.eta.config
 
 internal enum class PowerAssistantTarget(
     val persistedValue: String,

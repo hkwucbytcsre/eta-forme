@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import android.content.Context
 import android.os.Bundle
@@ -7,8 +7,8 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.Message
 import android.os.Messenger
-import io.github.mangi.eta.core.AgentLogger
-import io.github.mangi.eta.core.safeLogType
+import io.github.alice.eta.core.AgentLogger
+import io.github.alice.eta.core.safeLogType
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference

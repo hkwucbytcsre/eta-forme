@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.markdown
+package io.github.alice.eta.ui.markdown
 
 import com.mikepenz.markdown.model.ReferenceLinkHandlerImpl
 import com.mikepenz.markdown.model.State

@@ -1,9 +1,9 @@
-package io.github.mangi.eta.agent.device
+package io.github.alice.eta.agent.device
 
 import android.net.Uri
-import io.github.mangi.eta.agent.model.AgentFileReference
-import io.github.mangi.eta.agent.model.AgentFileReferenceKind
-import io.github.mangi.eta.core.AgentLogger
+import io.github.alice.eta.agent.model.AgentFileReference
+import io.github.alice.eta.agent.model.AgentFileReferenceKind
+import io.github.alice.eta.core.AgentLogger
 import java.io.ByteArrayInputStream
 import java.io.File
 import org.junit.Assert.assertEquals

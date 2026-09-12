@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.TextButton
 import top.yukonga.miuix.kmp.theme.MiuixTheme
-import io.github.mangi.eta.R
+import io.github.alice.eta.R
 
 /**
  * 弹窗底部按钮行：取消在左、确认在右，平分整行。

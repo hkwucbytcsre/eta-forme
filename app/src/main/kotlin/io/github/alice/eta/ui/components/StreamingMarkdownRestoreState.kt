@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf

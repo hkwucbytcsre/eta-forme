@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.tool
+package io.github.alice.eta.agent.tool
 
 internal sealed interface ToolExecutionDecision {
     data object Allow : ToolExecutionDecision

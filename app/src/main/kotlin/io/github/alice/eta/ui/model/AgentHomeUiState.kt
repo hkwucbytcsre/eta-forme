@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.model
+package io.github.alice.eta.ui.model
 
 import androidx.compose.runtime.Immutable
 

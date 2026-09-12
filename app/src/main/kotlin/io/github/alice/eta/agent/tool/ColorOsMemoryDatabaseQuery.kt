@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.tool
+package io.github.alice.eta.agent.tool
 
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
-import io.github.mangi.eta.core.ColorOsMemoryBridgeProtocol
+import io.github.alice.eta.core.ColorOsMemoryBridgeProtocol
 import java.nio.charset.StandardCharsets
 import org.json.JSONArray
 import org.json.JSONObject

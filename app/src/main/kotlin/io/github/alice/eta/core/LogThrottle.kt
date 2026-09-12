@@ -1,4 +1,4 @@
-package io.github.mangi.eta.core
+package io.github.alice.eta.core
 
 import android.os.SystemClock
 import java.util.concurrent.ConcurrentHashMap

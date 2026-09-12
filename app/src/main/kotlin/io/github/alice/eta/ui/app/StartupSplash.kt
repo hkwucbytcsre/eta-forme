@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -11,7 +11,7 @@ import androidx.activity.ComponentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import io.github.mangi.eta.R
+import io.github.alice.eta.R
 import java.time.Duration
 import java.time.Instant
 import kotlin.math.roundToInt

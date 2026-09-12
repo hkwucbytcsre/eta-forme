@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.tool
+package io.github.alice.eta.agent.tool
 
 import android.content.Context
 import android.content.Intent
@@ -6,45 +6,45 @@ import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.SystemClock
-import io.github.mangi.eta.agent.browser.AgentBrowserSession
-import io.github.mangi.eta.agent.device.DeviceControlUnavailableException
-import io.github.mangi.eta.agent.device.RootAccess
-import io.github.mangi.eta.agent.device.RootShellDeviceController
-import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.model.AgentScreenObservationContract
-import io.github.mangi.eta.agent.model.AgentSensitiveToolPolicy
-import io.github.mangi.eta.agent.overlay.AgentHapticFeedback
-import io.github.mangi.eta.agent.overlay.GestureIndicator
-import io.github.mangi.eta.agent.runtime.AgentAppContext
-import io.github.mangi.eta.agent.skill.SkillCompatibilityChecker
-import io.github.mangi.eta.agent.skill.SkillIndexService
-import io.github.mangi.eta.agent.skill.SkillInstallErrorCode
-import io.github.mangi.eta.agent.skill.SkillInstallResult
-import io.github.mangi.eta.agent.skill.SkillLoader
-import io.github.mangi.eta.agent.skill.SkillPackageInstaller
-import io.github.mangi.eta.agent.skill.SkillParser
-import io.github.mangi.eta.agent.skill.SkillResourceReader
-import io.github.mangi.eta.agent.skill.SkillResourceReadResult
-import io.github.mangi.eta.agent.skill.GitHubSkillRepositoryParser
-import io.github.mangi.eta.agent.skill.GitHubSkillInspection
-import io.github.mangi.eta.agent.skill.GitHubSkillRepository
-import io.github.mangi.eta.agent.skill.GitHubSkillSourceException
-import io.github.mangi.eta.agent.skill.PublicGitHubSkillSource
-import io.github.mangi.eta.agent.terminal.AlpineEnvironmentPaths
-import io.github.mangi.eta.agent.terminal.DetachedTaskSupervisor
-import io.github.mangi.eta.agent.terminal.LinuxEnvironmentPaths
-import io.github.mangi.eta.agent.terminal.terminalEnvironment
-import io.github.mangi.eta.agent.terminal.RootShellTerminalController
-import io.github.mangi.eta.agent.terminal.SharedFolderMounts
-import io.github.mangi.eta.config.Prefs
-import io.github.mangi.eta.core.AgentLogger
-import io.github.mangi.eta.core.HookSupport
-import io.github.mangi.eta.data.repository.AgentMemoryException
-import io.github.mangi.eta.data.repository.AgentMemoryMutation
-import io.github.mangi.eta.data.repository.AgentMemoryRepository
-import io.github.mangi.eta.data.repository.AgentMemoryWriteResult
-import io.github.mangi.eta.data.repository.LinuxEnvironmentSettingsRepository
+import io.github.alice.eta.agent.browser.AgentBrowserSession
+import io.github.alice.eta.agent.device.DeviceControlUnavailableException
+import io.github.alice.eta.agent.device.RootAccess
+import io.github.alice.eta.agent.device.RootShellDeviceController
+import io.github.alice.eta.agent.device.BoundedRootCommandExecutor
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.model.AgentScreenObservationContract
+import io.github.alice.eta.agent.model.AgentSensitiveToolPolicy
+import io.github.alice.eta.agent.overlay.AgentHapticFeedback
+import io.github.alice.eta.agent.overlay.GestureIndicator
+import io.github.alice.eta.agent.runtime.AgentAppContext
+import io.github.alice.eta.agent.skill.SkillCompatibilityChecker
+import io.github.alice.eta.agent.skill.SkillIndexService
+import io.github.alice.eta.agent.skill.SkillInstallErrorCode
+import io.github.alice.eta.agent.skill.SkillInstallResult
+import io.github.alice.eta.agent.skill.SkillLoader
+import io.github.alice.eta.agent.skill.SkillPackageInstaller
+import io.github.alice.eta.agent.skill.SkillParser
+import io.github.alice.eta.agent.skill.SkillResourceReader
+import io.github.alice.eta.agent.skill.SkillResourceReadResult
+import io.github.alice.eta.agent.skill.GitHubSkillRepositoryParser
+import io.github.alice.eta.agent.skill.GitHubSkillInspection
+import io.github.alice.eta.agent.skill.GitHubSkillRepository
+import io.github.alice.eta.agent.skill.GitHubSkillSourceException
+import io.github.alice.eta.agent.skill.PublicGitHubSkillSource
+import io.github.alice.eta.agent.terminal.AlpineEnvironmentPaths
+import io.github.alice.eta.agent.terminal.DetachedTaskSupervisor
+import io.github.alice.eta.agent.terminal.LinuxEnvironmentPaths
+import io.github.alice.eta.agent.terminal.terminalEnvironment
+import io.github.alice.eta.agent.terminal.RootShellTerminalController
+import io.github.alice.eta.agent.terminal.SharedFolderMounts
+import io.github.alice.eta.config.Prefs
+import io.github.alice.eta.core.AgentLogger
+import io.github.alice.eta.core.HookSupport
+import io.github.alice.eta.data.repository.AgentMemoryException
+import io.github.alice.eta.data.repository.AgentMemoryMutation
+import io.github.alice.eta.data.repository.AgentMemoryRepository
+import io.github.alice.eta.data.repository.AgentMemoryWriteResult
+import io.github.alice.eta.data.repository.LinuxEnvironmentSettingsRepository
 import java.util.Locale
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicBoolean
@@ -1104,7 +1104,7 @@ internal class AgentLocalTools(
     }
 
     private fun inspectionResult(
-        inspection: io.github.mangi.eta.agent.skill.GitHubSkillInspection,
+        inspection: io.github.alice.eta.agent.skill.GitHubSkillInspection,
     ): String {
         val installedIds = skillIndexService
             ?.listSkillsForManagement()

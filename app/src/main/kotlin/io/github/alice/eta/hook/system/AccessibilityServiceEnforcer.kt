@@ -1,4 +1,4 @@
-package io.github.mangi.eta.hook.system
+package io.github.alice.eta.hook.system
 
 import android.Manifest
 import android.content.BroadcastReceiver
@@ -15,9 +15,9 @@ import android.os.Handler
 import android.os.SystemClock
 import android.os.UserManager
 import android.provider.Settings
-import io.github.mangi.eta.agent.accessibility.AccessibilityProtectionProtocol
-import io.github.mangi.eta.core.ModuleLogger
-import io.github.mangi.eta.core.safeLogType
+import io.github.alice.eta.agent.accessibility.AccessibilityProtectionProtocol
+import io.github.alice.eta.core.ModuleLogger
+import io.github.alice.eta.core.safeLogType
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -817,9 +817,9 @@ internal class AccessibilityServiceEnforcer(
     }
 
     private companion object {
-        const val APP_PACKAGE = "io.github.mangi.eta"
+        const val APP_PACKAGE = "io.github.alice.eta"
         const val SERVICE_CLASS =
-            "io.github.mangi.eta.agent.accessibility.AgentAccessibilityService"
+            "io.github.alice.eta.agent.accessibility.AgentAccessibilityService"
         const val DISABLED = 0
         const val ENABLED = 1
         const val LOG_INTERVAL_MS = 10_000L

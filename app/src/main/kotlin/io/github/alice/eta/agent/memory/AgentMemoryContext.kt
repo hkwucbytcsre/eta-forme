@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.memory
+package io.github.alice.eta.agent.memory
 
-import io.github.mangi.eta.data.repository.AgentMemorySnapshot
+import io.github.alice.eta.data.repository.AgentMemorySnapshot
 
 internal data class AgentMemoryContext(
     val enabled: Boolean,

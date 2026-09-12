@@ -1,10 +1,10 @@
-package io.github.mangi.eta.data.repository
+package io.github.alice.eta.data.repository
 
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.data.datastore.SettingsDataStore
-import io.github.mangi.eta.data.model.AppearanceAccentColor
-import io.github.mangi.eta.data.model.AppearanceSettings
-import io.github.mangi.eta.data.model.AppearanceThemeMode
+import io.github.alice.eta.EtaApp
+import io.github.alice.eta.data.datastore.SettingsDataStore
+import io.github.alice.eta.data.model.AppearanceAccentColor
+import io.github.alice.eta.data.model.AppearanceSettings
+import io.github.alice.eta.data.model.AppearanceThemeMode
 import java.util.UUID
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking

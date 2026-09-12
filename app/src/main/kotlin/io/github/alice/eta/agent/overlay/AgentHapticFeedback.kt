@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.overlay
+package io.github.alice.eta.agent.overlay
 
 import android.content.Context
 import android.os.VibrationEffect

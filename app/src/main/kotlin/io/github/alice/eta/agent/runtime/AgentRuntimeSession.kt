@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
-import io.github.mangi.eta.agent.model.AgentContextSnapshot
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.model.AgentToolBatchRecovery
+import io.github.alice.eta.agent.model.AgentContextSnapshot
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.model.AgentToolBatchRecovery
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 

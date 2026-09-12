@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.browser
+package io.github.alice.eta.agent.browser
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

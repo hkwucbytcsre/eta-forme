@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.screens.enhance
+package io.github.alice.eta.ui.screens.enhance
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -16,12 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.ui.app.description
-import io.github.mangi.eta.ui.app.rememberDeviceCapabilities
-import io.github.mangi.eta.ui.components.MiuixScaffoldPage
-import io.github.mangi.eta.ui.components.PreferenceIcon
-import io.github.mangi.eta.ui.model.AgentSystemEnhanceAction
+import io.github.alice.eta.R
+import io.github.alice.eta.ui.app.description
+import io.github.alice.eta.ui.app.rememberDeviceCapabilities
+import io.github.alice.eta.ui.components.MiuixScaffoldPage
+import io.github.alice.eta.ui.components.PreferenceIcon
+import io.github.alice.eta.ui.model.AgentSystemEnhanceAction
 import top.yukonga.miuix.kmp.basic.BasicComponent
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.SmallTitle

@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.memory
+package io.github.alice.eta.agent.memory
 
-import io.github.mangi.eta.data.repository.AgentMemorySnapshot
+import io.github.alice.eta.data.repository.AgentMemorySnapshot
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

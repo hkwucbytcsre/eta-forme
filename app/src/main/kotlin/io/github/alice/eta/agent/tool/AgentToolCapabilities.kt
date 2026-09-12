@@ -1,14 +1,14 @@
-package io.github.mangi.eta.agent.tool
+package io.github.alice.eta.agent.tool
 
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
-import io.github.mangi.eta.agent.accessibility.AccessibilityProtectionClient
-import io.github.mangi.eta.agent.device.AgentNotificationHistoryService
-import io.github.mangi.eta.agent.device.RootAccess
+import io.github.alice.eta.EtaApp
+import io.github.alice.eta.agent.accessibility.AgentAccessibilityService
+import io.github.alice.eta.agent.accessibility.AccessibilityProtectionClient
+import io.github.alice.eta.agent.device.AgentNotificationHistoryService
+import io.github.alice.eta.agent.device.RootAccess
 import java.util.Locale
 import org.json.JSONArray
 

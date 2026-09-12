@@ -1,6 +1,6 @@
-package io.github.mangi.eta.ui.model
+package io.github.alice.eta.ui.model
 
-import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.alice.eta.data.model.ReasoningEffort
 
 sealed interface AgentHomeAction {
     data object CompactContext : AgentHomeAction

@@ -1,9 +1,9 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
-import io.github.mangi.eta.agent.model.AgentContextSnapshot
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.ui.model.AgentChatHomeUiState
-import io.github.mangi.eta.ui.model.UserMessageUi
+import io.github.alice.eta.agent.model.AgentContextSnapshot
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.ui.model.AgentChatHomeUiState
+import io.github.alice.eta.ui.model.UserMessageUi
 
 /** live result 与 outbox recovery 共用的 history 幂等提交点。 */
 internal object AgentRuntimeHistoryReducer {

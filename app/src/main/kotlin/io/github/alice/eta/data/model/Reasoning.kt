@@ -1,4 +1,4 @@
-package io.github.mangi.eta.data.model
+package io.github.alice.eta.data.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.KSerializer

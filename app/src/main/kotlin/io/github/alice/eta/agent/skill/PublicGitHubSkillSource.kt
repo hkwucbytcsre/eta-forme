@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.skill
+package io.github.alice.eta.agent.skill
 
 import java.io.Closeable
 import java.io.File

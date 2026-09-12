@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.terminal
+package io.github.alice.eta.agent.terminal
 
 import android.content.Context
-import io.github.mangi.eta.agent.device.RootAccess
-import io.github.mangi.eta.agent.runtime.AgentExecutionService
+import io.github.alice.eta.agent.device.RootAccess
+import io.github.alice.eta.agent.runtime.AgentExecutionService
 import java.io.File
 
 internal enum class LinuxExecutionBackend(val wireName: String) {

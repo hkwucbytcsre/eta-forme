@@ -1,10 +1,10 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import io.github.mangi.eta.ui.layout.rememberIsWideScreen
+import io.github.alice.eta.ui.layout.rememberIsWideScreen
 import top.yukonga.miuix.kmp.basic.ScrollBehavior
 import top.yukonga.miuix.kmp.basic.SmallTopAppBar
 import top.yukonga.miuix.kmp.basic.TopAppBar

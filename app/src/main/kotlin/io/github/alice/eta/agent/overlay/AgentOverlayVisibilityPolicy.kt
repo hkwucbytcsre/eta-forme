@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.overlay
+package io.github.alice.eta.agent.overlay
 
-import io.github.mangi.eta.agent.runtime.AgentEvent
+import io.github.alice.eta.agent.runtime.AgentEvent
 
 /**
  * Decides when the system-level operation overlay should become visible.

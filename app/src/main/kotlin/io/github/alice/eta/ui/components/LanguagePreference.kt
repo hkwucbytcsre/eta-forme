@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import android.os.LocaleList
 import androidx.compose.material.icons.Icons
@@ -15,8 +15,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import io.github.mangi.eta.R
-import io.github.mangi.eta.data.repository.LanguageSettingsRepository
+import io.github.alice.eta.R
+import io.github.alice.eta.data.repository.LanguageSettingsRepository
 import top.yukonga.miuix.kmp.preference.OverlayDropdownPreference
 
 @Composable

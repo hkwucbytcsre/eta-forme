@@ -1,10 +1,10 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import io.github.mangi.eta.ui.markdown.StreamingGfmParserSession
-import io.github.mangi.eta.ui.markdown.StreamingGfmSnapshot
+import io.github.alice.eta.ui.markdown.StreamingGfmParserSession
+import io.github.alice.eta.ui.markdown.StreamingGfmSnapshot
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel

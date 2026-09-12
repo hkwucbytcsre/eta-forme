@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.device
+package io.github.alice.eta.agent.device
 
 import java.io.IOException
 import java.io.InputStream

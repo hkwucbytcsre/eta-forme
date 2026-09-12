@@ -1,11 +1,11 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import io.github.mangi.eta.R
-import io.github.mangi.eta.ui.model.PermissionStatusUi
-import io.github.mangi.eta.ui.model.RunStatusUi
+import io.github.alice.eta.R
+import io.github.alice.eta.ui.model.PermissionStatusUi
+import io.github.alice.eta.ui.model.RunStatusUi
 import top.yukonga.miuix.kmp.theme.MiuixTheme
 
 // 语义状态色

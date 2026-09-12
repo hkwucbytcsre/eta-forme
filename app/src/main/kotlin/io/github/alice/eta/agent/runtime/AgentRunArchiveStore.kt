@@ -1,13 +1,13 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import android.content.Context
-import io.github.mangi.eta.agent.model.AgentContextSnapshot
-import io.github.mangi.eta.agent.model.AgentConversationCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.db.RuntimeArchiveEventEntity
-import io.github.mangi.eta.data.db.RuntimeArchiveRunEntity
-import io.github.mangi.eta.data.db.RuntimeArchiveRunWithEvents
+import io.github.alice.eta.agent.model.AgentContextSnapshot
+import io.github.alice.eta.agent.model.AgentConversationCodec
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.data.db.EtaDatabase
+import io.github.alice.eta.data.db.RuntimeArchiveEventEntity
+import io.github.alice.eta.data.db.RuntimeArchiveRunEntity
+import io.github.alice.eta.data.db.RuntimeArchiveRunWithEvents
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray

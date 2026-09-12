@@ -1,10 +1,10 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.app.Application
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.view.View
 import androidx.activity.ComponentActivity
-import io.github.mangi.eta.R
+import io.github.alice.eta.R
 import java.time.Duration
 import java.time.Instant
 import org.junit.Assert.assertEquals

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.core
+package io.github.alice.eta.core
 
 private const val UNKNOWN_LOG_TOKEN = "unknown"
 

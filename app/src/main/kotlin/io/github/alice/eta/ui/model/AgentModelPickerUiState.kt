@@ -1,9 +1,9 @@
-package io.github.mangi.eta.ui.model
+package io.github.alice.eta.ui.model
 
 import androidx.compose.runtime.Immutable
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.provider.ProviderSourceRegistry
+import io.github.alice.eta.data.model.Model
+import io.github.alice.eta.data.model.ProviderSetting
+import io.github.alice.eta.data.provider.ProviderSourceRegistry
 import java.text.NumberFormat
 import java.util.Locale
 

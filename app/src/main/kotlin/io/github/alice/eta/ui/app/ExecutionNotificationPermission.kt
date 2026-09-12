@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.Manifest
 import android.content.Context

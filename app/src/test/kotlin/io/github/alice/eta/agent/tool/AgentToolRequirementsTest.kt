@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.tool
+package io.github.alice.eta.agent.tool
 
-import io.github.mangi.eta.agent.model.AgentToolCatalog
+import io.github.alice.eta.agent.model.AgentToolCatalog
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.assertEquals

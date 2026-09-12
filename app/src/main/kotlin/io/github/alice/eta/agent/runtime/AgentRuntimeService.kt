@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import java.util.concurrent.Executors
 import java.util.concurrent.RejectedExecutionException
@@ -29,26 +29,26 @@ import androidx.savedstate.SavedStateRegistry
 import androidx.savedstate.SavedStateRegistryController
 import androidx.savedstate.SavedStateRegistryOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
-import io.github.mangi.eta.agent.device.RootAccess
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.overlay.AgentHapticFeedback
-import io.github.mangi.eta.agent.overlay.AgentOverlayBubble
-import io.github.mangi.eta.agent.overlay.AgentOverlayGlow
-import io.github.mangi.eta.agent.overlay.AgentOverlayOrb
-import io.github.mangi.eta.agent.overlay.AgentResultCard
-import io.github.mangi.eta.agent.overlay.AgentOverlayPhase
-import io.github.mangi.eta.agent.overlay.AgentOverlayState
-import io.github.mangi.eta.agent.overlay.AgentOverlayStatus
-import io.github.mangi.eta.agent.overlay.AgentOverlayVisibilityPolicy
-import io.github.mangi.eta.agent.overlay.applyEvent
-import io.github.mangi.eta.config.Prefs
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.core.ModuleConfig
-import io.github.mangi.eta.core.safeLogType
-import io.github.mangi.eta.data.repository.RuntimeConfigRepository
+import io.github.alice.eta.EtaApp
+import io.github.alice.eta.agent.accessibility.AgentAccessibilityService
+import io.github.alice.eta.agent.device.RootAccess
+import io.github.alice.eta.agent.media.AgentImageCodec
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.overlay.AgentHapticFeedback
+import io.github.alice.eta.agent.overlay.AgentOverlayBubble
+import io.github.alice.eta.agent.overlay.AgentOverlayGlow
+import io.github.alice.eta.agent.overlay.AgentOverlayOrb
+import io.github.alice.eta.agent.overlay.AgentResultCard
+import io.github.alice.eta.agent.overlay.AgentOverlayPhase
+import io.github.alice.eta.agent.overlay.AgentOverlayState
+import io.github.alice.eta.agent.overlay.AgentOverlayStatus
+import io.github.alice.eta.agent.overlay.AgentOverlayVisibilityPolicy
+import io.github.alice.eta.agent.overlay.applyEvent
+import io.github.alice.eta.config.Prefs
+import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.alice.eta.core.ModuleConfig
+import io.github.alice.eta.core.safeLogType
+import io.github.alice.eta.data.repository.RuntimeConfigRepository
 import kotlin.concurrent.thread
 import kotlinx.coroutines.runBlocking
 import top.yukonga.miuix.kmp.squircle.LocalSquircleEnabled
@@ -1122,7 +1122,7 @@ internal class AgentRuntimeService : Service(), LifecycleOwner, SavedStateRegist
     }
 
     private companion object {
-        const val ACTION_KEEP_ALIVE = "io.github.mangi.eta.agent.runtime.KEEP_ALIVE"
+        const val ACTION_KEEP_ALIVE = "io.github.alice.eta.agent.runtime.KEEP_ALIVE"
         const val HIDE_DELAY_MS = 2_500L
         const val RESULT_REVIEW_DELAY_MS = 120_000L
         const val RESULT_CARD_HEIGHT_RATIO = 0.5f

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.data.db
+package io.github.alice.eta.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -40,12 +40,12 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.ui.model.AgentContextUsageUi
-import io.github.mangi.eta.ui.model.AgentModelOptionUi
-import io.github.mangi.eta.ui.model.AgentModelPickerUiState
-import io.github.mangi.eta.ui.model.defaultExpandedModelProviderIds
-import io.github.mangi.eta.ui.model.formatContextUsage
+import io.github.alice.eta.R
+import io.github.alice.eta.ui.model.AgentContextUsageUi
+import io.github.alice.eta.ui.model.AgentModelOptionUi
+import io.github.alice.eta.ui.model.AgentModelPickerUiState
+import io.github.alice.eta.ui.model.defaultExpandedModelProviderIds
+import io.github.alice.eta.ui.model.formatContextUsage
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.ButtonDefaults
 import top.yukonga.miuix.kmp.basic.CircularProgressIndicator

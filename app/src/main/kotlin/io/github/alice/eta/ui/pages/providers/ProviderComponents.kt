@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.pages.providers
+package io.github.alice.eta.ui.pages.providers
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
@@ -20,10 +20,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.ui.components.PreferenceIcon
-import io.github.mangi.eta.ui.components.providerBrandLogoRes as sharedProviderBrandLogoRes
+import io.github.alice.eta.data.model.CustomProviderSetting
+import io.github.alice.eta.data.model.ProviderSetting
+import io.github.alice.eta.ui.components.PreferenceIcon
+import io.github.alice.eta.ui.components.providerBrandLogoRes as sharedProviderBrandLogoRes
 import top.yukonga.miuix.kmp.basic.Card
 import top.yukonga.miuix.kmp.basic.SmallTitle
 import top.yukonga.miuix.kmp.basic.Text

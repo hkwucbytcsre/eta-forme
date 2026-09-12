@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.skill
+package io.github.alice.eta.agent.skill
 
-import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.alice.eta.data.db.EtaDatabase
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File

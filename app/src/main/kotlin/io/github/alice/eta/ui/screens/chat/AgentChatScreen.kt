@@ -1,13 +1,13 @@
-package io.github.mangi.eta.ui.screens.chat
+package io.github.alice.eta.ui.screens.chat
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
-import io.github.mangi.eta.ui.components.AgentChatBody
-import io.github.mangi.eta.ui.components.chatConversationCompositionKey
-import io.github.mangi.eta.ui.model.AgentChatAction
-import io.github.mangi.eta.ui.model.AgentChatUiState
-import io.github.mangi.eta.ui.model.AgentModelPickerUiState
+import io.github.alice.eta.ui.components.AgentChatBody
+import io.github.alice.eta.ui.components.chatConversationCompositionKey
+import io.github.alice.eta.ui.model.AgentChatAction
+import io.github.alice.eta.ui.model.AgentChatUiState
+import io.github.alice.eta.ui.model.AgentModelPickerUiState
 
 /**
  * 独立对话页：与首页聊天主舞台共用同一套消息/输入组件，

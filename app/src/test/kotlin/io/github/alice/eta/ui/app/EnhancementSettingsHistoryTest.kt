@@ -1,8 +1,8 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.content.Context
-import io.github.mangi.eta.config.PowerAssistantTarget
-import io.github.mangi.eta.config.Prefs
+import io.github.alice.eta.config.PowerAssistantTarget
+import io.github.alice.eta.config.Prefs
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

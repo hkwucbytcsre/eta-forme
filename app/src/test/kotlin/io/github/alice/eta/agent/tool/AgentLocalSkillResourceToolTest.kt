@@ -1,11 +1,11 @@
-package io.github.mangi.eta.agent.tool
+package io.github.alice.eta.agent.tool
 
-import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.alice.eta.data.db.EtaDatabase
 import android.content.Context
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.agent.skill.SkillIndexService
-import io.github.mangi.eta.agent.skill.SkillResourceReader
-import io.github.mangi.eta.core.AgentLogger
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.skill.SkillIndexService
+import io.github.alice.eta.agent.skill.SkillResourceReader
+import io.github.alice.eta.core.AgentLogger
 import java.io.File
 import org.json.JSONObject
 import org.junit.Assert.assertEquals

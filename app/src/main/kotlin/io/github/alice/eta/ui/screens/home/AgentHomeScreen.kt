@@ -1,18 +1,18 @@
-package io.github.mangi.eta.ui.screens.home
+package io.github.alice.eta.ui.screens.home
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.key
 import androidx.compose.ui.Modifier
-import io.github.mangi.eta.ui.components.AgentChatBody
-import io.github.mangi.eta.ui.components.chatConversationCompositionKey
-import io.github.mangi.eta.ui.model.AgentChatHomeUiState
-import io.github.mangi.eta.ui.model.AgentHomeAction
-import io.github.mangi.eta.ui.model.AgentModelPickerUiState
+import io.github.alice.eta.ui.components.AgentChatBody
+import io.github.alice.eta.ui.components.chatConversationCompositionKey
+import io.github.alice.eta.ui.model.AgentChatHomeUiState
+import io.github.alice.eta.ui.model.AgentHomeAction
+import io.github.alice.eta.ui.model.AgentModelPickerUiState
 
 /**
  * AgentChatHome：首屏为聊天主舞台。
  *
- * 顶部入口统一由 [io.github.mangi.eta.ui.app.AgentAppShell] 提供，
+ * 顶部入口统一由 [io.github.alice.eta.ui.app.AgentAppShell] 提供，
  * 本 Screen 只负责消息流、Run trace、工具摘要和底部输入框。
  */
 @Composable

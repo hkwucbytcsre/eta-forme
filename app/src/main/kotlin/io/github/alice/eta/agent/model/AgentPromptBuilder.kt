@@ -1,7 +1,7 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
-import io.github.mangi.eta.agent.memory.AgentMemoryContext
-import io.github.mangi.eta.agent.skill.SkillContext
+import io.github.alice.eta.agent.memory.AgentMemoryContext
+import io.github.alice.eta.agent.skill.SkillContext
 import org.json.JSONArray
 import org.json.JSONObject
 

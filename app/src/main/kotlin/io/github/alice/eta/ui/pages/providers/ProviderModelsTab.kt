@@ -1,6 +1,6 @@
 @file:android.annotation.SuppressLint("LocalContextGetResourceValueCall")
 
-package io.github.mangi.eta.ui.pages.providers
+package io.github.alice.eta.ui.pages.providers
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -57,20 +57,20 @@ import androidx.compose.ui.unit.dp
 import androidx.navigationevent.NavigationEventInfo
 import androidx.navigationevent.compose.NavigationBackHandler
 import androidx.navigationevent.compose.rememberNavigationEventState
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.data.repository.ModelRepository
-import io.github.mangi.eta.data.repository.RemoteModelFetcher
-import io.github.mangi.eta.data.repository.RuntimeConfigRepository
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.components.PreferenceIcon
-import io.github.mangi.eta.ui.components.StatusError
-import io.github.mangi.eta.ui.components.StatusSuccess
-import io.github.mangi.eta.ui.model.formatCompactTokenCount
+import io.github.alice.eta.EtaApp
+import io.github.alice.eta.R
+import io.github.alice.eta.data.model.Model
+import io.github.alice.eta.data.model.ModelReasoningCapabilities
+import io.github.alice.eta.data.model.ProviderSetting
+import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.alice.eta.data.repository.ModelRepository
+import io.github.alice.eta.data.repository.RemoteModelFetcher
+import io.github.alice.eta.data.repository.RuntimeConfigRepository
+import io.github.alice.eta.ui.components.MiuixDialogActions
+import io.github.alice.eta.ui.components.PreferenceIcon
+import io.github.alice.eta.ui.components.StatusError
+import io.github.alice.eta.ui.components.StatusSuccess
+import io.github.alice.eta.ui.model.formatCompactTokenCount
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

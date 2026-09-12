@@ -1,11 +1,11 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
-import io.github.mangi.eta.agent.terminal.DaemonLogsResult
-import io.github.mangi.eta.agent.terminal.DaemonStartResult
-import io.github.mangi.eta.agent.terminal.DetachedTask
-import io.github.mangi.eta.agent.terminal.DetachedTaskStatus
-import io.github.mangi.eta.agent.terminal.LinuxExecutionBackend
-import io.github.mangi.eta.agent.terminal.TerminalEnvironment
+import io.github.alice.eta.agent.terminal.DaemonLogsResult
+import io.github.alice.eta.agent.terminal.DaemonStartResult
+import io.github.alice.eta.agent.terminal.DetachedTask
+import io.github.alice.eta.agent.terminal.DetachedTaskStatus
+import io.github.alice.eta.agent.terminal.LinuxExecutionBackend
+import io.github.alice.eta.agent.terminal.TerminalEnvironment
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.launch

@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
-import io.github.mangi.eta.agent.runtime.AgentRunController
+import io.github.alice.eta.agent.runtime.AgentRunController
 import java.io.BufferedReader
 import java.io.InputStream
 import java.io.InputStreamReader

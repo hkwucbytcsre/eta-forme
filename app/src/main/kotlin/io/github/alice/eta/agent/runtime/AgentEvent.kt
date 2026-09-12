@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
-import io.github.mangi.eta.core.toSafeLogToken
+import io.github.alice.eta.core.toSafeLogToken
 
 internal sealed interface AgentEvent {
     fun toLogLine(): String

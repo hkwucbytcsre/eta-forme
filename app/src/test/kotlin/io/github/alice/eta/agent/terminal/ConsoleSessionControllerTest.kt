@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.terminal
+package io.github.alice.eta.agent.terminal
 
-import io.github.mangi.eta.core.AgentLogger
+import io.github.alice.eta.core.AgentLogger
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

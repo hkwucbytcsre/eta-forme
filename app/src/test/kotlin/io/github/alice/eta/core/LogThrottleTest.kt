@@ -1,4 +1,4 @@
-package io.github.mangi.eta.core
+package io.github.alice.eta.core
 
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit

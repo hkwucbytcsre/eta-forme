@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.markdown
+package io.github.alice.eta.ui.markdown
 
 import org.intellij.markdown.IElementType
 import org.intellij.markdown.MarkdownElementTypes

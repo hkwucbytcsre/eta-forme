@@ -1,6 +1,6 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
-import io.github.mangi.eta.R
+import io.github.alice.eta.R
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

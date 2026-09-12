@@ -1,15 +1,15 @@
-package io.github.mangi.eta.data.repository
+package io.github.alice.eta.data.repository
 
 import android.content.Context
-import io.github.mangi.eta.data.datastore.SettingsDataStore
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.CustomHeader
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.data.provider.BuiltinProviders
+import io.github.alice.eta.data.datastore.SettingsDataStore
+import io.github.alice.eta.data.db.EtaDatabase
+import io.github.alice.eta.data.model.AnthropicProviderSetting
+import io.github.alice.eta.data.model.CustomHeader
+import io.github.alice.eta.data.model.OpenAiCompatibleProviderSetting
+import io.github.alice.eta.data.model.ModelSource
+import io.github.alice.eta.data.model.ProviderSetting
+import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.alice.eta.data.provider.BuiltinProviders
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue

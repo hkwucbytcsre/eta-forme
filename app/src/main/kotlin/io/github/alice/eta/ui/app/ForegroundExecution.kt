@@ -1,7 +1,7 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.content.Context
-import io.github.mangi.eta.agent.runtime.AgentExecutionService
+import io.github.alice.eta.agent.runtime.AgentExecutionService
 import java.util.UUID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart

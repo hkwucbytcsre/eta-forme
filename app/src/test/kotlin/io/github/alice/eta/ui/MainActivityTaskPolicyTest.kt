@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui
+package io.github.alice.eta.ui
 
 import android.content.ComponentName
 import android.content.pm.ActivityInfo

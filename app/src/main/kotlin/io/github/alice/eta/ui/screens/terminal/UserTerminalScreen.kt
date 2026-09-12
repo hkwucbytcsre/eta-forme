@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.screens.terminal
+package io.github.alice.eta.ui.screens.terminal
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -55,14 +55,14 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import io.github.mangi.eta.R
-import io.github.mangi.eta.agent.terminal.TerminalEnvironment
-import io.github.mangi.eta.agent.terminal.isLinux
-import io.github.mangi.eta.ui.app.TerminalBlockUi
-import io.github.mangi.eta.ui.app.UserTerminalStore
-import io.github.mangi.eta.ui.app.UserTerminalUiState
-import io.github.mangi.eta.ui.components.ansiPlainText
-import io.github.mangi.eta.ui.components.ansiToAnnotatedString
+import io.github.alice.eta.R
+import io.github.alice.eta.agent.terminal.TerminalEnvironment
+import io.github.alice.eta.agent.terminal.isLinux
+import io.github.alice.eta.ui.app.TerminalBlockUi
+import io.github.alice.eta.ui.app.UserTerminalStore
+import io.github.alice.eta.ui.app.UserTerminalUiState
+import io.github.alice.eta.ui.components.ansiPlainText
+import io.github.alice.eta.ui.components.ansiToAnnotatedString
 import top.yukonga.miuix.kmp.basic.DropdownImpl
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.terminal
+package io.github.alice.eta.agent.terminal
 
 import java.io.File
 import java.nio.file.Files

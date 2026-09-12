@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.terminal
+package io.github.alice.eta.agent.terminal
 
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.core.AgentLogger
-import io.github.mangi.eta.core.safeLogType
+import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.alice.eta.core.AgentLogger
+import io.github.alice.eta.core.safeLogType
 import java.io.File
 import java.security.MessageDigest
 import java.util.concurrent.TimeUnit

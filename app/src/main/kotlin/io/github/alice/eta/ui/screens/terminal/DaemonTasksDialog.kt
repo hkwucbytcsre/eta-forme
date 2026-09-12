@@ -1,5 +1,5 @@
-package io.github.mangi.eta.ui.screens.terminal
-import io.github.mangi.eta.R
+package io.github.alice.eta.ui.screens.terminal
+import io.github.alice.eta.R
 import androidx.compose.ui.res.stringResource
 
 import androidx.compose.foundation.background
@@ -25,8 +25,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.agent.terminal.TerminalEnvironment
-import io.github.mangi.eta.ui.app.DaemonTaskUi
+import io.github.alice.eta.agent.terminal.TerminalEnvironment
+import io.github.alice.eta.ui.app.DaemonTaskUi
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.InfiniteProgressIndicator
 import top.yukonga.miuix.kmp.basic.Text

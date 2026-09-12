@@ -1,4 +1,4 @@
-package io.github.mangi.eta.data.datastore
+package io.github.alice.eta.data.datastore
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -10,12 +10,12 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import io.github.mangi.eta.data.model.AppearanceAccentColor
-import io.github.mangi.eta.data.model.AppearancePaletteStyle
-import io.github.mangi.eta.data.model.AppearanceSettings
-import io.github.mangi.eta.data.model.AppearanceThemeMode
-import io.github.mangi.eta.data.model.AppearanceTopBarBlurStyle
-import io.github.mangi.eta.data.model.Settings
+import io.github.alice.eta.data.model.AppearanceAccentColor
+import io.github.alice.eta.data.model.AppearancePaletteStyle
+import io.github.alice.eta.data.model.AppearanceSettings
+import io.github.alice.eta.data.model.AppearanceThemeMode
+import io.github.alice.eta.data.model.AppearanceTopBarBlurStyle
+import io.github.alice.eta.data.model.Settings
 import java.io.IOException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch

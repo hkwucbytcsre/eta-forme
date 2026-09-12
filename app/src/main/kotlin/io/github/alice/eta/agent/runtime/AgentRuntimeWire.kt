@@ -1,18 +1,18 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
-import io.github.mangi.eta.agent.model.AgentContextSnapshot
+import io.github.alice.eta.agent.model.AgentContextSnapshot
 
 import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcel
 import android.os.ParcelFileDescriptor
-import io.github.mangi.eta.agent.model.AgentConversationCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.model.CustomBody
-import io.github.mangi.eta.data.model.CustomHeader
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.alice.eta.agent.model.AgentConversationCodec
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.data.model.CustomBody
+import io.github.alice.eta.data.model.CustomHeader
+import io.github.alice.eta.data.model.ModelReasoningCapabilities
+import io.github.alice.eta.data.model.ReasoningEffort
 import java.io.Closeable
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlinx.serialization.encodeToString
@@ -41,7 +41,7 @@ internal object AgentRuntimeWire {
     )
 
     /** bind 获取服务端 Messenger 的 Intent action。 */
-    const val ACTION_BIND = "io.github.mangi.eta.agent.runtime.BIND"
+    const val ACTION_BIND = "io.github.alice.eta.agent.runtime.BIND"
 
     // Messenger.what
     /** client -> service：开始一次 Agent 运行，[Message.replyTo] 携带 client Messenger。 */
@@ -80,8 +80,8 @@ internal object AgentRuntimeWire {
     /** service -> client：返回是否成功重新订阅指定 run。 */
     const val MSG_ATTACH_RUN_RESPONSE = 12
 
-    private const val MODULE_PACKAGE = "io.github.mangi.eta"
-    private const val SERVICE_CLASS = "io.github.mangi.eta.agent.runtime.AgentRuntimeService"
+    private const val MODULE_PACKAGE = "io.github.alice.eta"
+    private const val SERVICE_CLASS = "io.github.alice.eta.agent.runtime.AgentRuntimeService"
 
     private const val KEY_TYPE = "type"
     private const val KEY_RUN_ID = "run_id"
@@ -400,7 +400,7 @@ internal object AgentRuntimeWire {
                 providerId = bundle.getString(KEY_PROVIDER_ID).orEmpty(),
                 providerName = bundle.getString(KEY_PROVIDER_NAME).orEmpty(),
                 providerType = bundle.getString(KEY_PROVIDER_TYPE).orEmpty()
-                    .ifBlank { io.github.mangi.eta.data.model.ProviderTypes.OPENAI_COMPATIBLE },
+                    .ifBlank { io.github.alice.eta.data.model.ProviderTypes.OPENAI_COMPATIBLE },
                 providerSourceType = bundle.getString(KEY_PROVIDER_SOURCE_TYPE).orEmpty(),
                 baseUrl = bundle.getString(KEY_BASE_URL).orEmpty(),
                 apiKey = bundle.getString(KEY_API_KEY).orEmpty(),
@@ -409,9 +409,9 @@ internal object AgentRuntimeWire {
                 contextWindow = bundle.optionalInt(KEY_CONTEXT_WINDOW),
                 systemPrompt = if (readText) AgentWireText.read(bundle, KEY_SYSTEM_PROMPT).orEmpty() else "",
                 anthropicVersion = bundle.getString(KEY_ANTHROPIC_VERSION).orEmpty()
-                    .ifBlank { io.github.mangi.eta.data.model.AnthropicProviderSetting.DEFAULT_ANTHROPIC_VERSION },
+                    .ifBlank { io.github.alice.eta.data.model.AnthropicProviderSetting.DEFAULT_ANTHROPIC_VERSION },
                 openAiEndpointMode = bundle.getString(KEY_OPENAI_ENDPOINT_MODE).orEmpty()
-                    .ifBlank { io.github.mangi.eta.data.model.OpenAiEndpointMode.CHAT_COMPLETIONS },
+                    .ifBlank { io.github.alice.eta.data.model.OpenAiEndpointMode.CHAT_COMPLETIONS },
                 hostedWebSearchEnabled = bundle.getBoolean(KEY_HOSTED_WEB_SEARCH_ENABLED, false),
                 terminalTools = bundle.getBoolean(KEY_TERMINAL_TOOLS),
                 browserTools = if (bundle.containsKey(KEY_BROWSER_TOOLS)) {

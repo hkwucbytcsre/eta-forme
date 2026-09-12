@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import android.content.Context
 import android.net.Uri
@@ -6,9 +6,9 @@ import android.os.ParcelFileDescriptor
 import android.os.SystemClock
 import android.util.Base64
 import android.util.Base64InputStream
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.core.AndroidAgentLogger
+import io.github.alice.eta.agent.media.AgentImageCodec
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.core.AndroidAgentLogger
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.Closeable

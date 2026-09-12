@@ -1,10 +1,10 @@
-package io.github.mangi.eta.data.provider
+package io.github.alice.eta.data.provider
 
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ProviderSourceTypes
+import io.github.alice.eta.data.model.AnthropicProviderSetting
+import io.github.alice.eta.data.model.OpenAiCompatibleProviderSetting
+import io.github.alice.eta.data.model.OpenAiEndpointMode
+import io.github.alice.eta.data.model.ProviderSetting
+import io.github.alice.eta.data.model.ProviderSourceTypes
 
 internal object BuiltinProviders {
     const val DEFAULT_SYSTEM_PROMPT =

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.hook.breeno
+package io.github.alice.eta.hook.breeno
 
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit

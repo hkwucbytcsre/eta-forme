@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.media
+package io.github.alice.eta.agent.media
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -9,7 +9,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.net.Uri
 import android.util.Base64
-import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.model.AgentModelClient
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File

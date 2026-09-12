@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.mcp
+package io.github.alice.eta.agent.mcp
 
 import java.math.BigDecimal
 import java.math.BigInteger

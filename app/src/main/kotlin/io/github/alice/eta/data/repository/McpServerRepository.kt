@@ -1,11 +1,11 @@
-package io.github.mangi.eta.data.repository
+package io.github.alice.eta.data.repository
 
 import android.content.Context
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.db.toDomain
-import io.github.mangi.eta.data.db.toEntity
-import io.github.mangi.eta.data.model.McpAuthorizationType
-import io.github.mangi.eta.data.model.McpServerSetting
+import io.github.alice.eta.data.db.EtaDatabase
+import io.github.alice.eta.data.db.toDomain
+import io.github.alice.eta.data.db.toEntity
+import io.github.alice.eta.data.model.McpAuthorizationType
+import io.github.alice.eta.data.model.McpServerSetting
 import java.util.UUID
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

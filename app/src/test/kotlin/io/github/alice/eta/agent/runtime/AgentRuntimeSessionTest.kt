@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import java.util.Collections
 import java.util.concurrent.CountDownLatch
@@ -15,7 +15,7 @@ class AgentRuntimeSessionTest {
     fun cancellationDeliversCommittedContextAndRejectsLaterUpdates() {
         val delivered = mutableListOf<AgentRuntimeWire.RunResult>()
         val session = AgentRuntimeSession("run", resultSink = delivered::add)
-        val snapshot = io.github.mangi.eta.agent.model.AgentContextSnapshot(operationId = "run", messages = emptyList())
+        val snapshot = io.github.alice.eta.agent.model.AgentContextSnapshot(operationId = "run", messages = emptyList())
         session.updateContext(snapshot)
         assertTrue(session.cancel("已停止"))
         session.updateContext(snapshot.copy(coveredUserTurns = 2))

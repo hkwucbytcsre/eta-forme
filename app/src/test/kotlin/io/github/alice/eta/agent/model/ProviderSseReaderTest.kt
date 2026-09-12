@@ -1,7 +1,7 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
-import io.github.mangi.eta.agent.runtime.AgentRunCancelledException
-import io.github.mangi.eta.agent.runtime.AgentRunController
+import io.github.alice.eta.agent.runtime.AgentRunCancelledException
+import io.github.alice.eta.agent.runtime.AgentRunController
 import java.io.ByteArrayInputStream
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertSame

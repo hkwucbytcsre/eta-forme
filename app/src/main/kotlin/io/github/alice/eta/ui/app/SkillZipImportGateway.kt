@@ -1,9 +1,9 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.content.Context
-import io.github.mangi.eta.agent.skill.SkillInstallErrorCode
-import io.github.mangi.eta.agent.skill.SkillInstallResult
-import io.github.mangi.eta.agent.skill.SkillRuntime
+import io.github.alice.eta.agent.skill.SkillInstallErrorCode
+import io.github.alice.eta.agent.skill.SkillInstallResult
+import io.github.alice.eta.agent.skill.SkillRuntime
 import java.io.InputStream
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.isActive

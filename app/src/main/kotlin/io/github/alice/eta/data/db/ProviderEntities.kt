@@ -1,4 +1,4 @@
-package io.github.mangi.eta.data.db
+package io.github.alice.eta.data.db
 
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
@@ -7,18 +7,18 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import androidx.room.Relation
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.CustomBody
-import io.github.mangi.eta.data.model.CustomHeader
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.OpenAiEndpointMode
-import io.github.mangi.eta.data.model.ProviderSetting
-import io.github.mangi.eta.data.model.ProviderTypes
-import io.github.mangi.eta.data.provider.ProviderSourceRegistry
+import io.github.alice.eta.data.model.AnthropicProviderSetting
+import io.github.alice.eta.data.model.CustomBody
+import io.github.alice.eta.data.model.CustomHeader
+import io.github.alice.eta.data.model.CustomProviderSetting
+import io.github.alice.eta.data.model.Model
+import io.github.alice.eta.data.model.ModelReasoningCapabilities
+import io.github.alice.eta.data.model.ModelSource
+import io.github.alice.eta.data.model.OpenAiCompatibleProviderSetting
+import io.github.alice.eta.data.model.OpenAiEndpointMode
+import io.github.alice.eta.data.model.ProviderSetting
+import io.github.alice.eta.data.model.ProviderTypes
+import io.github.alice.eta.data.provider.ProviderSourceRegistry
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer

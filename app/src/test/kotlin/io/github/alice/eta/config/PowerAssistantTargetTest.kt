@@ -1,4 +1,4 @@
-package io.github.mangi.eta.config
+package io.github.alice.eta.config
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

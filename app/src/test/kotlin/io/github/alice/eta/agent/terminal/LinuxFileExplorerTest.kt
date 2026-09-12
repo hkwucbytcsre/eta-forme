@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.terminal
+package io.github.alice.eta.agent.terminal
 
 import java.io.File
 import org.junit.Assert.assertEquals
@@ -9,7 +9,7 @@ import org.junit.Test
 
 class LinuxFileExplorerTest {
 
-    private val rootfsDir = File("/data/user/0/io.github.mangi.eta/files/terminal/alpine/rootfs")
+    private val rootfsDir = File("/data/user/0/io.github.alice.eta/files/terminal/alpine/rootfs")
 
     @Test
     fun resolveHostPathNormalizesRootAndBlank() {

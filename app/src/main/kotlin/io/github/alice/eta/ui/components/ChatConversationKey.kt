@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 /**
  * 为聊天舞台生成独立的 Compose 状态边界。

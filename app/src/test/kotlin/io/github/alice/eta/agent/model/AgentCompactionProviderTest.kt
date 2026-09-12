@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
 import com.sun.net.httpserver.HttpServer
-import io.github.mangi.eta.agent.runtime.AgentRunController
-import io.github.mangi.eta.data.model.CustomBody
+import io.github.alice.eta.agent.runtime.AgentRunController
+import io.github.alice.eta.data.model.CustomBody
 import kotlinx.serialization.json.JsonPrimitive
 import java.net.InetSocketAddress
 import java.util.concurrent.atomic.AtomicReference
@@ -27,8 +27,8 @@ class AgentCompactionProviderTest {
             try {
                 val config = AgentModelClient.ModelConfig(
                     baseUrl = "http://127.0.0.1:${server.address.port}", apiKey = "fixture",
-                    model = "fixture", openAiEndpointMode = if (provider === OpenAiResponsesProvider) io.github.mangi.eta.data.model.OpenAiEndpointMode.RESPONSES
-                        else io.github.mangi.eta.data.model.OpenAiEndpointMode.CHAT_COMPLETIONS, systemPrompt = "总结规则", hostedWebSearchEnabled = true,
+                    model = "fixture", openAiEndpointMode = if (provider === OpenAiResponsesProvider) io.github.alice.eta.data.model.OpenAiEndpointMode.RESPONSES
+                        else io.github.alice.eta.data.model.OpenAiEndpointMode.CHAT_COMPLETIONS, systemPrompt = "总结规则", hostedWebSearchEnabled = true,
                     extraBodyJson = """{"tools":[{"type":"web_search"}],"input":"BAD_INPUT"}""",
                     customBody = listOf(CustomBody("messages", JsonPrimitive("BAD_MESSAGES"))),
                 )

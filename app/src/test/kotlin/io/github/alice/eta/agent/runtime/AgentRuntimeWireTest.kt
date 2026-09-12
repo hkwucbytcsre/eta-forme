@@ -1,12 +1,12 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import android.graphics.Bitmap
 import android.os.Parcel
 import android.util.Base64
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.model.ModelReasoningCapabilities
-import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.alice.eta.agent.media.AgentImageCodec
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.data.model.ModelReasoningCapabilities
+import io.github.alice.eta.data.model.ReasoningEffort
 import java.io.File
 import java.io.FileOutputStream
 import kotlinx.serialization.json.Json
@@ -26,7 +26,7 @@ import org.robolectric.annotation.Config
 class AgentRuntimeWireTest {
     @Test
     fun contextSnapshotRoundTripsDirectlyAndDrainOnlyCarriesReference() {
-        val snapshot = io.github.mangi.eta.agent.model.AgentContextSnapshot(
+        val snapshot = io.github.alice.eta.agent.model.AgentContextSnapshot(
             operationId = "compact-1", consumedUserTurns = 4, coveredUserTurns = 3,
             messages = listOf(AgentModelClient.ConversationMessage("assistant", "摘要内容", contextSummary = true, compactedUserTurns = 3)),
         )

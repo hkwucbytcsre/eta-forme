@@ -1,7 +1,7 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
-import io.github.mangi.eta.agent.model.AgentConversationCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.model.AgentConversationCodec
+import io.github.alice.eta.agent.model.AgentModelClient
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 

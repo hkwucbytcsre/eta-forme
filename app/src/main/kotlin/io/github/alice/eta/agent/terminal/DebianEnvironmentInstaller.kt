@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.terminal
+package io.github.alice.eta.agent.terminal
 
 import android.content.Context
 import android.os.Build
-import io.github.mangi.eta.core.AndroidAgentLogger
+import io.github.alice.eta.core.AndroidAgentLogger
 import java.io.File
 import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.Dispatchers
@@ -101,7 +101,7 @@ internal class DebianEnvironmentInstaller(
         if (baseRootfsReady(rootfs)) {
             return@withContext DebianInstallResult.AlreadyReady
         }
-        io.github.mangi.eta.data.repository.LinuxEnvironmentSettingsRepository.selectBackend(
+        io.github.alice.eta.data.repository.LinuxEnvironmentSettingsRepository.selectBackend(
             LinuxDistribution.DEBIAN, LinuxEnvironmentPaths.backendOf(rootfs.absolutePath),
         )
         val artifact = artifactForAbis(Build.SUPPORTED_ABIS.toList())

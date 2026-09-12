@@ -1,15 +1,15 @@
-package io.github.mangi.eta.agent.device
+package io.github.alice.eta.agent.device
 
 import android.content.Context
 import android.net.Uri
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.provider.OpenableColumns
-import io.github.mangi.eta.agent.model.AgentFileReference
-import io.github.mangi.eta.agent.model.AgentFileReferenceKind
-import io.github.mangi.eta.agent.model.hasUnsupportedControlCharacter
-import io.github.mangi.eta.agent.terminal.TerminalPrivateStorage
-import io.github.mangi.eta.core.AgentLogger
+import io.github.alice.eta.agent.model.AgentFileReference
+import io.github.alice.eta.agent.model.AgentFileReferenceKind
+import io.github.alice.eta.agent.model.hasUnsupportedControlCharacter
+import io.github.alice.eta.agent.terminal.TerminalPrivateStorage
+import io.github.alice.eta.core.AgentLogger
 import java.io.File
 import java.io.IOException
 import java.nio.file.AccessDeniedException

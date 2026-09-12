@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
 import java.net.URI
 import java.util.Locale

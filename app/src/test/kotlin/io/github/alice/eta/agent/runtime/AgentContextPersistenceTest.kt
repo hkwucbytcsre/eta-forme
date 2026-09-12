@@ -1,9 +1,9 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import android.content.Context
-import io.github.mangi.eta.agent.model.AgentContextSnapshot
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.db.EtaDatabase
+import io.github.alice.eta.agent.model.AgentContextSnapshot
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.data.db.EtaDatabase
 import org.junit.After
 import org.junit.Assert.*
 import org.junit.Before

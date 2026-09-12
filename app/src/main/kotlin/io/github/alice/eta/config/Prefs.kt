@@ -1,4 +1,4 @@
-package io.github.mangi.eta.config
+package io.github.alice.eta.config
 
 import android.content.Context
 import android.content.SharedPreferences

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.hook.hyperos
+package io.github.alice.eta.hook.hyperos
 
 import android.view.MotionEvent
 import android.view.View

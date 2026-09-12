@@ -1,11 +1,11 @@
-package io.github.mangi.eta.agent.device
+package io.github.alice.eta.agent.device
 
 import android.app.Notification
 import android.content.ComponentName
 import android.content.Context
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
-import io.github.mangi.eta.data.repository.NotificationHistoryRepository
+import io.github.alice.eta.data.repository.NotificationHistoryRepository
 
 class AgentNotificationHistoryService : NotificationListenerService() {
     private val repository by lazy { NotificationHistoryRepository(this) }

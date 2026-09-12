@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.Manifest
 import android.app.Activity
@@ -34,44 +34,44 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
-import io.github.mangi.eta.EtaApp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.agent.device.BoundedRootCommandExecutor
-import io.github.mangi.eta.agent.device.DeviceLocationProvider
-import io.github.mangi.eta.agent.device.RootAccess
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.data.repository.RuntimeConfigRepository
-import io.github.mangi.eta.ui.AppearanceSettingsScreen
-import io.github.mangi.eta.ui.SettingsScreen
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.model.AgentChatAction
-import io.github.mangi.eta.ui.model.AgentHomeAction
-import io.github.mangi.eta.ui.model.AgentMemoryAction
-import io.github.mangi.eta.ui.model.AgentSkillsAction
-import io.github.mangi.eta.ui.model.AgentSystemEnhanceAction
-import io.github.mangi.eta.ui.model.AgentToolsAction
-import io.github.mangi.eta.ui.model.ConversationSummaryUi
-import io.github.mangi.eta.ui.model.PermissionHealthAction
-import io.github.mangi.eta.ui.navigation.AgentNavigator
-import io.github.mangi.eta.ui.navigation.AppRoute
-import io.github.mangi.eta.ui.pages.providers.ModelProviderDetailScreen
-import io.github.mangi.eta.ui.pages.providers.ModelProviderListScreen
-import io.github.mangi.eta.ui.screens.backup.DataBackupScreen
-import io.github.mangi.eta.ui.screens.browser.AgentBrowserScreen
-import io.github.mangi.eta.ui.screens.chat.AgentChatScreen
-import io.github.mangi.eta.ui.screens.enhance.SystemEnhanceScreen
-import io.github.mangi.eta.ui.screens.home.AgentHomeScreen
-import io.github.mangi.eta.ui.screens.mcp.McpServerDetailScreen
-import io.github.mangi.eta.ui.screens.mcp.McpServersScreen
-import io.github.mangi.eta.ui.screens.memory.AgentMemoryScreen
-import io.github.mangi.eta.ui.screens.permissions.PermissionHealthScreen
-import io.github.mangi.eta.ui.screens.skills.AgentSkillsScreen
-import io.github.mangi.eta.ui.screens.terminal.LinuxEnvironmentScreen
-import io.github.mangi.eta.ui.screens.terminal.LinuxFilesScreen
-import io.github.mangi.eta.ui.screens.terminal.SharedFoldersScreen
-import io.github.mangi.eta.ui.screens.terminal.TerminalEntryScreen
-import io.github.mangi.eta.ui.screens.terminal.WorkspaceScreen
-import io.github.mangi.eta.ui.screens.tools.AgentToolsScreen
+import io.github.alice.eta.EtaApp
+import io.github.alice.eta.R
+import io.github.alice.eta.agent.device.BoundedRootCommandExecutor
+import io.github.alice.eta.agent.device.DeviceLocationProvider
+import io.github.alice.eta.agent.device.RootAccess
+import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.alice.eta.data.repository.RuntimeConfigRepository
+import io.github.alice.eta.ui.AppearanceSettingsScreen
+import io.github.alice.eta.ui.SettingsScreen
+import io.github.alice.eta.ui.components.MiuixDialogActions
+import io.github.alice.eta.ui.model.AgentChatAction
+import io.github.alice.eta.ui.model.AgentHomeAction
+import io.github.alice.eta.ui.model.AgentMemoryAction
+import io.github.alice.eta.ui.model.AgentSkillsAction
+import io.github.alice.eta.ui.model.AgentSystemEnhanceAction
+import io.github.alice.eta.ui.model.AgentToolsAction
+import io.github.alice.eta.ui.model.ConversationSummaryUi
+import io.github.alice.eta.ui.model.PermissionHealthAction
+import io.github.alice.eta.ui.navigation.AgentNavigator
+import io.github.alice.eta.ui.navigation.AppRoute
+import io.github.alice.eta.ui.pages.providers.ModelProviderDetailScreen
+import io.github.alice.eta.ui.pages.providers.ModelProviderListScreen
+import io.github.alice.eta.ui.screens.backup.DataBackupScreen
+import io.github.alice.eta.ui.screens.browser.AgentBrowserScreen
+import io.github.alice.eta.ui.screens.chat.AgentChatScreen
+import io.github.alice.eta.ui.screens.enhance.SystemEnhanceScreen
+import io.github.alice.eta.ui.screens.home.AgentHomeScreen
+import io.github.alice.eta.ui.screens.mcp.McpServerDetailScreen
+import io.github.alice.eta.ui.screens.mcp.McpServersScreen
+import io.github.alice.eta.ui.screens.memory.AgentMemoryScreen
+import io.github.alice.eta.ui.screens.permissions.PermissionHealthScreen
+import io.github.alice.eta.ui.screens.skills.AgentSkillsScreen
+import io.github.alice.eta.ui.screens.terminal.LinuxEnvironmentScreen
+import io.github.alice.eta.ui.screens.terminal.LinuxFilesScreen
+import io.github.alice.eta.ui.screens.terminal.SharedFoldersScreen
+import io.github.alice.eta.ui.screens.terminal.TerminalEntryScreen
+import io.github.alice.eta.ui.screens.terminal.WorkspaceScreen
+import io.github.alice.eta.ui.screens.tools.AgentToolsScreen
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -453,7 +453,7 @@ fun AgentAppRoot(
                                                     it.execute(
                                                         "am start --user current -n " +
                                                             "com.oplus.battery/com.oplus.powermanager.fuelgaue.PowerControlActivity " +
-                                                            "--es title Eta --es pkgName io.github.mangi.eta --es drainType APP",
+                                                            "--es title Eta --es pkgName io.github.alice.eta --es drainType APP",
                                                     )
                                                 }
                                             }

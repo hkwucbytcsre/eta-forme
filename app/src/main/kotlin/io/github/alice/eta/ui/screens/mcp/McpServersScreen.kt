@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.screens.mcp
+package io.github.alice.eta.ui.screens.mcp
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -26,18 +26,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.agent.mcp.McpServerManager
-import io.github.mangi.eta.agent.mcp.validateMcpEndpoint
-import io.github.mangi.eta.data.model.McpAuthorizationType
-import io.github.mangi.eta.data.model.McpProtocolMode
-import io.github.mangi.eta.data.model.McpServerSetting
-import io.github.mangi.eta.data.model.McpToolDefinition
-import io.github.mangi.eta.data.repository.McpServerRepository
-import io.github.mangi.eta.ui.components.ListEmptyState
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.components.MiuixScaffoldPage
-import io.github.mangi.eta.ui.navigation.AppRoute
+import io.github.alice.eta.R
+import io.github.alice.eta.agent.mcp.McpServerManager
+import io.github.alice.eta.agent.mcp.validateMcpEndpoint
+import io.github.alice.eta.data.model.McpAuthorizationType
+import io.github.alice.eta.data.model.McpProtocolMode
+import io.github.alice.eta.data.model.McpServerSetting
+import io.github.alice.eta.data.model.McpToolDefinition
+import io.github.alice.eta.data.repository.McpServerRepository
+import io.github.alice.eta.ui.components.ListEmptyState
+import io.github.alice.eta.ui.components.MiuixDialogActions
+import io.github.alice.eta.ui.components.MiuixScaffoldPage
+import io.github.alice.eta.ui.navigation.AppRoute
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

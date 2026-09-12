@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
-import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.model.AgentModelClient
 import java.util.UUID
 
 /** 用完整增量 transcript 构造已完成 run 的后续用户回合。 */

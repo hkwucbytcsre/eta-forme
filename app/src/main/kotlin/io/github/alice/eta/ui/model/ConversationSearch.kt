@@ -1,6 +1,6 @@
-package io.github.mangi.eta.ui.model
+package io.github.alice.eta.ui.model
 
-import io.github.mangi.eta.agent.model.AgentFileReferencePromptCodec
+import io.github.alice.eta.agent.model.AgentFileReferencePromptCodec
 
 /**
  * 会话内容搜索：对完整消息流做大小写不敏感匹配。

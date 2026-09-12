@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -69,12 +69,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.ui.model.AgentContextUsageUi
-import io.github.mangi.eta.ui.model.AgentModelPickerUiState
-import io.github.mangi.eta.ui.model.PendingFileReferenceUi
-import io.github.mangi.eta.ui.model.PendingImageUi
+import io.github.alice.eta.R
+import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.alice.eta.ui.model.AgentContextUsageUi
+import io.github.alice.eta.ui.model.AgentModelPickerUiState
+import io.github.alice.eta.ui.model.PendingFileReferenceUi
+import io.github.alice.eta.ui.model.PendingImageUi
 import kotlin.math.roundToInt
 import top.yukonga.miuix.kmp.basic.DropdownImpl
 import top.yukonga.miuix.kmp.basic.Icon

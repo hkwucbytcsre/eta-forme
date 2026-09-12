@@ -1,13 +1,13 @@
-package io.github.mangi.eta.data.repository
+package io.github.alice.eta.data.repository
 
-import io.github.mangi.eta.data.datastore.SettingsDataStore
-import io.github.mangi.eta.data.db.ConversationContextCheckpointEntity
-import io.github.mangi.eta.data.db.ConversationEntity
-import io.github.mangi.eta.data.db.ConversationMessageEntity
-import io.github.mangi.eta.data.db.ConversationStateEntity
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.withApiKey
+import io.github.alice.eta.data.datastore.SettingsDataStore
+import io.github.alice.eta.data.db.ConversationContextCheckpointEntity
+import io.github.alice.eta.data.db.ConversationEntity
+import io.github.alice.eta.data.db.ConversationMessageEntity
+import io.github.alice.eta.data.db.ConversationStateEntity
+import io.github.alice.eta.data.db.EtaDatabase
+import io.github.alice.eta.data.model.ModelSource
+import io.github.alice.eta.data.model.withApiKey
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import kotlinx.coroutines.runBlocking

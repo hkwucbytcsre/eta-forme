@@ -1,8 +1,8 @@
-package io.github.mangi.eta.ui.model
+package io.github.alice.eta.ui.model
 
-import io.github.mangi.eta.agent.model.AgentFileReference
-import io.github.mangi.eta.agent.model.AgentFileReferenceKind
-import io.github.mangi.eta.agent.model.AgentFileReferencePromptCodec
+import io.github.alice.eta.agent.model.AgentFileReference
+import io.github.alice.eta.agent.model.AgentFileReferenceKind
+import io.github.alice.eta.agent.model.AgentFileReferencePromptCodec
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test

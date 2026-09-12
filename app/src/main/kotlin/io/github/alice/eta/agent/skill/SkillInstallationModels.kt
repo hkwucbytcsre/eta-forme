@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.skill
+package io.github.alice.eta.agent.skill
 
 /** ZIP 中可安装的 Skill。relativePath 以仓库根目录为基准，仓库根本身使用 `.`。 */
 data class SkillArchiveCandidate(

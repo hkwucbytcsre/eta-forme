@@ -1,4 +1,4 @@
-package io.github.mangi.eta.data.model
+package io.github.alice.eta.data.model
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonElement

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.layout
+package io.github.alice.eta.ui.layout
 
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.WindowInsets
@@ -15,7 +15,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.ui.app.LocalPlatformDensity
+import io.github.alice.eta.ui.app.LocalPlatformDensity
 
 private val WideScreenMinWidth = 600.dp
 private val MaxPageContentWidth = 800.dp

@@ -1,11 +1,11 @@
-package io.github.mangi.eta.ui.pages.providers
+package io.github.alice.eta.ui.pages.providers
 
 import androidx.compose.runtime.saveable.SaverScope
-import io.github.mangi.eta.R
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.provider.BuiltinProviders
+import io.github.alice.eta.R
+import io.github.alice.eta.data.model.CustomProviderSetting
+import io.github.alice.eta.data.model.Model
+import io.github.alice.eta.data.model.ProviderSourceTypes
+import io.github.alice.eta.data.provider.BuiltinProviders
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test
@@ -14,7 +14,7 @@ class ProviderComponentsTest {
     @Test
     fun providerDraftSaverPreservesUnsavedConfiguration() {
         val draft = ProviderConfigDraft(
-            headers = listOf(ProviderHeaderDraft(header = io.github.mangi.eta.data.model.CustomHeader("User-Agent", "test-client"))),
+            headers = listOf(ProviderHeaderDraft(header = io.github.alice.eta.data.model.CustomHeader("User-Agent", "test-client"))),
             name = "临时提供商",
             baseUrl = "https://api.example.com/v1",
             apiKey = "temporary-key",

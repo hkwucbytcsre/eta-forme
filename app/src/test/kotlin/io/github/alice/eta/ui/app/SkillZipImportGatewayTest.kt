@@ -1,9 +1,9 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
-import io.github.mangi.eta.agent.skill.InstalledSkill
-import io.github.mangi.eta.agent.skill.SkillInstallConflict
-import io.github.mangi.eta.agent.skill.SkillInstallErrorCode
-import io.github.mangi.eta.agent.skill.SkillInstallResult
+import io.github.alice.eta.agent.skill.InstalledSkill
+import io.github.alice.eta.agent.skill.SkillInstallConflict
+import io.github.alice.eta.agent.skill.SkillInstallErrorCode
+import io.github.alice.eta.agent.skill.SkillInstallResult
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -75,7 +75,7 @@ class SkillZipImportGatewayTest {
     @Test
     fun `incomplete rollback maps to recovery required`() {
         val outcome = SkillInstallResult.Failure(
-            error = io.github.mangi.eta.agent.skill.SkillInstallError(
+            error = io.github.alice.eta.agent.skill.SkillInstallError(
                 code = SkillInstallErrorCode.COMMIT_FAILED,
                 message = "rollback incomplete",
             ),

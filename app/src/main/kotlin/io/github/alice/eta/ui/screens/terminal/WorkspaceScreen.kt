@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.screens.terminal
+package io.github.alice.eta.ui.screens.terminal
 
 import android.content.Intent
 import android.net.Uri
@@ -27,12 +27,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.ui.app.WorkspaceEntry
-import io.github.mangi.eta.ui.app.WorkspaceFileStore
-import io.github.mangi.eta.ui.components.ListEmptyState
-import io.github.mangi.eta.ui.components.MiuixScaffoldPage
-import io.github.mangi.eta.ui.components.PreferenceIcon
+import io.github.alice.eta.R
+import io.github.alice.eta.ui.app.WorkspaceEntry
+import io.github.alice.eta.ui.app.WorkspaceFileStore
+import io.github.alice.eta.ui.components.ListEmptyState
+import io.github.alice.eta.ui.components.MiuixScaffoldPage
+import io.github.alice.eta.ui.components.PreferenceIcon
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.BasicComponent

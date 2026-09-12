@@ -1,6 +1,6 @@
-package io.github.mangi.eta.hook.system
+package io.github.alice.eta.hook.system
 
-import io.github.mangi.eta.agent.accessibility.AccessibilityProtectionProtocol
+import io.github.alice.eta.agent.accessibility.AccessibilityProtectionProtocol
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -9,7 +9,7 @@ import org.junit.Test
 
 class AccessibilityServiceEnforcerTest {
     private val component =
-        "io.github.mangi.eta/io.github.mangi.eta.agent.accessibility.AgentAccessibilityService"
+        "io.github.alice.eta/io.github.alice.eta.agent.accessibility.AgentAccessibilityService"
 
     @Test
     fun `adds target while preserving other accessibility services`() {
@@ -41,9 +41,9 @@ class AccessibilityServiceEnforcerTest {
             appendAccessibilityServiceIfMissing(similar, component),
         )
         assertEquals(
-            "io.github.mangi.eta/.accessibility.AgentAccessibilityService:$component",
+            "io.github.alice.eta/.accessibility.AgentAccessibilityService:$component",
             appendAccessibilityServiceIfMissing(
-                "io.github.mangi.eta/.accessibility.AgentAccessibilityService",
+                "io.github.alice.eta/.accessibility.AgentAccessibilityService",
                 component,
             ),
         )

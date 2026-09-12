@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 /** 由客户端 Main Handler 按接收顺序调用，隔离历史恢复与实时事件的交付。 */
 internal class AgentRuntimeAttachDelivery(

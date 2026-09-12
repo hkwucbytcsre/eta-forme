@@ -1,6 +1,6 @@
-package io.github.mangi.eta.hook.xiaoai
+package io.github.alice.eta.hook.xiaoai
 
-import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.model.AgentModelClient
 import java.io.File
 import java.io.FileInputStream
 

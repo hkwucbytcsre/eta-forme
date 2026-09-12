@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
-import io.github.mangi.eta.data.repository.AgentMemoryStore
+import io.github.alice.eta.data.repository.AgentMemoryStore
 import org.json.JSONArray
 import org.json.JSONObject
 

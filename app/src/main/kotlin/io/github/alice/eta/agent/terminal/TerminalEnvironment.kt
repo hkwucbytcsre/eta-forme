@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.terminal
+package io.github.alice.eta.agent.terminal
 
 internal const val SELECTED_LINUX_WIRE_NAME = "linux"
 

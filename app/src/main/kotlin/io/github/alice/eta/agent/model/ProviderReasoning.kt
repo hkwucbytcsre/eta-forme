@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.data.provider.ProviderSourceRegistry
+import io.github.alice.eta.data.model.ProviderSourceTypes
+import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.alice.eta.data.provider.ProviderSourceRegistry
 import kotlin.math.max
 import org.json.JSONObject
 

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -11,10 +11,10 @@ import android.content.pm.ServiceInfo
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
-import io.github.mangi.eta.R
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.core.safeLogType
-import io.github.mangi.eta.ui.MainActivity
+import io.github.alice.eta.R
+import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.alice.eta.core.safeLogType
+import io.github.alice.eta.ui.MainActivity
 import java.util.concurrent.atomic.AtomicLong
 
 /** 只在用户任务存活期间持有前台执行生命周期；进程被系统停止后不重放任务。 */
@@ -109,7 +109,7 @@ internal class AgentExecutionService : Service() {
     companion object {
         private const val CHANNEL = "eta_execution"
         private const val NOTIFICATION_ID = 1107
-        private const val ACTION_STOP = "io.github.mangi.eta.action.STOP_USER_EXECUTION"
+        private const val ACTION_STOP = "io.github.alice.eta.action.STOP_USER_EXECUTION"
         private val leases = ExecutionLeaseRegistry()
         private val ownerSequence = AtomicLong()
         private val mainHandler = Handler(Looper.getMainLooper())

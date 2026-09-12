@@ -1,7 +1,7 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import android.app.Application
-import io.github.mangi.eta.agent.terminal.TerminalPrivateStorage
+import io.github.alice.eta.agent.terminal.TerminalPrivateStorage
 import java.io.File
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals

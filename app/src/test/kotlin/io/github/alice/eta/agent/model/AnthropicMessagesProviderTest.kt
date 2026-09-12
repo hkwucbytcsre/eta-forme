@@ -1,9 +1,9 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
 import com.sun.net.httpserver.HttpServer
-import io.github.mangi.eta.agent.runtime.AgentRunController
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.ProviderTypes
+import io.github.alice.eta.agent.runtime.AgentRunController
+import io.github.alice.eta.data.model.AnthropicProviderSetting
+import io.github.alice.eta.data.model.ProviderTypes
 import java.io.OutputStream
 import java.net.InetSocketAddress
 import java.util.concurrent.CountDownLatch
@@ -256,7 +256,7 @@ class AnthropicMessagesProviderTest {
                         model = "claude-sonnet-5",
                         systemPrompt = "system",
                         thinkingEnabled = true,
-                        reasoningEffort = io.github.mangi.eta.data.model.ReasoningEffort.MEDIUM,
+                        reasoningEffort = io.github.alice.eta.data.model.ReasoningEffort.MEDIUM,
                     ),
                     messages = JSONArray().put(JSONObject().put("role", "user").put("content", "hi")),
                     tools = JSONArray(),

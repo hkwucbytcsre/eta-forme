@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.device
+package io.github.alice.eta.agent.device
 
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream

@@ -1,9 +1,9 @@
-package io.github.mangi.eta.hook.system
+package io.github.alice.eta.hook.system
 
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import io.github.mangi.eta.core.ModuleConfig
+import io.github.alice.eta.core.ModuleConfig
 
 internal object ContextualSearchCallerPolicy {
     fun allowsHyperOsCaller(

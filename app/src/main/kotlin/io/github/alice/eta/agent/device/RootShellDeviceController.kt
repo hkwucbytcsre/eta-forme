@@ -1,9 +1,9 @@
-package io.github.mangi.eta.agent.device
+package io.github.alice.eta.agent.device
 
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
-import io.github.mangi.eta.agent.media.AgentImageCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.core.AgentLogger
+import io.github.alice.eta.agent.accessibility.AgentAccessibilityService
+import io.github.alice.eta.agent.media.AgentImageCodec
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.core.AgentLogger
 
 import android.content.ClipData
 import android.content.ClipboardManager

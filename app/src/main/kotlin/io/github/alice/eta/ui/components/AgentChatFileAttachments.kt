@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -44,10 +44,10 @@ import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.agent.model.AgentFileReference
-import io.github.mangi.eta.agent.model.AgentFileReferenceKind
-import io.github.mangi.eta.ui.model.PendingFileReferenceUi
+import io.github.alice.eta.R
+import io.github.alice.eta.agent.model.AgentFileReference
+import io.github.alice.eta.agent.model.AgentFileReferenceKind
+import io.github.alice.eta.ui.model.PendingFileReferenceUi
 import top.yukonga.miuix.kmp.basic.DropdownImpl
 import top.yukonga.miuix.kmp.basic.Icon
 import top.yukonga.miuix.kmp.basic.IconButton

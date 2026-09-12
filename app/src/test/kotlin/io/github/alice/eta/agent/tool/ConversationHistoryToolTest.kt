@@ -1,7 +1,7 @@
-package io.github.mangi.eta.agent.tool
+package io.github.alice.eta.agent.tool
 
-import io.github.mangi.eta.agent.model.AgentConversationCodec
-import io.github.mangi.eta.agent.model.AgentModelClient
+import io.github.alice.eta.agent.model.AgentConversationCodec
+import io.github.alice.eta.agent.model.AgentModelClient
 import org.json.JSONObject
 import org.junit.Assert.*
 import org.junit.Test

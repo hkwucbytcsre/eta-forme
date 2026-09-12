@@ -1,15 +1,15 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
-import io.github.mangi.eta.agent.model.AgentFileReferencePromptCodec
-import io.github.mangi.eta.ui.model.AgentChatMessageUi
-import io.github.mangi.eta.ui.model.AgentMessageUi
-import io.github.mangi.eta.ui.model.SystemNoticeCode
-import io.github.mangi.eta.ui.model.SystemNoticeMessageUi
-import io.github.mangi.eta.ui.model.ThinkingMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityStatusUi
-import io.github.mangi.eta.ui.model.ToolSummaryMessageUi
-import io.github.mangi.eta.ui.model.UserMessageUi
+import io.github.alice.eta.agent.model.AgentFileReferencePromptCodec
+import io.github.alice.eta.ui.model.AgentChatMessageUi
+import io.github.alice.eta.ui.model.AgentMessageUi
+import io.github.alice.eta.ui.model.SystemNoticeCode
+import io.github.alice.eta.ui.model.SystemNoticeMessageUi
+import io.github.alice.eta.ui.model.ThinkingMessageUi
+import io.github.alice.eta.ui.model.ToolActivityMessageUi
+import io.github.alice.eta.ui.model.ToolActivityStatusUi
+import io.github.alice.eta.ui.model.ToolSummaryMessageUi
+import io.github.alice.eta.ui.model.UserMessageUi
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

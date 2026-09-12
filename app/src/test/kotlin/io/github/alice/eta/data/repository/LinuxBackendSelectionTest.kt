@@ -1,6 +1,6 @@
-package io.github.mangi.eta.data.repository
+package io.github.alice.eta.data.repository
 
-import io.github.mangi.eta.agent.terminal.LinuxExecutionBackend
+import io.github.alice.eta.agent.terminal.LinuxExecutionBackend
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

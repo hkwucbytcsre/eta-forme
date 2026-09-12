@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
-import io.github.mangi.eta.agent.memory.AgentMemoryContext
-import io.github.mangi.eta.agent.skill.SkillContext
-import io.github.mangi.eta.agent.skill.SkillIndexEntry
+import io.github.alice.eta.agent.memory.AgentMemoryContext
+import io.github.alice.eta.agent.skill.SkillContext
+import io.github.alice.eta.agent.skill.SkillIndexEntry
 import org.json.JSONArray
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse

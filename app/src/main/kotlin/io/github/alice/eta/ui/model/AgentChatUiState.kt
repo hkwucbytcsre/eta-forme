@@ -1,9 +1,9 @@
-package io.github.mangi.eta.ui.model
+package io.github.alice.eta.ui.model
 
 import androidx.compose.runtime.Immutable
-import io.github.mangi.eta.agent.model.AgentFileReference
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.alice.eta.agent.model.AgentFileReference
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.data.model.ReasoningEffort
 
 @Immutable
 internal data class AgentChatUiState(

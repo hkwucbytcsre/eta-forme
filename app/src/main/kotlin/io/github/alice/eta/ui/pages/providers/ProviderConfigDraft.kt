@@ -1,13 +1,13 @@
-package io.github.mangi.eta.ui.pages.providers
+package io.github.alice.eta.ui.pages.providers
 
 import androidx.compose.runtime.saveable.mapSaver
-import io.github.mangi.eta.R
-import io.github.mangi.eta.agent.model.CustomHeaderFilter
-import io.github.mangi.eta.data.model.AnthropicProviderSetting
-import io.github.mangi.eta.data.model.CustomHeader
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.ProviderSetting
+import io.github.alice.eta.R
+import io.github.alice.eta.agent.model.CustomHeaderFilter
+import io.github.alice.eta.data.model.AnthropicProviderSetting
+import io.github.alice.eta.data.model.CustomHeader
+import io.github.alice.eta.data.model.CustomProviderSetting
+import io.github.alice.eta.data.model.OpenAiCompatibleProviderSetting
+import io.github.alice.eta.data.model.ProviderSetting
 import java.util.UUID
 
 internal data class ProviderHeaderDraft(

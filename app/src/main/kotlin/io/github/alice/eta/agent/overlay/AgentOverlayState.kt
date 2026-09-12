@@ -1,7 +1,7 @@
-package io.github.mangi.eta.agent.overlay
+package io.github.alice.eta.agent.overlay
 
 import androidx.compose.runtime.Immutable
-import io.github.mangi.eta.agent.runtime.AgentEvent
+import io.github.alice.eta.agent.runtime.AgentEvent
 
 /** Agent 浮窗所处的阶段。 */
 internal enum class AgentOverlayPhase { RUNNING, PAUSED, FINISHED, FAILED }

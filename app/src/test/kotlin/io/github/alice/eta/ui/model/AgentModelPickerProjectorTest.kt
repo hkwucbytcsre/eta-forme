@@ -1,8 +1,8 @@
-package io.github.mangi.eta.ui.model
+package io.github.alice.eta.ui.model
 
-import io.github.mangi.eta.data.model.CustomProviderSetting
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ProviderSourceTypes
+import io.github.alice.eta.data.model.CustomProviderSetting
+import io.github.alice.eta.data.model.Model
+import io.github.alice.eta.data.model.ProviderSourceTypes
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
 import org.junit.Test

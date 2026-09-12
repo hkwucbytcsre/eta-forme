@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.model
+package io.github.alice.eta.agent.model
 
-import io.github.mangi.eta.agent.runtime.AgentLegacyConversationProjection
+import io.github.alice.eta.agent.runtime.AgentLegacyConversationProjection
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.assertEquals

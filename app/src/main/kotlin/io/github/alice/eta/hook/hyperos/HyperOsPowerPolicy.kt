@@ -1,4 +1,4 @@
-package io.github.mangi.eta.hook.hyperos
+package io.github.alice.eta.hook.hyperos
 
 internal object HyperOsPowerPolicy {
     fun isAssistantShortcut(function: String?, source: String?): Boolean =

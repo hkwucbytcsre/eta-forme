@@ -1,9 +1,9 @@
-package io.github.mangi.eta.agent.skill
+package io.github.alice.eta.agent.skill
 
 import android.content.Context
 import android.content.res.AssetManager
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.db.SkillRegistryEntity
+import io.github.alice.eta.data.db.EtaDatabase
+import io.github.alice.eta.data.db.SkillRegistryEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray

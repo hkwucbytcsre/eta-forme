@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.terminal
+package io.github.alice.eta.agent.terminal
 
 import android.content.Context
 import android.os.Build
-import io.github.mangi.eta.core.AndroidAgentLogger
+import io.github.alice.eta.core.AndroidAgentLogger
 import java.io.File
 import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.ensureActive

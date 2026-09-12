@@ -1,11 +1,11 @@
-package io.github.mangi.eta.data.repository
+package io.github.alice.eta.data.repository
 
-import io.github.mangi.eta.data.model.Model
-import io.github.mangi.eta.data.model.ModelSource
-import io.github.mangi.eta.data.model.OpenAiCompatibleProviderSetting
-import io.github.mangi.eta.data.model.ProviderSourceTypes
-import io.github.mangi.eta.data.model.ReasoningEffort
-import io.github.mangi.eta.data.provider.OfficialModelCatalog
+import io.github.alice.eta.data.model.Model
+import io.github.alice.eta.data.model.ModelSource
+import io.github.alice.eta.data.model.OpenAiCompatibleProviderSetting
+import io.github.alice.eta.data.model.ProviderSourceTypes
+import io.github.alice.eta.data.model.ReasoningEffort
+import io.github.alice.eta.data.provider.OfficialModelCatalog
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

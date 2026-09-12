@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -76,9 +76,9 @@ import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.navigationevent.NavigationEventInfo
 import androidx.navigationevent.compose.NavigationBackHandler
 import androidx.navigationevent.compose.rememberNavigationEventState
-import io.github.mangi.eta.R
-import io.github.mangi.eta.ui.model.ConversationPaneUiState
-import io.github.mangi.eta.ui.model.ConversationSummaryUi
+import io.github.alice.eta.R
+import io.github.alice.eta.ui.model.ConversationPaneUiState
+import io.github.alice.eta.ui.model.ConversationSummaryUi
 import kotlin.math.roundToInt
 import kotlinx.coroutines.flow.collectLatest
 import top.yukonga.miuix.kmp.basic.DropdownDefaults

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.screens.backup
+package io.github.alice.eta.ui.screens.backup
 
 import android.content.Context
 import android.net.Uri
@@ -22,10 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.data.repository.EtaBackupSummary
-import io.github.mangi.eta.ui.components.MiuixDialogActions
-import io.github.mangi.eta.ui.components.MiuixScaffoldPage
+import io.github.alice.eta.R
+import io.github.alice.eta.data.repository.EtaBackupSummary
+import io.github.alice.eta.ui.components.MiuixDialogActions
+import io.github.alice.eta.ui.components.MiuixScaffoldPage
 import java.io.InputStream
 import java.io.OutputStream
 import java.text.SimpleDateFormat

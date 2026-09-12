@@ -1,9 +1,9 @@
-package io.github.mangi.eta.agent.mcp
+package io.github.alice.eta.agent.mcp
 
-import io.github.mangi.eta.agent.model.AgentHttpClient
-import io.github.mangi.eta.data.model.McpProtocolMode
-import io.github.mangi.eta.data.model.McpServerSetting
-import io.github.mangi.eta.data.model.McpToolDefinition
+import io.github.alice.eta.agent.model.AgentHttpClient
+import io.github.alice.eta.data.model.McpProtocolMode
+import io.github.alice.eta.data.model.McpServerSetting
+import io.github.alice.eta.data.model.McpToolDefinition
 import java.io.IOException
 import java.util.concurrent.atomic.AtomicLong
 import okhttp3.Call

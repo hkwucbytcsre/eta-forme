@@ -1,12 +1,12 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
-import io.github.mangi.eta.agent.model.AgentModelClient
-import io.github.mangi.eta.ui.model.AgentChatUiState
-import io.github.mangi.eta.ui.model.AgentMessageUi
-import io.github.mangi.eta.ui.model.ThinkingMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityMessageUi
-import io.github.mangi.eta.ui.model.ToolActivityStatusUi
-import io.github.mangi.eta.ui.model.UserMessageUi
+import io.github.alice.eta.agent.model.AgentModelClient
+import io.github.alice.eta.ui.model.AgentChatUiState
+import io.github.alice.eta.ui.model.AgentMessageUi
+import io.github.alice.eta.ui.model.ThinkingMessageUi
+import io.github.alice.eta.ui.model.ToolActivityMessageUi
+import io.github.alice.eta.ui.model.ToolActivityStatusUi
+import io.github.alice.eta.ui.model.UserMessageUi
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull

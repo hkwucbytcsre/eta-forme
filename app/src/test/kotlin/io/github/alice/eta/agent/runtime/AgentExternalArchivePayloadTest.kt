@@ -1,6 +1,6 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
-import io.github.mangi.eta.data.model.ReasoningEffort
+import io.github.alice.eta.data.model.ReasoningEffort
 import org.json.JSONObject
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull

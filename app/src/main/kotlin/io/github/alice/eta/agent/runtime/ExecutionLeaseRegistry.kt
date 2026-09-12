@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.runtime
+package io.github.alice.eta.agent.runtime
 
 /** 用户任务的运行引用；通知停止只消费这里登记的任务，不接管 Root daemon。 */
 internal class ExecutionLeaseRegistry {

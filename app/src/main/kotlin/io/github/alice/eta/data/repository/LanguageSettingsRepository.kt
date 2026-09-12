@@ -1,4 +1,4 @@
-package io.github.mangi.eta.data.repository
+package io.github.alice.eta.data.repository
 
 import android.app.LocaleConfig
 import android.app.LocaleManager

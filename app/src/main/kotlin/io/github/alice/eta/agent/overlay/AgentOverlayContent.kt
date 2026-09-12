@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.overlay
+package io.github.alice.eta.agent.overlay
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.RepeatMode
@@ -82,7 +82,7 @@ import androidx.compose.ui.unit.sp
 import com.mikepenz.markdown.m3.Markdown
 import com.mikepenz.markdown.m3.markdownTypography
 import com.mikepenz.markdown.model.rememberMarkdownState
-import io.github.mangi.eta.R
+import io.github.alice.eta.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import top.yukonga.miuix.kmp.basic.ButtonDefaults

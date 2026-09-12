@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.components
+package io.github.alice.eta.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -6,9 +6,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import io.github.mangi.eta.data.model.AppearanceTopBarBlurStyle
-import io.github.mangi.eta.ui.app.LocalBlurEnabled
-import io.github.mangi.eta.ui.app.LocalTopBarBlurStyle
+import io.github.alice.eta.data.model.AppearanceTopBarBlurStyle
+import io.github.alice.eta.ui.app.LocalBlurEnabled
+import io.github.alice.eta.ui.app.LocalTopBarBlurStyle
 import top.yukonga.miuix.kmp.blur.BlendColorEntry
 import top.yukonga.miuix.kmp.blur.BlurColors
 import top.yukonga.miuix.kmp.blur.LayerBackdrop

@@ -1,4 +1,4 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -26,17 +26,17 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.github.mangi.eta.R
-import io.github.mangi.eta.ui.components.AdaptiveTopAppBar
-import io.github.mangi.eta.ui.components.ConversationSidePaneScaffold
-import io.github.mangi.eta.ui.components.MiuixBackButton
-import io.github.mangi.eta.ui.components.TopBarBackdrop
-import io.github.mangi.eta.ui.components.captureForTopBar
-import io.github.mangi.eta.ui.components.rememberTopBarBackdrop
-import io.github.mangi.eta.ui.components.topBarContainerColor
-import io.github.mangi.eta.ui.model.ConversationPaneUiState
-import io.github.mangi.eta.ui.model.ConversationSummaryUi
-import io.github.mangi.eta.ui.navigation.AppRoute
+import io.github.alice.eta.R
+import io.github.alice.eta.ui.components.AdaptiveTopAppBar
+import io.github.alice.eta.ui.components.ConversationSidePaneScaffold
+import io.github.alice.eta.ui.components.MiuixBackButton
+import io.github.alice.eta.ui.components.TopBarBackdrop
+import io.github.alice.eta.ui.components.captureForTopBar
+import io.github.alice.eta.ui.components.rememberTopBarBackdrop
+import io.github.alice.eta.ui.components.topBarContainerColor
+import io.github.alice.eta.ui.model.ConversationPaneUiState
+import io.github.alice.eta.ui.model.ConversationSummaryUi
+import io.github.alice.eta.ui.navigation.AppRoute
 import top.yukonga.miuix.kmp.basic.DropdownImpl
 import top.yukonga.miuix.kmp.basic.DropdownItem
 import top.yukonga.miuix.kmp.basic.Icon

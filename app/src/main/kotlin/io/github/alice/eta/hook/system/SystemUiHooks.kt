@@ -1,13 +1,13 @@
-package io.github.mangi.eta.hook.system
+package io.github.alice.eta.hook.system
 
-import io.github.mangi.eta.core.HookSupport
-import io.github.mangi.eta.core.HookInstallation
-import io.github.mangi.eta.core.HookRegistrar
-import io.github.mangi.eta.core.ModuleConfig
-import io.github.mangi.eta.core.ModuleLogger
+import io.github.alice.eta.core.HookSupport
+import io.github.alice.eta.core.HookInstallation
+import io.github.alice.eta.core.HookRegistrar
+import io.github.alice.eta.core.ModuleConfig
+import io.github.alice.eta.core.ModuleLogger
 
 import android.content.Context
-import io.github.mangi.eta.config.Prefs
+import io.github.alice.eta.config.Prefs
 import io.github.libxposed.api.XposedModule
 import java.lang.reflect.Method
 

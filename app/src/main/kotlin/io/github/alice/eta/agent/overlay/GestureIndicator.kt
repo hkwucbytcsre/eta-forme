@@ -1,4 +1,4 @@
-package io.github.mangi.eta.agent.overlay
+package io.github.alice.eta.agent.overlay
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -15,7 +15,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.OvershootInterpolator
-import io.github.mangi.eta.agent.accessibility.AgentAccessibilityService
+import io.github.alice.eta.agent.accessibility.AgentAccessibilityService
 import kotlin.math.min
 
 object GestureIndicator {

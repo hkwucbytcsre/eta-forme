@@ -1,7 +1,7 @@
-package io.github.mangi.eta.agent.skill
+package io.github.alice.eta.agent.skill
 
-import io.github.mangi.eta.data.db.EtaDatabase
-import io.github.mangi.eta.data.db.SkillRegistryEntity
+import io.github.alice.eta.data.db.EtaDatabase
+import io.github.alice.eta.data.db.SkillRegistryEntity
 import java.io.File
 import java.io.IOException
 import java.util.UUID

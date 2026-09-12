@@ -1,8 +1,8 @@
-package io.github.mangi.eta.agent.terminal
+package io.github.alice.eta.agent.terminal
 
 import android.content.Context
-import io.github.mangi.eta.core.AndroidAgentLogger
-import io.github.mangi.eta.core.safeLogType
+import io.github.alice.eta.core.AndroidAgentLogger
+import io.github.alice.eta.core.safeLogType
 import java.io.File
 import java.util.zip.ZipInputStream
 import kotlin.coroutines.coroutineContext

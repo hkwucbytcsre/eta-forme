@@ -1,4 +1,4 @@
-package io.github.mangi.eta.data.db
+package io.github.alice.eta.data.db
 
 import android.content.Context
 import androidx.room.Room
@@ -6,7 +6,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteOpenHelper
 import androidx.sqlite.db.framework.FrameworkSQLiteOpenHelperFactory
-import io.github.mangi.eta.data.model.ModelSource
+import io.github.alice.eta.data.model.ModelSource
 import java.util.UUID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking

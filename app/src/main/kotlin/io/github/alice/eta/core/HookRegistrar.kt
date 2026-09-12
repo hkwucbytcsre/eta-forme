@@ -1,4 +1,4 @@
-package io.github.mangi.eta.core
+package io.github.alice.eta.core
 
 import io.github.libxposed.api.XposedInterface
 import io.github.libxposed.api.XposedModule

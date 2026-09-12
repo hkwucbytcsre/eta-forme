@@ -1,10 +1,10 @@
-package io.github.mangi.eta.ui.app
+package io.github.alice.eta.ui.app
 
-import io.github.mangi.eta.agent.terminal.DaemonLogsResult
-import io.github.mangi.eta.agent.terminal.DaemonStartResult
-import io.github.mangi.eta.agent.terminal.DetachedTaskStatus
-import io.github.mangi.eta.agent.terminal.LinuxExecutionBackend
-import io.github.mangi.eta.agent.terminal.TerminalEnvironment
+import io.github.alice.eta.agent.terminal.DaemonLogsResult
+import io.github.alice.eta.agent.terminal.DaemonStartResult
+import io.github.alice.eta.agent.terminal.DetachedTaskStatus
+import io.github.alice.eta.agent.terminal.LinuxExecutionBackend
+import io.github.alice.eta.agent.terminal.TerminalEnvironment
 import kotlinx.coroutines.delay
 
 /** Kimi 启动和复用的事务边界：只有本次创建且未打开浏览器的任务会被回收。 */
