@@ -1,4 +1,4 @@
-package io.github.alice.eta.ui.components
+package io.github.alice.eta.ui.markdown
 
 import androidx.compose.runtime.MonotonicFrameClock
 import androidx.compose.ui.text.TextLayoutResult
