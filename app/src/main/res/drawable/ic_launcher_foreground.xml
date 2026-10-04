@@ -2,12 +2,8 @@
     xmlns:aapt="http://schemas.android.com/aapt"
     android:viewportWidth="2048"
     android:viewportHeight="2048"
-    android:width="256dp"
-    android:height="256dp">
-
-    <group>
-        <clip-path
-            android:pathData="M200,0 L1848,0 A200,200 0 0 1 2048,200 L2048,1848 A200,200 0 0 1 1848,2048 L200,2048 A200,200 0 0 1 0,1848 L0,200 A200,200 0 0 1 200,0 Z" />
+    android:width="108dp"
+    android:height="108dp">
 
     <path
         android:pathData="M0 0L554.319 0L828.296 0L2048 0L2048 1512.41L2048 2048L2029.08 2048L1823.47 2048L1585.9 2048L1372.97 2048L1281.26 2048L1177.84 2048L1095.29 2048L978.136 2048L856.995 2048L599.343 2048L537.319 2048L489.138 2048L304.145 2048L285.891 2048L40.5798 2048L0 2048L0 1948.57L0 1507.54L0 835.088L0 749.284L0 0z"
@@ -135,6 +131,4 @@
     <path
         android:pathData="M1268.68 575.315C1324.76 572.221 1440.82 679.532 1383.17 694.028C1321.64 695.433 1206.41 586.88 1268.68 575.315z"
         android:fillColor="#FCF2EC" />
-
-    </group>
 </vector>
