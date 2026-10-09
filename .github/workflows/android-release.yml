@@ -33,6 +33,7 @@ jobs:
 
       - name: Lint 与单元测试
         run: >-
+          chmod +x gradlew
           ./gradlew --no-daemon --no-configuration-cache --continue
           :app:lintDebug :app:testDebugUnitTest
 
