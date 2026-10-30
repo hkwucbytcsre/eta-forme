@@ -1,9 +1,5 @@
 package io.github.alice.eta.ui.app
 
-import io.github.alice.eta.ui.voice.SpeechOssScreen
-import io.github.alice.eta.ui.voice.SpeechRecognitionScreen
-import io.github.alice.eta.ui.voice.SpeechSettingsScreen
-import io.github.alice.eta.ui.voice.SpeechSynthesisScreen
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
@@ -21,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableIntStateOf
@@ -31,9 +28,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.platform.LocalResources
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.LayoutDirection
@@ -47,6 +45,7 @@ import io.github.alice.eta.R
 import io.github.alice.eta.agent.device.BoundedRootCommandExecutor
 import io.github.alice.eta.agent.device.DeviceLocationProvider
 import io.github.alice.eta.agent.device.RootAccess
+import io.github.alice.eta.agent.runtime.AgentRuntimeService
 import io.github.alice.eta.core.AndroidAgentLogger
 import io.github.alice.eta.data.repository.RuntimeConfigRepository
 import io.github.alice.eta.ui.AppearanceSettingsScreen
@@ -60,6 +59,7 @@ import io.github.alice.eta.ui.model.AgentToolsAction
 import io.github.alice.eta.ui.model.ConversationSummaryUi
 import io.github.alice.eta.ui.model.LOCAL_NETWORK_PERMISSION_ITEM_ID
 import io.github.alice.eta.ui.model.PermissionHealthAction
+import io.github.alice.eta.ui.model.roleplayChatUi
 import io.github.alice.eta.ui.navigation.AgentNavigator
 import io.github.alice.eta.ui.navigation.AppRoute
 import io.github.alice.eta.ui.pages.providers.CommunityCatalogProviderScreen
@@ -67,12 +67,13 @@ import io.github.alice.eta.ui.pages.providers.CommunityCatalogScreen
 import io.github.alice.eta.ui.pages.providers.ModelProviderDetailScreen
 import io.github.alice.eta.ui.pages.providers.ModelProviderListScreen
 import io.github.alice.eta.ui.screens.backup.DataBackupScreen
-import io.github.alice.eta.ui.screens.browser.AgentBrowserScreen
+import io.github.alice.eta.ui.screens.browser.AgentBrowserActivity
+import io.github.alice.eta.agent.browser.BrowserSessionRegistry
 import io.github.alice.eta.ui.screens.characters.CharacterDetailScreen
-import io.github.alice.eta.ui.screens.characters.CharacterLibraryScreen
 import io.github.alice.eta.ui.screens.characters.CharacterEditorScreen
-import io.github.alice.eta.ui.screens.characters.CharacterPersonaScreen
+import io.github.alice.eta.ui.screens.characters.CharacterLibraryScreen
 import io.github.alice.eta.ui.screens.characters.CharacterMemoryScreen
+import io.github.alice.eta.ui.screens.characters.CharacterPersonaScreen
 import io.github.alice.eta.ui.screens.enhance.SystemEnhanceScreen
 import io.github.alice.eta.ui.screens.home.AgentHomeScreen
 import io.github.alice.eta.ui.screens.mcp.McpServerDetailScreen
@@ -80,23 +81,29 @@ import io.github.alice.eta.ui.screens.mcp.McpServersScreen
 import io.github.alice.eta.ui.screens.memory.AgentMemoryScreen
 import io.github.alice.eta.ui.screens.permissions.PermissionHealthScreen
 import io.github.alice.eta.ui.screens.skills.AgentSkillsScreen
+import io.github.alice.eta.ui.screens.subagent.SubagentSettingsScreen
 import io.github.alice.eta.ui.screens.terminal.LinuxEnvironmentScreen
 import io.github.alice.eta.ui.screens.terminal.LinuxFilesScreen
 import io.github.alice.eta.ui.screens.terminal.SharedFoldersScreen
 import io.github.alice.eta.ui.screens.terminal.TerminalEntryScreen
 import io.github.alice.eta.ui.screens.terminal.WorkspaceScreen
 import io.github.alice.eta.ui.screens.tools.AgentToolsScreen
+import io.github.alice.eta.ui.screens.tools.WebToolsSettingsScreen
+import io.github.alice.eta.ui.voice.SpeechOssScreen
+import io.github.alice.eta.ui.voice.SpeechRecognitionScreen
+import io.github.alice.eta.ui.voice.SpeechSettingsScreen
+import io.github.alice.eta.ui.voice.SpeechSynthesisScreen
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import top.yukonga.miuix.kmp.basic.TextField
+import top.yukonga.miuix.kmp.layout.DialogDefaults
 import top.yukonga.miuix.kmp.nav.core.NavDisplay
 import top.yukonga.miuix.kmp.nav.core.NavDisplayEffects
 import top.yukonga.miuix.kmp.nav.core.rememberNavBackStack
 import top.yukonga.miuix.kmp.nav.core.rememberNavSystemCornerRadius
 import top.yukonga.miuix.kmp.nav.transition.NavSwipeDirection
-import top.yukonga.miuix.kmp.layout.DialogDefaults
 import top.yukonga.miuix.kmp.window.WindowDialog
 
 /**
@@ -107,7 +114,11 @@ fun AgentAppRoot(
     assistantConversationKey: String? = null,
     requestedConversationId: String? = null,
     onRequestedConversationOpened: () -> Unit = {},
+    requestedArchivedConversation: ArchivedConversationRequest? = null,
+    onArchivedConversationOpened: () -> Unit = {},
     openSpeechSettings: Boolean = false,
+    openTerminal: Boolean = false,
+    onTerminalOpened: () -> Unit = {},
     onSpeechSettingsOpened: () -> Unit = {},
     onAssistantConversationOpened: (Boolean) -> Unit = {},
 ) {
@@ -121,10 +132,24 @@ fun AgentAppRoot(
             onSpeechSettingsOpened()
         }
     }
+    LaunchedEffect(openTerminal) {
+        if (openTerminal) {
+            if (backStack.lastOrNull() != AppRoute.Terminal) backStack.add(AppRoute.Terminal)
+            onTerminalOpened()
+        }
+    }
     val navigator = remember(backStack) { AgentNavigator(backStack) }
     var navigationResetKey by rememberSaveable { mutableIntStateOf(0) }
     val appViewModel = viewModel<AgentAppViewModel>()
     val agentState = appViewModel.state
+    val runtimeActive by AgentRuntimeService.keepScreenOn.collectAsState()
+    val view = LocalView.current
+    val keepScreenOn = backStack.lastOrNull() == AppRoute.Home &&
+        agentState.homeState.isStreaming && runtimeActive
+    DisposableEffect(view, keepScreenOn) {
+        view.keepScreenOn = keepScreenOn
+        onDispose { view.keepScreenOn = false }
+    }
     val skills = appViewModel.skills
     val memory = appViewModel.memory
     val permissionHealth = appViewModel.permissionHealth
@@ -152,7 +177,7 @@ fun AgentAppRoot(
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
-    var conversationPaneOpen by remember { mutableStateOf(false) }
+    var conversationPaneOpen by rememberSaveable { mutableStateOf(false) }
     var conversationRenameTarget by remember { mutableStateOf<ConversationSummaryUi?>(null) }
     var conversationDeleteTarget by remember { mutableStateOf<ConversationSummaryUi?>(null) }
     var conversationExportTarget by remember { mutableStateOf<ConversationSummaryUi?>(null) }
@@ -203,6 +228,16 @@ fun AgentAppRoot(
         onRequestedConversationOpened()
     }
 
+    LaunchedEffect(requestedArchivedConversation) {
+        val request = requestedArchivedConversation ?: return@LaunchedEffect
+        // 外部入口的结果要先导入归档才有会话；找不到时停在当前界面，不切到无关的会话。
+        if (agentState.openArchivedConversation(request.source, request.conversationKey)) {
+            conversationPaneOpen = false
+            navigator.popToHome()
+        }
+        onArchivedConversationOpened()
+    }
+
     LaunchedEffect(assistantConversationKey) {
         val conversationKey = assistantConversationKey ?: return@LaunchedEffect
         val opened = agentState.openAssistantConversation(conversationKey)
@@ -231,13 +266,22 @@ fun AgentAppRoot(
     fun selectConversation(conversationId: String) {
         focusManager.clearFocus()
         agentState.selectConversation(conversationId)
+        navigator.popToHome()
         conversationPaneOpen = false
     }
 
     fun createConversation() {
         focusManager.clearFocus()
         agentState.createConversation()
+        navigator.popToHome()
         conversationPaneOpen = false
+    }
+
+    fun openConversationBrowser() {
+        focusManager.clearFocus()
+        val sessionKey = agentState.conversationPaneState.selectedConversationId
+            ?: BrowserSessionRegistry.MANUAL_SESSION_KEY
+        context.startActivity(AgentBrowserActivity.createIntent(context, sessionKey))
     }
 
     @Composable
@@ -276,7 +320,7 @@ fun AgentAppRoot(
             canStopKimiWeb = appViewModel.kimiWebState.canStop,
             onStopKimiWeb = appViewModel::stopKimiWeb,
             onRefreshKimiWeb = appViewModel::refreshKimiWeb,
-            onOpenBrowser = { pushRoute(AppRoute.Browser) },
+            onOpenBrowser = { openConversationBrowser() },
             onSelectConversation = { conversationId -> selectConversation(conversationId) },
             onConversationRename = { conversation ->
                 conversationRenameTarget = conversation
@@ -299,6 +343,10 @@ fun AgentAppRoot(
             onOpenPermissions = { pushRoute(AppRoute.Permissions) },
             onOpenSettings = { pushRoute(AppRoute.Settings) },
             onOpenModelProviders = { pushRoute(AppRoute.ModelProviders) },
+            homeCharacter = if (route is AppRoute.Home) agentState.homeState.roleplayChatUi() else null,
+            onOpenCharacter = {
+                agentState.homeState.roleplay?.let { pushRoute(AppRoute.CharacterDetail(it.characterId)) }
+            },
         ) { padding ->
             Box(
                 modifier = Modifier
@@ -337,8 +385,15 @@ fun AgentAppRoot(
                                 is AgentHomeAction.ReasoningEffortChanged ->
                                     agentState.updateReasoningEffort(action.effort)
                                 AgentHomeAction.CompactContext -> agentState.compactCurrentContext()
+                                AgentHomeAction.LoadEarlierMessages -> agentState.loadEarlierMessages()
+                                is AgentHomeAction.HistoryViewportChanged -> agentState.updateHistoryViewport(action.atLatest)
+                                AgentHomeAction.RetryConversationLoad -> agentState.retryConversationLoad()
                                 is AgentHomeAction.ModelSelected -> agentState.selectModel(action.modelId)
                                 is AgentHomeAction.SubmitMessage -> { requestExecutionNotifications(); agentState.sendCurrentMessage(action.text) }
+                                is AgentHomeAction.InterruptAndSubmitMessage -> { requestExecutionNotifications(); agentState.interruptAndSendCurrentMessage(action.text) }
+                                is AgentHomeAction.SteerQueuedMessage -> { requestExecutionNotifications(); agentState.steerQueuedMessage(action.id) }
+                                is AgentHomeAction.RecallQueuedMessage -> agentState.recallQueuedMessage(action.id, action.currentDraftText)
+                                is AgentHomeAction.RemoveQueuedMessage -> agentState.removeQueuedMessage(action.id)
                                 AgentHomeAction.StopRun -> agentState.stopCurrentRun()
                                 is AgentHomeAction.ImageAttached -> agentState.attachImage(action.uri)
                                 is AgentHomeAction.RemoveImage -> agentState.removePendingImage(action.id)
@@ -368,17 +423,23 @@ fun AgentAppRoot(
                                 AgentHomeAction.OpenPermissions -> pushRoute(AppRoute.Permissions)
                                 AgentHomeAction.OpenSystemEnhance -> pushRoute(AppRoute.SystemEnhance)
                                 AgentHomeAction.OpenSettings -> pushRoute(AppRoute.Settings)
-                                AgentHomeAction.OpenBrowser -> pushRoute(AppRoute.Browser)
+                                AgentHomeAction.OpenBrowser -> openConversationBrowser()
                                 AgentHomeAction.ExpandRunTrace -> Unit
                             }
                         },
+                        isLoadingConversation = agentState.isLoadingConversation,
+                        conversationLoadFailed = agentState.conversationLoadFailed,
+                        historyLoadState = agentState.historyLoadState,
                         isDrawerOpen = conversationPaneOpen,
                     )
                 }
             }
-            entry<AppRoute.Browser>(swipeDismiss = swipeDismiss) {
-                RoutedShell(route = AppRoute.Browser) {
-                    AgentBrowserScreen()
+            entry<AppRoute.Browser> { route ->
+                // 保留已保存路由的恢复入口；新打开操作直接进入原生浏览器窗口。
+                LaunchedEffect(route) {
+                    context.startActivity(AgentBrowserActivity.createIntent(context, route.sessionKey))
+                    backStack.remove(route)
+                    if (backStack.isEmpty()) backStack.add(AppRoute.Home)
                 }
             }
             entry<AppRoute.Terminal>(swipeDismiss = swipeDismiss) {
@@ -397,12 +458,19 @@ fun AgentAppRoot(
                     onAction = { action ->
                         when (action) {
                             AgentToolsAction.NavigateBack -> popRoute()
-                            AgentToolsAction.OpenBrowser -> pushRoute(AppRoute.Browser)
+                            AgentToolsAction.OpenBrowser -> openConversationBrowser()
+                            AgentToolsAction.OpenWebToolsSettings -> pushRoute(AppRoute.WebToolsSettings)
                             AgentToolsAction.OpenEnhancements -> pushRoute(AppRoute.SystemEnhance)
                             AgentToolsAction.OpenPermissions -> pushRoute(AppRoute.Permissions)
                         }
                     },
                 )
+            }
+            entry<AppRoute.WebToolsSettings>(swipeDismiss = swipeDismiss) {
+                WebToolsSettingsScreen(onBack = ::popRoute)
+            }
+            entry<AppRoute.Subagents>(swipeDismiss = swipeDismiss) {
+                SubagentSettingsScreen(onBack = ::popRoute)
             }
             entry<AppRoute.Skills>(swipeDismiss = swipeDismiss) {
                 LaunchedEffect(Unit) {
@@ -760,14 +828,17 @@ fun AgentAppRoot(
             show = true,
             cornerRadius = DialogDefaults.CornerRadius,
             title = stringResource(R.string.conversation_delete_title),
-            summary = stringResource(R.string.conversation_delete_message),
+            summary = stringResource(if (conversation.isActiveRun) R.string.conversation_stop_and_delete_message else R.string.conversation_delete_message),
             onDismissRequest = { conversationDeleteTarget = null },
         ) {
             MiuixDialogActions(
-                confirmText = stringResource(R.string.action_delete),
+                confirmText = stringResource(if (conversation.isActiveRun) R.string.conversation_stop_and_delete else R.string.action_delete),
                 destructive = true,
                 onCancel = { conversationDeleteTarget = null },
                 onConfirm = {
+                    if ((backStack.lastOrNull() as? AppRoute.Browser)?.sessionKey == conversation.id) {
+                        navigator.popToHome()
+                    }
                     agentState.deleteConversation(conversation.id)
                     conversationDeleteTarget = null
                 },

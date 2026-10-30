@@ -47,9 +47,10 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import io.github.alice.eta.R
-import io.github.alice.eta.agent.browser.AgentBrowserSession
 import io.github.alice.eta.agent.browser.BrowserSessionSnapshot
 import io.github.alice.eta.agent.overlay.toolDisplayName
+import io.github.alice.eta.agent.subagent.AgentSubagentToolCatalog
+import io.github.alice.eta.agent.subagent.SubagentActivitySnapshot
 import io.github.alice.eta.ui.model.ToolActivityMessageUi
 import io.github.alice.eta.ui.model.ToolActivityStatusUi
 import kotlinx.coroutines.Dispatchers
@@ -103,14 +104,37 @@ internal fun ToolActivityRow(
     modifier: Modifier = Modifier,
     showTitle: Boolean = true,
 ) {
+    val running = message.status == ToolActivityStatusUi.Running
+    val elapsedSeconds = rememberRunningSeconds(message.id, running)
+    if (message.toolName == AgentSubagentToolCatalog.TOOL_NAME) {
+        val snapshot = remember(message.command, message.argumentsSummary, message.resultSummary, message.status) {
+            SubagentActivitySnapshot.decode(message.command) ?: SubagentActivitySnapshot(
+                subagentType = message.argumentsSummary.substringBefore(" · ").ifBlank { "subagent" },
+                description = message.argumentsSummary.substringAfter(" · ", message.argumentsSummary),
+                status = when (message.status) {
+                    ToolActivityStatusUi.Running -> SubagentActivitySnapshot.STATUS_RUNNING
+                    ToolActivityStatusUi.Failed -> SubagentActivitySnapshot.STATUS_FAILED
+                    else -> SubagentActivitySnapshot.STATUS_COMPLETED
+                },
+                output = message.resultSummary.orEmpty(),
+            )
+        }
+        SubagentActivityRow(
+            message = message,
+            snapshot = snapshot,
+            elapsedSeconds = elapsedSeconds,
+            modifier = modifier,
+        )
+        return
+    }
     var expanded by rememberSaveable(message.id) { mutableStateOf(false) }
     // 只有「当前浏览器」条目订阅实时会话快照，避免每个工具行都跟随快照重组。
-    val browserSnapshot = if (showBrowserShortcut) {
-        AgentBrowserSession.snapshots.collectAsState().value
+    val browser = LocalAgentBrowserSession.current
+    val browserSnapshot = if (showBrowserShortcut && browser != null) {
+        browser.snapshots.collectAsState().value
     } else {
         null
     }
-    val running = message.status == ToolActivityStatusUi.Running
     val failed = message.status == ToolActivityStatusUi.Failed
     val title = message.argumentsSummary.ifBlank { toolDisplayName(message.toolName) }
     val outcome = remember(message.status, message.resultSummary) { message.outcomeLine() }
@@ -128,7 +152,6 @@ internal fun ToolActivityRow(
     val hasDetail = !message.command.isNullOrBlank() ||
         resultDetail != null ||
         showBrowserShortcut
-    val elapsedSeconds = rememberRunningSeconds(message.id, running)
 
     Column(modifier = modifier.fillMaxWidth()) {
         Row(
@@ -183,7 +206,9 @@ internal fun ToolActivityRow(
             if (hasDetail) {
                 ExpandChevron(
                     expanded = expanded,
-                    contentDescription = null,
+                    contentDescription = stringResource(
+                        if (expanded) R.string.tool_details_collapse else R.string.tool_details_expand,
+                    ),
                     modifier = Modifier.padding(start = 6.dp, end = 8.dp),
                 )
             }
@@ -262,7 +287,9 @@ internal fun ToolGroupRow(
             }
             ExpandChevron(
                 expanded = expanded,
-                contentDescription = null,
+                contentDescription = stringResource(
+                    if (expanded) R.string.tool_details_collapse else R.string.tool_details_expand,
+                ),
                 modifier = Modifier.padding(start = 6.dp, end = 8.dp),
             )
         }
@@ -365,7 +392,7 @@ private fun rememberRunningSeconds(id: String, running: Boolean): Int? {
 }
 
 private fun ToolActivityMessageUi.isTerminalTool(): Boolean =
-    toolName == "terminal" || toolName == "run_command"
+    toolName in setOf("terminal", "terminal_job", "terminal_daemon", "run_command")
 
 @Composable
 private fun ToolActivityStatusUi.dotColor() = when (this) {
@@ -389,11 +416,12 @@ private fun BrowserPagePreview(
     snapshot: BrowserSessionSnapshot,
     modifier: Modifier = Modifier,
 ) {
+    val browser = LocalAgentBrowserSession.current ?: return
     var preview by remember(snapshot.url) { mutableStateOf<ImageBitmap?>(null) }
-    LaunchedEffect(snapshot.url, snapshot.isLoading) {
+    LaunchedEffect(browser, snapshot.url, snapshot.isLoading) {
         while (true) {
             val image = withContext(Dispatchers.IO) {
-                AgentBrowserSession.capturePreview()?.let { decodeDataUrlBitmap(it.dataUrl) }
+                browser.capturePreview()?.let { decodeDataUrlBitmap(it.dataUrl) }
             }
             if (image != null) preview = image
             delay(if (snapshot.isLoading) 1_200L else 4_000L)
@@ -505,7 +533,7 @@ private fun ToolCommandBlock(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 12.dp, end = 5.dp, top = 3.dp, bottom = 3.dp),
+                .padding(start = 12.dp, end = 2.dp, top = 2.dp, bottom = 2.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
@@ -522,8 +550,8 @@ private fun ToolCommandBlock(
                     clipboardManager.setText(AnnotatedString(command))
                     copied = true
                 },
-                minWidth = 28.dp,
-                minHeight = 28.dp,
+                minWidth = 32.dp,
+                minHeight = 32.dp,
             ) {
                 Icon(
                     imageVector = if (copied) Icons.Rounded.Check
@@ -531,7 +559,7 @@ private fun ToolCommandBlock(
                     contentDescription = stringResource(
                         if (copied) R.string.copy_copied else R.string.copy_command,
                     ),
-                    modifier = Modifier.size(13.dp),
+                    modifier = Modifier.size(14.dp),
                     tint = if (copied) {
                         MiuixTheme.colorScheme.primary
                     } else {

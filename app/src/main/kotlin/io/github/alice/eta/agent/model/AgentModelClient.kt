@@ -7,17 +7,21 @@ import io.github.alice.eta.agent.skill.SkillContext
 import io.github.alice.eta.agent.roleplay.RoleplayRunContext
 import io.github.alice.eta.config.Prefs
 import io.github.alice.eta.agent.tool.AgentToolCapabilities
+import io.github.alice.eta.agent.tool.AgentToolRequirements
 import io.github.alice.eta.data.model.AnthropicProviderSetting
 import io.github.alice.eta.data.model.CustomBody
 import io.github.alice.eta.data.model.CustomHeader
 import io.github.alice.eta.data.model.OpenAiEndpointMode
 import io.github.alice.eta.data.model.ModelReasoningCapabilities
+import io.github.alice.eta.data.model.ProviderAuthModes
 import io.github.alice.eta.data.model.ProviderTypes
 import io.github.alice.eta.data.model.ReasoningEffort
 import io.github.alice.eta.data.provider.BuiltinProviders
+import io.github.alice.eta.data.provider.GeminiModelCapabilities
 import io.github.alice.eta.data.provider.ProviderSourceRegistry
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import io.github.alice.eta.agent.terminal.TerminalExecutionContext
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -51,6 +55,7 @@ internal object AgentModelClient {
                     thinkingEnabled = effort.enablesReasoning,
                     reasoningEffort = effort,
                     autoCompactionEnabled = Prefs.isEnabled(Prefs.Keys.AGENT_AUTO_COMPACTION_ENABLED),
+                    subagentTools = Prefs.isEnabled(Prefs.Keys.AGENT_SUBAGENT_ENABLED),
                 )
             }
         }
@@ -69,6 +74,7 @@ internal object AgentModelClient {
             modelDisplayName = "GPT-5.5",
             systemPrompt = BuiltinProviders.DEFAULT_SYSTEM_PROMPT,
             autoCompactionEnabled = Prefs.isEnabled(Prefs.Keys.AGENT_AUTO_COMPACTION_ENABLED),
+            subagentTools = Prefs.isEnabled(Prefs.Keys.AGENT_SUBAGENT_ENABLED),
             terminalTools = Prefs.isEnabled(Prefs.Keys.AGENT_TERMINAL_TOOLS),
             browserTools = Prefs.isEnabled(Prefs.Keys.AGENT_BROWSER_TOOLS),
             deviceDirectTools = Prefs.isEnabled(Prefs.Keys.AGENT_DEVICE_DIRECT_TOOLS),
@@ -94,6 +100,7 @@ internal object AgentModelClient {
         skillContext: SkillContext = SkillContext.EMPTY,
         memoryContext: AgentMemoryContext = AgentMemoryContext.DISABLED,
         additionalTools: JSONArray = JSONArray(),
+        executionContext: TerminalExecutionContext? = null,
         capabilitiesProvider: () -> AgentToolCapabilities = { AgentToolCapabilities(rootAvailable = false) },
         sessionId: String = java.util.UUID.randomUUID().toString(),
         compactOnly: Boolean = false,
@@ -103,6 +110,7 @@ internal object AgentModelClient {
         roleplayContext: RoleplayRunContext? = null,
         rewriteReply: Boolean = false,
         assistantScreenContext: String = "",
+        toolFilter: ((JSONArray) -> JSONArray)? = null,
         onContextSnapshot: (AgentContextSnapshot) -> Unit = {},
         onTranscript: (List<ConversationMessage>) -> Unit = {},
         onEvent: (AgentEvent) -> Unit = {}
@@ -118,6 +126,7 @@ internal object AgentModelClient {
             memoryContext,
             rootAvailable = initialCapabilities.rootAvailable,
             roleplayContext = roleplayContext,
+            executionContext = executionContext,
         )
         if (rewriteReply) {
             messages.put(messages.length() - 1, AgentConversationCodec.userTextMessage(
@@ -129,11 +138,14 @@ internal object AgentModelClient {
             messages.getJSONObject(messages.length() - 1).put("_eta_message_id", initialUserMessageId)
             AssistantScreenContextProjection.attach(messages.getJSONObject(messages.length() - 1), assistantScreenContext)
         }
+        if (!compactOnly && config.providerType == ProviderTypes.GEMINI) {
+            GeminiEphemeralState.markRunStart(messages.getJSONObject(messages.length() - 1))
+        }
         if (compactOnly) messages.remove(messages.length() - 1)
         val transcript = JSONArray()
         // 旧 history 中的无效消息可能在组装时被跳过，系统边界不能由 history 条数倒推。
         val systemCount = AgentPromptBuilder.buildSystemMessages(
-            config, skillContext, memoryContext, initialCapabilities.rootAvailable, roleplayContext,
+            config, skillContext, memoryContext, initialCapabilities.rootAvailable, roleplayContext, executionContext,
         ).length()
         fun toolsFor(capabilities: AgentToolCapabilities): JSONArray {
             if (rewriteReply) return JSONArray()
@@ -153,7 +165,7 @@ internal object AgentModelClient {
             for (index in 0 until additionalTools.length()) {
                 tools.put(additionalTools.opt(index))
             }
-            return tools
+            return toolFilter?.invoke(tools) ?: tools
         }
         val tools = toolsFor(initialCapabilities)
         onEvent(
@@ -164,7 +176,32 @@ internal object AgentModelClient {
                 terminalTools = config.terminalTools
             )
         )
+        // 工具目录与系统提示都是请求前缀，按轮重算会让一次瞬时状态抖动废掉整段缓存。
+        // Root 授权真正变化时整体重建；其余能力只增不减：短暂不可用的工具仍保留，执行时自行报告错误码。
         var promptRootAvailable = initialCapabilities.rootAvailable
+        var publishedTools = tools
+        fun toolsForRound(): JSONArray {
+            val capabilities = capabilitiesProvider()
+            if (capabilities.rootAvailable != promptRootAvailable) {
+                val systemMessages = AgentPromptBuilder.buildSystemMessages(
+                    config, skillContext, memoryContext, capabilities.rootAvailable, roleplayContext, executionContext,
+                )
+                for (index in 0 until systemMessages.length()) {
+                    messages.put(index, systemMessages.getJSONObject(index))
+                }
+                promptRootAvailable = capabilities.rootAvailable
+                publishedTools = toolsFor(capabilities)
+                return publishedTools
+            }
+            val published = toolNames(publishedTools)
+            val added = toolsFor(capabilities).let { fresh ->
+                (0 until fresh.length()).map(fresh::getJSONObject).filter { toolName(it) !in published }
+            }
+            if (added.isNotEmpty()) {
+                publishedTools = JSONArray(publishedTools.toString()).also { merged -> added.forEach(merged::put) }
+            }
+            return publishedTools
+        }
         val loop = AgentLoop(
             transcript = transcript,
             systemCount = systemCount,
@@ -176,26 +213,27 @@ internal object AgentModelClient {
             messages = messages,
             tools = tools,
             provider = provider,
-            toolExecutor = toolExecutor,
+            // 目录在运行内只增不减，可见不再等于可用：执行前用同一规则复核，
+            // 中途失去的能力返回与目录过滤一致的错误码，而不是让底层接口给出含糊的失败。
+            toolExecutor = AgentModelClient.ToolExecutor { call ->
+                val unavailable = AgentToolRequirements.find(call.name)
+                    ?.let { capabilitiesProvider().unavailableCode(call.name) }
+                if (unavailable == null) {
+                    toolExecutor.execute(call)
+                } else {
+                    ToolResult(
+                        JSONObject().put("ok", false).put("code", unavailable)
+                            .put("message", "该工具当前不可用（$unavailable），本次未执行").toString(),
+                    )
+                }
+            },
             runController = runController,
             traceFormatter = traceFormatter,
             onEvent = onEvent,
             purpose = if (rewriteReply) ProviderRequestPurpose.REPLY_REWRITE else ProviderRequestPurpose.CHAT,
             roleplayContext = roleplayContext,
             initialSupplementIndex = initialSupplementIndex,
-            toolsForRound = {
-                val capabilities = capabilitiesProvider()
-                if (capabilities.rootAvailable != promptRootAvailable) {
-                    val systemMessages = AgentPromptBuilder.buildSystemMessages(
-                        config, skillContext, memoryContext, capabilities.rootAvailable, roleplayContext,
-                    )
-                    for (index in 0 until systemMessages.length()) {
-                        messages.put(index, systemMessages.getJSONObject(index))
-                    }
-                    promptRootAvailable = capabilities.rootAvailable
-                }
-                toolsFor(capabilities)
-            },
+            toolsForRound = ::toolsForRound,
         )
         val result = try {
             if (compactOnly) loop.compactOnly() else loop.run()
@@ -223,9 +261,21 @@ internal object AgentModelClient {
         )
     }
 
+    private fun toolName(tool: JSONObject): String? = tool.optJSONObject("function")?.optString("name")
+
+    private fun toolNames(tools: JSONArray): Set<String> =
+        (0 until tools.length()).mapNotNullTo(mutableSetOf()) { toolName(tools.getJSONObject(it)) }
+
     private fun ModelConfig.validate() {
         require(baseUrl.isNotBlank()) { "请先配置 API 地址" }
-        require(apiKey.isNotBlank()) { "请先配置 API Key" }
+        when {
+            authMode == ProviderAuthModes.API_KEY -> require(apiKey.isNotBlank()) { "请先配置 API Key" }
+            ProviderAuthModes.isOAuth(authMode) -> {
+                require(providerId.isNotBlank()) { "账号登录缺少服务商标识，请重新选择服务商" }
+                require(apiKey.isEmpty()) { "账号登录配置不能包含 API Key" }
+            }
+            else -> error("不支持的服务商认证方式")
+        }
         require(model.isNotBlank()) { "请先配置模型名" }
         require(
             reasoningCapabilities?.mandatory != true ||
@@ -269,6 +319,7 @@ internal object AgentModelClient {
         val anthropicVersion: String = AnthropicProviderSetting.DEFAULT_ANTHROPIC_VERSION,
         val openAiEndpointMode: String = OpenAiEndpointMode.CHAT_COMPLETIONS,
         val hostedWebSearchEnabled: Boolean = false,
+        val supportsSearchSuggestions: Boolean = false,
         val terminalTools: Boolean = false,
         val browserTools: Boolean = true,
         val deviceDirectTools: Boolean = true,
@@ -281,10 +332,18 @@ internal object AgentModelClient {
         val customHeaders: List<CustomHeader> = emptyList(),
         val customBody: List<CustomBody> = emptyList(),
         val autoCompactionEnabled: Boolean = Prefs.Keys.BOOLEAN_DEFAULTS.getValue(Prefs.Keys.AGENT_AUTO_COMPACTION_ENABLED),
+        val subagentTools: Boolean = Prefs.Keys.BOOLEAN_DEFAULTS.getValue(Prefs.Keys.AGENT_SUBAGENT_ENABLED),
+        val authMode: String = ProviderAuthModes.API_KEY,
     ) {
         val usesHostedWebSearch: Boolean
-            get() = hostedWebSearchEnabled && providerType == ProviderTypes.OPENAI_COMPATIBLE &&
-                openAiEndpointMode == OpenAiEndpointMode.RESPONSES
+            get() = hostedWebSearchEnabled && when (providerType) {
+                ProviderTypes.OPENAI_COMPATIBLE -> openAiEndpointMode == OpenAiEndpointMode.RESPONSES
+                ProviderTypes.GEMINI -> supportsSearchSuggestions && GeminiModelCapabilities.supportsHostedSearch(model)
+                else -> false
+            }
+
+        val hostedWebSearchToolName: String
+            get() = if (providerType == ProviderTypes.GEMINI) "google_search" else "web_search"
 
         val effectiveReasoningEffort: ReasoningEffort
             get() = reasoningEffort ?: ReasoningEffort.fromLegacy(thinkingEnabled)
@@ -315,7 +374,8 @@ internal object AgentModelClient {
     data class ToolCall(
         val id: String,
         val name: String,
-        val argumentsJson: String
+        val argumentsJson: String,
+        val round: Int = 1,
     )
 
     data class ToolResult(
@@ -326,6 +386,7 @@ internal object AgentModelClient {
          * 最终 assistant 自己组织的答复不受此标记影响。
          */
         val sensitive: Boolean = false,
+        val command: String? = null,
     )
 
     /** 图片引用：入口侧可为本地 URI/路径，进入模型协议前必须解析为远程 URL 或 data URL。 */

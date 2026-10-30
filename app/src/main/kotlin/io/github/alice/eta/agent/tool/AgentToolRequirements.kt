@@ -2,6 +2,7 @@ package io.github.alice.eta.agent.tool
 
 import org.json.JSONArray
 import org.json.JSONObject
+import io.github.alice.eta.agent.model.AgentTerminalToolCatalog
 import io.github.alice.eta.agent.model.AgentFileToolCatalog
 import io.github.alice.eta.agent.model.AgentPhoneToolCatalog
 import io.github.alice.eta.agent.context.PersonalSearchTools
@@ -17,6 +18,8 @@ internal data class LocalToolRequirement(
     val accessibility: Boolean = false,
     val systemAccess: ToolSystemAccess = ToolSystemAccess.NONE,
     val colorOs: Boolean = false,
+    val gui: Boolean = false,
+    val freshObservation: Boolean = false,
 )
 
 /** 展示、模型目录与执行边界共同使用的本地工具能力合同。未登记的工具不能发布。 */
@@ -30,7 +33,7 @@ internal object AgentToolRequirements {
         register(
             RootRequirement.NONE,
             "get_current_context", "search_apps", "launch_app", "open_uri", "browser_use", "web_search", "fetch_url",
-            "observe_screen", "tap", "tap_area", "tap_element", "long_press",
+            "observe_screen", "release_gui", "tap", "tap_area", "tap_element", "long_press",
             "long_press_element", "swipe", "scroll", "scroll_element", "type_text", "input_text",
             "replace_text", "clear_text", "set_clipboard", "get_clipboard", "paste_text",
             "wait", "wait_for_text", "wait_for_package", "open_system_panel",
@@ -44,7 +47,7 @@ internal object AgentToolRequirements {
         register(
             RootRequirement.PARTIAL,
             "press_key", "network_info", "get_setting", "recent_notifications",
-            "search_personal_orders", "terminal", "run_command", "read_file",
+            "search_personal_orders", "terminal", "terminal_job", "terminal_daemon", "read_file",
             "write_file", "list_directory", "read_image", "edit_file", "stat_file", "glob_files", "grep_files",
         )
         register(
@@ -72,6 +75,15 @@ internal object AgentToolRequirements {
             "replace_text", "clear_text", "paste_text", "press_key", "open_system_panel",
             "wait_for_text", "wait_for_package",
         ).forEach { name -> put(name, getValue(name).copy(accessibility = true)) }
+        listOf(
+            "observe_screen", "launch_app", "open_uri", "open_system_panel",
+            "wait", "wait_for_text", "wait_for_package", "set_clipboard", "get_clipboard",
+        ).forEach { name -> put(name, getValue(name).copy(gui = true)) }
+        listOf(
+            "tap", "tap_area", "tap_element", "long_press", "long_press_element", "swipe",
+            "scroll", "scroll_element", "type_text", "input_text", "replace_text", "clear_text",
+            "paste_text", "press_key",
+        ).forEach { name -> put(name, getValue(name).copy(gui = true, freshObservation = true)) }
         mapOf(
             "recent_notifications" to ToolSystemAccess.NOTIFICATIONS,
             "search_notification_history" to ToolSystemAccess.NOTIFICATIONS,
@@ -99,11 +111,16 @@ internal object AgentToolRequirements {
 
     fun requiresAccessibility(name: String): Boolean = find(name)?.accessibility == true
 
+    fun requiresGuiControl(name: String?): Boolean = name?.let(::find)?.gui == true
+
+    fun requiresFreshObservation(name: String): Boolean = find(name)?.freshObservation == true
+
+    fun hasForegroundIntentFallback(name: String?): Boolean = name == "set_alarm" || name == "set_timer"
+
     fun rootDenied(name: String, arguments: JSONObject, rootAvailable: Boolean): Boolean {
         if (rootAvailable) return false
         if (rootRequirement(name) == RootRequirement.REQUIRED) return true
         return when (name) {
-            "terminal", in AgentFileToolCatalog.names -> arguments.optString("identity").equals("root", ignoreCase = true)
             "press_key" -> arguments.optString("button").equals("PASTE", ignoreCase = true)
             else -> false
         }
@@ -124,29 +141,11 @@ internal object AgentToolRequirements {
 
     private fun projectUnprivileged(function: JSONObject) {
         val properties = function.getJSONObject("parameters").optJSONObject("properties")
-        if (function.getString("name") in AgentFileToolCatalog.names) {
-            properties?.getJSONObject("identity")?.put("enum", JSONArray().put("user"))
-                ?.put("description", "宿主执行身份；当前仅支持 user（Eta App UID）。Linux 内的模拟 root 不提供 Android 特权。")
-            properties?.getJSONObject("cwd")?.put("description", "相对路径的基准目录；Android 默认 Eta 私有工作区，Linux 默认 /workspace。")
+        if (function.getString("name") in AgentFileToolCatalog.names + AgentTerminalToolCatalog.names) {
+            properties?.optJSONObject("identity")?.put("enum", JSONArray().put("user"))
+                ?.put("description", "显式选择宿主身份；当前可用 user（Eta App UID）。省略时沿用本次运行的默认身份。")
         }
         when (function.getString("name")) {
-            "terminal" -> {
-                function.put("description", "在当前设备管理普通 Android Shell 或用户选择的 Linux 环境。" +
-                    "以 App UID 执行，支持会话、异步任务和后台服务；Linux 内的模拟身份不提供 Android 系统特权。" +
-                    "使用 exec 执行单次命令，open/exec 复用会话，daemon_start/list/logs/stop 管理后台服务。后台服务仍可能被系统回收。")
-                properties?.getJSONObject("identity")
-                    ?.put("enum", JSONArray().put("user"))
-                    ?.put("description", "宿主执行身份；当前仅支持 user，默认 user。")
-                properties?.getJSONObject("environment")?.put("description",
-                    "android 使用普通 Android Shell；linux 使用用户选择的发行版和免 Root 后端。默认 android。")
-                properties?.getJSONObject("cwd")?.put("description",
-                    "工作目录。Android 默认使用 Eta 私有工作区，Linux 默认 /workspace。")
-            }
-            "run_command" -> {
-                function.put("description",
-                    "通过普通 Android Shell 执行单次非交互命令，以 App UID 运行；只能访问当前应用有权访问的资源。")
-                properties?.getJSONObject("cwd")?.put("description", "工作目录，默认使用 Eta 私有工作区。")
-            }
             "read_image" -> properties?.getJSONObject("path")?.put("description",
                 "当前应用有权读取的绝对图片路径、file URI 或已授权的 content URI。")
             "press_key" -> properties?.getJSONObject("button")?.let { button ->

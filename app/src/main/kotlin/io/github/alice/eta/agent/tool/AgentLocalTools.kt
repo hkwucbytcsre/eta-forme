@@ -1,6 +1,7 @@
 package io.github.alice.eta.agent.tool
 
 import android.content.Context
+import android.graphics.Rect
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -18,10 +19,14 @@ import io.github.alice.eta.agent.web.AgentWebTools
 import io.github.alice.eta.agent.web.WebHttpTransport
 import io.github.alice.eta.agent.model.AgentScreenObservationContract
 import io.github.alice.eta.agent.model.AgentSensitiveToolPolicy
+import io.github.alice.eta.agent.model.AgentTerminalToolCatalog
 import io.github.alice.eta.agent.model.AgentFileToolCatalog
 import io.github.alice.eta.agent.overlay.AgentHapticFeedback
+import io.github.alice.eta.agent.overlay.AgentOverlayClearance
 import io.github.alice.eta.agent.overlay.GestureIndicator
 import io.github.alice.eta.agent.runtime.AgentAppContext
+import io.github.alice.eta.agent.runtime.AgentRunCancelledException
+import io.github.alice.eta.agent.runtime.GuiControlCoordinator
 import io.github.alice.eta.agent.skill.SkillCompatibilityChecker
 import io.github.alice.eta.agent.skill.SkillIndexService
 import io.github.alice.eta.agent.skill.SkillInstallErrorCode
@@ -36,7 +41,7 @@ import io.github.alice.eta.agent.skill.GitHubSkillInspection
 import io.github.alice.eta.agent.skill.GitHubSkillRepository
 import io.github.alice.eta.agent.skill.GitHubSkillSourceException
 import io.github.alice.eta.agent.skill.PublicGitHubSkillSource
-import io.github.alice.eta.agent.terminal.AlpineEnvironmentPaths
+import io.github.alice.eta.agent.terminal.TerminalExecutionContext
 import io.github.alice.eta.agent.terminal.DetachedTaskSupervisor
 import io.github.alice.eta.agent.terminal.LinuxEnvironmentPaths
 import io.github.alice.eta.agent.terminal.terminalEnvironment
@@ -50,6 +55,7 @@ import io.github.alice.eta.data.repository.AgentMemoryMutation
 import io.github.alice.eta.data.repository.AgentMemoryRepository
 import io.github.alice.eta.data.repository.AgentMemoryWriteResult
 import io.github.alice.eta.data.repository.LinuxEnvironmentSettingsRepository
+import io.github.alice.eta.data.repository.WebToolsSettingsRepository
 import java.util.Locale
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicBoolean
@@ -96,9 +102,12 @@ internal class AgentLocalTools(
     runAvailableSkillIds: Set<String> = emptySet(),
     pendingSkillConflict: PendingSkillConflictCapability? = null,
     private val rootAvailable: () -> Boolean = { RootAccess.isGranted },
+    private val guiControl: GuiControlCoordinator.RunControl? = null,
+    browserSession: AgentBrowserSession? = null,
 ) : AgentModelClient.ToolExecutor, AutoCloseable {
 
     private val closed = AtomicBoolean(false)
+    private val browserSessionRef = lazy { browserSession ?: AgentBrowserSession() }
     private val deviceController = RootShellDeviceController(logger, screenshotExcludedPackages, rootAvailable)
     private val rootCommandExecutor = BoundedRootCommandExecutor(logger, rootAvailable = rootAvailable)
     private val structuredDeviceTools = AgentStructuredDeviceTools(
@@ -106,37 +115,35 @@ internal class AgentLocalTools(
         logger = logger,
         root = rootCommandExecutor,
         rootAvailable = rootAvailable,
+        foregroundAction = ::executeForegroundIntent,
     )
     private val imageTools = AgentImageTools(context, rootCommandExecutor, rootAvailable)
     private val webTools = AgentWebTools(
         transport = WebHttpTransport(AgentHttpClient.client),
         localNetworkAccess = { LocalNetworkPermission.accessState(context).name.lowercase(Locale.ROOT) },
+        runtimeConfig = { runBlocking { WebToolsSettingsRepository.resolveRuntimeConfig(context) } },
     )
+    val terminalExecutionContext = LinuxEnvironmentSettingsRepository.current(context).terminalEnvironment.let { environment ->
+        TerminalExecutionContext(
+            linuxEnvironment = environment,
+            linuxRootfsPath = LinuxEnvironmentPaths.rootfsDir(context, checkNotNull(environment.linuxDistribution)).absolutePath,
+        )
+    }
     private val terminalController = RootShellTerminalController(
         logger = logger,
         rootAvailable = rootAvailable,
-        linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(context).absolutePath,
-        linuxRootfsPathProvider = { environment ->
-            environment.linuxDistribution?.let { distribution ->
-                LinuxEnvironmentPaths.rootfsDir(context, distribution).absolutePath
-            }
-        },
+        executionContext = terminalExecutionContext,
+        backgroundJobs = io.github.alice.eta.agent.terminal.TerminalRuntime.backgroundJobs(context),
         detachedSupervisor = DetachedTaskSupervisor(
             logger = logger,
             recordsFile = DetachedTaskSupervisor.defaultRecordsFile(context),
-            linuxRootfsPath = AlpineEnvironmentPaths.rootfsDir(context).absolutePath,
-            linuxRootfsPathProvider = { environment ->
-                environment.linuxDistribution?.let { distribution ->
-                    LinuxEnvironmentPaths.rootfsDir(context, distribution).absolutePath
-                }
-            },
+            linuxRootfsPath = terminalExecutionContext.linuxRootfsPath,
             linuxSharedMountsProvider = { SharedFolderMounts.current() },
+            rootAvailable = rootAvailable,
         ),
         linuxSharedMountsProvider = { SharedFolderMounts.current() },
-        selectedLinuxEnvironmentProvider = {
-            LinuxEnvironmentSettingsRepository.current(context).terminalEnvironment
-        },
     )
+
     private val publishedObservation = AtomicReference(PublishedObservation())
     private val runAvailableSkillIds = runAvailableSkillIds
         .mapTo(mutableSetOf(), SkillParser::normalizeSkillLookup)
@@ -149,16 +156,32 @@ internal class AgentLocalTools(
     override fun close() {
         if (!closed.compareAndSet(false, true)) return
         publishedObservation.set(PublishedObservation())
-        AgentBrowserSession.interruptAgentAction(browserRunId)
+        if (browserSessionRef.isInitialized()) browserSessionRef.value.interruptAgentAction(browserRunId)
         webTools.close()
         terminalController.interruptAll()
+        deviceController.close()
         rootCommandExecutor.close()
         githubSkillSource?.close()
         inspectedGitHubSnapshots.clear()
+        guiControl?.close()
     }
 
-    override fun execute(toolCall: AgentModelClient.ToolCall): AgentModelClient.ToolResult =
+    override fun execute(toolCall: AgentModelClient.ToolCall): AgentModelClient.ToolResult {
+        if (closed.get()) throw AgentRunCancelledException()
+        val control = guiControl
+        return if (control != null && AgentToolRequirements.requiresGuiControl(toolCall.name)) {
+            control.withAction { generation -> executeLocal(toolCall, generation) }
+        } else {
+            executeLocal(toolCall, null)
+        }
+    }
+
+    private fun executeLocal(
+        toolCall: AgentModelClient.ToolCall,
+        guiGeneration: Long?,
+    ): AgentModelClient.ToolResult =
         runCatching {
+            if (closed.get()) throw AgentRunCancelledException()
             val args = JSONObject(toolCall.argumentsJson.ifBlank { "{}" })
             if (AgentToolRequirements.find(toolCall.name) != null &&
                 AgentToolRequirements.rootDenied(toolCall.name, args, rootAvailable())
@@ -167,7 +190,20 @@ internal class AgentLocalTools(
             }
             deviceToolPermissionError(toolCall.name)?.let { return@runCatching it }
             memoryToolPermissionError(toolCall.name)?.let { return@runCatching it }
-            when (val decision = beforeToolExecution(toolCall.name)) {
+            if (guiGeneration != null && publishedObservation.get().generation != guiGeneration) {
+                publishedObservation.set(PublishedObservation())
+                if (AgentToolRequirements.requiresFreshObservation(toolCall.name)) {
+                    return@runCatching textResult(errorResult(
+                        "NO_OBSERVATION", "手机操作权已变化，请先调用 observe_screen 重新观察，再操作当前页面",
+                    ))
+                }
+            }
+            val preparation = if (AgentToolRequirements.hasForegroundIntentFallback(toolCall.name)) {
+                ToolExecutionDecision.Allow
+            } else {
+                beforeToolExecution(toolCall.name)
+            }
+            when (val decision = preparation) {
                 ToolExecutionDecision.Allow -> Unit
                 is ToolExecutionDecision.Reject -> {
                     if (decision.code.startsWith("ACCESSIBILITY_")) publishedObservation.set(PublishedObservation())
@@ -182,14 +218,25 @@ internal class AgentLocalTools(
             when (toolCall.name) {
                 "get_current_context" -> textResult(DeviceContextTool.current(context))
                 "search_apps" -> textResult(searchApps(args))
-                "launch_app" -> textResult(launchApp(args))
-                "open_uri" -> textResult(openUri(args))
+                "launch_app" -> {
+                    publishedObservation.set(PublishedObservation())
+                    textResult(launchApp(args))
+                }
+                "open_uri" -> {
+                    publishedObservation.set(PublishedObservation())
+                    textResult(openUri(args))
+                }
                 "browser_use" -> browserUse(args, toolCall.id)
                 "web_search", "fetch_url" -> {
                     if (!browserToolsEnabled()) textResult(errorResult("BROWSER_TOOLS_DISABLED", "请先启用网页搜索、读取与浏览器工具"))
                     else textResult(webTools.execute(toolCall.name, args))
                 }
-                "observe_screen" -> observeScreen(args)
+                "observe_screen" -> observeScreen(args, guiGeneration)
+                "release_gui" -> {
+                    publishedObservation.set(PublishedObservation())
+                    guiControl?.release()
+                    textResult(JSONObject().put("ok", true).put("tool", "release_gui").toString())
+                }
                 "tap" -> afterAction(tap(args))
                 "tap_area" -> afterAction(tapArea(args))
                 "tap_element" -> afterAction(tapElement(args))
@@ -210,13 +257,18 @@ internal class AgentLocalTools(
                 "wait" -> textResult(deviceController.waitMs(args.optInt("duration_ms", 1_000)))
                 "wait_for_text" -> textResult(waitForText(args))
                 "wait_for_package" -> textResult(waitForPackage(args))
-                "open_system_panel" -> textResult(deviceController.openSystemPanel(args.optString("panel")))
+                "open_system_panel" -> {
+                    publishedObservation.set(PublishedObservation())
+                    textResult(deviceController.openSystemPanel(args.optString("panel")))
+                }
                 in DEVICE_TOOL_NAMES ->
                     structuredDeviceTools.execute(toolCall.name, args)
                         ?: textResult(errorResult("UNKNOWN_TOOL", "未知设备工具"))
                 "read_image" -> fileVisionTool { imageTools.readImage(args) }
-                "terminal" -> textResult(terminalTool { terminal(args) })
-                "run_command" -> textResult(terminalTool { runCommand(args) })
+                in AgentTerminalToolCatalog.names -> textResult(terminalTool {
+                    if (toolCall.name == "terminal" && args.optString("action").equals("check_root", ignoreCase = true)) checkRoot()
+                    else terminalController.executeTool(toolCall.name, args)
+                })
                 in AgentFileToolCatalog.names -> textResult(terminalTool { terminalController.fileTool(toolCall.name, args) })
                 "memory_get" -> textResult(memoryGet(args))
                 "memory_write" -> textResult(memoryWrite(args))
@@ -234,10 +286,11 @@ internal class AgentLocalTools(
                 )
             }
         }.getOrElse { throwable ->
+            if (throwable is AgentRunCancelledException) throw throwable
             textResult(
                 errorResult(
                     code = when (throwable) {
-                        is InvalidToolArgumentException -> "INVALID_ARGUMENT"
+                        is InvalidToolArgumentException, is org.json.JSONException -> "INVALID_ARGUMENT"
                         is DeviceControlUnavailableException -> "ACCESSIBILITY_UNAVAILABLE"
                         else -> "TOOL_ERROR"
                     },
@@ -251,6 +304,21 @@ internal class AgentLocalTools(
                 result.copy(sensitive = true)
             }
         }
+
+    private fun executeForegroundIntent(toolName: String, action: () -> JSONObject): JSONObject {
+        fun execute(): JSONObject {
+            if (closed.get()) throw AgentRunCancelledException()
+            deviceToolPermissionError(toolName)?.let { return JSONObject(it.content) }
+            return when (val decision = beforeToolExecution(toolName)) {
+                ToolExecutionDecision.Allow -> {
+                    publishedObservation.set(PublishedObservation())
+                    action()
+                }
+                is ToolExecutionDecision.Reject -> JSONObject(errorResult(decision.code, decision.message))
+            }
+        }
+        return guiControl?.withAction { execute() } ?: execute()
+    }
 
     private fun deviceToolPermissionError(
         toolName: String,
@@ -327,11 +395,11 @@ internal class AgentLocalTools(
                 revision = revision,
                 startLine = args.getInt("start_line"),
                 endLine = args.getInt("end_line"),
-                content = args.getString("content"),
+                content = args.requiredText("content"),
             )
             "append" -> AgentMemoryMutation.Append(
                 revision = revision,
-                content = args.getString("content"),
+                content = args.requiredText("content"),
             )
             "clear" -> AgentMemoryMutation.Clear(revision)
             else -> error("不支持的记忆写入模式")
@@ -360,11 +428,12 @@ internal class AgentLocalTools(
         if (!browserToolsEnabled()) {
             return textResult(errorResult("BROWSER_TOOLS_DISABLED", "请先启用网页浏览工具"))
         }
-        val result = AgentBrowserSession.execute(
+        val result = browserSessionRef.value.execute(
             context = context,
             args = args,
             runId = browserRunId,
             toolCallId = toolCallId,
+            checkCancellation = { if (closed.get()) throw AgentRunCancelledException() },
         )
         return AgentModelClient.ToolResult(
             content = result.content,
@@ -382,7 +451,7 @@ internal class AgentLocalTools(
         )
     }
 
-    private fun observeScreen(args: JSONObject): AgentModelClient.ToolResult {
+    private fun observeScreen(args: JSONObject, generation: Long?): AgentModelClient.ToolResult {
         publishedObservation.set(PublishedObservation())
         val startedAt = SystemClock.elapsedRealtime()
         val options = AgentScreenObservationContract.resolve(args)
@@ -396,6 +465,7 @@ internal class AgentLocalTools(
             PublishedObservation(
                 elements = observation.elementObservation,
                 coordinateSpace = observation.coordinateSpace,
+                generation = generation.takeIf { JSONObject(observation.content).optBoolean("ok") },
             ),
         )
         logger.debug {
@@ -417,6 +487,7 @@ internal class AgentLocalTools(
      * 失败或结果未知的动作不附带，保持"先重新观察"的既有约束。
      */
     private fun afterAction(raw: String): AgentModelClient.ToolResult {
+        if (closed.get()) throw AgentRunCancelledException()
         val result = runCatching { JSONObject(raw) }.getOrNull()
         if (result == null || !result.optBoolean("ok")) return textResult(raw)
         val before = publishedObservation.get().elements
@@ -440,20 +511,22 @@ internal class AgentLocalTools(
 
     private fun tap(args: JSONObject): String {
         val point = convertPoint(
-            x = args.optInt("x"),
-            y = args.optInt("y"),
+            x = args.getInt("x"),
+            y = args.getInt("y"),
             coordinateSpace = args.optString("coordinate_space")
         )
-        AgentHapticFeedback.perform(context, AgentHapticFeedback.Type.TAP)
-        showTap(point.x, point.y)
-        return deviceController.tap(point.x, point.y)
+        return clearOverlay(point) {
+            AgentHapticFeedback.perform(context, AgentHapticFeedback.Type.TAP)
+            showTap(point.x, point.y)
+            deviceController.tap(point.x, point.y)
+        }
     }
 
     private fun tapArea(args: JSONObject): String {
-        val x1 = args.optInt("x1")
-        val y1 = args.optInt("y1")
-        val x2 = args.optInt("x2")
-        val y2 = args.optInt("y2")
+        val x1 = args.getInt("x1")
+        val y1 = args.getInt("y1")
+        val x2 = args.getInt("x2")
+        val y2 = args.getInt("y2")
         val coordinateSpace = args.optString("coordinate_space")
         val first = convertPoint(x1, y1, coordinateSpace)
         val second = convertPoint(x2, y2, coordinateSpace)
@@ -461,9 +534,11 @@ internal class AgentLocalTools(
             x = ((first.x.toLong() + second.x.toLong()) / 2L).toInt(),
             y = ((first.y.toLong() + second.y.toLong()) / 2L).toInt(),
         )
-        AgentHapticFeedback.perform(context, AgentHapticFeedback.Type.TAP)
-        showTap(point.x, point.y)
-        return deviceController.tap(point.x, point.y)
+        return clearOverlay(point) {
+            AgentHapticFeedback.perform(context, AgentHapticFeedback.Type.TAP)
+            showTap(point.x, point.y)
+            deviceController.tap(point.x, point.y)
+        }
     }
 
     private fun tapElement(args: JSONObject): String {
@@ -473,7 +548,9 @@ internal class AgentLocalTools(
         if (node == null) {
             return errorResult("INVALID_NODE_INDEX", "观察快照中不存在节点 index=$index")
         }
-        val result = deviceController.tapElement(observation, index)
+        val result = clearOverlay(ScreenPoint(node.centerX, node.centerY)) {
+            deviceController.tapElement(observation, index)
+        }
         if (result.isOkJson()) {
             AgentHapticFeedback.perform(context, AgentHapticFeedback.Type.TAP)
             showTap(node.centerX, node.centerY)
@@ -489,7 +566,9 @@ internal class AgentLocalTools(
         if (node == null) {
             return errorResult("INVALID_NODE_INDEX", "观察快照中不存在节点 index=$index")
         }
-        val result = deviceController.longPressElement(observation, index, durationMs)
+        val result = clearOverlay(ScreenPoint(node.centerX, node.centerY)) {
+            deviceController.longPressElement(observation, index, durationMs)
+        }
         if (result.isOkJson()) {
             AgentHapticFeedback.perform(context, AgentHapticFeedback.Type.LONG_PRESS)
             showLongPress(node.centerX, node.centerY, durationMs)
@@ -499,37 +578,41 @@ internal class AgentLocalTools(
 
     private fun longPress(args: JSONObject): String {
         val point = convertPoint(
-            x = args.optInt("x"),
-            y = args.optInt("y"),
+            x = args.getInt("x"),
+            y = args.getInt("y"),
             coordinateSpace = args.optString("coordinate_space")
         )
         val durationMs = args.optInt("duration_ms", 800)
-        AgentHapticFeedback.perform(context, AgentHapticFeedback.Type.LONG_PRESS)
-        showLongPress(point.x, point.y, durationMs)
-        return deviceController.longPress(point.x, point.y, durationMs)
+        return clearOverlay(point) {
+            AgentHapticFeedback.perform(context, AgentHapticFeedback.Type.LONG_PRESS)
+            showLongPress(point.x, point.y, durationMs)
+            deviceController.longPress(point.x, point.y, durationMs)
+        }
     }
 
     private fun swipe(args: JSONObject): String {
         val start = convertPoint(
-            x = args.optInt("x1"),
-            y = args.optInt("y1"),
+            x = args.getInt("x1"),
+            y = args.getInt("y1"),
             coordinateSpace = args.optString("coordinate_space")
         )
         val end = convertPoint(
-            x = args.optInt("x2"),
-            y = args.optInt("y2"),
+            x = args.getInt("x2"),
+            y = args.getInt("y2"),
             coordinateSpace = args.optString("coordinate_space")
         )
         val durationMs = args.optInt("duration_ms", 500)
-        AgentHapticFeedback.perform(context, AgentHapticFeedback.Type.SWIPE)
-        showSwipe(start.x, start.y, end.x, end.y, durationMs)
-        return deviceController.swipe(
-            start.x,
-            start.y,
-            end.x,
-            end.y,
-            durationMs
-        )
+        return clearOverlay(start, end) {
+            AgentHapticFeedback.perform(context, AgentHapticFeedback.Type.SWIPE)
+            showSwipe(start.x, start.y, end.x, end.y, durationMs)
+            deviceController.swipe(
+                start.x,
+                start.y,
+                end.x,
+                end.y,
+                durationMs
+            )
+        }
     }
 
     private fun scrollElement(args: JSONObject): String {
@@ -548,7 +631,7 @@ internal class AgentLocalTools(
      * submit=true 在写入成功后按输入法回车，用于搜索、发送等提交动作。
      */
     private fun typeText(args: JSONObject): String {
-        val text = args.optString("text")
+        val text = args.requiredText("text")
         val mode = args.optString("mode", "replace").trim().lowercase(Locale.ROOT).ifBlank { "replace" }
         val written = when (mode) {
             "replace" -> replaceText(args)
@@ -575,7 +658,7 @@ internal class AgentLocalTools(
     }
 
     private fun inputText(args: JSONObject): String {
-        val text = args.optString("text")
+        val text = args.requiredText("text")
         if (text.length > 1_000) {
             return errorResult("TEXT_TOO_LONG", "input_text 最多支持 1000 个字符")
         }
@@ -594,7 +677,7 @@ internal class AgentLocalTools(
             null
         }
         return deviceController.replaceText(
-            text = args.optString("text"),
+            text = args.requiredText("text"),
             index = index,
             observation = observation,
         )
@@ -611,17 +694,17 @@ internal class AgentLocalTools(
     }
 
     private fun setClipboard(args: JSONObject): String =
-        deviceController.clipboardSet(requireContext(), args.optString("text"))
+        deviceController.clipboardSet(requireContext(), args.requiredText("text"))
 
     private fun getClipboard(): String =
         deviceController.clipboardGet(requireContext())
 
     private fun pasteText(args: JSONObject): String =
-        deviceController.pasteText(args.optString("text"))
+        deviceController.pasteText(args.requiredText("text"))
 
     private fun waitForText(args: JSONObject): String =
         deviceController.waitForText(
-            text = args.optString("text"),
+            text = args.requiredText("text"),
             timeoutMs = args.optInt("timeout_ms", 10_000),
             includeDesc = args.optBoolean("include_desc", true),
             matchMode = args.optString("match", "contains")
@@ -775,14 +858,21 @@ internal class AgentLocalTools(
             .toString()
     }
 
-    private fun runCommand(args: JSONObject): String =
-        terminalController.runCommand(
-            command = args.optString("command"),
-            cwd = args.optString("cwd").ifBlank { null },
-            timeoutSeconds = args.optInt("timeout_seconds", 30)
-        )
-
-    private fun terminal(args: JSONObject): String = terminalController.terminalAction(args)
+    private fun checkRoot(): String {
+        val probe = RootAccess.request(requireContext())
+        kotlinx.coroutines.runBlocking {
+            while (probe.isActive && !closed.get()) kotlinx.coroutines.delay(100)
+        }
+        if (closed.get()) return errorResult("CANCELLED", "已取消等待 Root 检测")
+        val state = RootAccess.state.value
+        return JSONObject().put("ok", true).put("tool", "terminal").put("action", "check_root")
+            .put("root_available", state.isGranted).put("status", state.status.name.lowercase(Locale.ROOT))
+            .put("checking", state.isChecking).put("su_present", state.suPresent)
+            .put("uid", if (state.isGranted) 0 else JSONObject.NULL)
+            .put("message", if (state.isGranted) "已确认 Root 授权；后续新命令默认使用 Root" else
+                "尚未确认 Root 授权；请根据 status 检查授权或检测结果，默认 user 不表示终端不支持 Root")
+            .toString()
+    }
 
     private fun findAppByPackage(packageName: String): AppInfo? =
         installedLauncherApps().firstOrNull { it.packageName == packageName }
@@ -1353,6 +1443,7 @@ internal class AgentLocalTools(
     private data class PublishedObservation(
         val elements: RootShellDeviceController.ElementObservation? = null,
         val coordinateSpace: RootShellDeviceController.CoordinateSpace? = null,
+        val generation: Long? = null,
     )
 
     private data class GitHubInspectionSnapshot(
@@ -1360,6 +1451,17 @@ internal class AgentLocalTools(
         val prefix: String?,
         val candidatesByPath: Map<String, String>,
     )
+
+    /** 手势经过状态胶囊时让它暂时穿透并淡出；滑动按起止点包围盒判断。 */
+    private fun <T> clearOverlay(vararg points: ScreenPoint, gesture: () -> T): T {
+        val area = Rect(
+            points.minOf { it.x },
+            points.minOf { it.y },
+            points.maxOf { it.x } + 1,
+            points.maxOf { it.y } + 1,
+        )
+        return AgentOverlayClearance.around(area, gesture)
+    }
 
     private fun showTap(x: Int, y: Int) {
         GestureIndicator.showTap(context, x, y)

@@ -2,9 +2,11 @@ package io.github.alice.eta
 
 import io.github.alice.eta.agent.voice.SpeechOssUpload
 import android.app.Application
+import android.content.ComponentCallbacks2
 import android.os.Handler
 import android.os.Looper
 import io.github.alice.eta.agent.skill.SkillRuntime
+import io.github.alice.eta.agent.browser.BrowserSessionRegistry
 import io.github.alice.eta.agent.device.RootAccess
 import io.github.alice.eta.agent.terminal.TerminalRuntime
 import io.github.alice.eta.config.Prefs
@@ -50,6 +52,7 @@ class EtaApp : Application(), XposedServiceHelper.OnServiceListener {
         }
         TerminalRuntime.initialize(this)
         RootAccess.initialize(this)
+        applicationScope.launch { TerminalRuntime.backgroundJobs(this@EtaApp).resume() }
         SettingsDataStore.init(this)
         val predictiveBackEnabled = runBlocking(Dispatchers.IO) {
             AppearanceSettingsRepository.settings().predictiveBackEnabled
@@ -77,6 +80,20 @@ class EtaApp : Application(), XposedServiceHelper.OnServiceListener {
                 )
             }
         }
+    }
+
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        if (level == ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW ||
+            level == ComponentCallbacks2.TRIM_MEMORY_RUNNING_CRITICAL ||
+            level >= ComponentCallbacks2.TRIM_MEMORY_BACKGROUND) {
+            BrowserSessionRegistry.releaseIdlePages()
+        }
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        BrowserSessionRegistry.releaseIdlePages()
     }
 
     override fun onServiceBind(service: XposedService) {

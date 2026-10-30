@@ -2,6 +2,7 @@ package io.github.alice.eta.agent.runtime
 
 import android.content.Context
 import io.github.alice.eta.agent.accessibility.AgentAccessibilityKeeper
+import io.github.alice.eta.agent.browser.BrowserSessionRegistry
 import io.github.alice.eta.agent.model.AgentConversationCodec
 import io.github.alice.eta.agent.model.AgentConversationToolCatalog
 import io.github.alice.eta.agent.tool.ConversationHistoryTool
@@ -12,8 +13,11 @@ import io.github.alice.eta.agent.model.AgentModelFailure
 import io.github.alice.eta.agent.model.AgentHttpClient
 import io.github.alice.eta.agent.memory.AgentMemoryContext
 import io.github.alice.eta.agent.memory.AgentMemoryContextBuilder
+import io.github.alice.eta.agent.memory.ConversationMemoryPins
 import io.github.alice.eta.agent.roleplay.CharacterMemoryTools
 import io.github.alice.eta.agent.roleplay.RoleplayRunContext
+import io.github.alice.eta.agent.subagent.AgentSubagentToolCatalog
+import io.github.alice.eta.agent.subagent.SubagentExecutor
 import io.github.alice.eta.agent.mcp.McpRunSnapshot
 import io.github.alice.eta.agent.mcp.McpToolExecutor
 import io.github.alice.eta.agent.mcp.RoutingToolExecutor
@@ -31,8 +35,10 @@ import io.github.alice.eta.agent.voice.EtaAssistantOverlayService
 import io.github.alice.eta.core.AndroidAgentLogger
 import io.github.alice.eta.core.safeLogType
 import io.github.alice.eta.data.repository.AgentMemoryRepository
+import io.github.alice.eta.data.repository.RuntimeConfigRepository
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
+import org.json.JSONObject
 
 /**
  * 单次 Runtime run 的阻塞执行器。
@@ -44,6 +50,7 @@ internal class AgentRuntimeRunExecutor(
     context: Context,
     private val currentPermissions: () -> AgentRuntimePolicy.Permissions,
     private val snapshotRequest: (AgentRuntimeWire.RunRequest) -> AgentRuntimeWire.RunRequest,
+    private val guiControl: GuiControlCoordinator,
     private val onAcceptedEvent: (AgentEvent, EntrySurfaceGuard?) -> Unit,
     private val persistArtifacts: (
         AgentRuntimeWire.RunRequest,
@@ -66,15 +73,19 @@ internal class AgentRuntimeRunExecutor(
         request: AgentRuntimeWire.RunRequest,
     ): Outcome {
         val runController = session.controller
-        val archivedEvents = mutableListOf<AgentEvent>()
+        val archivedEvents = AgentRunArchiveStore.createEventBuffer(request.handoff)
         var entrySurfaceGuard: EntrySurfaceGuard? = null
         var toolExecutor: AutoCloseable? = null
         var toolsBinding: AgentRunController.ResourceBinding? = null
+        var guiRun: GuiControlCoordinator.RunControl? = null
+        var browserBinding: AutoCloseable? = null
         var response: AgentModelClient.ModelResponse.Text? = null
         var cancelled = false
         var checkpointRecorder: AgentRunCheckpointRecorder? = null
         val timing = AgentRunTiming(AndroidAgentLogger)
 
+        // 失败清理需要在 try 外拿到会话 id。
+        var memoryConversationId: String? = null
         val result = try {
             val contextWindow = request.config.knownContextWindow
             checkpointRecorder = AgentRunCheckpointRecorder.create(appContext, request)
@@ -103,6 +114,7 @@ internal class AgentRuntimeRunExecutor(
                 ?.let { AgentUiHandoffPayload.from(it.payload) }
             val conversationId = uiPayload?.conversationId
                 ?.takeIf { it.isNotBlank() }
+            memoryConversationId = conversationId
             val roleplayContext = conversationId?.let { id ->
                 runBlocking { RoleplayRunContext.resolve(appContext, id, contextWindow, memoryEnabled) }
             }
@@ -121,7 +133,8 @@ internal class AgentRuntimeRunExecutor(
             }
             val memoryContext = if (memoryEnabled) {
                 runCatching {
-                    AgentMemoryContextBuilder.build(
+                    ConversationMemoryPins.contextFor(
+                        conversationId = conversationId,
                         snapshot = AgentMemoryRepository.snapshot(),
                         contextWindow = request.config.contextWindow,
                     )
@@ -134,6 +147,15 @@ internal class AgentRuntimeRunExecutor(
             } else {
                 AgentMemoryContext.DISABLED
             }
+            if (request.config.terminalTools) {
+                // 启动探测由 App 拥有；模型首轮等待其结果，避免把检测中的授权当成普通设备。
+                runBlocking {
+                    while (io.github.alice.eta.agent.device.RootAccess.state.value.isChecking) {
+                        runController.throwIfCancelled()
+                        kotlinx.coroutines.delay(100)
+                    }
+                }
+            }
             val pendingSkillConflict = PendingSkillConflictCapabilityParser.parse(request.history)
             val mcpSnapshot = runBlocking {
                 runCatching { McpRunSnapshot.load() }.getOrElse { throwable ->
@@ -144,10 +166,20 @@ internal class AgentRuntimeRunExecutor(
                 }
             }
             val mcpTools = JSONArray().also(mcpSnapshot::appendModelTools)
+            val browserKey = AgentConversationIdentity.fromHandoff(request.handoff, request.runId)
+            browserBinding = BrowserSessionRegistry.acquireRun(browserKey, request.runId)
+            guiRun = guiControl.openRun(request.runId, runController) { status ->
+                acceptEvent(
+                    session, AgentEvent.GuiControlChanged(status), archivedEvents,
+                    entrySurfaceGuard, checkpointRecorder,
+                )
+            }
             val executor = AgentLocalTools(
                 context = appContext,
                 logger = AndroidAgentLogger,
                 browserRunId = request.runId,
+                browserSession = BrowserSessionRegistry.get(browserKey),
+                guiControl = guiRun,
                 browserToolsEnabled = {
                     request.config.browserTools && currentPermissions().browserTools
                 },
@@ -224,16 +256,65 @@ internal class AgentRuntimeRunExecutor(
                     journal + session.transcript
                 }
             }
+            val subagentAllowed = {
+                request.config.subagentTools && currentPermissions().subagentTools
+            }
+            val subagentExecutor = SubagentExecutor(
+                conversationKey = browserKey,
+                parentController = runController,
+                configProvider = {
+                    val rawSubagentConfig = runBlocking {
+                        RuntimeConfigRepository.subagentRuntimeConfig(request.config)
+                    }
+                    AgentRuntimePolicy.constrain(rawSubagentConfig, currentPermissions())
+                },
+                capabilitiesProvider = { AgentToolCapabilities.capture(appContext) },
+                baseToolExecutor = routingExecutor,
+                skillContext = skillContext,
+                memoryContext = memoryContext,
+                mcpTools = mcpTools,
+                executionContext = executor.terminalExecutionContext,
+                onProgress = { progressEvent ->
+                    acceptEvent(
+                        session,
+                        progressEvent,
+                        archivedEvents,
+                        entrySurfaceGuard,
+                        checkpointRecorder,
+                    )
+                },
+            )
             val runTools = JSONArray(mcpTools.toString()).also { tools ->
+                if (subagentAllowed()) AgentSubagentToolCatalog.appendSchemas(tools)
                 if (historyTool != null) tools.put(AgentConversationToolCatalog.schema())
                 if (characterMemoryTools != null && memoryEnabled) CharacterMemoryTools.appendSchemas(tools)
             }
             val runToolExecutor = AgentModelClient.ToolExecutor { call ->
-                if (call.name == AgentConversationToolCatalog.READ_HISTORY && historyTool != null) {
+                if (call.name in AgentSubagentToolCatalog.names) {
+                    if (!subagentAllowed()) {
+                        AgentModelClient.ToolResult(
+                            JSONObject()
+                                .put("ok", false)
+                                .put("code", "SUBAGENT_DISABLED")
+                                .put("message", "Subagent 权限已关闭")
+                                .toString(),
+                        )
+                    } else if (call.name == AgentSubagentToolCatalog.PROFILE_TOOL_NAME) {
+                        subagentExecutor.executeProfileManagement(call)
+                    } else {
+                        subagentExecutor.execute(call.round, call)
+                    }
+                } else if (call.name == AgentConversationToolCatalog.READ_HISTORY && historyTool != null) {
                     historyTool.execute(call)
                 } else if (call.name in CharacterMemoryTools.NAMES && characterMemoryTools != null) {
                     characterMemoryTools.execute(call)
-                } else routingExecutor.execute(call)
+                } else routingExecutor.execute(call).also { result ->
+                    if (call.name == "memory_write") {
+                        runCatching { JSONObject(result.content) }.getOrNull()
+                            ?.takeIf { it.optBoolean("ok") }
+                            ?.let { ConversationMemoryPins.recordOwnWrite(conversationId, it.optString("revision")) }
+                    }
+                }
             }
             val completedResponse = AgentModelClient.complete(
                 config = request.config,
@@ -245,6 +326,8 @@ internal class AgentRuntimeRunExecutor(
                 rewriteReply = request.operation == AgentRuntimeWire.OP_REWRITE_REPLY,
                 compactOnly = request.operation == AgentRuntimeWire.OP_COMPACT,
                 onContextSnapshot = { snapshot ->
+                    // 压缩会把历史里的记忆写入摘要掉，下一轮需要重新注入最新记忆。
+                    ConversationMemoryPins.forget(conversationId)
                     val committed = snapshot.copy(operationId = request.runId)
                     AgentRunCheckpointStore.saveContext(appContext, request.runId, committed)
                     session.updateContext(committed)
@@ -263,6 +346,7 @@ internal class AgentRuntimeRunExecutor(
                 skillContext = skillContext,
                 memoryContext = memoryContext,
                 additionalTools = runTools,
+                executionContext = executor.terminalExecutionContext,
             ) { event ->
                 timing.accept(event)
                 acceptEvent(
@@ -285,6 +369,8 @@ internal class AgentRuntimeRunExecutor(
                 rewriteTargetMessageId = request.rewriteTargetMessageId,
             )
         } catch (throwable: Throwable) {
+            // 失败时历史是否完整落盘不确定，放弃固定的记忆快照；记忆未变时重新注入的内容逐字节相同。
+            ConversationMemoryPins.forget(memoryConversationId)
             cancelled = runController.isCancelled || throwable is AgentRunCancelledException
             val modelFailure = throwable as? AgentModelExecutionException
             val message = if (cancelled) {
@@ -332,11 +418,13 @@ internal class AgentRuntimeRunExecutor(
         } finally {
             runCatching { toolsBinding?.close() }
             runCatching { toolExecutor?.close() }
+            runCatching { guiRun?.close() }
+            runCatching { browserBinding?.close() }
         }
 
         if (cancelled && session.isTerminal) {
             runCatching {
-                persistArtifacts(snapshotRequest(request), result, archivedEvents)
+                persistArtifacts(snapshotRequest(request), result, archivedEvents.orEmpty())
             }.onFailure { throwable ->
                 AndroidAgentLogger.error(
                     "Agent runtime cancelled result persistence failed: " +
@@ -364,7 +452,7 @@ internal class AgentRuntimeRunExecutor(
                         "Agent runtime checkpoint seal failed: type=${throwable.safeLogType()}"
                     )
                 }
-            runCatching { persistArtifacts(completedRequest, result, archivedEvents) }
+            runCatching { persistArtifacts(completedRequest, result, archivedEvents.orEmpty()) }
                 .onFailure { throwable ->
                     AndroidAgentLogger.error(
                         "Agent runtime artifact persistence failed: type=${throwable.safeLogType()}"
@@ -383,13 +471,13 @@ internal class AgentRuntimeRunExecutor(
     private fun acceptEvent(
         session: AgentRuntimeSession,
         event: AgentEvent,
-        archivedEvents: MutableList<AgentEvent>,
+        archivedEvents: MutableList<AgentEvent>?,
         entrySurfaceGuard: EntrySurfaceGuard?,
         checkpointRecorder: AgentRunCheckpointRecorder?,
     ) {
         checkpointRecorder?.accept(event)
         if (!session.emit(event)) return
-        archivedEvents += event
+        if (event !is AgentEvent.GuiControlChanged) archivedEvents?.add(event)
         if (event is AgentEvent.ModelRetryScheduled) {
             AndroidAgentLogger.warn("Agent runtime event: ${event.toLogLine()}")
         } else if (event !is AgentEvent.AssistantBlockDelta) {

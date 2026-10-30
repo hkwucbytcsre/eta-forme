@@ -1,9 +1,13 @@
 package io.github.alice.eta.agent.tool
 
 import android.content.Context
+import android.content.ClipData
+import android.content.ClipboardManager
 import io.github.alice.eta.agent.device.RootShellDeviceController
 import io.github.alice.eta.agent.model.AgentModelClient
 import io.github.alice.eta.agent.model.AgentScreenObservationContract
+import io.github.alice.eta.agent.runtime.AgentRunController
+import io.github.alice.eta.agent.runtime.GuiControlCoordinator
 import io.github.alice.eta.core.AgentLogger
 import java.util.concurrent.atomic.AtomicBoolean
 import org.json.JSONObject
@@ -20,11 +24,58 @@ import org.robolectric.annotation.Config
 @Config(sdk = [36])
 class AgentLocalToolsPermissionTest {
     @Test
+    fun releaseAndUserTakeoverInvalidateBothNodesAndRawScreenCoordinates() {
+        val coordinator = GuiControlCoordinator()
+        val control = coordinator.openRun("gui-test", AgentRunController())
+        val tools = tools(
+            guiControl = control,
+            screenObservationProvider = { observation("observed", it.includeScreenshot) },
+            beforeToolExecution = { name ->
+                if (name in setOf("observe_screen", "release_gui")) ToolExecutionDecision.Allow
+                else ToolExecutionDecision.Reject("ACTION_REACHED", "动作执行前测试边界")
+            },
+        )
+        fun call(name: String, arguments: String = "{}") = JSONObject(
+            tools.execute(AgentModelClient.ToolCall(name, name, arguments)).content,
+        )
+        tools.use {
+            assertTrue(call("observe_screen").getBoolean("ok"))
+            assertEquals("ACTION_REACHED", call("tap", """{"x":1,"y":1,"coordinate_space":"screen"}""").getString("code"))
+            assertTrue(call("release_gui").getBoolean("ok"))
+            assertEquals("NO_OBSERVATION", call("tap", """{"x":1,"y":1,"coordinate_space":"screen"}""").getString("code"))
+            assertEquals("NO_OBSERVATION", call("tap_element", """{"index":0,"observation_id":"observed"}""").getString("code"))
+            assertTrue(call("observe_screen").getBoolean("ok"))
+            assertTrue(coordinator.pauseForUser("gui-test"))
+            assertTrue(coordinator.resumeForUser())
+            assertEquals("NO_OBSERVATION", call("type_text", """{"text":"旧页面不能输入"}""").getString("code"))
+            assertTrue(call("observe_screen").getBoolean("ok"))
+            assertEquals("ACTION_REACHED", call("type_text", """{"text":"新观察后到达动作边界"}""").getString("code"))
+        }
+    }
+
+    @Test
+    fun backgroundToolsDoNotAcquireAnotherRunsGuiControl() {
+        val coordinator = GuiControlCoordinator()
+        val owner = coordinator.openRun("owner", AgentRunController())
+        owner.withAction { }
+        val background = coordinator.openRun("background", AgentRunController())
+        try {
+            tools(guiControl = background).use { tools ->
+                val result = tools.execute(AgentModelClient.ToolCall("terminal", "terminal", "{}"))
+                assertEquals("TERMINAL_TOOLS_DISABLED", JSONObject(result.content).getString("code"))
+                assertEquals("owner", coordinator.state.value.ownerRunId)
+            }
+        } finally {
+            owner.close()
+        }
+    }
+
+    @Test
     fun revokedRootRejectsOldPrivilegedCallsBeforeAnyOperation() {
         val root = AtomicBoolean(true)
         val tools = tools(
             rootAvailable = root::get,
-            beforeToolExecution = { error("缺少 Root 的旧调用不应进入执行阶段") },
+            terminalEnabled = { true },
         )
         root.set(false)
         listOf(
@@ -62,13 +113,13 @@ class AgentLocalToolsPermissionTest {
         val result = tools.execute(
             AgentModelClient.ToolCall(
                 id = "call-1",
-                name = "run_command",
+                name = "terminal",
                 argumentsJson = "{\"command\":\"id\"}",
             )
         )
 
         assertEquals("TERMINAL_TOOLS_DISABLED", JSONObject(result.content).getString("code"))
-        listOf("read_file", "edit_file", "glob_files", "grep_files", "stat_file").forEach { name ->
+        listOf("terminal_job", "terminal_daemon", "read_file", "edit_file", "glob_files", "grep_files", "stat_file").forEach { name ->
             val fileResult = tools.execute(AgentModelClient.ToolCall("disabled-$name", name, "{}"))
             assertEquals(name, "TERMINAL_TOOLS_DISABLED", JSONObject(fileResult.content).getString("code"))
         }
@@ -190,6 +241,41 @@ class AgentLocalToolsPermissionTest {
 
         assertEquals("INVALID_ARGUMENT", JSONObject(result.content).getString("code"))
         tools.close()
+    }
+
+    @Test
+    fun missingActionArgumentsDoNotBecomeZeroCoordinatesOrEmptyText() {
+        val tools = tools()
+        try {
+            listOf(
+                "tap" to """{"coordinate_space":"screen","y":10}""",
+                "swipe" to """{"coordinate_space":"screen","y1":10,"x2":20,"y2":20}""",
+                "type_text" to "{}",
+                "set_clipboard" to "{}",
+            ).forEach { (name, arguments) ->
+                val result = tools.execute(AgentModelClient.ToolCall("missing", name, arguments))
+                assertEquals(name, "INVALID_ARGUMENT", JSONObject(result.content).getString("code"))
+            }
+        } finally { tools.close() }
+    }
+
+    @Test
+    fun missingAndNonTextInputDoNotChangeClipboardOrReachDeviceActions() {
+        val context = RuntimeEnvironment.getApplication() as Context
+        val clipboard = context.getSystemService(ClipboardManager::class.java)
+        clipboard.setPrimaryClip(ClipData.newPlainText("test", "existing text"))
+        tools().use { tools ->
+            listOf("type_text", "input_text", "replace_text", "set_clipboard", "paste_text", "wait_for_text").forEach { name ->
+                listOf("{}", """{"text":null}""", """{"text":{"value":"replacement"}}""").forEach { args ->
+                    val result = JSONObject(tools.execute(AgentModelClient.ToolCall("invalid-$name", name, args)).content)
+                    assertEquals(result.toString(), "INVALID_ARGUMENT", result.getString("code"))
+                    assertEquals("existing text", clipboard.primaryClip!!.getItemAt(0).text.toString())
+                }
+            }
+            val cleared = JSONObject(tools.execute(AgentModelClient.ToolCall("clear", "set_clipboard", """{"text":""}""")).content)
+            assertTrue(cleared.toString(), cleared.getBoolean("ok"))
+            assertEquals("", clipboard.primaryClip!!.getItemAt(0).text.toString())
+        }
     }
 
     @Test
@@ -320,6 +406,7 @@ class AgentLocalToolsPermissionTest {
         beforeToolExecution: (String) -> ToolExecutionDecision = {
             ToolExecutionDecision.Allow
         },
+        guiControl: GuiControlCoordinator.RunControl? = null,
     ): AgentLocalTools =
         AgentLocalTools(
             context = RuntimeEnvironment.getApplication() as Context,
@@ -333,6 +420,7 @@ class AgentLocalToolsPermissionTest {
             deviceSensitiveReadToolsEnabled = sensitiveReadEnabled,
             screenObservationProvider = screenObservationProvider,
             beforeToolExecution = beforeToolExecution,
+            guiControl = guiControl,
         )
 
     private fun observation(

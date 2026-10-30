@@ -77,6 +77,12 @@
         </activity>
 
         <activity
+            android:name=".ui.screens.browser.AgentBrowserActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Eta"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".agent.voice.EtaVoiceAssistActivity"
             android:excludeFromRecents="true"
             android:exported="true"
@@ -127,6 +133,11 @@
             android:name=".agent.voice.EtaAssistantOverlayService"
             android:foregroundServiceType="microphone|mediaPlayback"
             android:exported="false" />
+
+        <service
+            android:name=".agent.voice.ReadAloudPlaybackService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
 
         <service
             android:name=".agent.runtime.AgentRuntimeService"

@@ -56,6 +56,7 @@ internal fun toolDisplayName(resources: Resources, name: String): String {
 @StringRes
 internal fun toolDisplayNameResource(name: String): Int? = when (name) {
     "observe_screen" -> R.string.tool_observe_screen
+    "release_gui" -> R.string.tool_release_gui
     "tap" -> R.string.tool_tap
     "tap_element" -> R.string.tool_tap_element
     "tap_area" -> R.string.tool_tap_area
@@ -83,6 +84,8 @@ internal fun toolDisplayNameResource(name: String): Int? = when (name) {
     "web_search" -> R.string.tool_web_search
     "fetch_url" -> R.string.tool_fetch_url
     "terminal" -> R.string.tool_terminal
+    "terminal_job" -> R.string.tool_terminal_job
+    "terminal_daemon" -> R.string.tool_terminal_daemon
     "run_command" -> R.string.tool_run_command
     "inspect_app" -> R.string.tool_inspect_app
     "edit_file" -> R.string.tool_edit_file

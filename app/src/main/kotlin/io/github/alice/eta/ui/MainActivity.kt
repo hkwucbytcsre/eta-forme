@@ -1,6 +1,5 @@
 package io.github.alice.eta.ui
 
-import io.github.alice.eta.ui.voice.ACTION_SPEECH_SETTINGS
 import android.app.UiModeManager
 import android.content.Intent
 import android.os.Bundle
@@ -15,27 +14,30 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.lifecycleScope
+import io.github.alice.eta.agent.runtime.AgentRuntimeService
 import io.github.alice.eta.agent.voice.EtaAssistantOverlayService
+import io.github.alice.eta.core.AndroidAgentLogger
 import io.github.alice.eta.data.model.AppearanceThemeMode
 import io.github.alice.eta.data.repository.AppearanceSettingsRepository
 import io.github.alice.eta.ui.app.AgentAppRoot
 import io.github.alice.eta.ui.app.AgentAppTheme
 import io.github.alice.eta.ui.app.PredictiveBackController
 import io.github.alice.eta.ui.app.installStartupSplash
+import java.util.Collections
+import java.util.IdentityHashMap
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
-    private var assistantConversationKey by mutableStateOf<String?>(null)
-    private var requestedConversationId by mutableStateOf<String?>(null)
+    private var launchRequests by mutableStateOf(MainActivityLaunchRequests())
     private var appliedPredictiveBackEnabled = true
-    private var speechSettingsRequested by mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AndroidAgentLogger.info("Agent UI created: task=$taskId restored=${savedInstanceState != null}")
         var contentReady = false
         installStartupSplash { contentReady }
         enableEdgeToEdge()
-        updateAssistantHandoff(intent)
+        launchRequests = MainActivityLaunchRequests.restore(savedInstanceState, intent)
         lifecycleScope.launch {
             val initialAppearance = AppearanceSettingsRepository.settings()
             appliedPredictiveBackEnabled = initialAppearance.predictiveBackEnabled
@@ -63,13 +65,30 @@ class MainActivity : ComponentActivity() {
                     onResolvedDarkModeChange = ::updateSystemBars,
                 ) {
                     AgentAppRoot(
-                        assistantConversationKey = assistantConversationKey,
-                        requestedConversationId = requestedConversationId,
-                        onRequestedConversationOpened = { requestedConversationId = null; intent?.action = null },
-                        openSpeechSettings = speechSettingsRequested,
-                        onSpeechSettingsOpened = { speechSettingsRequested = false; intent?.action = null },
+                        assistantConversationKey = launchRequests.assistantConversationKey,
+                        requestedConversationId = launchRequests.conversationId,
+                        onRequestedConversationOpened = {
+                            launchRequests = launchRequests.copy(conversationId = null)
+                            intent?.action = null
+                        },
+                        requestedArchivedConversation = launchRequests.archivedConversation,
+                        onArchivedConversationOpened = {
+                            launchRequests = launchRequests.copy(archivedConversation = null)
+                            intent?.action = null
+                        },
+                        openSpeechSettings = launchRequests.speechSettings,
+                        openTerminal = launchRequests.terminal,
+                        onTerminalOpened = {
+                            launchRequests = launchRequests.copy(terminal = false)
+                            intent?.action = null
+                        },
+                        onSpeechSettingsOpened = {
+                            launchRequests = launchRequests.copy(speechSettings = false)
+                            intent?.action = null
+                        },
                         onAssistantConversationOpened = { opened ->
-                            assistantConversationKey = null
+                            launchRequests = launchRequests.copy(assistantConversationKey = null)
+                            intent?.action = null
                             if (opened) {
                                 EtaAssistantOverlayService.notifyHandoffReady(this@MainActivity)
                             }
@@ -81,25 +100,40 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    override fun onNewIntent(intent: Intent) {
-        super.onNewIntent(intent)
-        setIntent(intent)
-        updateAssistantHandoff(intent)
+    override fun onStart() {
+        super.onStart()
+        startedInstances.add(this)
+        isInForeground = true
+        AgentRuntimeService.onEtaUiVisibilityChanged()
     }
 
-    private fun updateAssistantHandoff(intent: Intent?) {
-        if (intent?.action == ACTION_SPEECH_SETTINGS) {
-            speechSettingsRequested = true
-            return
-        }
-        if (intent?.action == ACTION_OPEN_CONVERSATION_ID) {
-            requestedConversationId = intent.getStringExtra(EXTRA_CONVERSATION_ID)?.takeIf(String::isNotBlank)
-            return
-        }
-        if (intent?.action != EtaAssistantOverlayService.ACTION_OPEN_CONVERSATION) return
-        assistantConversationKey = intent.getStringExtra(
-            EtaAssistantOverlayService.EXTRA_CONVERSATION_KEY,
-        )?.takeIf(String::isNotBlank)
+    override fun onStop() {
+        startedInstances.remove(this)
+        isInForeground = startedInstances.isNotEmpty() || isChangingConfigurations
+        AgentRuntimeService.onEtaUiVisibilityChanged()
+        super.onStop()
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        val fromLauncher = intent.action == Intent.ACTION_MAIN && intent.hasCategory(Intent.CATEGORY_LAUNCHER)
+        AndroidAgentLogger.info("Agent UI new intent: task=$taskId launcher=$fromLauncher")
+        setIntent(intent)
+        launchRequests = launchRequests.accept(intent)
+    }
+
+    override fun onDestroy() {
+        startedInstances.remove(this)
+        isInForeground = startedInstances.isNotEmpty() || isChangingConfigurations
+        AndroidAgentLogger.info(
+            "Agent UI destroyed: task=$taskId changing_configuration=$isChangingConfigurations finishing=$isFinishing",
+        )
+        super.onDestroy()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        launchRequests.saveTo(outState)
+        super.onSaveInstanceState(outState)
     }
 
     private fun updateApplicationNightMode(themeMode: AppearanceThemeMode) {
@@ -142,8 +176,19 @@ class MainActivity : ComponentActivity() {
     }
 
     companion object {
-        /** 运行浮层的结果卡片回到本体：App 发起的 run 带会话 ID，直接打开该会话；缺省时只回到首页。 */
+        private val startedInstances = Collections.newSetFromMap(IdentityHashMap<MainActivity, Boolean>())
+
+        @Volatile
+        internal var isInForeground: Boolean = false
+            private set
+
+        const val ACTION_OPEN_TERMINAL = "io.github.alice.eta.action.OPEN_TERMINAL"
+        /** 运行浮层的结果卡片回到本体：App 发起的 run 带会话 ID，直接打开该会话。 */
         const val ACTION_OPEN_CONVERSATION_ID = "io.github.alice.eta.action.OPEN_CONVERSATION_ID"
         const val EXTRA_CONVERSATION_ID = "io.github.alice.eta.extra.CONVERSATION_ID"
+        /** 系统助手等外部入口发起的 run 按来源与会话键归档，回到本体时打开对应的归档会话。 */
+        const val ACTION_OPEN_ARCHIVED_CONVERSATION = "io.github.alice.eta.action.OPEN_ARCHIVED_CONVERSATION"
+        const val EXTRA_HANDOFF_SOURCE = "io.github.alice.eta.extra.HANDOFF_SOURCE"
+        const val EXTRA_CONVERSATION_KEY = "io.github.alice.eta.extra.CONVERSATION_KEY"
     }
 }

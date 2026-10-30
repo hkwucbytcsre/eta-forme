@@ -45,9 +45,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.DpSize
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -56,6 +55,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import io.github.alice.eta.R
 import io.github.alice.eta.ui.model.ConversationPaneUiState
@@ -339,6 +339,15 @@ private fun ConversationTextRow(
                 ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
+            conversation.characterName?.let { name ->
+                CharacterAvatar(
+                    name = name,
+                    avatarPath = conversation.characterAvatarPath,
+                    size = 36.dp,
+                    shape = CircleShape,
+                )
+                Spacer(Modifier.width(12.dp))
+            }
             Column(modifier = Modifier.weight(1f)) {
             val title = conversation.title.ifBlank { conversation.preview }
             Text(
@@ -356,6 +365,15 @@ private fun ConversationTextRow(
             // 标题与角色名相同（如未改名的角色会话）时不再重复第二行。
             conversation.characterName?.takeIf { it != title }?.let { name ->
                 Text(name, style = MiuixTheme.textStyles.footnote1, color = MiuixTheme.colorScheme.onSurfaceVariantSummary, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            }
+            conversation.runStatus?.let { status ->
+                Text(
+                    text = status,
+                    style = MiuixTheme.textStyles.footnote1,
+                    color = MiuixTheme.colorScheme.onSurfaceVariantSummary,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
             }
             }
             if (conversation.isActiveRun) {
