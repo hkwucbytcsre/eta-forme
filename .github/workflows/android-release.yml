@@ -28,10 +28,6 @@ jobs:
         with:
           persist-credentials: false
 
-      # 兜底：避免 gradlew 在 Git 索引里是 100644（无执行位）导致 exit code 126
-      - name: 确保 gradlew 可执行
-        run: chmod +x ./gradlew
-
       - name: 配置构建环境
         uses: ./.github/actions/setup-build
 
@@ -59,10 +55,6 @@ jobs:
     steps:
       - name: 检出代码
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-
-      # 兜底：避免 gradlew 在 Git 索引里是 100644（无执行位）导致 exit code 126
-      - name: 确保 gradlew 可执行
-        run: chmod +x ./gradlew
 
       - name: 配置构建环境
         uses: ./.github/actions/setup-build
